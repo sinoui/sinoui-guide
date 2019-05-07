@@ -676,12 +676,84 @@ export default Form;
 <p><img src="/sinoui-guide/docs/assets/images/react-tutorial-finish.png" alt=""></p>
 <p>打开<a href="https://github.com/sinoui/react-tutorial">https://github.com/sinoui/react-tutorial</a>可查看完整的代码。</p>
 <h2><a class="anchor" aria-hidden="true" id="与后端-api-交互"></a><a href="#与后端-api-交互" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>与后端 API 交互</h2>
+<p>从 API 中获取数据是前端应用中常见场景。如果你不熟悉如何与 API 交互，建议你先学习一下<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">Fetch API</a>或者<a href="https://github.com/axios/axios">Axios</a>。</p>
+<p>这个章节将会用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">Fetch API</a>获取<a href="http://www.weather.com.cn/data/sk/101010100.html">北京的天气数据</a>，并在页面上展现北京市当前的天气情况。</p>
+<p>这个章节不再从零开始讲解如何创建一个 React 应用和创建组件。这里重点讲解一个新的 React 钩子<a href="https://zh-hans.reactjs.org/docs/hooks-effect.html">useEffect</a>。它有很多用途，其中之一就是可以在组件创建完成后执行一些 JavaScript 代码（在这里执行的 JavaScript 代码，我们称之为副作用）。我们的应用期望在组件创建后，立马访问气象 API 获取北京市气象数据。代码如下。</p>
+<p><code>src/App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [weather, setWeather] = useState();
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> url =
+      <span class="hljs-string">"https://fcc-weather-api.glitch.me/api/current?lat=39.92&amp;lon=116.46"</span>;
+
+    fetch(url)
+      .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> result.json())
+      .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> setWeather(result));
+  }, []);
+
+  <span class="hljs-keyword">if</span> (weather) {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"container"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>北京市天气情况：<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>温度：{weather.main.temp}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>风级：{weather.wind.speed}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>湿度：{weather.main.humidity}%<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>大气压：{weather.main.pressure}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>正在获取北京市天气数据...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+</code></pre>
+<p>启动应用后，就能看到北京市的天气预报了。我们可以打开 devtools，查看<code>Network</code>页签，刷新一下页面，找到<code>https://fcc-weather-api.glitch.me</code>这个请求，点击<code>Preview</code>页签，能够预览这个天气 API 的响应数据。</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-tutorial-weather.png" alt=""></p>
 <h2><a class="anchor" aria-hidden="true" id="编译并部署-react-项目"></a><a href="#编译并部署-react-项目" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译并部署 React 项目</h2>
+<p>开发环境与生产环境是有很大区别的。在开发环境中，注重的是开发者体验，而在生产环境，需要考虑的是性能。为了在生产环境中运行 React 应用，我们需要编译并部署项目。</p>
+<p>我们可以通过下面的命令行编译 React 项目。</p>
+<pre><code class="hljs css language-shell">npm run build
+</code></pre>
+<p>执行完后，会产生一个<code>build</code>文件夹。这个文件夹就是项目编译后的文件。将 build 文件夹推送到 Nginx 或者其他服务器上就完成了部署。这里介绍两种方式部署场景。</p>
+<h3><a class="anchor" aria-hidden="true" id="serve"></a><a href="#serve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>serve</h3>
+<p>为了在本地快速预览编译后的效果，可以使用<a href="https://www.npmjs.com/package/serve">serve</a>这个工具来启动编译后的 React 项目。</p>
+<pre><code class="hljs css language-shell">npx serve -s build
+</code></pre>
+<p>在浏览器中打开<a href="http://localhost:5000">http://localhost:5000</a>页面，就能看到效果。</p>
+<h3><a class="anchor" aria-hidden="true" id="github-pages"></a><a href="#github-pages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>github pages</h3>
+<p>如果你熟悉<a href="http://github.com/">Github</a>，那么可以接着往下看，否则先百度一下如何创建 Github 账号并使用 Github。</p>
+<p><a href="https://pages.github.com/">Github Pages</a>可以用来快速搭建你的站点。我们可以将编译后的项目部署到 Github Pages 上。</p>
+<p>首先打开项目的<code>package.json</code>，添加上<code>homepage</code>，配置上你的项目的 url。</p>
+<p><code>package.json</code>:</p>
+<pre><code class="hljs css language-json">  "homepage": "https://sinoui.github.io/react-tutorial",
+</code></pre>
+<p>在<code>scripts</code>部分添加两行代码：</p>
+<pre><code class="hljs css language-json">"scripts": {
+  // ...
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+</code></pre>
+<p>安装<code>gh-pages</code>依赖。</p>
+<pre><code class="hljs css language-shell">npm install --save-dev gh-pages
+</code></pre>
+<p>然后我们执行<code>deploy</code>指令，将项目发布到 github pages 上。</p>
+<pre><code class="hljs css language-shell">npm run deploy
+</code></pre>
+<p>入门程序的构建旅程到此结束。看看成效吧：<a href="https://sinoui.github.io/react-tutorial/">https://sinoui.github.io/react-tutorial/</a>。</p>
 <h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>这篇文章是一个很好的开始，它向大家介绍了 React、JSX、组件、属性、状态、表单处理、与 API 交互以及部署应用。我们还有很多 React 相关知识需要学习，但是我希望这篇文章能够带给大家向未知前进的信心。</p>
+<p><a href="https://github.com/sinoui/react-tutorial">查看放在 Github 上的源码</a></p>
+<p><a href="https://sinoui.github.io/react-tutorial/">查看最终效果</a></p>
+<p>如果这篇文章有不正确或者不明确的地方，请<a href="https://github.com/sinoui/sinoui-guide/issues">告知我们</a>（添加 github issue）。</p>
 <h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
 <ul>
 <li><a href="https://zh-hans.reactjs.org/docs/hello-world.html">React 官方教程</a></li>
 <li><a href="https://www.taniarascia.com/getting-started-with-react/">Getting Started with React</a></li>
 <li><a href="https://zh-hans.reactjs.org/docs/hooks-intro.html">React Hooks</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-index"><span class="arrow-prev">← </span><span>教程开篇</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#准备">准备</a></li><li><a href="#目标">目标</a></li><li><a href="#react-是什么">React 是什么？</a></li><li><a href="#创建并安装-react-项目">创建并安装 React 项目</a><ul class="toc-headings"><li><a href="#create-react-app">create-react-app</a></li><li><a href="#调试-react">调试 React</a></li></ul></li><li><a href="#jsx-javascript-html">JSX: JavaScript + HTML</a></li><li><a href="#组件">组件</a><ul class="toc-headings"><li><a href="#函数组件">函数组件</a></li><li><a href="#类组件">类组件</a></li></ul></li><li><a href="#属性">属性</a></li><li><a href="#状态">状态</a><ul class="toc-headings"><li><a href="#usestate">useState()</a></li></ul></li><li><a href="#提交表单数据">提交表单数据</a></li><li><a href="#与后端-api-交互">与后端 API 交互</a></li><li><a href="#编译并部署-react-项目">编译并部署 React 项目</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-index"><span class="arrow-prev">← </span><span>教程开篇</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#准备">准备</a></li><li><a href="#目标">目标</a></li><li><a href="#react-是什么">React 是什么？</a></li><li><a href="#创建并安装-react-项目">创建并安装 React 项目</a><ul class="toc-headings"><li><a href="#create-react-app">create-react-app</a></li><li><a href="#调试-react">调试 React</a></li></ul></li><li><a href="#jsx-javascript-html">JSX: JavaScript + HTML</a></li><li><a href="#组件">组件</a><ul class="toc-headings"><li><a href="#函数组件">函数组件</a></li><li><a href="#类组件">类组件</a></li></ul></li><li><a href="#属性">属性</a></li><li><a href="#状态">状态</a><ul class="toc-headings"><li><a href="#usestate">useState()</a></li></ul></li><li><a href="#提交表单数据">提交表单数据</a></li><li><a href="#与后端-api-交互">与后端 API 交互</a></li><li><a href="#编译并部署-react-项目">编译并部署 React 项目</a><ul class="toc-headings"><li><a href="#serve">serve</a></li><li><a href="#github-pages">github pages</a></li></ul></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
