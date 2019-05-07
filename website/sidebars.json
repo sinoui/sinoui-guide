@@ -1,0 +1,10 @@
+{
+  "docs": {
+    "React": ["react-index", "react-getting-started"],
+    "TypeScript/ES6": [""],
+    "Style": [""]
+  },
+  "app-dev": {
+    "router": [""]
+  }
+}
