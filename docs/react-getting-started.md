@@ -753,7 +753,7 @@ function Form() {
 export default Form;
 ```
 
-我们的目标是表单中的每一个表达项发生变化时更新`formData`状态，并且在我们提交表单时，将数据传递给`App`组件中的`users`状态。当`App`组件的`users`状态发生变化时，我们的`Table`组件就会同步更新。
+我们的目标是表单中的每一个表单项发生变化时更新`formData`状态，并且在我们提交表单时，将数据传递给`App`组件中的`users`状态。当`App`组件的`users`状态发生变化时，我们的`Table`组件就会同步更新。
 
 首先，我们创建一个函数，用来监听表单项发生变化的事件。这个函数会接收到`event`参数，这个参数代表表单项值变化事件。`event`中有`name`和`value`两个属性，代表表单项的名称和值。
 
@@ -838,9 +838,9 @@ const addUser = user => {
 <Form handleSubmit={addUser} />
 ```
 
-在`Form`组件内部，创建一个`submitForm()`方法，它会调用通过属性传递过来的`handleSbumit()`方法，并且会将表单状态传递给之前定义的`user`参数。`submitForm()`也会重置表单状态为初始状态，这样就可以在提交表单后情况表单。
+在`Form`组件内部，创建一个`submitForm()`方法，它会调用通过属性传递过来的`handleSbumit()`方法，并且会将表单状态传递给之前定义的`user`参数。`submitForm()`也会重置表单状态为初始状态，这样就可以在提交表单后清空表单。
 
-`Fomr.js`:
+`Form.js`:
 
 ```jsx
 const { handleSubmit } = props;
