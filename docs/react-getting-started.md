@@ -864,9 +864,120 @@ const submitForm = () => {
 
 ## 与后端 API 交互
 
+从 API 中获取数据是前端应用中常见场景。如果你不熟悉如何与 API 交互，建议你先学习一下[Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)或者[Axios](https://github.com/axios/axios)。
+
+这个章节将会用[Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)获取[北京的天气数据](http://www.weather.com.cn/data/sk/101010100.html)，并在页面上展现北京市当前的天气情况。
+
+这个章节不再从零开始讲解如何创建一个 React 应用和创建组件。这里重点讲解一个新的 React 钩子[useEffect](https://zh-hans.reactjs.org/docs/hooks-effect.html)。它有很多用途，其中之一就是可以在组件创建完成后执行一些 JavaScript 代码（在这里执行的 JavaScript 代码，我们称之为副作用）。我们的应用期望在组件创建后，立马访问气象 API 获取北京市气象数据。代码如下。
+
+`src/App.js`:
+
+```jsx
+import React, { useState, useEffect } from "react";
+
+function App() {
+  const [weather, setWeather] = useState();
+
+  useEffect(() => {
+    const url =
+      "https://fcc-weather-api.glitch.me/api/current?lat=39.92&lon=116.46";
+
+    fetch(url)
+      .then(result => result.json())
+      .then(result => setWeather(result));
+  }, []);
+
+  if (weather) {
+    return (
+      <div className="container">
+        <div>北京市天气情况：</div>
+        <div>温度：{weather.main.temp}</div>
+        <div>风级：{weather.wind.speed}</div>
+        <div>湿度：{weather.main.humidity}%</div>
+        <div>大气压：{weather.main.pressure}</div>
+      </div>
+    );
+  } else {
+    return <div>正在获取北京市天气数据...</div>;
+  }
+}
+
+export default App;
+```
+
+启动应用后，就能看到北京市的天气预报了。我们可以打开 devtools，查看`Network`页签，刷新一下页面，找到`https://fcc-weather-api.glitch.me`这个请求，点击`Preview`页签，能够预览这个天气 API 的响应数据。
+
+![](assets/images/react-tutorial-weather.png)
+
 ## 编译并部署 React 项目
 
+开发环境与生产环境是有很大区别的。在开发环境中，注重的是开发者体验，而在生产环境，需要考虑的是性能。为了在生产环境中运行 React 应用，我们需要编译并部署项目。
+
+我们可以通过下面的命令行编译 React 项目。
+
+```shell
+npm run build
+```
+
+执行完后，会产生一个`build`文件夹。这个文件夹就是项目编译后的文件。将 build 文件夹推送到 Nginx 或者其他服务器上就完成了部署。这里介绍两种方式部署场景。
+
+### serve
+
+为了在本地快速预览编译后的效果，可以使用[serve](https://www.npmjs.com/package/serve)这个工具来启动编译后的 React 项目。
+
+```shell
+npx serve -s build
+```
+
+在浏览器中打开<http://localhost:5000>页面，就能看到效果。
+
+### github pages
+
+如果你熟悉[Github](http://github.com/)，那么可以接着往下看，否则先百度一下如何创建 Github 账号并使用 Github。
+
+[Github Pages](https://pages.github.com/)可以用来快速搭建你的站点。我们可以将编译后的项目部署到 Github Pages 上。
+
+首先打开项目的`package.json`，添加上`homepage`，配置上你的项目的 url。
+
+`package.json`:
+
+```json
+  "homepage": "https://sinoui.github.io/react-tutorial",
+```
+
+在`scripts`部分添加两行代码：
+
+```json
+"scripts": {
+  // ...
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+```
+
+安装`gh-pages`依赖。
+
+```shell
+npm install --save-dev gh-pages
+```
+
+然后我们执行`deploy`指令，将项目发布到 github pages 上。
+
+```shell
+npm run deploy
+```
+
+入门程序的构建旅程到此结束。看看成效吧：<https://sinoui.github.io/react-tutorial/>。
+
 ## 总结
+
+这篇文章是一个很好的开始，它向大家介绍了 React、JSX、组件、属性、状态、表单处理、与 API 交互以及部署应用。我们还有很多 React 相关知识需要学习，但是我希望这篇文章能够带给大家向未知前进的信心。
+
+[查看放在 Github 上的源码](https://github.com/sinoui/react-tutorial)
+
+[查看最终效果](https://sinoui.github.io/react-tutorial/)
+
+如果这篇文章有不正确或者不明确的地方，请[告知我们](https://github.com/sinoui/sinoui-guide/issues)（添加 github issue）。
 
 ## 参考文章
 
