@@ -23,9 +23,13 @@ sidebar_label: React入门
 - 学习 React 基本概念和相关的东西，如 Babel、Webpack、JSX、组件、属性、状态和钩子(react hooks)。
 - 构建一个演示上面概念的简单 React 应用。
 
+[查看放在 Github 上的源码](https://github.com/sinoui/react-tutorial)
+
+[查看最终效果](https://sinoui.github.io/react-tutorial/)
+
 ## React 是什么？
 
-- React 是最受欢迎的 JavaScript 库之一，[在 Github 上有 超过10万星星](https://github.com/facebook/react)。
+- React 是最受欢迎的 JavaScript 库之一，[在 Github 上有 超过 10 万星星](https://github.com/facebook/react)。
 - 它不是一个框架（不像 Angular 那样提供了很多框架功能）。
 - React 是由 Facebook 开源的项目。
 - React 用来在前端构建 UI（user interfaces，用户界面）。
@@ -79,7 +83,7 @@ react-tutorial
 打开`src/index.js`文件，找到下面一行代码：
 
 ```jsx
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 这行代码的意思是将`<App />`渲染在`#root`的 DOM 元素中。
@@ -99,9 +103,9 @@ Edit <code>src/App.js</code> and save to reload.
 现在，在`index.js`中导入 React、ReactDOM 和`index.css`：
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 ```
 
 再创建一个 App 组件。代码如下：
@@ -121,15 +125,15 @@ App 组件中有一个`class`为`App`的`div`，`div`中包含了`h1`标签。�
 最后，我们在`#root`标签中渲染出`App`：
 
 ```jsx
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 至此，`src/index.js`文件就完成了。完整的代码如下：
 
 ```jsx
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
 function App() {
   return (
@@ -139,7 +143,7 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 现在，再看看`http://localhost:3000`页面，页面上会呈现出`Hello, World!`。👏 我们完成了 React 应用的开始部分。
@@ -166,11 +170,11 @@ React 并不强制使用 JSX。在底层，JSX 会被替换成`createElement`，
 
 ```jsx
 const heading = React.createElement(
-  'h1',
+  "h1",
   {
-    className: 'site-heading',
+    className: "site-heading"
   },
-  'Hello, React',
+  "Hello, React"
 );
 ```
 
@@ -190,13 +194,13 @@ JSX 实际上更接近 JavaScript，而不是 HTML，因此在编写时需要注
 在 JSX 中，应写成下面的方式：
 
 ```jsx
-<button onClick={() => alert('我被点击了')}>点击我</button>
+<button onClick={() => alert("我被点击了")}>点击我</button>
 ```
 
 可以在 JSX 中使用大括号的方式嵌入 JavaScript 表达式，如变量、方法和属性。
 
 ```jsx
-const name = 'Jacking';
+const name = "Jacking";
 const heading = <h1>Hello, {name}</h1>;
 ```
 
@@ -213,18 +217,18 @@ JSX 使我们在 JavaScript 中创建和维护元素变得简单。这也是大�
 `src/index.js`
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './App';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./App";
+import "./index.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 然后在`src/`目录下创建一个新的`App.js`文件，内容如下：
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function App() {
   return (
@@ -248,7 +252,7 @@ React 16.8 推出 React Hooks 后，类组件变得不那么重要了，所以�
 `src/Table.js`:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Table() {
   return (
@@ -287,7 +291,7 @@ export default Table;
 我们创建了一个自定义的函数组件。我们需要将自定义组件的名称首字母大写，以区分常规的 HTML 元素。回到`App.js`文件，将 Table 载入其中。首先我们需要导入 Table：
 
 ```jsx
-import Table from './Table';
+import Table from "./Table";
 ```
 
 然后，我们将`<h1>`替换成`<Table />`，如下所示：
@@ -303,8 +307,8 @@ return (
 完整的`src/App.js`代码如下：
 
 ```jsx
-import React from 'react';
-import Table from './Table';
+import React from "react";
+import Table from "./Table";
 
 function App() {
   return (
@@ -328,7 +332,7 @@ export default App;
 `src/TableHeader.js`:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function TableHeader() {
   return (
@@ -347,7 +351,7 @@ export default TableHeader;
 `src/TableBody.js`:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function TableBody() {
   return (
@@ -378,9 +382,9 @@ export default TableBody;
 `src/Table.js`:
 
 ```jsx
-import React from 'react';
-import TableHeader from './TableHeader';
-import TableBody from './TableBody';
+import React from "react";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 function Table() {
   return (
@@ -401,9 +405,9 @@ export default Table;
 这一小节，我们将`Table`组件用类组件的方式实现一下：
 
 ```jsx
-import React from 'react';
-import TableHeader from './TableHeader';
-import TableBody from './TableBody';
+import React from "react";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 class Table extends React.Component {
   render() {
@@ -441,21 +445,21 @@ function TableBody() {
 function App() {
   const users = [
     {
-      name: '张三',
-      job: '工程师',
+      name: "张三",
+      job: "工程师"
     },
     {
-      name: '李四',
-      job: '喜剧演员',
+      name: "李四",
+      job: "喜剧演员"
     },
     {
-      name: '王五',
-      job: '警卫',
+      name: "王五",
+      job: "警卫"
     },
     {
-      name: '赵六',
-      job: '调酒师',
-    },
+      name: "赵六",
+      job: "调酒师"
+    }
   ];
 
   return (
@@ -491,7 +495,7 @@ function Table(props) {
 }
 ```
 
-可以打开 React DevTools 查看一下`Table`组件，你会看到`items`属性对应着一个数组。这里存储的数据称为**虚拟 DOM（virtual DOM）**，这是一种快速有效的保持数据和实际dom同步的技术。
+可以打开 React DevTools 查看一下`Table`组件，你会看到`items`属性对应着一个数组。这里存储的数据称为**虚拟 DOM（virtual DOM）**，这是一种快速有效的保持数据和实际 dom 同步的技术。
 
 ![](assets/images/react-tutorial-dynamic-table-1.png)
 
@@ -560,7 +564,7 @@ function TableBody(props) {
 `src/App.js`:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function App() {
   const [users, setUsers] = useState();
@@ -572,26 +576,26 @@ function App() {
 `src/App.js`:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function App() {
   const [users, setUsers] = useState([
     {
-      name: '张三',
-      job: '工程师',
+      name: "张三",
+      job: "工程师"
     },
     {
-      name: '李四',
-      job: '喜剧演员',
+      name: "李四",
+      job: "喜剧演员"
     },
     {
-      name: '王五',
-      job: '警卫',
+      name: "王五",
+      job: "警卫"
     },
     {
-      name: '赵六',
-      job: '调酒师',
-    },
+      name: "赵六",
+      job: "调酒师"
+    }
   ]);
 }
 ```
@@ -601,14 +605,14 @@ function App() {
 `src/App.js`:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function App() {
   const [users, setUsers] = useState([
     {
-      name: '张三',
+      name: "张三"
       // 剩下的数据
-    },
+    }
   ]);
 
   return (
@@ -624,12 +628,12 @@ function App() {
 `src/App.js`:
 
 ```jsx
-const removeUser = (index) => {
+const removeUser = index => {
   setUsers(users.filter((user, i) => index !== i));
 };
 ```
 
-`filter`方法并没有更新当前的数组而是创建了一个新数组，它会过滤掉不符合条件的数据项，符合条件的数据项就会组成新的数组。filter是 JavaScript 中删除数组元素的首选方法。
+`filter`方法并没有更新当前的数组而是创建了一个新数组，它会过滤掉不符合条件的数据项，符合条件的数据项就会组成新的数组。filter 是 JavaScript 中删除数组元素的首选方法。
 
 现在我们需要将`removeUser`传递给组件，并且在每一个列表行上渲染一个按钮，点击这个按钮调用这个方法。我们通过属性的方式将`removeUser`方法传递给`Table`组件。
 
@@ -719,6 +723,144 @@ const [isLoading, setIsLoading] = useState(false); // 加载数据的状态
 大家在百度上搜索的介绍 React 状态的文章，大部分应该是基于类组件的语法，而不是`useState()`的方式。在这里，建议大家直接搜索`useState`，或者多看看[React 官方文档的说明](https://zh-hans.reactjs.org/docs/hooks-state.html)。
 
 ## 提交表单数据
+
+到目前为止，我们已经将数据存储在状态中，并可以从状态中删除数据项。现在，我们面临一个新需求：如何添加数据项？在现实世界中，大部分情况下是从一个空列表开始添加数据项，比如待办列表、购物车。
+
+首先，清空初始化的数据项——将`App.js`中的`users`状态的初始化数据设置为空数组（`[]`）。
+
+`app.js`:
+
+```jsx
+function App() {
+  const [users, setUsers] = useState([]);
+}
+```
+
+接着，我们创建一个新组件`Form`。表单中包含了用户名和工作两个变化的数据，所以需要用状态来存储。初始情况下，用户名和工作都是空字符串。
+
+```jsx
+import React, { useState } from "react";
+
+function Form() {
+  const initialFormData = {
+    name: "",
+    job: ""
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+}
+
+export default Form;
+```
+
+我们的目标是表单中的每一个表达项发生变化时更新`formData`状态，并且在我们提交表单时，将数据传递给`App`组件中的`users`状态。当`App`组件的`users`状态发生变化时，我们的`Table`组件就会同步更新。
+
+首先，我们创建一个函数，用来监听表单项发生变化的事件。这个函数会接收到`event`参数，这个参数代表表单项值变化事件。`event`中有`name`和`value`两个属性，代表表单项的名称和值。
+
+```jsx
+const handleChange = event => {
+  const { name, value } = event.target;
+
+  seteFormData({
+    ...formData,
+    [name]: value
+  });
+};
+```
+
+然后在`Form`组件中添加两个输入框。我们从`formData`状态中取出`name`和`job`，分别传递给用户名、工作输入框（通过`value`属性）。然后将`haneleChange`传递给输入框的`onChange`属性，这样完成了表单项值变化监听。
+
+```jsx
+import React, { useState } from "react";
+
+function Form() {
+  const initialFormData = {
+    name: "",
+    job: ""
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+
+    seteFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const { name, job } = formData;
+
+  return (
+    <form>
+      <label>用户名</label>
+      <input type="text" name="name" value={name} onChange={handleChange} />
+      <label>工作</label>
+      <input type="text" name="job" value={job} onChange={handleChange} />
+    </form>
+  );
+}
+
+export default Form;
+```
+
+在`App.js`中，我们在表格之下渲染这个表单。
+
+`App.js`:
+
+```jsx
+return (
+  <div className="container">
+    <Table items={users} removeItem={removeUser} />
+    <Form />
+  </div>
+);
+```
+
+打开`http://localhost:3000`页面，就会看到页面上多出了一个表单。在表单中输入一些值，就会在 React DevTools 中看到表单状态和表单项的属性变化。
+
+![](assets/images/react-tutorial-submit-form-1.png)
+
+最后一步我们来处理一下表单数据提交。我们在`App.js`中创建一个`addUser()`方法，会将新的`user`参数添加到`users`状态中。这里使用[ES6 展开操作符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax)。
+
+`App.js`:
+
+```jsx
+const addUser = user => {
+  setUsers([...users, user]);
+};
+```
+
+接着将`addUser`传递给`Form`组件。
+
+```jsx
+<Form handleSubmit={addUser} />
+```
+
+在`Form`组件内部，创建一个`submitForm()`方法，它会调用通过属性传递过来的`handleSbumit()`方法，并且会将表单状态传递给之前定义的`user`参数。`submitForm()`也会重置表单状态为初始状态，这样就可以在提交表单后情况表单。
+
+`Fomr.js`:
+
+```jsx
+const { handleSubmit } = props;
+const submitForm = () => {
+  handleSubmit(formData);
+  setFormData(initialFormData);
+};
+```
+
+最后，我们添加一个提交按钮，将`handleSubmit`传递给这个按钮的`onClick`属性，这样，当按钮点击时，就会调用`handleSubmit()`方法，完成表单提交。
+
+```jsx
+<input type="button" value="提交" onClick={handleSubmit} />
+```
+
+这就是全部了，应用完成了。我们从页面上添加和删除人员后，`Table`和`TableBody`均能正确的展现人员数据，这是因为`Table`和`TableBody`组件与状态是同步的。
+
+![](assets/images/react-tutorial-finish.png)
+
+打开<https://github.com/sinoui/react-tutorial>可查看完整的代码。
 
 ## 与后端 API 交互
 
