@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>React入门——概述和演练 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;准备&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#准备&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;准备&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="React入门——概述和演练 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;准备&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#准备&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;准备&lt;/h2&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">React</h3><ul class=""><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">React入门——概述和演练</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="准备"></a><a href="#准备" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>准备</h2>
+<p>在开始学习 React 之前，需要你掌握一些基本的 Web 开发知识，包括：</p>
+<ul>
+<li>熟悉 HTML &amp; CSS</li>
+<li>知道并能有 JavaScript 编程经验</li>
+<li>清楚什么是 DOM</li>
+<li>熟悉<a href="http://es6.ruanyifeng.com/">ES6 语法</a></li>
+</ul>
+<p>在电脑上需要安装以下环境：</p>
+<ul>
+<li><a href="https://nodejs.org/en/">node.js 和 npm</a></li>
+<li><a href="https://code.visualstudio.com/">代码编辑器：vscode</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="目标"></a><a href="#目标" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>目标</h2>
+<ul>
+<li>学习 React 基本概念和相关的东西，如 Babel、Webpack、JSX、组件、属性、状态和钩子(react hooks)。</li>
+<li>构建一个演示上面概念的简单 React 应用。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="react-是什么"></a><a href="#react-是什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React 是什么？</h2>
+<ul>
+<li>React 是最受欢迎的 JavaScript 库之一，<a href="https://github.com/facebook/react">在 Github 上有 超过10万星星</a>。</li>
+<li>它不是一个框架（不像 Angular 那样提供了很多框架功能）。</li>
+<li>React 是由 Facebook 开源的项目。</li>
+<li>React 用来在前端构建 UI（user interfaces，用户界面）。</li>
+<li>React 是 MVC（Model View Controller） 应用程序中的<strong>视图层</strong>。</li>
+</ul>
+<p>React 最重要的一个特性是你可以创建组件（类似于自定义、可重用的 HTML 元素），以快速有效地构建用户界面。React 还使用<strong>状态</strong>和<strong>属性</strong>简化了数据的存储和处理。</p>
+<h2><a class="anchor" aria-hidden="true" id="创建并安装-react-项目"></a><a href="#创建并安装-react-项目" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建并安装 React 项目</h2>
+<p>有很多种方式创建 React 项目，这里将提供一种相对简单的方式。</p>
+<h3><a class="anchor" aria-hidden="true" id="create-react-app"></a><a href="#create-react-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>create-react-app</h3>
+<p>Facebook 提供了<a href="https://github.com/facebook/create-react-app">Create React App</a>，可以快速搭建一个 React 项目。它会创建一个实时的开发服务器，用 Webpack 自动编译 React、JSX 和 ES6，自动处理 CSS 文件，并会用 ESLint 检查代码错误。</p>
+<p>要设置<code>create-react-app</code>，请在终端中运行以下代码。这个命令行会在当前目录创建一个 React 项目，所以，请在您希望项目所在的目录上执行命令行代码。请确保你的 Node.js 是 5.2+版本的。</p>
+<pre><code class="hljs css language-shell">npx create-react-app react-tutorial
+</code></pre>
+<p>执行完上面的命令行代码后，移动到新创建的目录并启动项目。</p>
+<pre><code class="hljs css language-shell">cd react-tutorial
+npm start
+</code></pre>
+<p>执行上面的命令行代码后，会弹出<code>http://localhost:3000</code>页面的浏览器窗口，页面会呈现你的 React 应用程序。</p>
+<p><img src="/sinoui-guide/docs/assets/images/create-react-app-start.png" alt=""></p>
+<p>你可以在 vscode 中打开<code>react-tutorial</code>（将这个文件夹拖拽到 vscode 窗口即可打开此项目），查看一下目录结构：</p>
+<pre><code class="hljs css language-text">react-tutorial
+|__ node_modules
+|__ public
+|__ src
+  |__ App.css
+  |__ App.js
+  |__ index.css
+  |__ index.js
+|__ .gitignore
+|__ package.json
+|__ README.md
+</code></pre>
+<p>打开<code>public/index.html</code>文件，这个 HTML 文件中有一个非常重要的<code>div</code>元素，它的<code>id</code>为<code>root</code>，稍后会看到项目的代码会将 React 渲染在这个 div 中。项目的源码放在<code>src/</code>目录中。</p>
+<p>打开<code>src/index.js</code>文件，找到下面一行代码：</p>
+<pre><code class="hljs css language-jsx">ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p>这行代码的意思是将<code>&lt;App /&gt;</code>渲染在<code>#root</code>的 DOM 元素中。</p>
+<p>可以体验一下<code>create-react-app</code>的自动编译和刷新的功能，打开<code>src/App.js</code>，找到下面的代码：</p>
+<pre><code class="hljs css language-html">Edit <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>src/App.js<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span> and save to reload.
+</code></pre>
+<p>替换成任意内容，比如<code>Hello, World!</code>。保存之后，你会看到<code>http://localhost:3000</code>页面会自动刷新为新的内容。</p>
+<p>现在，将<code>src/</code>中所有的文件都删除掉，我们从头开始。首先创建<code>index.js</code>和<code>index.css</code>两个文件。</p>
+<p>在<code>index.css</code>文件中粘贴<a href="primitive.css">Primitive CSS</a>文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。</p>
+<p>现在，在<code>index.js</code>中导入 React、ReactDOM 和<code>index.css</code>：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./index.css'</span>;
+</code></pre>
+<p>再创建一个 App 组件。代码如下：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>App 组件中有一个<code>class</code>为<code>App</code>的<code>div</code>，<code>div</code>中包含了<code>h1</code>标签。需要特别注意的是，在 JavaScript 代码中，需要使用<code>className</code>来定义标签的<code>class</code>。</p>
+<p>最后，我们在<code>#root</code>标签中渲染出<code>App</code>：</p>
+<pre><code class="hljs css language-jsx">ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p>至此，<code>src/index.js</code>文件就完成了。完整的代码如下：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./index.css'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, React!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p>现在，再看看<code>http://localhost:3000</code>页面，页面上会呈现出<code>Hello, World!</code>。👏 我们完成了 React 应用的开始部分。</p>
+<h3><a class="anchor" aria-hidden="true" id="调试-react"></a><a href="#调试-react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>调试 React</h3>
+<p>有一个 React Developer Tools 插件，可以辅助调试 React 页面。请在 Chrome 浏览器上下载并安装<a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi"> React DevTools for Chrome</a>（需要翻墙）。</p>
+<p>安装完成后，在<code>http://localhost:3000</code>页面上，按<code>F12</code>键打开<code>devtools</code>，你将会看到 React 标签。点击它，这样你可以在编写组件时对其进行检查。现在看起来不是很有用，但是随着应用越来越复杂，它的作用就会凸显出来。</p>
+<p><img src="/sinoui-guide/docs/assets/images/create-react-app-hello-world.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="jsx-javascript-html"></a><a href="#jsx-javascript-html" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSX: JavaScript + HTML</h2>
+<p>如你所见，在 React 代码中出现了 HTML，但这不是真正的 HTML。它是<code>JSX</code>，是<code>JavaScript XML</code>的缩写。</p>
+<p>使用 JSX，我们可以编写看似 HTML 的内容，也可以创建和使用我们自己的类似 XML 的标签。这是 JSX 看起来分配给变量的内容。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> heading = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"site-heading"</span>&gt;</span>Hello, React<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+</code></pre>
+<p>React 并不强制使用 JSX。在底层，JSX 会被替换成<code>createElement</code>，它接受标记，包含属性的对象和组件的子项，并呈现相同的信息。以下代码将具有与上述<code>JSX</code>相同的输出。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> heading = React.createElement(
+  <span class="hljs-string">'h1'</span>,
+  {
+    <span class="hljs-attr">className</span>: <span class="hljs-string">'site-heading'</span>,
+  },
+  <span class="hljs-string">'Hello, React'</span>,
+);
+</code></pre>
+<p>JSX 实际上更接近 JavaScript，而不是 HTML，因此在编写时需要注意几个关键的区别。</p>
+<ul>
+<li>使用<code>className</code>代替<code>class</code>添加 CSS 类。因为在 JavaScript 中<code>class</code>是关键字。</li>
+<li>在 JSX 中属性名称和事件名称采用小驼峰式（camelCase），如<code>onclick</code>应写成<code>onClick</code>。</li>
+<li>自关闭标签必须以斜线结尾，如<code>&lt;img /&gt;</code>。</li>
+<li>使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。</li>
+</ul>
+<p>例如，传统的 HTML 是这样写的：</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">"alert('我被点击了')"</span>&gt;</span>点击我<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+<p>在 JSX 中，应写成下面的方式：</p>
+<pre><code class="hljs css language-jsx">&lt;button onClick={() =&gt; alert('我被点击了')}&gt;点击我&lt;/button&gt;
+</code></pre>
+<p>可以在 JSX 中使用大括号的方式嵌入 JavaScript 表达式，如变量、方法和属性。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> name = <span class="hljs-string">'Jacking'</span>;
+<span class="hljs-keyword">const</span> heading = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {name}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+</code></pre>
+<p>JSX 使我们在 JavaScript 中创建和维护元素变得简单。这也是大家喜欢 React 的一个原因。</p>
+<h2><a class="anchor" aria-hidden="true" id="组件"></a><a href="#组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>组件</h2>
+<p>到目前为止，我们已经创建了一个组件——<code>App</code>组件。React 中几乎所有内容都由组件组成。组件可以是<strong>函数组件</strong>或者是<strong>类组件</strong>。</p>
+<p>大部分 React 程序有很多小组件，而且都会加载到<code>App</code>组件中去。<strong>组件一般都会有自己的文件</strong>，所以让我们改变我们的程序以做到这一点。</p>
+<p>从<code>src/index.js</code>中删除<code>App</code>，并添加上<code>./App</code>的导入：</p>
+<p><code>src/index.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./App'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./index.css'</span>;
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p>然后在<code>src/</code>目录下创建一个新的<code>App.js</code>文件，内容如下：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+</code></pre>
+<p>我们将组件导出为<code>App</code>，并将其加载到<code>index.js</code>中。将组件分离到独立的文件并不是强制的，但是如果不这么做，你的程序将会变得很难维护。</p>
+<h3><a class="anchor" aria-hidden="true" id="函数组件"></a><a href="#函数组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数组件</h3>
+<p>React 16.8 推出 React Hooks 后，类组件变得不那么重要了，所以这里我们从函数组件开始介绍。</p>
+<p>让我们来创建一个新的组件，这个组件将以表格的方式展现一组人员信息，代码如下：</p>
+<p><code>src/Table.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Table</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>姓名<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>工作<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>工程师<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>李四<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>喜剧演员<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>王五<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>警卫<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>赵六<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>调酒师<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Table;
+</code></pre>
+<p>我们创建了一个自定义的函数组件。我们需要将自定义组件的名称首字母大写，以区分常规的 HTML 元素。回到<code>App.js</code>文件，将 Table 载入其中。首先我们需要导入 Table：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">'./Table'</span>;
+</code></pre>
+<p>然后，我们将<code>&lt;h1&gt;</code>替换成<code>&lt;Table /&gt;</code>，如下所示：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Table</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p>完整的<code>src/App.js</code>代码如下：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">'./Table'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Table</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+</code></pre>
+<p>打开<code>http://localhost:3000</code>页面，你会看到如下的效果。</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-tutorial-static-table.png" alt=""></p>
+<p>这样我们就创建了一个自定义的函数组件。我们可以在任何地方重复使用这个组件。当然，这个组件有一个问题——它的数据是在组件中硬编码的（写死的），这样它的用途就不大。这个问题我们在属性章节解决它。</p>
+<p>我们看到表格由表头(table header)和表内容(table body)组成，我们可以将它们拆分为两个独立的组件——TableHeader 和 TableBody。</p>
+<p><code>src/TableHeader.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TableHeader</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>姓名<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>工作<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> TableHeader;
+</code></pre>
+<p><code>src/TableBody.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TableBody</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>工程师<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>李四<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>喜剧演员<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>王五<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>警卫<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>赵六<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>调酒师<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> TableBody;
+</code></pre>
+<p><code>src/Table.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> TableHeader <span class="hljs-keyword">from</span> <span class="hljs-string">'./TableHeader'</span>;
+<span class="hljs-keyword">import</span> TableBody <span class="hljs-keyword">from</span> <span class="hljs-string">'./TableBody'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Table</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableHeader</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableBody</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Table;
+</code></pre>
+<p>我们看到，组件可以嵌套其他组件。接下来讲解一下类组件。在没有出现 React Hooks 之前，类组件是非常常用的组件形式，所以咱们通过百度等查找到的 React 组件资料，会充斥非常多的类组件形式。</p>
+<h3><a class="anchor" aria-hidden="true" id="类组件"></a><a href="#类组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类组件</h3>
+<p>这一小节，我们将<code>Table</code>组件用类组件的方式实现一下：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> TableHeader <span class="hljs-keyword">from</span> <span class="hljs-string">'./TableHeader'</span>;
+<span class="hljs-keyword">import</span> TableBody <span class="hljs-keyword">from</span> <span class="hljs-string">'./TableBody'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Table</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TableHeader</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TableBody</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span>
+    );
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Table;
+</code></pre>
+<p>类组件可以和函数组件相互混合着使用。</p>
+<h2><a class="anchor" aria-hidden="true" id="属性"></a><a href="#属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>属性</h2>
+<p>目前，<code>Table</code>组件只能渲染出固定的几个人的信息，这不是我们想要的效果，并且这样的<code>Table</code>组件也不够复用。在 React 中，使用<code>属性(props)</code>和<code>状态(state)</code>来处理数据。先来讲讲属性的方式如何处理数据。</p>
+<p>首先，移除<code>TableBody</code>组件中的数据。</p>
+<p><code>src/TableBody.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TableBody</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span> /&gt;</span>;
+}
+</span></code></pre>
+<p>然后，我们将数据放在一个 JavaScript 对象数组中。我们可以在<code>App</code>组件中创建这个数组。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> users = [
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'张三'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'工程师'</span>,
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'李四'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'喜剧演员'</span>,
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'王五'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'警卫'</span>,
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'赵六'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'调酒师'</span>,
+    },
+  ];
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Table</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>现在，我们使用属性将数据传递给子组件（<code>Table</code>），类似于你通过<code>data-</code>属性给 HTML 元素传递数据。我们可以随便给组件取名，只要它不是关键字即可，我们给它取名为<code>items</code>。我们要传递的数据是<code>users</code>变量。因为它是一个 JavaScript 表达式，所以需要使用大括号。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Table</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{users}</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+);
+</span></code></pre>
+<p>现在我们已经将数据传递给<code>Table</code>，我们必须努力在另一端（<code>Table</code>组件内部）访问它。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Table</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> { items } = props;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableHeader</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableBody</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{items}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p>可以打开 React DevTools 查看一下<code>Table</code>组件，你会看到<code>items</code>属性对应着一个数组。这里存储的数据称为<strong>虚拟 DOM（virtual DOM）</strong>，这是一种快速有效的保持数据和实际dom同步的技术。</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-tutorial-dynamic-table-1.png" alt=""></p>
+<p>然而，数据还没有出现在真实 DOM 中。在<code>Table</code>组件中，我们可以通过<code>props</code>访问所有的属性。刚刚我们是通过<code>items</code>属性传递的数据，所以我们可以用表达式<code>props.items</code>访问到传递过来的数据。</p>
+<p>可以用 ES6 的属性简写（ES6 对象展开）来创建一个包含<code>props.items</code>的变量。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> { items } = props;
+</code></pre>
+<p><code>Table</code>组件是由两个更小的组件组成。我们再一次使用属性将数据传递给<code>TableBody</code>。</p>
+<p><code>src/Table.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Table</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> { items } = props;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableHeader</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableBody</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{items}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p>当前，<code>TableBody</code>没有任何形参，并只返回了<code>tbody</code>空标签。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> TableBody = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span> /&gt;</span>;
+};
+</span></code></pre>
+<p>我们可以使用<code>数组的map</code>函数为数组中的每一个对象创建一个表格行。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TableBody</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> rows = props.items.map(<span class="hljs-function">(<span class="hljs-params">row, index</span>) =&gt;</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{index}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{row.name}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{row.job}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+  ));
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>{rows}<span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></span>;
+}
+</code></pre>
+<p>打开页面看看吧，现在数据已经展现出来了。</p>
+<p>我在每一个<code>tr</code>上添加了<code>key</code>。在 React 中，在创建列表时应一直使用<a href="https://zh-hans.reactjs.org/docs/lists-and-keys.html#keys">keys</a>，这样做有助于识别每一个列表项。待会儿，当我们需要维护列表项时，你就会看到它的必要性。</p>
+<p>属性是将现有数据传递给 React 组件的有效方式，然而组件不能更改属性——<strong>属性是只读的</strong>。接下来，我们会学习到如何使用<code>状态</code>维护数据。</p>
+<h2><a class="anchor" aria-hidden="true" id="状态"></a><a href="#状态" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>状态</h2>
+<p>我们在一个数组变量中存储了人员数据，并通过属性传递给了<code>Table</code>组件。这是一个好的开始，但是我们怎么删除一个人员呢？使用属性，我们有了单向数据流，使用状态，我们就可以更新组件的私有数据。</p>
+<p>你可以将状态看成是任何需要保存或者修改但是不需要添加到数据库中的数据，比如，从购物车中添加或者删除商品。</p>
+<p>首先，我们需要创建一个状态。</p>
+<p><code>src/App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [users, setUsers] = useState();
+}
+</code></pre>
+<p>接着将整个对象数组迁移到<code>users</code>状态中。</p>
+<p><code>src/App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [users, setUsers] = useState([
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'张三'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'工程师'</span>,
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'李四'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'喜剧演员'</span>,
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'王五'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'警卫'</span>,
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'赵六'</span>,
+      <span class="hljs-attr">job</span>: <span class="hljs-string">'调酒师'</span>,
+    },
+  ]);
+}
+</code></pre>
+<p>现在，数据已经存储在状态中。需要将<code>users</code>状态存储的数据传递给<code>Table</code>组件。</p>
+<p><code>src/App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [users, setUsers] = useState([
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'张三'</span>,
+      <span class="hljs-comment">// 剩下的数据</span>
+    },
+  ]);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Table</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{users}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p>既然我们想要从表格中删除一个人员，那么我们在<code>App</code>组件中创建<code>removeUser</code>方法。我们可以通过<code>setUsers</code>方法更新状态。</p>
+<p><code>src/App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> removeUser = <span class="hljs-function">(<span class="hljs-params">index</span>) =&gt;</span> {
+  setUsers(users.filter(<span class="hljs-function">(<span class="hljs-params">user, i</span>) =&gt;</span> index !== i));
+};
+</code></pre>
+<p><code>filter</code>方法并没有更新当前的数组而是创建了一个新数组，它会过滤掉不符合条件的数据项，符合条件的数据项就会组成新的数组。filter是 JavaScript 中删除数组元素的首选方法。</p>
+<p>现在我们需要将<code>removeUser</code>传递给组件，并且在每一个列表行上渲染一个按钮，点击这个按钮调用这个方法。我们通过属性的方式将<code>removeUser</code>方法传递给<code>Table</code>组件。</p>
+<p><code>src/App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Table</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{users}</span> <span class="hljs-attr">removeItem</span>=<span class="hljs-string">{removeUsers}</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+);
+</span></code></pre>
+<p>接着我们在<code>Table</code>组件中将这个函数传递给<code>TableBody</code>。</p>
+<p><code>src/Table.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Table</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> { items, removeItem } = props;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableHeader</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TableBody</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{items}</span> <span class="hljs-attr">removeItem</span>=<span class="hljs-string">{removeItem}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p><code>TableBody</code>中，在调用<code>removeItem()</code>时，将数据对应的索引号（index）作为参数传递给了<code>removeItem()</code>方法，这样过滤方法就知道该删除哪个数据项了。创建一个按钮，并在<code>onClick</code>中调用<code>removeItem()</code>。删掉保存之后，你会看到</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TableBody</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> { items, removeItem } = props;
+
+  <span class="hljs-keyword">const</span> rows = items.map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{index}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{item.name}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{item.job}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> removeItem(index)}&gt;删除<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+  ));
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>{rows}<span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></span>;
+}
+</code></pre>
+<p>现在，在页面上出现了删除按钮，并且点击删除按钮后，我们从状态中删除了这条数据。例如，我们点击“王五”这一条数据的删除按钮后，页面效果如下。</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-tutorial-dynamic-table-2.png" alt=""></p>
+<p>现在，你看到了如何初始化和修改状态数据。下面，将详细讲解一下用来创建状态的钩子：<a href="https://zh-hans.reactjs.org/docs/hooks-state.html">useState</a>。</p>
+<h3><a class="anchor" aria-hidden="true" id="usestate"></a><a href="#usestate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useState()</h3>
+<p>我们可以用<code>useState()</code>来创建和维护一个状态。如上面的例子，我们创建了一个<code>users</code>状态。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> [users, setUsers] = useState([...]);
+</code></pre>
+<p><code>useState()</code>的返回值是一个数组，数组的第一项是状态数据，第二项是更新状态的方法。<code>useState()</code>接受一个参数，这个参数将会成为这个状态的初始数据。</p>
+<p>访问状态数据：</p>
+<pre><code class="hljs css language-jsx">&lt;Table items={users} /&gt;
+</code></pre>
+<p>更新状态数据：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> newUsers = users.filter(<span class="hljs-function">(<span class="hljs-params">user, i</span>) =&gt;</span> i !== index);
+setUsers(newUsers);
+</code></pre>
+<p>我们可以多次调用<code>useState()</code>，为组件创建多个状态。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> [users, setUsers] = useState([...]); <span class="hljs-comment">// 人员列表状态</span>
+<span class="hljs-keyword">const</span> [isLoading, setIsLoading] = useState(<span class="hljs-literal">false</span>); <span class="hljs-comment">// 加载数据的状态</span>
+</code></pre>
+<p>大家在百度上搜索的介绍 React 状态的文章，大部分应该是基于类组件的语法，而不是<code>useState()</code>的方式。在这里，建议大家直接搜索<code>useState</code>，或者多看看<a href="https://zh-hans.reactjs.org/docs/hooks-state.html">React 官方文档的说明</a>。</p>
+<h2><a class="anchor" aria-hidden="true" id="提交表单数据"></a><a href="#提交表单数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>提交表单数据</h2>
+<h2><a class="anchor" aria-hidden="true" id="与后端-api-交互"></a><a href="#与后端-api-交互" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>与后端 API 交互</h2>
+<h2><a class="anchor" aria-hidden="true" id="编译并部署-react-项目"></a><a href="#编译并部署-react-项目" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译并部署 React 项目</h2>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/hello-world.html">React 官方教程</a></li>
+<li><a href="https://www.taniarascia.com/getting-started-with-react/">Getting Started with React</a></li>
+<li><a href="https://zh-hans.reactjs.org/docs/hooks-intro.html">React Hooks</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-index"><span class="arrow-prev">← </span><span>教程开篇</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#准备">准备</a></li><li><a href="#目标">目标</a></li><li><a href="#react-是什么">React 是什么？</a></li><li><a href="#创建并安装-react-项目">创建并安装 React 项目</a><ul class="toc-headings"><li><a href="#create-react-app">create-react-app</a></li><li><a href="#调试-react">调试 React</a></li></ul></li><li><a href="#jsx-javascript-html">JSX: JavaScript + HTML</a></li><li><a href="#组件">组件</a><ul class="toc-headings"><li><a href="#函数组件">函数组件</a></li><li><a href="#类组件">类组件</a></li></ul></li><li><a href="#属性">属性</a></li><li><a href="#状态">状态</a><ul class="toc-headings"><li><a href="#usestate">useState()</a></li></ul></li><li><a href="#提交表单数据">提交表单数据</a></li><li><a href="#与后端-api-交互">与后端 API 交互</a></li><li><a href="#编译并部署-react-项目">编译并部署 React 项目</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
