@@ -596,7 +596,7 @@ setUsers(newUsers);
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Form;
 </code></pre>
-<p>我们的目标是表单中的每一个表达项发生变化时更新<code>formData</code>状态，并且在我们提交表单时，将数据传递给<code>App</code>组件中的<code>users</code>状态。当<code>App</code>组件的<code>users</code>状态发生变化时，我们的<code>Table</code>组件就会同步更新。</p>
+<p>我们的目标是表单中的每一个表单项发生变化时更新<code>formData</code>状态，并且在我们提交表单时，将数据传递给<code>App</code>组件中的<code>users</code>状态。当<code>App</code>组件的<code>users</code>状态发生变化时，我们的<code>Table</code>组件就会同步更新。</p>
 <p>首先，我们创建一个函数，用来监听表单项发生变化的事件。这个函数会接收到<code>event</code>参数，这个参数代表表单项值变化事件。<code>event</code>中有<code>name</code>和<code>value</code>两个属性，代表表单项的名称和值。</p>
 <pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> handleChange = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> { name, value } = event.target;
@@ -661,8 +661,8 @@ export default Form;
 <p>接着将<code>addUser</code>传递给<code>Form</code>组件。</p>
 <pre><code class="hljs css language-jsx">&lt;Form handleSubmit={addUser} /&gt;
 </code></pre>
-<p>在<code>Form</code>组件内部，创建一个<code>submitForm()</code>方法，它会调用通过属性传递过来的<code>handleSbumit()</code>方法，并且会将表单状态传递给之前定义的<code>user</code>参数。<code>submitForm()</code>也会重置表单状态为初始状态，这样就可以在提交表单后情况表单。</p>
-<p><code>Fomr.js</code>:</p>
+<p>在<code>Form</code>组件内部，创建一个<code>submitForm()</code>方法，它会调用通过属性传递过来的<code>handleSbumit()</code>方法，并且会将表单状态传递给之前定义的<code>user</code>参数。<code>submitForm()</code>也会重置表单状态为初始状态，这样就可以在提交表单后清空表单。</p>
+<p><code>Form.js</code>:</p>
 <pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> { handleSubmit } = props;
 <span class="hljs-keyword">const</span> submitForm = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   handleSubmit(formData);
