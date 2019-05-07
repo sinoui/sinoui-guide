@@ -9,7 +9,7 @@ sidebar_label: React入门
 在开始学习 React 之前，需要你掌握一些基本的 Web 开发知识，包括：
 
 - 熟悉 HTML & CSS
-- 知道并能有 JavaScript 编程经验
+- 知道并有 JavaScript 编程经验
 - 清楚什么是 DOM
 - 熟悉[ES6 语法](http://es6.ruanyifeng.com/)
 
