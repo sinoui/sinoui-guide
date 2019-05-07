@@ -28,6 +28,10 @@ const siteConfig = {
   headerLinks: [
     {doc: 'react-index', label: '基础知识'},
     {doc: 'app-dev-index', label: '应用开发指南'},
+    {
+      href: 'https://github.com/sinoui/sinoui-guide',
+      label: 'GitHub',
+    },
     {page: 'help', label: 'Help'},
   ],
 
