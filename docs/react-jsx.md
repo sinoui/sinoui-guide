@@ -10,9 +10,7 @@ sidebar_label: JSX概述
 const element = <h1>Hello, World!</h1>;
 ```
 
-这个`h1`标签既不是字符串也不是 HTML。
-
-它被称为**JSX**，是 JavaScript 的语法扩展。我们建议在 React 中配合使用 JSX，JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。
+这个`h1`标签既不是字符串也不是 HTML。它被称为**JSX**，是 JavaScript 的语法扩展。我们建议在 React 中配合使用 JSX，JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。
 
 JSX 可以生成**React 元素**。接下来，我们看看如何将 React 元素渲染为 DOM。
 
@@ -33,9 +31,9 @@ npx create-react-app jsx-tutorial
 <div id="root"></div>
 ```
 
-我们将其称为“根”DOM 节点，因为 React 元素渲染成的 DOM 都会包含在这个 DOM 元素中。
+我们将其称为“根”DOM 节点，因为 React 元素渲染成的 DOM 都会包含在这个根元素中。
 
-我们通过 JSX 创建 React 元素，然后通过 React DOM 将 React 元素渲染成 DOM。
+我们通过 JSX 创建 React 元素，然后通过 React DOM 将 React 元素渲染成 DOM，并放在`#root`元素中。
 
 ```jsx
 import React from "react";
