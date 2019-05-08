@@ -98,7 +98,7 @@ Edit <code>src/App.js</code> and save to reload.
 
 现在，将`src/`中所有的文件都删除掉，我们从头开始。首先创建`index.js`和`index.css`两个文件。
 
-在`index.css`文件中粘贴[Primitive CSS](primitive.css)文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。
+在`index.css`文件中粘贴[Primitive CSS](assets/css/primitive.css)文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。
 
 现在，在`index.js`中导入 React、ReactDOM 和`index.css`：
 
