@@ -1,6 +1,6 @@
 {
   "docs": {
-    "React": ["react-index", "react-getting-started"],
+    "React": ["react-index", "react-getting-started", "react-jsx"],
     "TypeScript/ES6": [""],
     "Style": ["styled-components-guide"]
   },
