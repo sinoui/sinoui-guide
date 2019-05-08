@@ -5,5 +5,6 @@
 <url> <loc>https://sinoui.github.io/sinoui-guide/docs/app-dev-index</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://sinoui.github.io/sinoui-guide/docs/app-dev-index" /> </url>
 <url> <loc>https://sinoui.github.io/sinoui-guide/docs/react-getting-started</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://sinoui.github.io/sinoui-guide/docs/react-getting-started" /> </url>
 <url> <loc>https://sinoui.github.io/sinoui-guide/docs/react-index</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://sinoui.github.io/sinoui-guide/docs/react-index" /> </url>
+<url> <loc>https://sinoui.github.io/sinoui-guide/docs/react-jsx</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://sinoui.github.io/sinoui-guide/docs/react-jsx" /> </url>
 <url> <loc>https://sinoui.github.io/sinoui-guide/docs/styled-components-guide</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://sinoui.github.io/sinoui-guide/docs/styled-components-guide" /> </url>
 </urlset>
