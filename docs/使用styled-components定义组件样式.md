@@ -8,7 +8,8 @@ sidebar_label: styled-components
 
 ## 动机
 
-- 自动关联`css`,可以在样式定义中直接引用到 js 变量，共享变量
+- 自动关联`css`
+- 可以在样式定义中直接引用到 js 变量，共享变量
 - 自动生成独立的类名，避免重复、重叠或拼写错误
 - 简单的动态样式，不用写很多类名
 - 支持组件之间继承，方便代码复用，提升可维护性
@@ -117,7 +118,18 @@ const Button = styled.button`
 export default Button;
 ```
 
-上述示例中如果`primary`属性存在，则按钮背景色会变成蓝色，边框消失，并且文字颜色变成白色。
+上述示例中如果`primary`属性存在，则按钮背景色会变成蓝色，边框消失，并且文字颜色变成白色，使用方式及效果如下：
+
+```jsx
+<div>
+  <Button>Normal Button</Button>
+  <Button primary>Primary Button</Button>
+</div>
+```
+
+运行效果：
+
+![](assets/images/primary-button.png)
 
 此外，我们还可以使用`css`定义一个样式，然后根据属性判断来调整我们的样式规则，这就有了第二种方式：
 
@@ -149,6 +161,14 @@ export default Button;
 
 此时，如果我们给 Button 组件一个`disabled`属性，则`disabledStyle`中的样式会自动覆盖原有样式中对应的部分。
 
+```jsx
+<Button disabled>Disabled Button</Button>
+```
+
+运行效果：
+
+![](assets/images/disabled-button.png)
+
 最后，我们还可以直接传入一个样式属性来控制组件样式的规则，比如，我们希望能自定义按钮的最小宽度，此时我们可以调整`Button.js`为：
 
 ```jsx
@@ -170,6 +190,12 @@ export default Button;
 
 此时，只要我们在使用 Button 组件时，给`minWidth`属性赋值，按钮就会按照我们制定的最小宽度渲染。
 
+```jsx
+<Button minWidth={24}>Mini Button</Button>
+```
+
+![](assets/images/mini-button.png)
+
 ## 扩展样式
 
 样式扩展主要针对当前组件有部分样式不满足需求的情况，此时我们可以通过样式扩展来进行样式调整，比如：我们希望上面例子中的 Button 组件的边框颜色和字体颜色变成蓝色，此时我们仅仅需要下面一小段代码调整即能满足需求：
@@ -181,9 +207,13 @@ const BlueButton = styled(Button)`
 `;
 ```
 
-在某些场景下，我们可能不仅仅只是想要修改组件的样式，甚至想要更新组件的渲染元素，`styled-components`曾经提供了一种方式来满足我们的需求，即`.withComponent()`
+```jsx
+<BlueButton>Blue Button</BlueButton>
+```
 
-方法。不幸的是在后续版本中，此方法将会被废弃。但令我们欣慰的是：`styled-components`最新版本为我们提供了一种新的方式，就是`as`属性。
+![](assets/images/blue-button.png)
+
+在某些场景下，我们可能不仅仅只是想要修改组件的样式，甚至想要更新组件的渲染元素，`styled-components`曾经提供了一种方式来满足我们的需求，即`.withComponent()`方法。不幸的是在后续版本中，此方法将会被废弃。但令我们欣慰的是：`styled-components`最新版本为我们提供了一种新的方式，就是`as`属性。
 
 假设，我们想要使用<a>来渲染我们的 Button 组件，我们仅仅需要在使用 Button 时，赋予一个`as`属性即可：
 
@@ -192,6 +222,10 @@ const BlueButton = styled(Button)`
   Link Button
 </Button>
 ```
+
+运行效果：
+
+![](assets/images/link-button.png)
 
 同样的，我们也可以使用我们自己定义的其它组件来给`as`属性赋值。
 
@@ -212,6 +246,19 @@ const CustomP = styled(P)`
 
 export { P, CustomP };
 ```
+
+`App.js`
+
+```jsx
+<div>
+  <P>这是一段普通的文本内容</P>
+  <CustomP>这是一段自定义样式的文本内容</CustomP>
+</div>
+```
+
+运行效果：
+
+![](assets/images/custom-style.png)
 
 ## 使用`.attrs`添加属性
 
@@ -235,6 +282,16 @@ const PasswordInput = styled.input.attrs({
 
 export default PasswordInput;
 ```
+
+`App.js`
+
+```jsx
+<PasswordInput placeholder="请输入密码" size="0.25rem" />
+```
+
+运行效果：
+
+![](assets/images/password-input.png)
 
 ## 动画
 
@@ -262,6 +319,87 @@ const Rotate = styled.div`
 
 export default Rotate;
 ```
+
+`App.js`
+
+```jsx
+<Rotate>旋转</Rotate>
+```
+
+运行效果：
+
+![](assets/images/rotate.gif)
+
+## 父组件中定义子组件样式
+
+`styled-components`提供了`component selector`组件选择器模式来代替我们以往对 class 名的依赖。
+
+开篇的示例，如果我们想要在 Wrapper 中改变`H1`的颜色为白色,可以有下面两种方式：
+
+第一种，通过`h1`查找，并修改样式：
+
+`Wrapper.js`
+
+```jsx
+const Wrapper = styled.div`
+  height: 200px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: aqua;
+
+  > h1 {
+    color: white;
+  }
+`;
+```
+
+第二种，通过`H1`的组件名查找元素并修改样式：
+
+```jsx
+const Wrapper = styled.div`
+  height: 200px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: aqua;
+
+  ${H1} {
+    color: white;
+  }
+`;
+```
+
+`App.js`
+
+```jsx
+<Wrapper>
+  <H1>Hello,This is a demo of style components!</H1>
+</Wrapper>
+```
+
+以上两种方式运行效果如下：
+
+![](assets/images/css-in-parent.png)
+
+**注意：**下面这种方式不支持在父组件中定义自组件样式
+
+```jsx
+class A extends React.Component {
+  render() {
+    return <div />;
+  }
+}
+
+const B = styled.div`
+  ${A} {
+  }
+`;
+```
+
+因为 A 继承`ReactComponent`，不是被 styled 构造过的。我们的组件选择器只支持在`Styled Components`创建的样式组件。
 
 ## 附注
 
