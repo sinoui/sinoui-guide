@@ -54,7 +54,7 @@
 <p>在开始学习 React 之前，需要你掌握一些基本的 Web 开发知识，包括：</p>
 <ul>
 <li>熟悉 HTML &amp; CSS</li>
-<li>知道并能有 JavaScript 编程经验</li>
+<li>知道并有 JavaScript 编程经验</li>
 <li>清楚什么是 DOM</li>
 <li>熟悉<a href="http://es6.ruanyifeng.com/">ES6 语法</a></li>
 </ul>
@@ -677,7 +677,7 @@ export default Form;
 <p>打开<a href="https://github.com/sinoui/react-tutorial">https://github.com/sinoui/react-tutorial</a>可查看完整的代码。</p>
 <h2><a class="anchor" aria-hidden="true" id="与后端-api-交互"></a><a href="#与后端-api-交互" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>与后端 API 交互</h2>
 <p>从 API 中获取数据是前端应用中常见场景。如果你不熟悉如何与 API 交互，建议你先学习一下<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">Fetch API</a>或者<a href="https://github.com/axios/axios">Axios</a>。</p>
-<p>这个章节将会用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">Fetch API</a>获取<a href="http://www.weather.com.cn/data/sk/101010100.html">北京的天气数据</a>，并在页面上展现北京市当前的天气情况。</p>
+<p>这个章节将会用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">Fetch API</a>获取<a href="https://fcc-weather-api.glitch.me/api/current?lat=39.92&amp;lon=116.46">北京的天气数据</a>，并在页面上展现北京市当前的天气情况。</p>
 <p>这个章节不再从零开始讲解如何创建一个 React 应用和创建组件。这里重点讲解一个新的 React 钩子<a href="https://zh-hans.reactjs.org/docs/hooks-effect.html">useEffect</a>。它有很多用途，其中之一就是可以在组件创建完成后执行一些 JavaScript 代码（在这里执行的 JavaScript 代码，我们称之为副作用）。我们的应用期望在组件创建后，立马访问气象 API 获取北京市气象数据。代码如下。</p>
 <p><code>src/App.js</code>:</p>
 <pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
