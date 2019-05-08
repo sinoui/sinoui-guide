@@ -79,7 +79,14 @@ const siteConfig = {
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
     "/sinoui-guide/js/code-block-buttons.js"
   ],
-  stylesheets: ["/sinoui-guide/css/code-block-buttons.css"]
+  stylesheets: ["/sinoui-guide/css/code-block-buttons.css"],
+  enableUpdateTime: true,
+  enableUpdateBy: true,
+  docsSideNavCollapsible: true,
+  scrollToTop: true,
+  scrollToTopOptions: {
+    zIndex: 100
+  }
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
