@@ -115,7 +115,7 @@ npm start
 </code></pre>
 <p>替换成任意内容，比如<code>Hello, World!</code>。保存之后，你会看到<code>http://localhost:3000</code>页面会自动刷新为新的内容。</p>
 <p>现在，将<code>src/</code>中所有的文件都删除掉，我们从头开始。首先创建<code>index.js</code>和<code>index.css</code>两个文件。</p>
-<p>在<code>index.css</code>文件中粘贴<a href="primitive.css">Primitive CSS</a>文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。</p>
+<p>在<code>index.css</code>文件中粘贴<a href="/sinoui-guide/docs/assets/css/primitive.css">Primitive CSS</a>文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。</p>
 <p>现在，在<code>index.js</code>中导入 React、ReactDOM 和<code>index.css</code>：</p>
 <pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
@@ -176,7 +176,7 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <li>使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。</li>
 </ul>
 <p>例如，传统的 HTML 是这样写的：</p>
-<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">"alert('我被点击了')"</span>&gt;</span>点击我<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"alert('我被点击了')"</span>&gt;</span>点击我<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 </code></pre>
 <p>在 JSX 中，应写成下面的方式：</p>
 <pre><code class="hljs css language-jsx">&lt;button onClick={() =&gt; alert("我被点击了")}&gt;点击我&lt;/button&gt;
@@ -718,7 +718,7 @@ export default Form;
 <p>我们可以通过下面的命令行编译 React 项目。</p>
 <pre><code class="hljs css language-shell">npm run build
 </code></pre>
-<p>执行完后，会产生一个<code>build</code>文件夹。这个文件夹就是项目编译后的文件。将 build 文件夹推送到 Nginx 或者其他服务器上就完成了部署。这里介绍两种方式部署场景。</p>
+<p>执行完后，会产生一个<code>build</code>文件夹。这个文件夹就是项目编译后的文件。将 build 文件夹推送到 Nginx 或者其他服务器上就完成了部署。这里介绍两种部署场景。</p>
 <h3><a class="anchor" aria-hidden="true" id="serve"></a><a href="#serve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>serve</h3>
 <p>为了在本地快速预览编译后的效果，可以使用<a href="https://www.npmjs.com/package/serve">serve</a>这个工具来启动编译后的 React 项目。</p>
 <pre><code class="hljs css language-shell">npx serve -s build
