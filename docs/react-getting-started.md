@@ -188,7 +188,7 @@ JSX 实际上更接近 JavaScript，而不是 HTML，因此在编写时需要注
 例如，传统的 HTML 是这样写的：
 
 ```html
-<button onClick="alert('我被点击了')">点击我</button>
+<button onclick="alert('我被点击了')">点击我</button>
 ```
 
 在 JSX 中，应写成下面的方式：
@@ -919,7 +919,7 @@ export default App;
 npm run build
 ```
 
-执行完后，会产生一个`build`文件夹。这个文件夹就是项目编译后的文件。将 build 文件夹推送到 Nginx 或者其他服务器上就完成了部署。这里介绍两种方式部署场景。
+执行完后，会产生一个`build`文件夹。这个文件夹就是项目编译后的文件。将 build 文件夹推送到 Nginx 或者其他服务器上就完成了部署。这里介绍两种部署场景。
 
 ### serve
 
