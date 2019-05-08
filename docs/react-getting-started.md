@@ -98,7 +98,7 @@ Edit <code>src/App.js</code> and save to reload.
 
 现在，将`src/`中所有的文件都删除掉，我们从头开始。首先创建`index.js`和`index.css`两个文件。
 
-在`index.css`文件中粘贴[Primitive CSS](primitive.css)文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。
+在`index.css`文件中粘贴[Primitive CSS](assets/css/primitive.css)文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。
 
 现在，在`index.js`中导入 React、ReactDOM 和`index.css`：
 
@@ -866,7 +866,7 @@ const submitForm = () => {
 
 从 API 中获取数据是前端应用中常见场景。如果你不熟悉如何与 API 交互，建议你先学习一下[Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)或者[Axios](https://github.com/axios/axios)。
 
-这个章节将会用[Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)获取[北京的天气数据](http://www.weather.com.cn/data/sk/101010100.html)，并在页面上展现北京市当前的天气情况。
+这个章节将会用[Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)获取[北京的天气数据](https://fcc-weather-api.glitch.me/api/current?lat=39.92&lon=116.46)，并在页面上展现北京市当前的天气情况。
 
 这个章节不再从零开始讲解如何创建一个 React 应用和创建组件。这里重点讲解一个新的 React 钩子[useEffect](https://zh-hans.reactjs.org/docs/hooks-effect.html)。它有很多用途，其中之一就是可以在组件创建完成后执行一些 JavaScript 代码（在这里执行的 JavaScript 代码，我们称之为副作用）。我们的应用期望在组件创建后，立马访问气象 API 获取北京市气象数据。代码如下。
 
