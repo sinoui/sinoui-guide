@@ -850,10 +850,10 @@ const submitForm = () => {
 };
 ```
 
-最后，我们添加一个提交按钮，将`handleSubmit`传递给这个按钮的`onClick`属性，这样，当按钮点击时，就会调用`handleSubmit()`方法，完成表单提交。
+最后，我们添加一个提交按钮，将`submitForm`传递给这个按钮的`onClick`属性，这样，当按钮点击时，就会调用`submitForm()`方法，完成表单提交。
 
 ```jsx
-<input type="button" value="提交" onClick={handleSubmit} />
+<input type="button" value="提交" onClick={submitForm} />
 ```
 
 这就是全部了，应用完成了。我们从页面上添加和删除人员后，`Table`和`TableBody`均能正确的展现人员数据，这是因为`Table`和`TableBody`组件与状态是同步的。
