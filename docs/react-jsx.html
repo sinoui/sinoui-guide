@@ -53,8 +53,7 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">JSX概述</h1></header><article><div><span><p>看过<a href="/sinoui-guide/docs/react-getting-started">React 入门</a>文档或者 React 项目源码，大家都会发现在 JavaScript 代码中有类似的 HTML 代码。看看下面的一个变量声明：</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">const</span> element <span class="token operator">=</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span> World<span class="token operator">!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
 </code></pre>
-<p>这个<code>h1</code>标签既不是字符串也不是 HTML。</p>
-<p>它被称为<strong>JSX</strong>，是 JavaScript 的语法扩展。我们建议在 React 中配合使用 JSX，JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
+<p>这个<code>h1</code>标签既不是字符串也不是 HTML。它被称为<strong>JSX</strong>，是 JavaScript 的语法扩展。我们建议在 React 中配合使用 JSX，JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
 <p>JSX 可以生成<strong>React 元素</strong>。接下来，我们看看如何将 React 元素渲染为 DOM。</p>
 <p>在开始之前，大家先通过<a href="https://github.com/facebook/create-react-app">create-react-app</a>创建一个 React
 项目，来练习接下来讲解到的代码。</p>
@@ -67,8 +66,8 @@
 <p>假设我们的 HTML 页面上某处有一个<code>&lt;div&gt;</code>（通过 create-react-app 创建的 React 项目，<code>public/index.html</code>中就有这样的<code>&lt;div&gt;</code>）：</p>
 <pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"root"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-<p>我们将其称为“根”DOM 节点，因为 React 元素渲染成的 DOM 都会包含在这个 DOM 元素中。</p>
-<p>我们通过 JSX 创建 React 元素，然后通过 React DOM 将 React 元素渲染成 DOM。</p>
+<p>我们将其称为“根”DOM 节点，因为 React 元素渲染成的 DOM 都会包含在这个根元素中。</p>
+<p>我们通过 JSX 创建 React 元素，然后通过 React DOM 将 React 元素渲染成 DOM，并放在<code>#root</code>元素中。</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">"react-dom"</span><span class="token punctuation">;</span>
 
