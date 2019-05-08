@@ -16,7 +16,7 @@ sidebar_label: styled-components
 
 ## 安装
 
-执行以下命令行便能快速安装依赖：
+执行以下命令便能快速安装依赖：
 
 ```shell
 npm install --save styled-components
@@ -32,9 +32,9 @@ yarn add styled-components
 
 `styled-components`使用标签模板来对组件进行样式化。
 
-它移除了组件和样式之间的映射。这意味着，当你定义你的样式时，你实际上创造了一个正常的 React 组件，你的样式也附在它上面。
+它移除了组件和样式之间的映射。这意味着，当你定义你的样式时，你实际上只是创建了一个普通的 React 组件，你定义的样式也附在它上面。
 
-下面我们将写两个简单的组件来说明，一个容器组件`Wrapper`,一个标题`H1`.
+下面我们将写两个简单的组件来说明，一个容器组件`Wrapper`,一个标题`H1`。
 
 `Wrapper.js`
 
