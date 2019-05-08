@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>使用styled-components定义组件样式 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;styled-components&lt;/code&gt; 是一个常用的 &lt;code&gt;css in js&lt;/code&gt; 类库。和所有同类型的类库一样，通过 &lt;code&gt;js&lt;/code&gt;赋能解决了原生 &lt;code&gt;css&lt;/code&gt;所不具备的能力，比如变量、循环、函数等。&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="使用styled-components定义组件样式 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;styled-components&lt;/code&gt; 是一个常用的 &lt;code&gt;css in js&lt;/code&gt; 类库。和所有同类型的类库一样，通过 &lt;code&gt;js&lt;/code&gt;赋能解决了原生 &lt;code&gt;css&lt;/code&gt;所不具备的能力，比如变量、循环、函数等。&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Style</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">React</h3><ul class=""><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Style</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">使用styled-components定义组件样式</h1></header><article><div><span><blockquote>
+<p><code>styled-components</code> 是一个常用的 <code>css in js</code> 类库。和所有同类型的类库一样，通过 <code>js</code>赋能解决了原生 <code>css</code>所不具备的能力，比如变量、循环、函数等。</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="动机"></a><a href="#动机" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动机</h2>
+<ul>
+<li>自动关联<code>css</code>,可以在样式定义中直接引用到 js 变量，共享变量</li>
+<li>自动生成独立的类名，避免重复、重叠或拼写错误</li>
+<li>简单的动态样式，不用写很多类名</li>
+<li>支持组件之间继承，方便代码复用，提升可维护性</li>
+<li>方便样式维护，我们只需定位到某个组件，就能快速改变其样式</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="安装"></a><a href="#安装" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装</h2>
+<p>执行以下命令行便能快速安装依赖：</p>
+<pre><code class="hljs css language-shell">npm install --save styled-components
+</code></pre>
+<p>或者</p>
+<pre><code class="hljs css language-shell">yarn add styled-components
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="基本用法"></a><a href="#基本用法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本用法</h2>
+<p><code>styled-components</code>使用标签模板来对组件进行样式化。</p>
+<p>它移除了组件和样式之间的映射。这意味着，当你定义你的样式时，你实际上创造了一个正常的 React 组件，你的样式也附在它上面。</p>
+<p>下面我们将写两个简单的组件来说明，一个容器组件<code>Wrapper</code>,一个标题<code>H1</code>.</p>
+<p><code>Wrapper.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> Wrapper = styled.div<span class="hljs-string">`
+  height: 200px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: aqua;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Wrapper;
+</code></pre>
+<p><code>H1.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> H1 = styled.h1<span class="hljs-string">`
+  font-size: 32px;
+  font-weight: bolder;
+  color: chocolate;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> H1;
+</code></pre>
+<p><code>App.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
+<span class="hljs-keyword">import</span> Wrapper <span class="hljs-keyword">from</span> <span class="hljs-string">"./Wrapper"</span>;
+<span class="hljs-keyword">import</span> H1 <span class="hljs-keyword">from</span> <span class="hljs-string">"./H1"</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Wrapper</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">H1</span>&gt;</span>Hello,This is a demo of style components!<span class="hljs-tag">&lt;/<span class="hljs-name">H1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Wrapper</span>&gt;</span></span>
+  );
+}
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById("root"));
+</span></code></pre>
+<p>运行程序，我们就能看到如下效果：</p>
+<p><img src="/sinoui-guide/docs/assets/images/style-components-demo.png" alt=""></p>
+<p>此时，<code>h1</code>应用了我们定义的样式。</p>
+<h2><a class="anchor" aria-hidden="true" id="基于-props-做样式判断"></a><a href="#基于-props-做样式判断" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基于<code>Props</code>做样式判断</h2>
+<p>模板标签的函数插值能拿到样式组件的 props，可以据此调整我们的样式规则。</p>
+<p>第一种方式：</p>
+<p><code>Button.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> Button = styled.button<span class="hljs-string">`
+  min-width: 64px;
+  background: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"blue"</span> : <span class="hljs-string">"transparent"</span>)}</span>;
+  color: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"white"</span> : <span class="hljs-string">"palevioletred"</span>)}</span>;
+  font-size: 14px;
+  margin: 8px;
+  padding: 8px;
+  border: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"none"</span> : <span class="hljs-string">`2px solid palevioletred`</span>)}</span>;
+  border-radius: 3px;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<p>上述示例中如果<code>primary</code>属性存在，则按钮背景色会变成蓝色，边框消失，并且文字颜色变成白色。</p>
+<p>此外，我们还可以使用<code>css</code>定义一个样式，然后根据属性判断来调整我们的样式规则，这就有了第二种方式：</p>
+<p><code>Button.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled, { css } <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> disabledStyle = css<span class="hljs-string">`
+  background: transparent;
+  color: rgba(0, 0, 0, 0.38);
+  border: 2px solid rgba(0, 0, 0, 0.38);
+`</span>;
+
+<span class="hljs-keyword">const</span> Button = styled.button<span class="hljs-string">`
+  min-width: 64px;
+  background: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"blue"</span> : <span class="hljs-string">"transparent"</span>)}</span>;
+  color: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"white"</span> : <span class="hljs-string">"palevioletred"</span>)}</span>;
+  font-size: 14px;
+  margin: 8px;
+  padding: 8px;
+  border: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"none"</span> : <span class="hljs-string">`2px solid palevioletred`</span>)}</span>;
+  border-radius: 3px;
+  <span class="hljs-subst">${props =&gt; props.disabled &amp;&amp; disabledStyle}</span>;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<p>此时，如果我们给 Button 组件一个<code>disabled</code>属性，则<code>disabledStyle</code>中的样式会自动覆盖原有样式中对应的部分。</p>
+<p>最后，我们还可以直接传入一个样式属性来控制组件样式的规则，比如，我们希望能自定义按钮的最小宽度，此时我们可以调整<code>Button.js</code>为：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> Button = styled.button<span class="hljs-string">`
+  min-width: <span class="hljs-subst">${props =&gt; props.minWidth || <span class="hljs-number">64</span>}</span>px;
+  background: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"blue"</span> : <span class="hljs-string">"transparent"</span>)}</span>;
+  color: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"white"</span> : <span class="hljs-string">"palevioletred"</span>)}</span>;
+  font-size: 14px;
+  margin: 8px;
+  padding: 8px;
+  border: <span class="hljs-subst">${props =&gt; (props.primary ? <span class="hljs-string">"none"</span> : <span class="hljs-string">`2px solid palevioletred`</span>)}</span>;
+  border-radius: 3px;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<p>此时，只要我们在使用 Button 组件时，给<code>minWidth</code>属性赋值，按钮就会按照我们制定的最小宽度渲染。</p>
+<h2><a class="anchor" aria-hidden="true" id="扩展样式"></a><a href="#扩展样式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>扩展样式</h2>
+<p>样式扩展主要针对当前组件有部分样式不满足需求的情况，此时我们可以通过样式扩展来进行样式调整，比如：我们希望上面例子中的 Button 组件的边框颜色和字体颜色变成蓝色，此时我们仅仅需要下面一小段代码调整即能满足需求：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> BlueButton = styled(Button)<span class="hljs-string">`
+  color: blue;
+  border: 2px solid blue;
+`</span>;
+</code></pre>
+<p>在某些场景下，我们可能不仅仅只是想要修改组件的样式，甚至想要更新组件的渲染元素，<code>styled-components</code>曾经提供了一种方式来满足我们的需求，即<code>.withComponent()</code></p>
+<p>方法。不幸的是在后续版本中，此方法将会被废弃。但令我们欣慰的是：<code>styled-components</code>最新版本为我们提供了一种新的方式，就是<code>as</code>属性。</p>
+<p>假设，我们想要使用<a>来渲染我们的 Button 组件，我们仅仅需要在使用 Button 时，赋予一个<code>as</code>属性即可：</p>
+<pre><code class="hljs css language-jsx">&lt;Button as="a" href="https://www.styled-components.com"&gt;
+  Link Button
+&lt;/Button&gt;
+</code></pre>
+<p>同样的，我们也可以使用我们自己定义的其它组件来给<code>as</code>属性赋值。</p>
+<h2><a class="anchor" aria-hidden="true" id="自定义任意组件的样式"></a><a href="#自定义任意组件的样式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义任意组件的样式</h2>
+<p><code>styled-components</code>实际上也是通过<code>className</code>的方式添加样式，所以，只要我们的组件有<code>className</code>,我们就能使用<code>styled-components</code>自定义其样式。</p>
+<pre><code class="hljs css language-jsx">import React from "react";
+import styled from "styled-components";
+
+const P = ({ className, children }) =&gt; &lt;p className={className}&gt;{children}&lt;/p&gt;;
+
+const CustomP = styled(P)`
+  color: blue;
+  font-size: 32px;
+`;
+
+export { P, CustomP };
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="使用-attrs-添加属性"></a><a href="#使用-attrs-添加属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用<code>.attrs</code>添加属性</h2>
+<p>我们可以使用<code>attrs</code>API 来为样式组件添加一些属性，它们也可以通过标签模板插值函数拿到 props 传值。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> PasswordInput = styled.input.attrs({
+  <span class="hljs-attr">type</span>: <span class="hljs-string">"password"</span>,
+  <span class="hljs-attr">margin</span>: <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> props.size || <span class="hljs-string">"1em"</span>,
+  <span class="hljs-attr">padding</span>: <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> props.size || <span class="hljs-string">"1em"</span>
+})<span class="hljs-string">`
+  color: palevioletred;
+  font-size: 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  margin: <span class="hljs-subst">${props =&gt; props.margin}</span>;
+  padding: <span class="hljs-subst">${props =&gt; props.padding}</span>;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> PasswordInput;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="动画"></a><a href="#动画" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动画</h2>
+<p>带有<code>@keyframes</code>的<code>CSS animations</code>，一般来说会产生复用。<code>styled-components</code>暴露了一个<code>keyframes</code>的<code>API</code>，我们使用它产生一个可以复用的变量。这样，我们在书写<code>css</code>样式的时候使用 JavaScript 的功能，为<code>CSS</code>附能，并且避免了名称冲突。</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> styled, { keyframes } <span class="hljs-keyword">from</span> <span class="hljs-string">"styled-components"</span>;
+
+<span class="hljs-keyword">const</span> rotateStyle = keyframes<span class="hljs-string">`
+    from {
+    transform: rotate(0deg);
+  }
+
+    to {
+    transform: rotate(360deg);
+  }
+`</span>;
+
+<span class="hljs-keyword">const</span> Rotate = styled.div<span class="hljs-string">`
+  display: inline-block;
+  animation: <span class="hljs-subst">${rotateStyle}</span> 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Rotate;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="附注"></a><a href="#附注" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>附注</h2>
+<p>有时候可能由于优先级的问题，我们自定义的样式无法使用，此时我们只需要使用<code>&amp;&amp;</code>就能提升其优先级：</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> CustomButton = styled(Button)<span class="hljs-string">`
+  &amp;&amp; {
+    width: 88px;
+  }
+`</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>这篇文章主要介绍了<code>styled-components</code>的基本用法，包括通过属性控制样式规则、样式扩展、自定义组件样式、使用<code>.attrs</code>添加属性、动画等，希望可以通过阅读此文章数量掌握如何使用<code>styled-components</code>定义组件样式。</p>
+<p><a href="https://github.com/sinoui/style-demo">查看示例源码</a></p>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<p><a href="https://www.styled-components.com">styled-components 官网</a></p>
+<p><a href="https://segmentfault.com/a/1190000014682665">Styled-Components</a></p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#动机">动机</a></li><li><a href="#安装">安装</a></li><li><a href="#基本用法">基本用法</a></li><li><a href="#基于-props-做样式判断">基于<code>Props</code>做样式判断</a></li><li><a href="#扩展样式">扩展样式</a></li><li><a href="#自定义任意组件的样式">自定义任意组件的样式</a></li><li><a href="#使用-attrs-添加属性">使用<code>.attrs</code>添加属性</a></li><li><a href="#动画">动画</a></li><li><a href="#附注">附注</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
