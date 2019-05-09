@@ -442,7 +442,7 @@ export default App;
 
 让我们继续前进：在加载数据时显示加载状态提示器。
 
-首先创建一个`LoadingIndicator`组件，表单加载状态提示器：
+首先创建一个`LoadingIndicator`组件，表示加载状态提示器：
 
 `LoadingIndicator.js`：
 
