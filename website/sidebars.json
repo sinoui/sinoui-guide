@@ -2,7 +2,7 @@
   "docs": {
     "React": ["react-index", "react-getting-started", "react-jsx"],
     "TypeScript/ES6": [""],
-    "Style": ["styled-components-guide"]
+    "Style": ["styled-components-guide", "custom-theme-guide"]
   },
   "app-dev": {
     "router": [""]
