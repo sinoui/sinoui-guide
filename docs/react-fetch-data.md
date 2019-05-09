@@ -509,7 +509,7 @@ export default App;
 
 如何处理请求数据的错误呢？与加载提示器一样，加一个`error`状态来处理。
 
-```js
+```jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ArticleList from './ArticleList';
