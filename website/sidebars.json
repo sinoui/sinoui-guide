@@ -1,6 +1,11 @@
 {
   "docs": {
-    "React": ["react-index", "react-getting-started", "react-jsx"],
+    "React": [
+      "react-index",
+      "react-getting-started",
+      "react-jsx",
+      "react-fetch-data"
+    ],
     "TypeScript/ES6": [""],
     "Style": ["styled-components-guide"]
   },
