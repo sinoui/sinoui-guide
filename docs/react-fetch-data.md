@@ -440,13 +440,139 @@ export default App;
 
 ## 加载状态指示器（加载中）
 
+让我们继续前进：在加载数据时显示加载状态提示器。
+
+首先创建一个`LoadingIndicator`组件，表单加载状态提示器：
+
+`LoadingIndicator.js`：
+
+```jsx
+import React from 'react';
+
+function LoadingIndicator() {
+  return <div>加载中...</div>;
+}
+
+export default LoadingIndicator;
+```
+
+在`App`组件中定义一个`isLoading`状态，用来表示是否正在加载数据。在发送请求之前和之后更新`isLoading`状态。
+
+`App.js`：
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ArticleList from './ArticleList';
+import QueryForm from './QueryForm';
+import LoadingIndicator from './LoadingIndicator';
+
+function App() {
+  const [data, setData] = useState({
+    hits: [],
+  });
+  const [url, setUrl] = useState(
+    'http://hn.algolia.com/api/v1/search?query=react',
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const result = await axios(url);
+
+      setData(result.data);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [url]);
+
+  const handleSubmit = (query) => {
+    setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`);
+  };
+
+  return (
+    <div className="container">
+      <QueryForm handleSubmit={handleSubmit} />
+      {isLoading ? <LoadingIndicator /> : <ArticleList articles={data.hits} />}
+    </div>
+  );
+}
+
+export default App;
+```
+
+打开页面预览一下效果，输入新的查询关键字，点击查询，你会看到会出现“加载中...”提示，等加载完成后，提示消失，显示文章列表。
+
 ## 错误提示
+
+如何处理请求数据的错误呢？与加载提示器一样，加一个`error`状态来处理。
+
+```js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ArticleList from './ArticleList';
+import QueryForm from './QueryForm';
+import LoadingIndicator from './LoadingIndicator';
+
+function App() {
+  const [data, setData] = useState({
+    hits: [],
+  });
+  const [url, setUrl] = useState(
+    'http:/hn.algolia.com/api/v1/search?query=react',
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      setIsError(false);
+
+      try {
+        const result = await axios(url);
+
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [url]);
+
+  const handleSubmit = (query) => {
+    setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`);
+  };
+
+  return (
+    <div className="container">
+      <QueryForm handleSubmit={handleSubmit} />
+      {isError && <div>加载数据失败。</div>}
+      {isLoading ? <LoadingIndicator /> : <ArticleList articles={data.hits} />}
+    </div>
+  );
+}
+
+export default App;
+```
+
+你可以打开 devtools，在`Network`面板上将网络设置为`offline`，输入新的关键字，点击查询，页面上就会出现错误提示。
 
 ## 自定义获取数据的 hook
 
+TODO: 等待补充
+
 ## 使用 useReducer 加载数据
 
+TODO: 等待补充
+
 ## 在 Effect hook 中取消数据加载
+
+TODO: 等待补充
 
 ## 参考文章
 
