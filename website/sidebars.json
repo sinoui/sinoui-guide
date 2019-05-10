@@ -4,6 +4,7 @@
       "react-index",
       "react-getting-started",
       "react-jsx",
+      "react-props-state",
       "react-fetch-data"
     ],
     "TypeScript/ES6": [""],
