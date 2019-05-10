@@ -521,7 +521,7 @@ function App() {
     hits: [],
   });
   const [url, setUrl] = useState(
-    'http:/hn.algolia.com/api/v1/search?query=react',
+    'http://hn.algolia.com/api/v1/search?query=react',
   );
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -564,7 +564,162 @@ export default App;
 
 ## 自定义获取数据的 hook
 
-TODO: 等待补充
+如果现在让我们再开发一个类似的数据获取类的程序，我们应该怎么做？跟上面介绍的思路基本一致，关于数据获取的代码也基本一样。所以，我们可以将数据获取的代码提炼出来以复用。这个章节会向大家介绍如何自定义获取数据的 hook，以达到复用的目的。另外，使用自定义 hook，也能提升代码的可读性和可维护性，有利于将 UI 与逻辑处理分离开。
+
+要想将数据获取放到自定义 hook 中，先自定义一个 hook，命名为`useHackerNewsApi`，然后将与数据获取相关的状态和 effect hook 迁移到`useHackerNewsApi`中，最后将`data`、`isLoading`、`isError`和更新 url 的方法（这个方法会在`App`的`handleSubmit()`中调用）返回给`App`组件。代码如下：
+
+`useHackerNewsApi.js`:
+
+```js
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function useHackerNewsApi() {
+  const [data, setData] = useState({
+    hits: [],
+  });
+  const [url, setUrl] = useState(
+    'http://hn.algolia.com/api/v1/search?query=react',
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      setIsError(false);
+
+      try {
+        const result = await axios(url);
+
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [url]);
+
+  function doFetch(url) {
+    setUrl(url);
+  }
+
+  return { data, isLoading, isError, doFetch };
+}
+
+export default useHackerNewsApi;
+```
+
+`App.js`:
+
+```jsx
+import React from 'react';
+import ArticleList from './ArticleList';
+import QueryForm from './QueryForm';
+import LoadingIndicator from './LoadingIndicator';
+import useHackerNewsApi from './useHackerNewsApi';
+
+function App() {
+  const { data, isLoading, isError, doFetch } = useHackerNewsApi();
+
+  const handleSubmit = (query) => {
+    doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
+  };
+
+  return (
+    <div className="container">
+      <QueryForm handleSubmit={handleSubmit} />
+      {isError && <div>加载数据失败。</div>}
+      {isLoading ? <LoadingIndicator /> : <ArticleList articles={data.hits} />}
+    </div>
+  );
+}
+
+export default App;
+```
+
+打开页面看看效果，确保应用能够正常运行。
+
+我们还不能在其他场景下复用`useHackerNewsApi`，因为这个自定义 hook 中的初始 url 和初始数据都是与`Hacker News API`有关的。我们可以创建一个更通用的 hook，它会接受`初始url`和`初始数据`两个参数，其他逻辑处理与`useHackerNewsApi`基本一致，这个自定义 hook 取名为`useDataApi`。代码如下：
+
+`useDataApi.js`:
+
+```jsx
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function useDataApi(initialUrl, initialData) {
+  const [data, setData] = useState(initialData);
+  const [url, setUrl] = useState(initialUrl);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      setIsError(false);
+
+      try {
+        const result = await axios(url);
+
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [url]);
+
+  function doFetch(url) {
+    setUrl(url);
+  }
+
+  return { data, isLoading, isError, doFetch };
+}
+
+export default useDataApi;
+```
+
+`App.js`:
+
+```jsx
+import React from 'react';
+import ArticleList from './ArticleList';
+import QueryForm from './QueryForm';
+import LoadingIndicator from './LoadingIndicator';
+import useDataApi from './useDataApi';
+
+function App() {
+  const { data, isLoading, isError, doFetch } = useDataApi(
+    'http://hn.algolia.com/api/v1/search?query=react',
+    {
+      hits: [],
+    },
+  );
+
+  const handleSubmit = (query) => {
+    doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
+  };
+
+  return (
+    <div className="container">
+      <QueryForm handleSubmit={handleSubmit} />
+      {isError && <div>加载数据失败。</div>}
+      {isLoading ? <LoadingIndicator /> : <ArticleList articles={data.hits} />}
+    </div>
+  );
+}
+
+export default App;
+```
+
+打开页面看看效果，确保应用能够正常运行。
+
+经过提炼后的`useDataApi` hook 非常具有复用性，可以用在其他获取数据的场景中。你可以将`useDataApi`分享给团队中的其他同事，或者发布到 npm 中分享给需要的人。
 
 ## 使用 useReducer 加载数据
 
