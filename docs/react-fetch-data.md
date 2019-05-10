@@ -723,7 +723,171 @@ export default App;
 
 ## 使用 useReducer 加载数据
 
-TODO: 等待补充
+我们在程序中用了三个状态钩子（state hook）来管理我们的数据获取状态：数据、加载中和错误状态。这些状态都是由自己的状态钩子管理，但是却会由同一个原因导致同时更新多个状态。如你所见，这三个状态的更新都发生在数据获取方法中。在数据加载前，同时调用`setIsError(false)`和`setIsLoading(true)`，在数据加载完成后，同时调用`setData()`和`setIsLoading(false)`，在数据加载失败时同时调用`setIsError(true)`和`setIsLoading(false)`。这个章节会介绍使用 reducer hook 来同时管理这三个状态数据。
+
+Reducer hook 返回一个状态对象`state`和一个改变状态对象的函数。该函数（称为**dispatch**函数）采用具有**类型（type）**和可选的**有效负载（payload）**的**操作（action）**。所有这些信息都在实际的 reducer 函数中用于从先前的状态、动作的有效负载和类型中提取新状态。让我们看看它在代码中时如何工作的：
+
+`useDataApi.js`:
+
+```js
+import { useState, useEffect, useReducer } from 'react';
+import axios from 'axios';
+
+function dataFetchReducer(state, action) {
+  // 稍后补充
+}
+
+function useDataApi(initialUrl, initialData) {
+  const [url, setUrl] = useState(initialUrl);
+
+  const [state, dispatch] = useReducer(dataFetchReducer, {
+    isLoading: false,
+    isError: false,
+    data: initialData,
+  });
+
+  // 剩下部分代码稍后补充
+
+  return { ...state, doFetch };
+}
+```
+
+reducer hook 将 reducer 函数和初始状态对象作为参数。在我们的例子中，我们的初始化状态对象中包含了`data`、`isLoading`和`isError`。
+
+接下来，我们在开始加载、加载完成和加载失败这三个时刻通过`dispatch`方法，发送合适的`action`。`action`是具有**type**属性和可选的用来承载额外数据的**payload**属性组成的对象。我们定义三个操作类型（action type）：`FETCH_INIT`代表开始加载、`FETCH_SUCCESS`代表加载成功、`FETCH_FAILURE`代表加载失败。如下所示：
+
+`useDataApi.js`:
+
+```js
+import { useState, useEffect, useReducer } from 'react';
+import axios from 'axios';
+
+function dataFetchReducer(state, action) {
+  // 稍后补充
+}
+
+function useDataApi(initialUrl, initialData) {
+  const [url, setUrl] = useState(initialUrl);
+
+  const [state, dispatch] = useReducer(dataFetchReducer, {
+    isLoading: false,
+    isError: false,
+    data: initialData,
+  });
+
+  useEffect(() => {
+    async function fetchData() {
+      dispatch({ type: 'FETCH_INIT' });
+
+      try {
+        const result = await axios(url);
+
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (error) {
+        dispatch({ type: 'FETCH_FAILURE' });
+      }
+    }
+
+    fetchData();
+  }, [url]);
+
+  const doFetch = (url) => {
+    setUrl(url);
+  };
+
+  return { ...state, doFetch };
+}
+```
+
+通过`dispatch`函数发送的操作(action)都会传递给`dataFetchReducer`函数。在`dataFetchReducer()`中，可以根据`action`的类型产生新的状态对象返回。代码如下：
+
+```js
+const dataFetchReducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_INIT':
+      return { ...state, isLoading: true, isError: false };
+    case 'FETCH_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload,
+      };
+    case 'FETCH_FAILURE':
+      return { ...state, isLoading: false, isError: true };
+    default:
+      return state;
+  }
+};
+```
+
+完整的`useDataApi`如下：
+
+```js
+import { useState, useEffect, useReducer } from 'react';
+import axios from 'axios';
+
+function dataFetchReducer(state, action) {
+  switch (action.type) {
+    case 'FETCH_INIT':
+      return {
+        ...state,
+        isError: false,
+        isLoading: true,
+      };
+    case 'FETCH_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload,
+      };
+    case 'FETCH_FAILURE':
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    default:
+      return state;
+  }
+}
+
+function useDataApi(initialUrl, initialData) {
+  const [state, dispatch] = useReducer(dataFetchReducer, {
+    isLoading: false,
+    isError: false,
+    data: initialData,
+  });
+  const [url, setUrl] = useState(initialUrl);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: 'FETCH_INIT' });
+
+      try {
+        const result = await axios(url);
+
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (error) {
+        dispatch({ type: 'FETCH_FAILURE' });
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  const doFetch = (url) => {
+    setUrl(url);
+  };
+
+  return { ...state, doFetch };
+}
+
+export default useDataApi;
+```
+
+打开页面看看效果，确保应用能够正常运行。
 
 ## 在 Effect hook 中取消数据加载
 
