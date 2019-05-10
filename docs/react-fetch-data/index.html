@@ -504,7 +504,7 @@
     hits<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>url<span class="token punctuation">,</span> setUrl<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>
-    <span class="token string">'http:/hn.algolia.com/api/v1/search?query=react'</span><span class="token punctuation">,</span>
+    <span class="token string">'http://hn.algolia.com/api/v1/search?query=react'</span><span class="token punctuation">,</span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>isLoading<span class="token punctuation">,</span> setIsLoading<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>isError<span class="token punctuation">,</span> setIsError<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -544,11 +544,381 @@
 </code></pre>
 <p>你可以打开 devtools，在<code>Network</code>面板上将网络设置为<code>offline</code>，输入新的关键字，点击查询，页面上就会出现错误提示。</p>
 <h2><a class="anchor" aria-hidden="true" id="自定义获取数据的-hook"></a><a href="#自定义获取数据的-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义获取数据的 hook</h2>
-<p>TODO: 等待补充</p>
+<p>如果现在让我们再开发一个类似的数据获取类的程序，我们应该怎么做？跟上面介绍的思路基本一致，关于数据获取的代码也基本一样。所以，我们可以将数据获取的代码提炼出来以复用。这个章节会向大家介绍如何自定义获取数据的 hook，以达到复用的目的。另外，使用自定义 hook，也能提升代码的可读性和可维护性，有利于将 UI 与逻辑处理分离开。</p>
+<p>要想将数据获取放到自定义 hook 中，先自定义一个 hook，命名为<code>useHackerNewsApi</code>，然后将与数据获取相关的状态和 effect hook 迁移到<code>useHackerNewsApi</code>中，最后将<code>data</code>、<code>isLoading</code>、<code>isError</code>和更新 url 的方法（这个方法会在<code>App</code>的<code>handleSubmit()</code>中调用）返回给<code>App</code>组件。代码如下：</p>
+<p><code>useHackerNewsApi.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useHackerNewsApi</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [data, setData] = useState({
+    <span class="hljs-attr">hits</span>: [],
+  });
+  <span class="hljs-keyword">const</span> [url, setUrl] = useState(
+    <span class="hljs-string">'http://hn.algolia.com/api/v1/search?query=react'</span>,
+  );
+  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = useState(<span class="hljs-literal">false</span>);
+  <span class="hljs-keyword">const</span> [isError, setIsError] = useState(<span class="hljs-literal">false</span>);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchData</span>(<span class="hljs-params"></span>) </span>{
+      setIsLoading(<span class="hljs-literal">true</span>);
+      setIsError(<span class="hljs-literal">false</span>);
+
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> axios(url);
+
+        setData(result.data);
+      } <span class="hljs-keyword">catch</span> (error) {
+        setIsError(<span class="hljs-literal">true</span>);
+      }
+      setIsLoading(<span class="hljs-literal">false</span>);
+    }
+
+    fetchData();
+  }, [url]);
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doFetch</span>(<span class="hljs-params">url</span>) </span>{
+    setUrl(url);
+  }
+
+  <span class="hljs-keyword">return</span> { data, isLoading, isError, doFetch };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useHackerNewsApi;
+</code></pre>
+<p><code>App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ArticleList <span class="token keyword">from</span> <span class="token string">'./ArticleList'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> QueryForm <span class="token keyword">from</span> <span class="token string">'./QueryForm'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> LoadingIndicator <span class="token keyword">from</span> <span class="token string">'./LoadingIndicator'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> useHackerNewsApi <span class="token keyword">from</span> <span class="token string">'./useHackerNewsApi'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> data<span class="token punctuation">,</span> isLoading<span class="token punctuation">,</span> isError<span class="token punctuation">,</span> doFetch <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useHackerNewsApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> <span class="token function-variable function">handleSubmit</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">doFetch</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`http://hn.algolia.com/api/v1/search?query=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>query<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">QueryForm</span></span> <span class="token attr-name">handleSubmit</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>handleSubmit<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+      <span class="token punctuation">{</span>isError <span class="token operator">&amp;&amp;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>加载数据失败。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">}</span>
+      <span class="token punctuation">{</span>isLoading <span class="token operator">?</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">LoadingIndicator</span></span> <span class="token punctuation">/></span></span> <span class="token punctuation">:</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">ArticleList</span></span> <span class="token attr-name">articles</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>hits<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+</code></pre>
+<p>打开页面看看效果，确保应用能够正常运行。</p>
+<p>我们还不能在其他场景下复用<code>useHackerNewsApi</code>，因为这个自定义 hook 中的初始 url 和初始数据都是与<code>Hacker News API</code>有关的。我们可以创建一个更通用的 hook，它会接受<code>初始url</code>和<code>初始数据</code>两个参数，其他逻辑处理与<code>useHackerNewsApi</code>基本一致，这个自定义 hook 取名为<code>useDataApi</code>。代码如下：</p>
+<p><code>useDataApi.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">useDataApi</span><span class="token punctuation">(</span><span class="token parameter">initialUrl<span class="token punctuation">,</span> initialData</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>initialData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>url<span class="token punctuation">,</span> setUrl<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>initialUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>isLoading<span class="token punctuation">,</span> setIsLoading<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>isError<span class="token punctuation">,</span> setIsError<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">setIsLoading</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">setIsError</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">axios</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">setData</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setIsError</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token function">setIsLoading</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">doFetch</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setUrl</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> data<span class="token punctuation">,</span> isLoading<span class="token punctuation">,</span> isError<span class="token punctuation">,</span> doFetch <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> useDataApi<span class="token punctuation">;</span>
+</code></pre>
+<p><code>App.js</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ArticleList <span class="token keyword">from</span> <span class="token string">'./ArticleList'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> QueryForm <span class="token keyword">from</span> <span class="token string">'./QueryForm'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> LoadingIndicator <span class="token keyword">from</span> <span class="token string">'./LoadingIndicator'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> useDataApi <span class="token keyword">from</span> <span class="token string">'./useDataApi'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> data<span class="token punctuation">,</span> isLoading<span class="token punctuation">,</span> isError<span class="token punctuation">,</span> doFetch <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useDataApi</span><span class="token punctuation">(</span>
+    <span class="token string">'http://hn.algolia.com/api/v1/search?query=react'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      hits<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> <span class="token function-variable function">handleSubmit</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">doFetch</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`http://hn.algolia.com/api/v1/search?query=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>query<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">QueryForm</span></span> <span class="token attr-name">handleSubmit</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>handleSubmit<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+      <span class="token punctuation">{</span>isError <span class="token operator">&amp;&amp;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>加载数据失败。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">}</span>
+      <span class="token punctuation">{</span>isLoading <span class="token operator">?</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">LoadingIndicator</span></span> <span class="token punctuation">/></span></span> <span class="token punctuation">:</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">ArticleList</span></span> <span class="token attr-name">articles</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>hits<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+</code></pre>
+<p>打开页面看看效果，确保应用能够正常运行。</p>
+<p>经过提炼后的<code>useDataApi</code> hook 非常具有复用性，可以用在其他获取数据的场景中。你可以将<code>useDataApi</code>分享给团队中的其他同事，或者发布到 npm 中分享给需要的人。</p>
 <h2><a class="anchor" aria-hidden="true" id="使用-usereducer-加载数据"></a><a href="#使用-usereducer-加载数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 useReducer 加载数据</h2>
-<p>TODO: 等待补充</p>
+<p>我们在程序中用了三个状态钩子（state hook）来管理我们的数据获取状态：数据、加载中和错误状态。这些状态都是由自己的状态钩子管理，但是却会由同一个原因导致同时更新多个状态。如你所见，这三个状态的更新都发生在数据获取方法中。在数据加载前，同时调用<code>setIsError(false)</code>和<code>setIsLoading(true)</code>，在数据加载完成后，同时调用<code>setData()</code>和<code>setIsLoading(false)</code>，在数据加载失败时同时调用<code>setIsError(true)</code>和<code>setIsLoading(false)</code>。这个章节会介绍使用 reducer hook 来同时管理这三个状态数据。</p>
+<p>Reducer hook 返回一个状态对象<code>state</code>和一个改变状态对象的函数。该函数（称为<strong>dispatch</strong>函数）采用具有<strong>类型（type）</strong>和可选的<strong>有效负载（payload）</strong>的<strong>操作（action）</strong>。所有这些信息都在实际的 reducer 函数中用于从先前的状态、动作的有效负载和类型中提取新状态。让我们看看它在代码中时如何工作的：</p>
+<p><code>useDataApi.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useState, useEffect, useReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataFetchReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-comment">// 稍后补充</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useDataApi</span>(<span class="hljs-params">initialUrl, initialData</span>) </span>{
+  <span class="hljs-keyword">const</span> [url, setUrl] = useState(initialUrl);
+
+  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(dataFetchReducer, {
+    <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">data</span>: initialData,
+  });
+
+  <span class="hljs-comment">// 剩下部分代码稍后补充</span>
+
+  <span class="hljs-keyword">return</span> { ...state, doFetch };
+}
+</code></pre>
+<p>reducer hook 将 reducer 函数和初始状态对象作为参数。在我们的例子中，我们的初始化状态对象中包含了<code>data</code>、<code>isLoading</code>和<code>isError</code>。</p>
+<p>接下来，我们在开始加载、加载完成和加载失败这三个时刻通过<code>dispatch</code>方法，发送合适的<code>action</code>。<code>action</code>是具有<strong>type</strong>属性和可选的用来承载额外数据的<strong>payload</strong>属性组成的对象。我们定义三个操作类型（action type）：<code>FETCH_INIT</code>代表开始加载、<code>FETCH_SUCCESS</code>代表加载成功、<code>FETCH_FAILURE</code>代表加载失败。如下所示：</p>
+<p><code>useDataApi.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useState, useEffect, useReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataFetchReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-comment">// 稍后补充</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useDataApi</span>(<span class="hljs-params">initialUrl, initialData</span>) </span>{
+  <span class="hljs-keyword">const</span> [url, setUrl] = useState(initialUrl);
+
+  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(dataFetchReducer, {
+    <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">data</span>: initialData,
+  });
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchData</span>(<span class="hljs-params"></span>) </span>{
+      dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_INIT'</span> });
+
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> axios(url);
+
+        dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_SUCCESS'</span>, <span class="hljs-attr">payload</span>: result.data });
+      } <span class="hljs-keyword">catch</span> (error) {
+        dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_FAILURE'</span> });
+      }
+    }
+
+    fetchData();
+  }, [url]);
+
+  <span class="hljs-keyword">const</span> doFetch = <span class="hljs-function">(<span class="hljs-params">url</span>) =&gt;</span> {
+    setUrl(url);
+  };
+
+  <span class="hljs-keyword">return</span> { ...state, doFetch };
+}
+</code></pre>
+<p>通过<code>dispatch</code>函数发送的操作(action)都会传递给<code>dataFetchReducer</code>函数。在<code>dataFetchReducer()</code>中，可以根据<code>action</code>的类型产生新的状态对象返回。代码如下：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> dataFetchReducer = <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> {
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_INIT'</span>:
+      <span class="hljs-keyword">return</span> { ...state, <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span> };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_SUCCESS'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">data</span>: action.payload,
+      };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_FAILURE'</span>:
+      <span class="hljs-keyword">return</span> { ...state, <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">isError</span>: <span class="hljs-literal">true</span> };
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+};
+</code></pre>
+<p>完整的<code>useDataApi</code>如下：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useState, useEffect, useReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataFetchReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_INIT'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">true</span>,
+      };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_SUCCESS'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">data</span>: action.payload,
+      };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_FAILURE'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+      };
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useDataApi</span>(<span class="hljs-params">initialUrl, initialData</span>) </span>{
+  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(dataFetchReducer, {
+    <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">data</span>: initialData,
+  });
+  <span class="hljs-keyword">const</span> [url, setUrl] = useState(initialUrl);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> fetchData = <span class="hljs-keyword">async</span> () =&gt; {
+      dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_INIT'</span> });
+
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> axios(url);
+
+        dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_SUCCESS'</span>, <span class="hljs-attr">payload</span>: result.data });
+      } <span class="hljs-keyword">catch</span> (error) {
+        dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_FAILURE'</span> });
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  <span class="hljs-keyword">const</span> doFetch = <span class="hljs-function">(<span class="hljs-params">url</span>) =&gt;</span> {
+    setUrl(url);
+  };
+
+  <span class="hljs-keyword">return</span> { ...state, doFetch };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useDataApi;
+</code></pre>
+<p>打开页面看看效果，确保应用能够正常运行。</p>
 <h2><a class="anchor" aria-hidden="true" id="在-effect-hook-中取消数据加载"></a><a href="#在-effect-hook-中取消数据加载" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在 Effect hook 中取消数据加载</h2>
-<p>TODO: 等待补充</p>
+<p>在 React 中有一个通用问题：在组件销毁时组件的状态仍然被修改。比如在页面切换时，组件就会被销毁。我们的应用程序也会面临这样的情况：如果在数据加载过程中组件被销毁了，但是 api 请求却没有被取消，当 api 请求成功后，仍然会修改状态。我们可以给数据加载 effect hook 添加一个可以取消请求的函数作为返回值，这个函数会在组件销毁时被调用，具体详情参见<a href="https://zh-hans.reactjs.org/docs/hooks-effect.html#%E9%9C%80%E8%A6%81%E6%B8%85%E9%99%A4%E7%9A%84-effect">需要清除的 effect</a>。我们的代码如下：</p>
+<p><code>useDataApi.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useState, useEffect, useReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataFetchReducer</span>(<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_INIT'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">true</span>,
+      };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_SUCCESS'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">data</span>: action.payload,
+      };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'FETCH_FAILURE'</span>:
+      <span class="hljs-keyword">return</span> {
+        ...state,
+        <span class="hljs-attr">isError</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+      };
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useDataApi</span>(<span class="hljs-params">initialUrl, initialData</span>) </span>{
+  <span class="hljs-keyword">const</span> [state, dispatch] = useReducer(dataFetchReducer, {
+    <span class="hljs-attr">isLoading</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">isError</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">data</span>: initialData,
+  });
+  <span class="hljs-keyword">const</span> [url, setUrl] = useState(initialUrl);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">let</span> didCancel = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">const</span> fetchData = <span class="hljs-keyword">async</span> () =&gt; {
+      dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_INIT'</span> });
+
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> axios(url);
+
+        <span class="hljs-keyword">if</span> (!didCancel) {
+          dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_SUCCESS'</span>, <span class="hljs-attr">payload</span>: result.data });
+        }
+      } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-keyword">if</span> (!didCancel) {
+          dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'FETCH_FAILURE'</span> });
+        }
+      }
+    };
+
+    fetchData();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      didCancel = <span class="hljs-literal">true</span>;
+    };
+  }, [url]);
+
+  <span class="hljs-keyword">const</span> doFetch = <span class="hljs-function">(<span class="hljs-params">url</span>) =&gt;</span> {
+    setUrl(url);
+  };
+
+  <span class="hljs-keyword">return</span> { ...state, doFetch };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useDataApi;
+</code></pre>
+<p>我们在加载数据的 effect 中添加了一个<code>didCancel</code>变量，当组件销毁时，会调用<code>effect</code>的清除函数，将<code>didCancel</code>设置为<code>ture</code>，这样就可以阻止在组件销毁后 api 请求成功时仍然修改状态的情况，就相当于取消了数据加载。</p>
+<blockquote>
+<p>注意：</p>
+<p>文中提到<strong>effect 的清除函数会在组件销毁时被调用</strong>，这种说法不太准确，有兴趣的同学可以参考一下 Dan Abranmov 的<a href="https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/#%E9%82%A3effect%E4%B8%AD%E7%9A%84%E6%B8%85%E7%90%86%E5%8F%88%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%E5%91%A2%EF%BC%9F">useEffect 完整指南</a>。</p>
+</blockquote>
+<p>这就是我们这篇文章的全部了。我们的技术文章查询应用就完成了。</p>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>这篇文章详细地介绍了如何使用 react hooks 加载数据，不仅能让大家够掌握加载数据的技能，同时也能通过实战让大家加深对 react hooks 的理解，特别是 state hook 和 effect hook。</p>
+<p>本篇文章也介绍了 reducer hook 的用法。reducer hook 是<a href="https://redux.js.org/">redux</a>的简化版本，可用于处理复杂的状态逻辑。</p>
+<p><a href="https://github.com/sinoui/react-fetch-data-tutorial">在 Github 上查看源码</a></p>
+<p><a href="https://sinoui.github.io/react-fetch-data-tutorial/">查看效果</a></p>
+<p>如果这篇文章有不正确或者不明确的地方，请<a href="https://github.com/sinoui/sinoui-guide/issues">告知我们</a>（添加 github issue）。</p>
 <h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
 <ul>
 <li><a href="https://www.robinwieruch.de/react-hooks-fetch-data/">How to fetch data with React Hooks?</a></li>
@@ -559,4 +929,4 @@
 <li><a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer">useReducer</a></li>
 <li><a href="https://github.com/axios/axios">使用 Axios 调用 API</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-9 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-jsx"><span class="arrow-prev">← </span><span>JSX概述</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#准备">准备</a></li><li><a href="#目标">目标</a></li><li><a href="#使用-react-hooks-加载数据">使用 React Hooks 加载数据</a></li><li><a href="#如何再次执行-effect-hook">如何再次执行 effect hook？</a></li><li><a href="#加载状态指示器-加载中">加载状态指示器（加载中）</a></li><li><a href="#错误提示">错误提示</a></li><li><a href="#自定义获取数据的-hook">自定义获取数据的 hook</a></li><li><a href="#使用-usereducer-加载数据">使用 useReducer 加载数据</a></li><li><a href="#在-effect-hook-中取消数据加载">在 Effect hook 中取消数据加载</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-10 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-jsx"><span class="arrow-prev">← </span><span>JSX概述</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#准备">准备</a></li><li><a href="#目标">目标</a></li><li><a href="#使用-react-hooks-加载数据">使用 React Hooks 加载数据</a></li><li><a href="#如何再次执行-effect-hook">如何再次执行 effect hook？</a></li><li><a href="#加载状态指示器-加载中">加载状态指示器（加载中）</a></li><li><a href="#错误提示">错误提示</a></li><li><a href="#自定义获取数据的-hook">自定义获取数据的 hook</a></li><li><a href="#使用-usereducer-加载数据">使用 useReducer 加载数据</a></li><li><a href="#在-effect-hook-中取消数据加载">在 Effect hook 中取消数据加载</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
