@@ -970,6 +970,24 @@ export default useDataApi;
 
 我们在加载数据的 effect 中添加了一个`didCancel`变量，当组件销毁时，会调用`effect`的清除函数，将`didCancel`设置为`ture`，这样就可以阻止在组件销毁后 api 请求成功时仍然修改状态的情况，就相当于取消了数据加载。
 
+> 注意：
+>
+> 文中提到**effect 的清除函数会在组件销毁时被调用**，这种说法不太准确，有兴趣的同学可以参考一下 Dan Abranmov 的[useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/#%E9%82%A3effect%E4%B8%AD%E7%9A%84%E6%B8%85%E7%90%86%E5%8F%88%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%E5%91%A2%EF%BC%9F)。
+
+这就是我们这篇文章的全部了。我们的技术文章查询应用就完成了。
+
+## 总结
+
+这篇文章详细地介绍了如何使用 react hooks 加载数据，不仅能让大家够掌握加载数据的技能，同时也能通过实战让大家加深对 react hooks 的理解，特别是 state hook 和 effect hook。
+
+本篇文章也介绍了 reducer hook 的用法。reducer hook 是[redux](https://redux.js.org/)的简化版本，可用于处理复杂的状态逻辑。
+
+[在 Github 上查看源码](https://github.com/sinoui/react-fetch-data-tutorial)
+
+[查看效果](https://sinoui.github.io/react-fetch-data-tutorial/)
+
+如果这篇文章有不正确或者不明确的地方，请[告知我们](https://github.com/sinoui/sinoui-guide/issues)（添加 github issue）。
+
 ## 参考文章
 
 - [How to fetch data with React Hooks?](https://www.robinwieruch.de/react-hooks-fetch-data/)
@@ -979,3 +997,4 @@ export default useDataApi;
 - [useEffect](https://zh-hans.reactjs.org/docs/hooks-effect.html)
 - [useReducer](https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer)
 - [使用 Axios 调用 API](https://github.com/axios/axios)
+- [redux](https://redux.js.org/)
