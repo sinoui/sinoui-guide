@@ -54,7 +54,7 @@ function App() {
         {data.hits.map((article) => (
           <li key={article.objectID}>
             <a href={article.url}>
-              {article.title}（作者：{article.anchor}）
+              {article.title}（作者：{article.author}）
             </a>
           </li>
         ))}
@@ -91,7 +91,7 @@ function App() {
         {data.hits.map((article) => (
           <li key={article.objectID}>
             <a href={article.url}>
-              {article.title}（作者：{article.anchor}）
+              {article.title}（作者：{article.author}）
             </a>
           </li>
         ))}
@@ -128,7 +128,7 @@ function App() {
         {data.hits.map((article) => (
           <li key={article.objectID}>
             <a href={article.url}>
-              {article.title}（作者：{article.anchor}）
+              {article.title}（作者：{article.author}）
             </a>
           </li>
         ))}
@@ -173,7 +173,7 @@ function App() {
         {data.hits.map((article) => (
           <li key={article.objectID}>
             <a href={article.url}>
-              {article.title}（作者：{article.anchor}）
+              {article.title}（作者：{article.author}）
             </a>
           </li>
         ))}
@@ -200,7 +200,7 @@ function ArticleList(props) {
       {articles.map((article) => (
         <li key={article.objectID}>
           <a href={article.url}>
-            {article.title}（作者：{article.anchor}）
+            {article.title}（作者：{article.author}）
           </a>
         </li>
       ))}
