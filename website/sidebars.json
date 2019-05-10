@@ -14,7 +14,8 @@
       "react-context",
       "redux-getting-started",
       "context-and-reducer-hook",
-      "react-redux"
+      "react-redux",
+      "immutable-getting-started"
     ]
   },
   "app-dev": {
