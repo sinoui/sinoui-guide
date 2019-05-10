@@ -891,7 +891,84 @@ export default useDataApi;
 
 ## 在 Effect hook 中取消数据加载
 
-TODO: 等待补充
+在 React 中有一个通用问题：在组件销毁时组件的状态仍然被修改。比如在页面切换时，组件就会被销毁。我们的应用程序也会面临这样的情况：如果在数据加载过程中组件被销毁了，但是 api 请求却没有被取消，当 api 请求成功后，仍然会修改状态。我们可以给数据加载 effect hook 添加一个可以取消请求的函数作为返回值，这个函数会在组件销毁时被调用，具体详情参见[需要清除的 effect](https://zh-hans.reactjs.org/docs/hooks-effect.html#%E9%9C%80%E8%A6%81%E6%B8%85%E9%99%A4%E7%9A%84-effect)。我们的代码如下：
+
+`useDataApi.js`:
+
+```js
+import { useState, useEffect, useReducer } from 'react';
+import axios from 'axios';
+
+function dataFetchReducer(state, action) {
+  switch (action.type) {
+    case 'FETCH_INIT':
+      return {
+        ...state,
+        isError: false,
+        isLoading: true,
+      };
+    case 'FETCH_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload,
+      };
+    case 'FETCH_FAILURE':
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    default:
+      return state;
+  }
+}
+
+function useDataApi(initialUrl, initialData) {
+  const [state, dispatch] = useReducer(dataFetchReducer, {
+    isLoading: false,
+    isError: false,
+    data: initialData,
+  });
+  const [url, setUrl] = useState(initialUrl);
+
+  useEffect(() => {
+    let didCancel = false;
+    const fetchData = async () => {
+      dispatch({ type: 'FETCH_INIT' });
+
+      try {
+        const result = await axios(url);
+
+        if (!didCancel) {
+          dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        }
+      } catch (error) {
+        if (!didCancel) {
+          dispatch({ type: 'FETCH_FAILURE' });
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      didCancel = true;
+    };
+  }, [url]);
+
+  const doFetch = (url) => {
+    setUrl(url);
+  };
+
+  return { ...state, doFetch };
+}
+
+export default useDataApi;
+```
+
+我们在加载数据的 effect 中添加了一个`didCancel`变量，当组件销毁时，会调用`effect`的清除函数，将`didCancel`设置为`ture`，这样就可以阻止在组件销毁后 api 请求成功时仍然修改状态的情况，就相当于取消了数据加载。
 
 ## 参考文章
 
