@@ -5,10 +5,17 @@
       "react-getting-started",
       "react-jsx",
       "react-props-state",
+      "react-lifting-state-up",
       "react-fetch-data"
     ],
-    "TypeScript/ES6": [""],
-    "Style": ["styled-components-guide"]
+    "TypeScript/ES6": ["es6-tutorial", "ts-tutorial", "react-ts-tutorial"],
+    "样式": ["styled-components-guide", "react-animation"],
+    "状态管理（高阶）": [
+      "react-context",
+      "redux-getting-started",
+      "context-and-reducer-hook",
+      "react-redux"
+    ]
   },
   "app-dev": {
     "router": [""]
