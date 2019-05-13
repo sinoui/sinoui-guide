@@ -4,6 +4,7 @@
       "react-index",
       "react-getting-started",
       "react-jsx",
+      "react-hook",
       "react-props-state",
       "react-lifting-state-up",
       "react-fetch-data"
