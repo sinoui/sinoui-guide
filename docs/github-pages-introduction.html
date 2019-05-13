@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Github Pages入门指南 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;我们经常会有一些静态网页需要发布到公网上，分享给其他人，比如，个人博客、项目文档、演讲稿、前端效果演示等。这种情况下我们有很多云资源可以利用，比较常见的有：&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Github Pages入门指南 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;我们经常会有一些静态网页需要发布到公网上，分享给其他人，比如，个人博客、项目文档、演讲稿、前端效果演示等。这种情况下我们有很多云资源可以利用，比较常见的有：&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">工具篇</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>工具篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Github Pages入门指南</h1></header><article><div><span><p>我们经常会有一些静态网页需要发布到公网上，分享给其他人，比如，个人博客、项目文档、演讲稿、前端效果演示等。这种情况下我们有很多云资源可以利用，比较常见的有：</p>
+<ul>
+<li><a href="https://pages.github.com/">Github Pages</a></li>
+<li><a href="https://zeit.co/now">Zeit Now</a></li>
+<li><a href="https://js.org/">JS.ORG - the JavaScript organization</a></li>
+<li><a href="https://www.netlify.com/">Netlify</a></li>
+<li><a href="https://firebase.google.com/docs/hosting">Firebase 托管</a></li>
+<li><a href="https://www.heroku.com/">Heroku</a></li>
+<li><a href="https://surge.sh/">Surge</a></li>
+</ul>
+<p>可以托管静态网页内容的云资源还有很多很多，包括各大云平台都推出类似的公用资源供大家免费使用。</p>
+<p>大家可以根据个人喜好和工作的便捷性自由选择利用这些资源。本篇文章会向大家介绍<a href="https://pages.github.com/">Github Pages</a>。</p>
+<h2><a class="anchor" aria-hidden="true" id="目标"></a><a href="#目标" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>目标</h2>
+<p>本篇文章会向大家介绍 Github Pages 是什么、有什么作用，以及如何将静态资源发布到 Github Pages 上。</p>
+<h2><a class="anchor" aria-hidden="true" id="github-pages-是什么"></a><a href="#github-pages-是什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Github Pages 是什么？</h2>
+<p>Github Pages 是一个可以从你的 Github 源码仓库中直接生成个人、组织或者项目页面的静态站点托管服务。</p>
+<p>Github Pages 只能托管静态站点，不能运行服务器端源码，比如 PHP、Java、Python 或者 Ruby。</p>
+<h2><a class="anchor" aria-hidden="true" id="用户-组织和项目页面"></a><a href="#用户-组织和项目页面" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>用户、组织和项目页面</h2>
+<blockquote>
+<p>有两种基本类型的 Github Pages 站点：项目页面站点、用户与组织页面站点。它们几乎相同，但是有一些重点区别。</p>
+</blockquote>
+<p>我们可以从站点的 url 区分出站点类型：</p>
+<ul>
+<li>Facebook 站点： <a href="https://facebook.github.io">https://facebook.github.io</a> - <strong>组织站点</strong></li>
+<li>create-react-app 站点： <a href="https://facebook.github.io/create-react-app/">https://facebook.github.io/create-react-app/</a> - <strong>项目站点</strong></li>
+</ul>
+<p>URL 的规则如下：</p>
+<ul>
+<li>个人站点形式是：<code>https://&lt;username&gt;.github.io</code></li>
+<li>组织站点形式是：<code>https://&lt;orgname&gt;.github.io</code></li>
+<li>个人账号的项目站点形式是：<code>https://&lt;username&gt;.github.io/&lt;projectname&gt;</code></li>
+<li>组织账号的项目站点形式是：<code>https://&lt;orgname&gt;.github.io/&lt;projectname&gt;</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="项目页面站点"></a><a href="#项目页面站点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>项目页面站点</h3>
+<p>项目页面站点的文档文件和项目是放在同一个 Github 仓库中的，这些文档文件应在下面几个位置之一：</p>
+<ul>
+<li>在<code>master</code>分支上</li>
+<li>在<code>gh-pages</code>分支上</li>
+<li>在<code>master</code>分支上的<code>docs</code>目录中</li>
+</ul>
+<p>这些位置上需要有一个首页文档，可以是：</p>
+<ul>
+<li>README.md</li>
+<li>index.html</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="如何配置项目页面站点"></a><a href="#如何配置项目页面站点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何配置项目页面站点？</h4>
+<p>首先，确定好你的项目的文档放在哪个分支和位置上。确定好后，打开项目的 Github 页面，点击<code>Settings</code>页签：</p>
+<p><img src="/sinoui-guide/docs/assets/images/repo-actions-settings.png" alt=""></p>
+<p>然后滚动页面找到<code>Github Pages</code>设置，并选择文档文件的位置：</p>
+<p><img src="/sinoui-guide/docs/assets/images/select-gh-pages-or-master-as-source.png" alt=""></p>
+<p>最后，点击保存按钮：</p>
+<p><img src="/sinoui-guide/docs/assets/images/click-save-next-to-source-selection.png" alt=""></p>
+<p>这样，咱们就完成了 Github Pages 的部署。自动产生的 Github Pages 的 URL 是：</p>
+<ul>
+<li>如果你的项目在你个人账户下面，则 GitHub Pages 的链接是：<code>http(s)://&lt;username&gt;.github.io/&lt;projectname&gt;</code>。</li>
+<li>如果你的项目在组织账号下面，则 GitHub Pages 的链接是：<code>http(s)://&lt;orgname&gt;.github.io/&lt;projectname&gt;</code>。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="用户与组织页面站点"></a><a href="#用户与组织页面站点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>用户与组织页面站点</h3>
+<p>用户与组织页面站点的文档文件放在一个独立的项目的<code>master</code>分支上，并且项目仓库名称必须遵循以下规则：</p>
+<ul>
+<li>如果你创建的是用户页面站点，则 Github 仓库名称为<code>&lt;username&gt;.github.io</code>。</li>
+<li>如果你创建的是组织页面站点，则 Github 仓库名称为<code>&lt;orgname&gt;.github.io</code>。</li>
+</ul>
+<p>接下来，我们看看如何使用 Github Pages，完成这两种类型的站点部署。</p>
+<h2><a class="anchor" aria-hidden="true" id="如何使用-github-pages"></a><a href="#如何使用-github-pages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何使用 Github Pages？</h2>
+<h3><a class="anchor" aria-hidden="true" id="发布用户与组织页面站点"></a><a href="#发布用户与组织页面站点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>发布用户与组织页面站点</h3>
+<p>我们可以创建一个文档项目，这个文档项目有一个<code>index.html</code>，然后我们将这个项目按照下面的步骤放到 Github Pages 上。</p>
+<p>第一步，创建一个 Github 项目，项目名称为<code>username.github.io</code>，其中<code>username</code>为你的姓名或者组织名称或者任何你想到的名称。如下图：</p>
+<p><img src="/sinoui-guide/docs/assets/images/user-repo.png" alt="创建Github项目"></p>
+<p>第二步，我们将项目克隆到本地。打开命令行工具，执行下面的命令：</p>
+<pre><code class="hljs css language-shell">git clone https://github.com/username/username.github.io
+</code></pre>
+<p>第三步，在项目根目录下创建<code>index.html</code>文件，写入<code>Hello, World!</code>。</p>
+<p>第四步，提交新创建的文件到 Github 上：</p>
+<pre><code class="hljs css language-shell">git add --all
+git commit -m "Initial commit"
+git push -u origin master
+</code></pre>
+<p>在浏览器上打开<strong><code>https://username.github.io</code></strong>，看看效果。</p>
+<h3><a class="anchor" aria-hidden="true" id="发布项目页面站点"></a><a href="#发布项目页面站点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>发布项目页面站点</h3>
+<p>这个章节我们将如何发布项目页面站点。页面站点的文档有三种位置，本章节选择<code>master</code>分支这种情况来讲解。我们的项目类似如下面的目录结构：</p>
+<pre><code class="hljs">project-<span class="hljs-built_in">name</span>
+|<span class="hljs-variable">__</span> src
+|<span class="hljs-variable">__</span> README.md -- 这是项目文档的首页文件
+|<span class="hljs-variable">__</span> package.json
+|<span class="hljs-variable">__</span> yarn.<span class="hljs-built_in">lock</span>
+</code></pre>
+<p>首先，如果 Github 上还没有你的项目，则你需要在 Github 上创建一个项目。</p>
+<p>然后，按照<a href="#如何配置项目页面站点？">如何配置项目页面站点？</a>这个章节做好 Github Pages 配置。请选择<code>master branch</code>：</p>
+<p><img src="/sinoui-guide/docs/assets/images/select-master-as-source.png" alt=""></p>
+<p>提交源码到 Github 仓库的<code>master</code>分支后，打开<code>http(s)://&lt;username|orgname&gt;.github.io/&lt;projectname&gt;</code>查看文档页面。</p>
+<h2><a class="anchor" aria-hidden="true" id="动态生成项目文档的项目站点"></a><a href="#动态生成项目文档的项目站点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态生成项目文档的项目站点</h2>
+<p>有很多项目的文档是由类似如<a href="http://docz.site">docz</a>、<a href="https://docusaurus.io/">docusaurus</a>等工具管理并动态生成的。这种情况下，我们的基本思路是：</p>
+<ul>
+<li>在 Github Pages 配置中，选择文档文件位置为<code>gh-pages barnch</code>。</li>
+<li>在<code>master</code>分支上，通过 docz、docusaurus 等工具编译项目文档，文档一般会放在类似如<code>build</code>目录中。</li>
+<li>切换到<code>gh-pages</code>分支上，将除<code>build</code>目录的其他内容全部删除，然后将<code>build</code>目录中的文件拷贝到项目根目录中。</li>
+<li>执行下面的命令行，将变更文件提交到 Github 上。</li>
+</ul>
+<pre><code class="hljs css language-shell">git add .
+git commit -m "更新文档"
+git push origin gh-pages
+</code></pre>
+<p>这样我们就完成了动态文档内容的发布到 Github Pages 上的工作。</p>
+<p>这样的工作比较繁琐，而且比较容易出错，如果你维护的是一个 npm 项目，那么可以使用<a href="https://github.com/tschaub/gh-pages">gh-pages</a>帮助我们完成这些手工的工作。接下来，我们看看<code>gh-pages</code>是如何简化发布过程的。</p>
+<h3><a class="anchor" aria-hidden="true" id="gh-pages-工具"></a><a href="#gh-pages-工具" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>gh-pages 工具</h3>
+<p>这里以发布<code>create-react-app</code>创建的 React 项目为例讲解如何使用<code>gh-pages</code>将 react 项目发布到 Github Pages 上。</p>
+<p>首先，安装依赖：</p>
+<pre><code class="hljs css language-shell">yarn add --dev gh-pages
+</code></pre>
+<p>打开<code>package.json</code>文件，在<code>scripts</code>中添加两个命令行：</p>
+<pre><code class="hljs css language-json">scripts: {
+  "predeploy": "yarn build",
+  "deploy": "gh-pages -d build"
+}
+</code></pre>
+<p>我们执行<code>yarn deploy</code>命令行，即可完成发布工作。</p>
+<p>React 项目构建之后，会将构建文件放在<code>build</code>目录中，所以我们通过<code>gh-pages -d build</code>这一行命令，将<code>build</code>目录中的文件发布到 Github Pages 上。</p>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>本篇文章跟大家分享了如何使用<a href="https://pages.github.com/">Github Pages</a>发布静态站点。当我们要写博客、分享想法、培训材料、演讲稿、发布开源项目时，可以使用类似 Github Pages 这样的站点托管服务。</p>
+<p>做开源项目时，要从文档开始，先弄清楚你开源的项目是用来干什么的、别人怎么使用你的项目、能解决什么实际问题等。文档齐全的开源项目更易受欢迎。</p>
+<h2><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h2>
+<ul>
+<li><a href="https://pages.github.com/">Github Pages</a></li>
+<li><a href="https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages">Configuring a publishing source for GitHub Pages</a></li>
+<li><a href="https://help.github.com/en/articles/user-organization-and-project-pages">User, Organization, and Project Pages</a></li>
+<li><a href="https://help.github.com/en/articles/what-is-github-pages">What is GitHub Pages?</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-13 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/tools-index"><span class="arrow-prev">← </span><span>开篇</span></a><a class="docs-next button" href="/sinoui-guide/docs/circleci-introduction"><span class="function-name-prevnext">CircleCI</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#目标">目标</a></li><li><a href="#github-pages-是什么">Github Pages 是什么？</a></li><li><a href="#用户-组织和项目页面">用户、组织和项目页面</a><ul class="toc-headings"><li><a href="#项目页面站点">项目页面站点</a></li><li><a href="#用户与组织页面站点">用户与组织页面站点</a></li></ul></li><li><a href="#如何使用-github-pages">如何使用 Github Pages？</a><ul class="toc-headings"><li><a href="#发布用户与组织页面站点">发布用户与组织页面站点</a></li><li><a href="#发布项目页面站点">发布项目页面站点</a></li></ul></li><li><a href="#动态生成项目文档的项目站点">动态生成项目文档的项目站点</a><ul class="toc-headings"><li><a href="#gh-pages-工具">gh-pages 工具</a></li></ul></li><li><a href="#总结">总结</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
