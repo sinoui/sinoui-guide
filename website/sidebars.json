@@ -20,5 +20,13 @@
   },
   "app-dev": {
     "router": [""]
+  },
+  "articles": {
+    "工具篇": [
+      "tools-index",
+      "github-pages-introduction",
+      "circleci-introduction",
+      "docusaurus-circuleci"
+    ]
   }
 }
