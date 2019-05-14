@@ -46,28 +46,74 @@ function Example() {
 
 ### 使用多个 state 变量
 
-最佳实践： 建议声明多个 state 的变量,因为它在更新 state 时总是替换它而非合并。
-
-错误写法：
+如果之前用过 class,当同时需要多个状态去渲染组件时，你或许会试图总是在一次`useState()`调用中传入一个包含所有 state 的对象。这里有一个跟踪鼠标移动的组件的例子，我们在本地 state 中记录它的位置：
 
 ```jsx
-function ExampleWithManyStates() {
-  const [state, setState] = useState({age:42, fruit: 'banana'});
-    ...
+function Box() {
+  const [state, setState] = useState({
+    left: 0,
+    top: 0,
+    width: 100,
+    height: 100,
+  });
+  // ...
 }
 ```
 
-正确写法：
+现在，假设我们想要编写一些逻辑以便在用户移动鼠标时改变`left`和`top`。注意到我们是如何必须手动把这些字段合并到之前的 state 对象的：
 
 ```jsx
-function ExampleWithManyStates() {
-  // 声明多个 state 变量
-  const [age, setAge] = useState(42);
-  const [fruit, setFruit] = useState('banana');
-  const [todos, setTodos] = useState([{ text: '学习 Hook' }]);
-    ...
+// ...
+useEffect(() => {
+  function handleWindowMouseMove(e) {
+    // 展开 「...state」 以确保我们没有 「丢失」 width 和 height
+    setState((state) => ({ ...state, left: e.pageX, top: e.pageY }));
+  }
+  window.addEventListener('mousemove', handleWindowMouseMove);
+  return () => window.removeEventListener('mousemove', handleWindowMouseMove);
+}, []);
+// ...
+```
+
+这是因为当我们更新一个 state 变量，我们会**替换**它的值。这和 class 中的`this.setState`不一样，后者会把更新后的字段**合并**到对象中。
+
+如果你想要继续使用自动合并，也可以自定义一个 Hook 来合并对象 state 的更新。但**我们推荐把 state 切分成多个 state 变量，每个变量包含的不同值会在同时发生变化。**
+
+举个例子，我们可以把组件的 state 拆分为 `position` 和 `size` 两个对象，并永远以非合并的方式去替换 `position`：
+
+```jsx
+function Box() {
+  const [position, setPosition] = useState({ left: 0, top: 0 });
+  const [size, setSize] = useState({ width: 100, height: 100 });
+
+  useEffect(() => {
+    function handleWindowMouseMove(e) {
+      setPosition({ left: e.pageX, top: e.pageY });
+    }
+    // ...
+```
+
+把独立的 state 变量拆分开还有另外的好处。这使得后期把一些相关的逻辑抽取到一个自定义 Hook 变得容易，比如说:
+
+```jsx
+function Box() {
+  const position = useWindowPosition();
+  const [size, setSize] = useState({ width: 100, height: 100 });
+  // ...
+}
+
+function useWindowPosition() {
+  const [position, setPosition] = useState({ left: 0, top: 0 });
+  useEffect(() => {
+    // ...
+  }, []);
+  return position;
 }
 ```
+
+除此之外我们可以根据实际业务场景进行状态拆分，比如异步获取的状态变量必须单独维护。
+
+如果 state 的逻辑开始变得很复杂，我们推荐 [用 reducer 来管理它](https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer)，或使用自定义 Hook。
 
 ## Effect Hook
 
@@ -104,7 +150,7 @@ function Example() {
 
 ### 需要清除的 Effect
 
-刚刚我们研究了如何使用不需要清除的副作用，还有一些副作用是需要清除的。例如**订阅外部数据源**。这种情况下，清除工作是非常重要的，可以防止引起内存泄露！
+刚刚我们研究了如何使用不需要清除的副作用，还有一些副作用是需要清除的。例如**监听窗口变化**。这种情况下，清除工作是非常重要的，可以防止引起内存泄露！
 
 ```jsx
 import React, { useState, useEffect } from 'react';
@@ -113,17 +159,16 @@ function ResizeLayout(props) {
   const [width, setWidth] = useState(200);
 
   useEffect(() => {
-    function handleWidthChange(_width) {
-      setWidth(_width);
+    function handleWidthChange() {
+      setWidth(document.body.clientWidth);
     }
 
-     document.body.addEventListener('resize', callback, props.width);
+     window.addEventListener('resize', handleWidthChange, false);
     // Specify how to clean up after this effect:
     return function cleanup() {
-      document.body.removeEventListener('resize', callback, props.width);
+      window.removeEventListener('resize', handleWidthChange, false);
     };
   });
-
   ...
 }
 ```
@@ -138,7 +183,7 @@ function ResizeLayout(props) {
 
 #### 使用多个 Effect 实现关注点分离
 
-使用 Hook 其中一个目的就是要解决 class 中生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了几个不同方法中的问题。下述代码是将前述示例中的计数器和好友在线状态指示器逻辑组合在一起的组件：
+下面的例子中，我们使用两个 hook 分别处理点击次数的变化和监听窗口变化进而设置宽度：
 
 ```jsx
 function ResizeLayoutWithCounter(props) {
@@ -150,21 +195,21 @@ function ResizeLayoutWithCounter(props) {
   const [width, setWidth] = useState(200);
 
   useEffect(() => {
-    function handleWidthChange(_width) {
-      setWidth(_width);
+    function handleWidthChange() {
+      setWidth(document.body.clientWidth);
     }
 
-    document.body.addEventListener('resize', callback, props.width);
+    window.addEventListener('resize', handleWidthChange, false);
     // Specify how to clean up after this effect:
     return function cleanup() {
-      document.body.removeEventListener('resize', callback, props.width);
+      window.removeEventListener('resize', handleWidthChange, false);
     };
   });
   // ...
 }
 ```
 
-**Hook 允许我们按照代码的用途分离他们，** 而不是像生命周期函数那样。React 将按照 effect 声明的顺序依次调用组件中的*每一个* effect。
+**Hook 允许我们按照代码的用途分离他们。** React 将按照 effect 声明的顺序依次调用组件中的*每一个* effect。
 
 #### 为什么每次更新都要运行 Effect
 
@@ -173,28 +218,25 @@ function ResizeLayout(props) {
   //...
   useEffect(() => {
     //...
-     document.body.addEventListener('resize', callback, props.width);
+      window.addEventListener('resize', handleWidthChange, false);
     // Specify how to clean up after this effect:
     return function cleanup() {
-      document.body.removeEventListener('resize', callback, props.width);
+        window.removeEventListener('resize', handleWidthChange, false);
     };
   });
   ...
 }
 ```
 
-我们并不需要写特定的代码来处理更新逻辑，因为 `useEffect` *默认*就会处理。它会在调用一个新的 effect 之前对前一个 effect 进行清理。为了说明这一点，下面按时间列出一个可能会产生的订阅和取消订阅操作调用序列：
+我们并不需要写特定的代码来处理更新逻辑，因为 `useEffect` *默认*就会处理。它会在调用一个新的 effect 之前对前一个 effect 进行清理。为了说明这一点，下面按时间列出一个可能会添加监听和移除监听的调用序列：
 
 ```jsx
-document.body.addEventListener('resize', callback, 100); // 运行第一个 effect
+window.addEventListener('resize', handleWidthChange, false); // 运行第一个 effect
 
-document.body.removeEventListener('resize', callback, 100); // 清除上一个 effect
-document.body.addEventListener('resize', callback, 200); // 运行下一个 effect
+window.removeEventListener('resize', handleWidthChange, false); // 清除上一个 effect
+window.addEventListener('resize', handleWidthChange, false); // 运行下一个 effect
 
-document.body.removeEventListener('resize', callback, 200); // 清除上一个 effect
-document.body.addEventListener('resize', callback, 300); // 运行下一个 effect
-
-document.body.removeEventListener('resize', callback, 300); // 清除最后一个 effect
+window.removeEventListener('resize', handleWidthChange, false); // 清除最后一个 effect
 ```
 
 此默认行为保证了一致性，避免了在 class 组件中因为没有处理更新逻辑导致页面不会重新渲染的 bug。
@@ -210,22 +252,6 @@ useEffect(() => {
 ```
 
 上面这个示例中，我们传入 `[count]` 作为第二个参数。这个参数是什么作用呢？如果 `count`的值是 `5`，而且我们的组件重渲染的时候 `count` 还是等于 `5`，React 将对前一次渲染的 `[5]` 和后一次渲染的 `[5]` 进行比较。因为数组中的所有元素都是相等的(`5 === 5`)，React 会跳过这个 effect，这就实现了性能的优化。
-
-对于有清除操作的 effect 同样适用：
-
-```jsx
-useEffect(() => {
-  function handleWidthChange(_width) {
-    setWidth(_width);
-  }
-
-  document.body.addEventListener('resize', callback, props.width);
-  // Specify how to clean up after this effect:
-  return function cleanup() {
-    document.body.removeEventListener('resize', callback, props.width);
-  };
-}, [props.width]); // 仅在 props.width 发生变化时，重新订阅
-```
 
 > **注意：**
 >
