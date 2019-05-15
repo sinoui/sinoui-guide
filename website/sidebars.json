@@ -20,7 +20,7 @@
     ]
   },
   "app-dev": {
-    "router": [""]
+    "应用开发指南": ["app-dev-index", "restful-api"]
   },
   "articles": {
     "工具篇": [

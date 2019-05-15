@@ -1,7 +1,7 @@
 ---
 id: app-dev-index
-title: 应用开发指南
-sidebar_label: 应用开发指南
+title: 开篇
+sidebar_label: 开篇
 ---
 
 TODO: 等待完善
