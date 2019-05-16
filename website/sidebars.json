@@ -4,8 +4,8 @@
       "react-index",
       "react-getting-started",
       "react-jsx",
-      "react-hook",
       "react-props-state",
+      "react-hook",
       "react-lifting-state-up",
       "react-fetch-data"
     ],
@@ -20,7 +20,7 @@
     ]
   },
   "app-dev": {
-    "应用开发指南": ["app-dev-index", "restful-api"]
+    "应用开发指南": ["app-dev-index", "restful-api", "react-router"]
   },
   "articles": {
     "工具篇": [
