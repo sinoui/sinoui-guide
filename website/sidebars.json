@@ -29,6 +29,7 @@
       "circleci-introduction",
       "docusaurus-circuleci"
     ],
-    "方法论": ["optimized-for-change"]
+    "方法论": ["optimized-for-change"],
+    "技术篇": ["default-import-export-compatibility"]
   }
 }
