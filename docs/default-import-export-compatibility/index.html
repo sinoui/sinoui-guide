@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>前端模块的默认导出、导入的兼容性问题 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;JS 模块语法有很多种，目前最流行的应该是下面两种：&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="前端模块的默认导出、导入的兼容性问题 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;JS 模块语法有很多种，目前最流行的应该是下面两种：&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>语言篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">前端模块的默认导出、导入的兼容性问题</h1></header><article><div><span><p>JS 模块语法有很多种，目前最流行的应该是下面两种：</p>
+<ul>
+<li>ES6 import/export</li>
+<li>Commonjs <code>module.exports</code>, <code>exports</code>, <code>require</code></li>
+</ul>
+<p>这两种语法如此流行，所以需要互通有无。</p>
+<p>这两个模块语法，大部分兼容性都能通过工具很好的解决，唯独默认导出、导入的兼容性，你如果不掌握一些小窍门，很容易出现 bug。再加上目前流行的 TypeScript，让这种情况变得复杂了一些。</p>
+<p>本篇文章阐述它们之间的矛盾点，以及如何解决这些矛盾点。</p>
+<h2><a class="anchor" aria-hidden="true" id="commonjs-的导入和导出"></a><a href="#commonjs-的导入和导出" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commonjs 的导入和导出</h2>
+<p>Node.js 采用的是 Commonjs 模块导入、导出标准。Commonjs 非常流行，所以 Rollup、Babel、TypeScript 编译后的代码也用了 Commonjs 的 API。先来看看 Commonjs 的导入和导出的语法。</p>
+<h3><a class="anchor" aria-hidden="true" id="导入-导出"></a><a href="#导入-导出" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导入、导出</h3>
+<p>现在有两个 JS 文件，分别是<code>math.js</code>和<code>index.js</code>，结构如下：</p>
+<pre><code class="hljs">项目根目录
+<span class="hljs-string">|__ math.js</span>
+<span class="hljs-string">|__ index.js</span>
+</code></pre>
+<p><code>math.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * PI * radius;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+exports.getCircleArea = getCircleArea;
+exports.sum = sum;
+</code></pre>
+<p><code>index.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> { getCircleArea, sum } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./math'</span>);
+
+<span class="hljs-keyword">const</span> circle1Area = getCircleArea(<span class="hljs-number">10</span>);
+<span class="hljs-keyword">const</span> circle2Area = getCircleArea(<span class="hljs-number">15</span>);
+<span class="hljs-keyword">const</span> sumArea = sum(circle1Area, circle2Area);
+
+<span class="hljs-built_in">console</span>.log(
+  <span class="hljs-string">`第一个圆面积：<span class="hljs-subst">${circle1Area}</span>，第二个圆面积：<span class="hljs-subst">${circle2Area}</span>，总面积：<span class="hljs-subst">${sumArea}</span>`</span>,
+);
+</code></pre>
+<p>math.js 文件通过<code>exports</code>导出了<code>getCircleArea</code>和<code>sum</code>，而<code>index.js</code>通过<code>require</code>引入了<code>getCircleArea</code>和<code>sum</code>。</p>
+<h3><a class="anchor" aria-hidden="true" id="默认导出-默认导入"></a><a href="#默认导出-默认导入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>默认导出、默认导入</h3>
+<p>现在有两个 JS 文件，分别是<code>PI.js</code>和<code>index.js</code>，结构如下：</p>
+<pre><code class="hljs">项目根目录
+|<span class="hljs-variable">__</span> <span class="hljs-literal">PI</span>.js
+|<span class="hljs-variable">__</span> index.js
+</code></pre>
+<p><code>index.js</code>需要使用到<code>PI.js</code>中定义的<code>PI</code>常量。</p>
+<p><code>PI.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-built_in">module</span>.exports = PI;
+</code></pre>
+<p><code>index.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./PI'</span>);
+
+<span class="hljs-built_in">console</span>.log(PI);
+</code></pre>
+<p>上面的默认导入与导出没有问题，<code>index.js</code>中通过<code>require('./PI')</code>获取到的就是<code>PI</code>变量。</p>
+<h3><a class="anchor" aria-hidden="true" id="commonjs-中默认导出与普通导出不能兼容"></a><a href="#commonjs-中默认导出与普通导出不能兼容" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commonjs 中默认导出与普通导出不能兼容</h3>
+<blockquote>
+<p>Commonjs 中，同一个 JS 文件不能同时出现默认导出和普通导出，也就是说，下面的代码是不成立的：</p>
+<p><code>PI.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-keyword">const</span> sum = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;
+
+<span class="hljs-built_in">module</span>.exports = PI;
+exports.sum = sum; <span class="hljs-comment">// sum将不会被导出，无法被其他js模块导入</span>
+</code></pre>
+</blockquote>
+<p>假定默认导出与普通导出可以兼容，那么我们看看<code>require('./PI')</code>如何导入所有导出项：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./PI'</span>);
+
+<span class="hljs-built_in">console</span>.log(PI);
+<span class="hljs-built_in">console</span>.log(PI.sum); <span class="hljs-comment">// 假定sum是PI.js中导出的函数</span>
+</code></pre>
+<p>这从 JS 语法上就说不通，因为<code>PI</code>是<code>3.14</code>，就是一个数字，它是不应该有<code>sum()</code>函数的。如果你觉得应该可以，那么接着往下看。</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// obj.js</span>
+
+<span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'b'</span>,
+};
+
+<span class="hljs-keyword">const</span> a = <span class="hljs-string">'c'</span>;
+
+<span class="hljs-built_in">module</span>.exports = obj;
+exports.a = a;
+
+<span class="hljs-comment">// index.js</span>
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./obj'</span>);
+
+<span class="hljs-built_in">console</span>.log(obj.a); <span class="hljs-comment">// 输出什么？是不是很矛盾？</span>
+</code></pre>
+<p>所以，在 Commonjs 中一个 JS 文件无法同时有普通导出和默认导出。</p>
+<h3><a class="anchor" aria-hidden="true" id="commonjs-导出的是什么"></a><a href="#commonjs-导出的是什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commonjs 导出的是什么？</h3>
+<p>先看看普通导出：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * PI * radius * radius;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+exports.getCircleArea = getCircleArea;
+exports.sum = sum;
+</code></pre>
+<p>导入看看是什么：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./math'</span>);
+</code></pre>
+<p>看看<code>math</code>变量是什么：</p>
+<p><img src="/sinoui-guide/docs/assets/images/require_is_object.jpg" alt=""></p>
+<p><code>math</code>是一个对象，包含<code>getCircleArea</code>和<code>sum</code>两个属性。也就是说，<code>exports</code>是一个对象，而<code>require('./math')</code>获取到的就是<code>exports</code>对象。</p>
+<p>在 Commonjs 中，一个 js 文件就是一个模块。Nodejs 会为每个模块创建一个<code>module</code>对象，代表一个模块信息。<code>module</code>对象中有一个<code>exports</code>属性，默认值为空对象<code>{}</code>。而<code>require</code>会获取 js 文件的<code>module.exports</code>。这样，上面的 commonjs 代码就很容易理解了。</p>
+<p>下面的默认导出代码则是将<code>module.exports</code>整个替换掉了：</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-number">3.14</span>;
+</code></pre>
+<p>这样<code>module.exports</code>不再是一个对象，而是数字<code>3.14</code>。我们通过<code>require</code>引入的也就是一个<code>3.14</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="es6-module"></a><a href="#es6-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ES6 module</h2>
+<blockquote>
+<p>ES6 module 语法与 Commonjs 语法一个重要区别是，ES6 module 允许同一个 js 文件(模块)同时有默认导出和普通导出。</p>
+</blockquote>
+<p><code>calcCircleArea.js</code>：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * PI * radius * radius;
+}
+</code></pre>
+<p><code>index.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> calcCircleArea, { PI } <span class="hljs-keyword">from</span> <span class="hljs-string">'./calcCircleArea'</span>;
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`PI = <span class="hljs-subst">${PI}</span>, circle area: <span class="hljs-subst">${calcCircleArea(<span class="hljs-number">10</span>)}</span>.`</span>);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="typescript-中的模块语法"></a><a href="#typescript-中的模块语法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 中的模块语法</h2>
+<p>TypeScript 是在 ES6 的语法基础上添加了类型。所以 TypeScript 中的模块语法与 ES6 的模块语法一致。</p>
+<h2><a class="anchor" aria-hidden="true" id="es6-module-vs-commonjs"></a><a href="#es6-module-vs-commonjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ES6 Module vs Commonjs</h2>
+<p>在规则上的冲突：</p>
+<blockquote>
+<p>ES6 module 允许同一个 js 文件(模块)同时有默认导出和普通导出，而 commonjs 不允许。</p>
+</blockquote>
+<p>这就是本文要解决的核心问题。</p>
+<h2><a class="anchor" aria-hidden="true" id="目前的现状-es6-module-commonjs"></a><a href="#目前的现状-es6-module-commonjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>目前的现状：ES6 Module -&gt; Commonjs</h2>
+<p>当前前端的现状是，大家采用 ES6 Module 写 js 代码，但是通过工具将 ES6 Module 代码转换成 Commonjs 代码。为什么？</p>
+<p>需要编译<code>ES 6 Module</code>原因主要有：</p>
+<ul>
+<li>当前浏览器均不支持<code>ES6 Module</code>语法</li>
+<li>Node.js 不支持<code>ES6 Module</code>语法</li>
+</ul>
+<p>编译成<code>commonjs</code>语法格式的原因：</p>
+<ul>
+<li>Commonjs 足够流行</li>
+<li>Node.js 支持 commonjs</li>
+</ul>
+<p>当前流行的 ES6 编译或者 js 模块处理工具有：</p>
+<ul>
+<li>babel</li>
+<li>rollup</li>
+</ul>
+<p>接下来，我们来看看 babel、rollup 以及 TypeScript 编译工具是如何处理 ES6 默认导出的。</p>
+<h2><a class="anchor" aria-hidden="true" id="三个编译工具如何编译-es6-默认导出"></a><a href="#三个编译工具如何编译-es6-默认导出" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>三个编译工具如何编译 ES6 默认导出</h2>
+<p>现在有一段 ES6 的代码：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * PI * radius * radius;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="babel-编译结果"></a><a href="#babel-编译结果" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 编译结果</h3>
+<pre><code class="hljs css language-js"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-built_in">Object</span>.defineProperty(exports, <span class="hljs-string">'__esModule'</span>, {
+  <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span>,
+});
+exports.default = calcCircleArea;
+exports.PI = <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> PI = <span class="hljs-number">3.14</span>;
+exports.PI = PI;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * PI * radius * radius;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rollup-编译结果"></a><a href="#rollup-编译结果" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rollup 编译结果</h3>
+<pre><code class="hljs css language-js"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-built_in">Object</span>.defineProperty(exports, <span class="hljs-string">'__esModule'</span>, { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> });
+
+<span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * PI * radius * radius;
+}
+
+exports.PI = PI;
+exports.default = calcCircleArea;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="typescript-编译结果"></a><a href="#typescript-编译结果" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 编译结果</h3>
+<pre><code class="hljs css language-js"><span class="hljs-meta">'use strict'</span>;
+<span class="hljs-built_in">Object</span>.defineProperty(exports, <span class="hljs-string">'__esModule'</span>, { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> });
+exports.PI = <span class="hljs-number">3.14</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircleArea</span>(<span class="hljs-params">radius</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * exports.PI * radius * radius;
+}
+exports.default = calcCircleArea;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="编译结果分析"></a><a href="#编译结果分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译结果分析</h3>
+<p>三个工具将 ES6 默认导出均翻译成：</p>
+<pre><code class="hljs css language-js">exports.default = calcCircleArea;
+</code></pre>
+<p>而没有翻译成：</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = calcCircleArea;
+</code></pre>
+<p>所以，在 commonjs 中需要按照下面的方式引用：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: calcCircleArea } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./calcCircleArea'</span>);
+</code></pre>
+<p>以上三个工具均有一行相似的代码：</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">Object</span>.defineProperty(exports, <span class="hljs-string">'__esModule'</span>, { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> });
+</code></pre>
+<p>这是一行关键代码，兼容<code>exports.default</code>和<code>module.exports</code>。处理好这二者之间的兼容性，咱们也就处理了 ES6 默认导出和 commonjs 的默认导出兼容问题。</p>
+<h2><a class="anchor" aria-hidden="true" id="三个工具如何编译-es6-默认导入"></a><a href="#三个工具如何编译-es6-默认导入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>三个工具如何编译 ES6 默认导入</h2>
+<p>现有 ES6 代码：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> calcCircleArea <span class="hljs-keyword">from</span> <span class="hljs-string">'./calcCircleArea'</span>;
+
+<span class="hljs-built_in">console</span>.log(calcCircleArea, PI);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="babel-编译结果-1"></a><a href="#babel-编译结果-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 编译结果</h3>
+<pre><code class="hljs css language-js"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-keyword">var</span> _calcCircleArea = _interopRequireDefault(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./calcCircleArea'</span>));
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopRequireDefault</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : { <span class="hljs-attr">default</span>: obj };
+}
+
+<span class="hljs-built_in">console</span>.log(_calcCircleArea.default);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rollup-编译结果-1"></a><a href="#rollup-编译结果-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rollup 编译结果</h3>
+<pre><code class="hljs css language-js"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopDefault</span>(<span class="hljs-params">ex</span>) </span>{
+  <span class="hljs-keyword">return</span> ex &amp;&amp; <span class="hljs-keyword">typeof</span> ex === <span class="hljs-string">'object'</span> &amp;&amp; <span class="hljs-string">'default'</span> <span class="hljs-keyword">in</span> ex ? ex[<span class="hljs-string">'default'</span>] : ex;
+}
+
+<span class="hljs-keyword">var</span> calcCircleArea = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./calcCircleArea'</span>);
+<span class="hljs-keyword">var</span> calcCircleArea__default = _interopDefault(calcCircleArea);
+
+<span class="hljs-built_in">console</span>.log(calcCircleArea__default);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="typescript-编译结果-1"></a><a href="#typescript-编译结果-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 编译结果</h3>
+<pre><code class="hljs css language-js"><span class="hljs-meta">'use strict'</span>;
+<span class="hljs-keyword">var</span> __importDefault =
+  (<span class="hljs-keyword">this</span> &amp;&amp; <span class="hljs-keyword">this</span>.__importDefault) ||
+  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">mod</span>) </span>{
+    <span class="hljs-keyword">return</span> mod &amp;&amp; mod.__esModule ? mod : { <span class="hljs-attr">default</span>: mod };
+  };
+<span class="hljs-built_in">Object</span>.defineProperty(exports, <span class="hljs-string">'__esModule'</span>, { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> });
+<span class="hljs-keyword">var</span> calcCircleArea_1 = __importDefault(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./calcCircleArea'</span>));
+<span class="hljs-built_in">console</span>.log(calcCircleArea_1.default);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="编译结果分析-1"></a><a href="#编译结果分析-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译结果分析</h3>
+<p>三者都生成了类似的辅助方法：<code>_interopRequireDefault</code>、<code>_interopDefault</code>、<code>__importDefault</code>。现在拿<code>_interopRequireDefault</code>看看：</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopRequireDefault</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : { <span class="hljs-attr">default</span>: obj };
+}
+</code></pre>
+<p>可以看出来，对于默认导入，会判断<code>__esModule</code>是否为<code>true</code>，如果为 true，Babel 则认为引入的模块中的默认导出是通过<code>export.default</code>导出的，否则则是<code>module.exports</code>。就是这样一个小小的方法保证了这两者模块语法的兼容性导入。</p>
+<h2><a class="anchor" aria-hidden="true" id="nodejs-的-commonjs"></a><a href="#nodejs-的-commonjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Node.js 的 CommonJS</h2>
+<p>Node.js 遵循 Commonjs，默认导入和默认导出的关系如下：</p>
+<p>默认导出：</p>
+<p><code>PI.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+<span class="hljs-built_in">module</span>.exports = PI;
+</code></pre>
+<p>默认导入：</p>
+<p><code>index.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PI = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./PI'</span>);
+
+<span class="hljs-built_in">console</span>.log(PI);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="常见错误"></a><a href="#常见错误" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>常见错误</h2>
+<h3><a class="anchor" aria-hidden="true" id="1-commonjs-执行不了-es6-编译后的默认导出"></a><a href="#1-commonjs-执行不了-es6-编译后的默认导出" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Commonjs 执行不了 ES6 编译后的默认导出</h3>
+<p>如上述的'calcCircleArea.js'，如果通过下面的方式，代码会报错误：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> calcCircleArea = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./calcCircleArea'</span>);
+</code></pre>
+<p>解决方法：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: calcCircleArea } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./calcCircleArea'</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="2-babel-中引入-typescript-或者-rollup-编译的模块-编译后的代码提示类似错误-typeerror-_httpdefaultpost-is-not-a-function"></a><a href="#2-babel-中引入-typescript-或者-rollup-编译的模块-编译后的代码提示类似错误-typeerror-_httpdefaultpost-is-not-a-function" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Babel 中引入 TypeScript 或者 Rollup 编译的模块，编译后的代码提示类似错误：<code>TypeError: _http.default.post is not a function</code></h3>
+<p>有可能是因为 TypeScript、Rollup 两个工具没有正确设置生成<code>__esModule</code>相关的配置导致的。</p>
+<p>TypeScript 配置文件<code>tsconfig.json</code>中有一个配置项<code>esModuleInterop</code>，检查一下是否有此配置项，且为<code>true</code>。</p>
+<p>Rollup 的<code>output.esModule</code>配置设置为<code>false</code>则不会产生<code>__esModule</code>。检查一下这个配置项。</p>
+<h3><a class="anchor" aria-hidden="true" id="3-typescript-中引入-rollup-或者-typescript-编译的模块-编译后的代码提示类似错误-typeerror-_httpdefaultpost-is-not-a-function"></a><a href="#3-typescript-中引入-rollup-或者-typescript-编译的模块-编译后的代码提示类似错误-typeerror-_httpdefaultpost-is-not-a-function" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. TypeScript 中引入 Rollup 或者 TypeScript 编译的模块，编译后的代码提示类似错误：<code>TypeError: _http.default.post is not a function</code></h3>
+<p>与问题 2 类似。</p>
+<h2><a class="anchor" aria-hidden="true" id="名词"></a><a href="#名词" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>名词</h2>
+<p>补充几个名词：</p>
+<ul>
+<li>JS 模块：一个 JS 模块就是一个 JS 文件。</li>
+<li>具名导出：通过<code>export</code>而不是<code>export default</code>导出的模块元素，因为它们都有自己的名字，所以称之为具名导出。上文提到的普通导出，其实就是具名导出。</li>
+<li>默认导出：通过<code>export default</code>导出的模块元素。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<ul>
+<li><a href="https://rollupjs.org">Rollup 官网</a></li>
+<li><a href="https://babeljs.io/">Babel 官网</a></li>
+<li><a href="http://www.typescriptlang.org/">TypeScript 官网</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import">MDN 中关于 ES6 模块导入的介绍</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export">MDN 中关于 ES6 模块导出的介绍</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-23 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/optimized-for-change"><span class="arrow-prev">← </span><span>应变而优</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-function-overloading"><span class="function-name-prevnext">TypeScript中的重载函数</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#commonjs-的导入和导出">Commonjs 的导入和导出</a><ul class="toc-headings"><li><a href="#导入-导出">导入、导出</a></li><li><a href="#默认导出-默认导入">默认导出、默认导入</a></li><li><a href="#commonjs-中默认导出与普通导出不能兼容">Commonjs 中默认导出与普通导出不能兼容</a></li><li><a href="#commonjs-导出的是什么">Commonjs 导出的是什么？</a></li></ul></li><li><a href="#es6-module">ES6 module</a></li><li><a href="#typescript-中的模块语法">TypeScript 中的模块语法</a></li><li><a href="#es6-module-vs-commonjs">ES6 Module vs Commonjs</a></li><li><a href="#目前的现状-es6-module-commonjs">目前的现状：ES6 Module -&gt; Commonjs</a></li><li><a href="#三个编译工具如何编译-es6-默认导出">三个编译工具如何编译 ES6 默认导出</a><ul class="toc-headings"><li><a href="#babel-编译结果">Babel 编译结果</a></li><li><a href="#rollup-编译结果">Rollup 编译结果</a></li><li><a href="#typescript-编译结果">TypeScript 编译结果</a></li><li><a href="#编译结果分析">编译结果分析</a></li></ul></li><li><a href="#三个工具如何编译-es6-默认导入">三个工具如何编译 ES6 默认导入</a><ul class="toc-headings"><li><a href="#babel-编译结果-1">Babel 编译结果</a></li><li><a href="#rollup-编译结果-1">Rollup 编译结果</a></li><li><a href="#typescript-编译结果-1">TypeScript 编译结果</a></li><li><a href="#编译结果分析-1">编译结果分析</a></li></ul></li><li><a href="#nodejs-的-commonjs">Node.js 的 CommonJS</a></li><li><a href="#常见错误">常见错误</a><ul class="toc-headings"><li><a href="#1-commonjs-执行不了-es6-编译后的默认导出">1. Commonjs 执行不了 ES6 编译后的默认导出</a></li><li><a href="#2-babel-中引入-typescript-或者-rollup-编译的模块-编译后的代码提示类似错误-typeerror-_httpdefaultpost-is-not-a-function">2. Babel 中引入 TypeScript 或者 Rollup 编译的模块，编译后的代码提示类似错误：<code>TypeError: _http.default.post is not a function</code></a></li><li><a href="#3-typescript-中引入-rollup-或者-typescript-编译的模块-编译后的代码提示类似错误-typeerror-_httpdefaultpost-is-not-a-function">3. TypeScript 中引入 Rollup 或者 TypeScript 编译的模块，编译后的代码提示类似错误：<code>TypeError: _http.default.post is not a function</code></a></li></ul></li><li><a href="#名词">名词</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

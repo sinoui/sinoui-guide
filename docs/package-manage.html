@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>包管理工具：npm、npx和yarn · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在开发 Web、&lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt;应用程序时，我们可以从&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npmjs&lt;/a&gt;上下载其他人共享的开源库，我们也可以将我们的库发布到&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npmjs&lt;/a&gt;&lt;/a&gt;上分享给其他人。本篇文章介绍的 npm、npx 和 yarn 就是用来下载、分享 node 包的工具。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="包管理工具：npm、npx和yarn · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;在开发 Web、&lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt;应用程序时，我们可以从&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npmjs&lt;/a&gt;上下载其他人共享的开源库，我们也可以将我们的库发布到&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npmjs&lt;/a&gt;&lt;/a&gt;上分享给其他人。本篇文章介绍的 npm、npx 和 yarn 就是用来下载、分享 node 包的工具。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>工具篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">包管理工具：npm、npx和yarn</h1></header><article><div><span><p>在开发 Web、<a href="https://nodejs.org/">Node.js</a>应用程序时，我们可以从<a href="https://www.npmjs.com/">npmjs</a>上下载其他人共享的开源库，我们也可以将我们的库发布到<a href="https://www.npmjs.com/"><a href="https://www.npmjs.com/">npmjs</a></a>上分享给其他人。本篇文章介绍的 npm、npx 和 yarn 就是用来下载、分享 node 包的工具。</p>
+<h2><a class="anchor" aria-hidden="true" id="安装"></a><a href="#安装" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装</h2>
+<h3><a class="anchor" aria-hidden="true" id="npm-和-npx"></a><a href="#npm-和-npx" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>npm 和 npx</h3>
+<ul>
+<li><p>npm</p>
+<p>由于<code>nodejs</code> 8.9.1 及其之后的版本已经集成 npm,我们只需要通过安装<a href="https://nodejs.org/en/download/">Nodejs</a>的方式安装 npm。安装完成后，执行以下命令确认是否成功</p>
+<pre><code class="hljs css language-shell">npm -v
+</code></pre>
+<p>版本升级</p>
+<pre><code class="hljs css language-shell">npm install npm@latest -g
+</code></pre></li>
+<li><p>npx</p>
+<p>npm 从 5.2 版本开始，新增了 npx 命令，无需单独安装，万一不能用，我们需要手动安装</p>
+<pre><code class="hljs css language-shell">npm install -g npx
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="yarn"></a><a href="#yarn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>yarn</h3>
+<p>这里我们只描述通过安装程序安装，这种方式安装的前提是先要安装<a href="https://nodejs.org/en/download/">node.js</a>,可直接点击此处完成安装程序包的<a href="https://yarnpkg.com/latest.msi">下载</a>。</p>
+<h2><a class="anchor" aria-hidden="true" id="用途"></a><a href="#用途" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>用途</h2>
+<h3><a class="anchor" aria-hidden="true" id="npm"></a><a href="#npm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>npm</h3>
+<p>npm 是 node 内置的包管理工具，主要功能就是管理 node 包，包括：安装、卸载、更新、查看、搜索、发布等。它的很重要的一个作用是：将开发者从繁琐的包管理工作（版本、依赖等）中解放出来，更加专注于功能开发。</p>
+<h3><a class="anchor" aria-hidden="true" id="npx"></a><a href="#npx" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>npx</h3>
+<p><code>npx</code>会帮助我们执行依赖包里的二进制文件，引入这个命令的目的是为了提升开发者使用包内提供的命令行工具的体验。</p>
+<p><code>npx</code>不需要安装即可执行 node 包里的二进制文件。</p>
+<p>使用<code>npm</code>执行 node 包中的二进制文件的部署是：</p>
+<pre><code class="hljs css language-shell">npm add ts-lib-scripts --dev
+
+ts-lib-scripts create my-ts-lib
+</code></pre>
+<p>而<code>npx</code>则只需要一个步骤即可执行：</p>
+<pre><code class="hljs css language-shell">npx ts-lib-scripts create my-ts-lib
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="yarn-1"></a><a href="#yarn-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>yarn</h3>
+<p>与 npm 的作用一样，但是在使用体验上做了很多优化，对开发者更友好一些。</p>
+<h2><a class="anchor" aria-hidden="true" id="包管理"></a><a href="#包管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>包管理</h2>
+<h3><a class="anchor" aria-hidden="true" id="安装依赖包"></a><a href="#安装依赖包" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装依赖包</h3>
+<p>比如我们要在项目中安装<code>react</code>和<code>react-dom</code>依赖。</p>
+<p>yarn 的方式：</p>
+<pre><code class="hljs css language-shell">yarn add react react-dom
+</code></pre>
+<p>npm 的方式：</p>
+<pre><code class="hljs css language-shell">npm add react react-dom --save
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="安装全局包"></a><a href="#安装全局包" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装全局包</h3>
+<p>比如我们要在全局安装 TypeScript。</p>
+<p>yarn 的方式：</p>
+<pre><code class="hljs css language-shell">yarn global add typescript
+</code></pre>
+<p>npm 的方式：</p>
+<pre><code class="hljs css language-shell">yarn add typescript --global
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="安装一个项目的依赖"></a><a href="#安装一个项目的依赖" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装一个项目的依赖</h3>
+<p>比如我们安装一个项目<code>package.json</code>中配置的所有依赖。</p>
+<p>yarn 的方式：</p>
+<pre><code class="hljs css language-shell">yarn install
+</code></pre>
+<p>npm 的方式:</p>
+<pre><code class="hljs css language-shell">npm install
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="升级项目依赖"></a><a href="#升级项目依赖" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>升级项目依赖</h3>
+<p>比如我们要升级一个项目的依赖。</p>
+<p>yarn 的方式:</p>
+<pre><code class="hljs css language-shell">yarn upgrade
+</code></pre>
+<p>npm 的方式：</p>
+<pre><code class="hljs css language-shell">npm update
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="卸载指定的依赖包"></a><a href="#卸载指定的依赖包" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>卸载指定的依赖包</h3>
+<p>比如我们要从项目中移除<code>husky</code>的依赖。</p>
+<p>yarn 的方式：</p>
+<pre><code class="hljs css language-shell">yarn remove husky
+</code></pre>
+<p>npm 的方式：</p>
+<pre><code class="hljs css language-shell">npm uninstall husky
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="发布包"></a><a href="#发布包" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>发布包</h3>
+<p>比如我们要发布<code>@sinoui/http</code>。</p>
+<p>yarn 的方式：</p>
+<pre><code class="hljs css language-shell">yarn publish
+</code></pre>
+<p>npm 的方式：</p>
+<pre><code class="hljs css language-shell">npm publish
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="scripts"></a><a href="#scripts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>scripts</h2>
+<h3><a class="anchor" aria-hidden="true" id="执行-scripts"></a><a href="#执行-scripts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>执行 scripts</h3>
+<p>可以在 node 项目的 package.json`文件中定义与项目相关的脚本，如编译、打包、测试、lint、清除等。类似如：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"@sinoui/http-send-file"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
+  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"MIT"</span>,
+  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"dist/index.js"</span>,
+  <span class="hljs-attr">"umd:main"</span>: <span class="hljs-string">"dist/http-send-file.umd.production.js"</span>,
+  <span class="hljs-attr">"module"</span>: <span class="hljs-string">"dist/http-send-file.es.production.js"</span>,
+  <span class="hljs-attr">"typings"</span>: <span class="hljs-string">"dist/index.d.ts"</span>,
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"ts-lib-tools watch"</span>,
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"ts-lib-tools test"</span>,
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"ts-lib-tools build"</span>,
+    <span class="hljs-attr">"format"</span>: <span class="hljs-string">"ts-lib-tools format"</span>,
+    <span class="hljs-attr">"lint"</span>: <span class="hljs-string">"ts-lib-tools lint"</span>
+  }
+}
+</code></pre>
+<p>可以通过 npm、yarn 执行这些脚本。如编译：</p>
+<pre><code class="hljs css language-shell">yarn build
+
+// 或者
+
+npm run build
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="内置的-scripts-hook"></a><a href="#内置的-scripts-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>内置的 scripts hook</h3>
+<p>npm 脚本有 pre 和 post 两个钩子。例如：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"prebuild"</span>: <span class="hljs-string">"echo I run before the build script"</span>,
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"cross-env NODE_ENV=production webpack"</span>,
+    <span class="hljs-attr">"postbuild"</span>: <span class="hljs-string">"echo I run after the build script"</span>
+  }
+}
+</code></pre>
+<p>当我们执行<code>npm run build</code>时，会自动按照下面的顺序执行</p>
+<pre><code class="hljs css language-shell">npm run prebuild &amp;&amp; npm run build &amp;&amp; npm run postbuild
+</code></pre>
+<p>除此之外，<code>npm</code>还提供了以下钩子：</p>
+<ul>
+<li>prepublish、postpublish（发布前执行、发布后执行）</li>
+<li>preinstall、postinstall （依赖安装开始前执行、依赖安装完成后执行）</li>
+<li>pretest、posttest（测试开始前执行、测试完成后执行）</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="npx-特点"></a><a href="#npx-特点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>npx 特点</h2>
+<p>相较于 npm 与 yarn，npx 具有以下特点：</p>
+<ol>
+<li><p>临时安装可执行依赖包，不用全局安装，不用担心长期的污染。</p>
+<pre><code class="hljs css language-shell">npx ts-lib-scripts create my-ts-demo
+</code></pre>
+<p>这条命令会临时安装 <code>ts-lib-scripts</code> 包，命令完成后<code>ts-lib-scripts</code> 会删掉，不会出现在 global 中。下次再执行，还是会重新临时安装。</p></li>
+<li><p>可以执行依赖包中的命令，安装完成自动运行。</p></li>
+<li><p>自动加载 node_modules 中依赖包，不用指定$PATH。</p>
+<p>之前我们可能会这么写命令：</p>
+<pre><code class="hljs css language-shell">npm i -D webpack
+./node_modules/.bin/webpack -v
+</code></pre>
+<p>使用 npx,我们只需这么写</p>
+<pre><code class="hljs css language-shell">npm i -D webpack
+npx webpack -v
+</code></pre>
+<p>也就是说 npx 会自动查找当前依赖包中的可执行文件。如果找不到，就会去 PATH 里找。如果依然找不到，就会自动安装。</p></li>
+<li><p>可以指定 node 版本、命令的版本，解决了不同项目使用不同版本的命令的问题</p>
+<pre><code class="hljs css language-shell">npx -p node@8 npm run build
+</code></pre></li>
+</ol>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-24 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/docusaurus-circuleci"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/sinoui-guide/docs/optimized-for-change"><span>应变而优</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#安装">安装</a><ul class="toc-headings"><li><a href="#npm-和-npx">npm 和 npx</a></li><li><a href="#yarn">yarn</a></li></ul></li><li><a href="#用途">用途</a><ul class="toc-headings"><li><a href="#npm">npm</a></li><li><a href="#npx">npx</a></li><li><a href="#yarn-1">yarn</a></li></ul></li><li><a href="#包管理">包管理</a><ul class="toc-headings"><li><a href="#安装依赖包">安装依赖包</a></li><li><a href="#安装全局包">安装全局包</a></li><li><a href="#安装一个项目的依赖">安装一个项目的依赖</a></li><li><a href="#升级项目依赖">升级项目依赖</a></li><li><a href="#卸载指定的依赖包">卸载指定的依赖包</a></li><li><a href="#发布包">发布包</a></li></ul></li><li><a href="#scripts">scripts</a><ul class="toc-headings"><li><a href="#执行-scripts">执行 scripts</a></li><li><a href="#内置的-scripts-hook">内置的 scripts hook</a></li></ul></li><li><a href="#npx-特点">npx 特点</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
