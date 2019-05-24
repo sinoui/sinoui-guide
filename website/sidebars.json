@@ -27,7 +27,8 @@
       "tools-index",
       "github-pages-introduction",
       "circleci-introduction",
-      "docusaurus-circuleci"
+      "docusaurus-circuleci",
+      "package-manage"
     ],
     "方法论": ["optimized-for-change"],
     "语言篇": ["default-import-export-compatibility", "ts-function-overloading"]
