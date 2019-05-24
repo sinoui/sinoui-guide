@@ -1,7 +1,7 @@
 ---
 id: ts-function-overloading
 title: TypeScript中的重载函数
-side_label: TypeScript中的重载函数
+sidebar_label: TypeScript中的重载函数
 ---
 
 ## 什么是函数重载
