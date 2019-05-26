@@ -31,6 +31,10 @@
       "package-manage"
     ],
     "方法论": ["optimized-for-change", "tdd-introduction"],
-    "语言篇": ["default-import-export-compatibility", "ts-function-overloading"]
+    "语言篇": [
+      "default-import-export-compatibility",
+      "ts-function-overloading",
+      "jest-introduction"
+    ]
   }
 }
