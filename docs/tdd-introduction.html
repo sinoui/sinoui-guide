@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>测试驱动开发介绍 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;本文摘自《测试驱动开发——实战与模式解析》一书的前言。&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="测试驱动开发介绍 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;blockquote&gt;
+&lt;p&gt;本文摘自《测试驱动开发——实战与模式解析》一书的前言。&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>方法论</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">测试驱动开发介绍</h1></header><article><div><span><blockquote>
+<p>本文摘自《测试驱动开发——实战与模式解析》一书的前言。</p>
+</blockquote>
+<p>“可运行的简洁的代码”是 Ron Jeffries 关于测试驱动开发（Test-Driven Development，TDD）目标的精辟概括。有一大揽子理由能够说明，可运行的简洁的代码是值得实现的目标：</p>
+<ul>
+<li>它是一种可预测的开发方式。你会知道自己何时可以完成，而不必担心因缺陷而拖得太久。</li>
+<li>它会给你全面认识代码的机会。如果你草率地采用了自己最初的想法，那就再也没有时间来考虑另外更好的想法了。</li>
+<li>它让使用我们软件的用户生活变得更加美好。</li>
+<li>它使成员之间相互信赖。</li>
+<li>它本身的编写过程让人感觉很棒。</li>
+</ul>
+<p>但我们如何才能得到简洁的可运行的代码呢？很多因素使我们与简洁的代码渐行渐远，甚至导致代码无法运行。其实，不用为我们的担心浪费太多笔墨，这样做就可以：使用自动化测试驱动开发，一种叫做<strong>测试驱动开发（简称 TDD）</strong>的开发方法。在测试驱动开发中，我们：</p>
+<ul>
+<li>仅当自动化测试失败的时候才编写新的代码。</li>
+<li>去掉重复的部分。</li>
+</ul>
+<p>这是两项比较简单的原则，但这会产生出一个或者一组技术方面复杂的行为准则，例如：</p>
+<ul>
+<li>我们必须参考每次修改后的代码运行状况的反馈，逐渐完成设计。</li>
+<li>我们必须自己编写测试，因为我们不能指望其他人编写测试。</li>
+<li>我们的开发环境必须对细微的修改迅速做出响应。</li>
+<li>我们的设计必须遵从高内聚、低耦合的原则，这样便于实施测试。</li>
+</ul>
+<p>那两项简单的原则预示了编程任务的先后顺序：</p>
+<ol>
+<li>红色指示条——编写一个无法工作的简单测试，当然，这个测试起初甚至都无法通过编译。</li>
+<li>绿色指示条——迅速使测试工作起来，这个过程可谓想方设法，甚至不择手段。</li>
+<li>重构——去掉单纯由于使测试工作起来而产生的重复部分。</li>
+</ol>
+<p>红色指示条--&gt;绿色指示条--&gt;重构 —— 此乃 TDD 的经典三部曲。</p>
+<p>先假设这样的编程方式是成立的，进一步讲，这种方式可使代码缺陷的密度降低，还可以使所有相关人员对工作主旨若网在纲。如果这样的话，只在测试失败时才需要编写的代码还有其社会意涵：</p>
+<ul>
+<li>如果可以将缺陷的密度降到足够低的话，那么，质量保证人员的工作状态就能够变被动为主动。</li>
+<li>如果可以尽可能地减少令人不悦的意外发生，那么，项目管理人员就可以非常精确地估算出日常开发工作所需的人手。</li>
+<li>如果可以将技术讨论的主题构思地足够清晰，那么，软件工程师就可以亲密无间地合作，而非拉锯式地工作。</li>
+<li>同样，如果可以将缺陷的密度降到足够低，那么， 我们每天都可以发布带有新功能的软件，这样会与客户建立新的业务往来。</li>
+</ul>
+<p>诚然，这个理念并不复杂，但是其背后的动机又是什么呢？为什么一位软件工程师要插手编写自动化测试以外的工作呢？为什么一位软件工程师能够给出高层建瓴的设计却以细微的步伐前进呢？勇气使然。</p>
+<h2><a class="anchor" aria-hidden="true" id="勇气-courage"></a><a href="#勇气-courage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>勇气 （ Courage ）</h2>
+<blockquote>
+<p>测试驱动开发是一种在编程过程中管理担忧的方式。</p>
+</blockquote>
+<p>测试驱动开发是一种在编程过程中管理担忧的方式。这不是杞人忧天之虑，而是合理的担忧，但是否合理的问题是很难从一开始就看出来的。如果疼痛的自然反应是喊“停”，那么担忧的自然反应则是喊“当心”。当心历来是好事，但担忧却有不少其他的副作用：</p>
+<ul>
+<li>担忧使你举棋不定。</li>
+<li>担忧使你疏于交流。</li>
+<li>担忧使你回避反馈。</li>
+<li>担忧使你郁郁寡欢。</li>
+</ul>
+<p>这些作用对于编程都是无益的，尤其是在编写有难度的程序时。因此，你该如何面对困难的局面呢？并且：</p>
+<ul>
+<li>尽快开始具体地了解一些东西而不是试探。</li>
+<li>更加清晰地交流而不是闭口不言。</li>
+<li>找出具体的有用的反馈而不是回避。</li>
+<li>克制负面情绪。</li>
+</ul>
+<p>把编程想象成使用曲柄从一口井中摇上一桶水的过程。当水桶不太大时，自由旋转的曲柄还不错。当水桶比较大并且装满水，再把水桶提上来的时候，你就会感到累了。你需要一个在转动曲柄的间隙能够使你休息的<a href="https://baike.baidu.com/item/%E6%A3%98%E8%BD%AE%E6%9C%BA%E6%9E%84/9815415?fr=aladdin">棘齿装置</a>。越重的桶，就需要棘齿装置的齿越密。</p>
+<p>测试驱动开发当中的测试就像棘齿装置的齿。一旦测试运行起来，你就知道它会这样子运行下去了。比起测试坏掉的情况，你已经朝着一切运行如仪的目标又迈进了一步。现在，还可以使下一个，下下个和再下一个测试运行。以此类推，越是棘手的变成问题，每个测试的覆盖面要越小。</p>
+<h2><a class="anchor" aria-hidden="true" id="测试感染-test-infetcted"></a><a href="#测试感染-test-infetcted" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试感染 （ Test Infetcted ）</h2>
+<p>大多数学习 TDD 的人发现他们的编程行为被永远地改变了。测试感染是 Erich Gamma 发明的用来描述这一转变的说法。你可能会发现自己比以前会写更多的测试，会发现使用更小的步伐推进要比曾经自己想象的要合理。另一方面，一些软件工程师学习 TDD 后保留了他们原有的编程行为，在一些特殊的情况下，当常规的编程方法不奏效的时候，他们才拿出 TDD 救急。</p>
+<h2><a class="anchor" aria-hidden="true" id="测试不适用场景"></a><a href="#测试不适用场景" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试不适用场景</h2>
+<p>存在不能仅仅（或者根本不能）由测试来驱动的编程任务，例如，软件安全性和并发问题，使用 TDD 去一板一眼地证明这两方面与需求的吻合度就会显得捉襟见肘。尽管事实上软件的安全性本质上依赖于无缺陷的代码，但也依赖于使软件变得安全所使用方法的人为判断。微妙的并发问题是不能通过运行代码就能可靠再现的。</p>
+<h2><a class="anchor" aria-hidden="true" id="畅想"></a><a href="#畅想" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>畅想</h2>
+<p>发挥你的想象力想象一下，一个所有代码都简洁明了，不存在复杂解决方法的编程世界，仅有复杂的问题需要认真思考。那么，TDD 完全可以帮助你得偿所愿。</p>
+<p>让我们开始 TDD~~~</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-26 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/optimized-for-change"><span class="arrow-prev">← </span><span>应变而优</span></a><a class="docs-next button" href="/sinoui-guide/docs/default-import-export-compatibility"><span>默认导出、导入兼容性</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#勇气-courage">勇气 （ Courage ）</a></li><li><a href="#测试感染-test-infetcted">测试感染 （ Test Infetcted ）</a></li><li><a href="#测试不适用场景">测试不适用场景</a></li><li><a href="#畅想">畅想</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
