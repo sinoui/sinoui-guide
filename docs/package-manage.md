@@ -4,7 +4,7 @@ title: 包管理工具：npm、npx和yarn
 sidebar_label: 包管理工具：npm、npx和yarn
 ---
 
-在开发 Web、[Node.js](https://nodejs.org/)应用程序时，我们可以从[npmjs](https://www.npmjs.com/)上下载其他人共享的开源库，我们也可以将我们的库发布到[[npmjs](https://www.npmjs.com/)](https://www.npmjs.com/)上分享给其他人。本篇文章介绍的 npm、npx 和 yarn 就是用来下载、分享 node 包的工具。
+在开发 Web、[Node.js](https://nodejs.org/)应用程序时，我们可以从[npmjs](https://www.npmjs.com/)上下载其他人共享的开源库，我们也可以将我们的库发布到[npmjs](https://www.npmjs.com/)上分享给其他人。本篇文章介绍的 npm、npx 和 yarn 就是用来下载、分享 node 包的工具。
 
 ## 安装
 
