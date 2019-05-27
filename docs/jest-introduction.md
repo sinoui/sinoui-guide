@@ -67,7 +67,9 @@ Watch Usage: Press w to show more.
 
 ## 核心概念
 
-### 匹配器 Matchers
+单元测试技术上来说，有几个必须掌握的核心概念，包括：匹配器（编写断言必备技能）、setup和teardown、模拟、测试异步代码。接下来4个篇章将一一道来。
+
+## 匹配器 Matchers
 
 我们可以使用匹配器验证值。如下所示：
 
@@ -168,7 +170,7 @@ test('因网络错误无法获取用户信息', () => {
 
 还有很多匹配器。查看[Jest Expect API](https://jestjs.io/docs/en/expect)。
 
-### 测试异步代码
+## 测试异步代码
 
 异步是前端编程经常遇到的场景。这里重点讲解一下如何使用 Jest 测试`Promise`和`async/await`。
 
@@ -233,7 +235,7 @@ test('获取的数据是张三', async () => {
   expect(data).toBe('张三');
 });
 
-test('获取数据失败', () => {
+test('获取数据失败', async () => {
   expect.assertions(1);
   try {
     await fetchData('不存在的id');
@@ -255,13 +257,136 @@ test('获取数据失败', async () => {
 });
 ```
 
-### setup 和 teardown
+## setup 和 teardown
 
 TODO
 
-### 模拟
+## 模拟
 
-TODO
+模拟函数通过屏蔽函数的实际实现来轻松实现测试代码之间的链接。比如你的代码需要请求API获取数据，但是执行单元测试时又无法保证有相应的服务器启动并可访问到。这时你就可以使用模拟函数，屏蔽掉真实API请求，而模拟其行为：如果你的测试预期请求真实API成功并返回数据，那么你就模拟这个行为，并返回数据。
+
+模拟函数，可以捕获到对函数的调用（以及在这些调用中传递的参数），在使用new实例化时捕获构造函数的实例，并允许返回值的测试时配置（根据测试需要指定返回值）。
+
+有两种方式来模拟函数：
+
+1. 在测试代码级别上创建模拟函数
+2. 编写手工模拟来覆盖模块依赖
+
+### 使用模拟函数
+
+> 通过`jest.fn()`创建模拟函数。
+
+我们有一个`forEach`实现，会使用指定数组中的每一项挨个调用回调函数：
+
+```ts
+function forEach<T>(items: T[], callback: (item: T) => void) {
+  for (let index = 0; index < items.length; index++) {
+    callback(items[index]);
+  }
+}
+```
+
+为了测试这个函数，我们可以使用模拟函数，并且检查模拟状态以确保回调函数按照期望被执行了：
+
+```ts
+it('test forEach', () => {
+  const mockCallback = jest.fn(x => 42 + x);
+  forEach([0, 1], mockCallback);
+
+  // 模拟函数被调用了两次
+  expect(mockCallback.mock.calls.length).toBe(2);
+
+  // 第一次调用的第一个参数是0
+  expect(mockCallback.mock.calls[0][0]).toBe(0);
+
+  // 第二次调用的第一个参数是1
+  expect(mockCallback.mock.calls[1][0]).toBe(1);
+
+  // 第一次调用回调函数时返回值是42
+  expect(mockCallback.mock.results[0].value).toBe(42);
+});
+```
+
+每一个模拟函数都有`.mock`属性，它会记录模拟函数调用和返回值情况。它的用法如上面的例子所示。
+
+### Mock的返回值
+
+我们有个`map`实现，它会将一个数组的每一项调用回调函数，将回调函数的返回值组成一个新的数组：
+
+```ts
+function map<T, U>(items: T[], callback: (item: T, index: number) => U): U[] {
+  const result = [];
+  for (let index = 0; index < items.length; index++) {
+    result.push(callback(item[index], index));
+  }
+  return result;
+}
+```
+
+我们使用模拟函数作为回调函数来测试这个`map`：
+
+```ts
+const callbackMock = jest.fn();
+
+callbackMock
+  .mockReturnValueOnce(10)
+  .mockReturnValueOnce(20)
+  .mockReturnValue(1);
+
+const result = map([1, 2, 3, 4], callbackMock);
+
+expect(callbackMock.mock.calls.length).toBe(4);
+expect(result).toEqual([10, 20, 1, 1]);
+```
+
+### 模拟模块
+
+我们常常需要对外部依赖的模块进行模拟，才能快速有效地测试我们的代码。比如我们获取用户数据的方法用到了[@sinoui/http](https://github.com/sinoui/http)：
+
+```ts
+import http from '@sinoui/http';
+
+function getUsers() {
+  return http.get('/users.json');
+}
+```
+
+现在为了不真的发送API请求而测试我们的代码，我们需要用到`jest.mock(...)`函数来自动模拟@sinoui/http模块。备注：如果真的发送API请求来测试我们的代码，这样的测试是很慢的而且是脆弱的，一旦API停止服务或者网络访问不了了，那么测试就无法进行。
+
+```ts
+import http from '@sinoui/http';
+import getUsers from './users';
+
+jest.mock('@sinoui/http');
+
+test('获取用户数据', () => {
+  const users = [{name: 'Jacking'}];
+
+  // 模拟`http.get`的返回值为`Promise.resolve(uers)`。
+  http.get.mockResolvedValue(users);
+
+  return getUsers().then(result => expect(result).toEqual(users));
+});
+```
+
+### 模拟实现
+
+如果你需要模拟一个模块默认导出的函数，那么你需要用到`mockImplementation`：
+
+```ts
+// foo.js
+module.exports = function() {
+  // 实现代码
+}
+
+// test.js
+jest.mock('../foo');
+const foo = require('../foo');
+
+foo.mockImplementation(() => 42);
+foo();
+// > 42
+```
 
 ## 测试 React
 
