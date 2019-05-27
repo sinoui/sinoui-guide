@@ -1,10 +1,432 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>基于 Jest 的单元测试 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;测试驱&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="基于 Jest 的单元测试 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;测试驱&lt;/p&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>基于 Jest 的单元测试 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;体验一下&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#体验一下&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;体验一下&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="基于 Jest 的单元测试 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;体验一下&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#体验一下&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;体验一下&lt;/h2&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
           )
         });
-        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">基于 Jest 的单元测试</h1></header><article><div><span><p>测试驱</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>语言篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">基于 Jest 的单元测试</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="体验一下"></a><a href="#体验一下" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>体验一下</h2>
+<p>使用<a href="https://github.com/sinoui/ts-lib-scripts">ts-lib-scripts</a>创建一个 ts 项目：</p>
+<pre><code class="hljs css language-shell">npx ts-lib-scripts create jest-tutorial
+</code></pre>
+<p>打开项目，你就会看到有两个文件：<code>src/index.ts</code>和<code>src/index.spec.ts</code>，内容分别是：</p>
+<p><code>index.ts</code>:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PI = <span class="hljs-number">3.14</span>;
+
+<span class="hljs-comment">/**
+ * 求和
+ *
+ * @param a 相加的数字
+ * @param b 相加的数字
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p><code>index.spec.ts</code>:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { sum } <span class="hljs-keyword">from</span> <span class="hljs-string">'./index'</span>;
+
+it(<span class="hljs-string">'1 + 1 = 2'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect(sum(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)).toBe(<span class="hljs-number">2</span>);
+});
+</code></pre>
+<p>执行下面的命令行启动 jest 执行单元测试：</p>
+<pre><code class="hljs css language-shell">yarn test
+</code></pre>
+<p>你将会看到下面的执行结果：</p>
+<pre><code class="hljs">PASS  src/index.spec.ts
+  √ 1 + 1 = 2 (3ms)
+
+<span class="hljs-keyword">Test </span>Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+<span class="hljs-keyword">Time:</span>        2.587s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+</code></pre>
+<p><code>index.spec.ts</code>就是一个使用 Jest 编写的单元测试，核心内容是<code>expect(sum(1, 1)).toBe(2)</code>，也就是你期望个<code>sum()</code>两个参数<code>1</code>和<code>1</code>，它的返回结果是<code>2</code>。这个期望就是<code>sum()</code>这个函数的核心作用。</p>
+<p>我们使用 jest 测试的是方法的作用——我们用单元测试代码来表达期望它能做什么事情。只要单元测试通过，说明被测试的代码也就符合我们的预期。</p>
+<h2><a class="anchor" aria-hidden="true" id="核心概念"></a><a href="#核心概念" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>核心概念</h2>
+<h3><a class="anchor" aria-hidden="true" id="匹配器-matchers"></a><a href="#匹配器-matchers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>匹配器 Matchers</h3>
+<p>我们可以使用匹配器验证值。如下所示：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'two plus two is four'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect(<span class="hljs-number">2</span> + <span class="hljs-number">2</span>).toBe(<span class="hljs-number">4</span>);
+});
+</code></pre>
+<p>这段代码的意图是期望<code>2 + 2</code>的结果是<code>4</code>。<code>2 + 2</code>与<code>4</code>之间的匹配器是<code>toBe</code>，表示这二者之间是相同的关系。</p>
+<p><code>toBe</code>使用<code>Object.is</code>测试相等性。如果你需要验证对象的值是否相同，则可以使用<code>toEqual</code>：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'对象值相同'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> data = { one: <span class="hljs-number">1</span> };
+  data[<span class="hljs-string">'two'</span>] = <span class="hljs-number">2</span>;
+  expect(data).toEqual({ one: <span class="hljs-number">1</span>, two: <span class="hljs-number">2</span> });
+});
+
+test(<span class="hljs-string">'数组值相同'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> items = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+  items.push(<span class="hljs-number">5</span>);
+
+  expect(items).toEqual([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+});
+</code></pre>
+<p>如果表示不匹配，可以在使用<code>not</code>：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'1 + 1 &lt;&gt; 3'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> a = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">const</span> b = <span class="hljs-number">1</span>;
+
+  expect(a + b).not.toBe(<span class="hljs-number">3</span>);
+});
+</code></pre>
+<p>对于一些特定的值，如<code>true</code>, <code>false</code>, <code>null</code>, <code>undefined</code>，我们可以使用特定的匹配器：</p>
+<ul>
+<li><code>toBeNull</code> - 只能匹配<code>null</code></li>
+<li><code>toBeUndefined</code> - 只能匹配<code>undefined</code></li>
+<li><code>toBeDefined</code> - 与<code>toBeUndefined</code>相反</li>
+<li><code>toBeTruthy</code> - 匹配值为真的情况（与<code>if</code>语句判断真值的规则一样）</li>
+<li><code>toBeFalsy</code> - 匹配值为假的情况（与<code>if</code>语句判断假值的规则一样）</li>
+</ul>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'null'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> n = <span class="hljs-literal">null</span>;
+  expect(n).toBeNull();
+  expect(n).toBeDefined();
+  expect(n).not.toBeUndefined();
+  expect(n).not.toBeTruthy();
+  expect(n).toBeFalsy();
+});
+
+test(<span class="hljs-string">'zero'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> z = <span class="hljs-number">0</span>;
+  expect(z).not.toBeNull();
+  expect(z).toBeDefined();
+  expect(z).not.toBeUndefined();
+  expect(z).not.toBeTruthy();
+  expect(z).toBeFalsy();
+});
+</code></pre>
+<p><code>toMatch</code>允许我们使用正则表达式来验证字符串：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'测试代码以代码结尾'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect(<span class="hljs-string">'测试代码'</span>).toMatch(<span class="hljs-regexp">/代码$/</span>);
+});
+</code></pre>
+<p>可以使用<code>toContain</code>来判断数组中是否包含指定的值：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'购物清单中包含了啤酒'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect([<span class="hljs-string">'剃须刀'</span>, <span class="hljs-string">'大米'</span>, <span class="hljs-string">'啤酒'</span>, <span class="hljs-string">'化妆品'</span>]).toContain(<span class="hljs-string">'啤酒'</span>);
+});
+</code></pre>
+<p>可以使用<code>toThrow</code>来测试异常信息：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserInfo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'网络错误'</span>);
+}
+
+test(<span class="hljs-string">'因网络错误无法获取用户信息'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect(getUserInfo).toThrow();
+  expect(getUserInfo).toThrow(<span class="hljs-built_in">Error</span>);
+  expect(getUserInfo).toThrow(<span class="hljs-string">'网络错误'</span>);
+  expect(getUserInfo).toThrow(<span class="hljs-regexp">/网络/</span>);
+});
+</code></pre>
+<p>还有很多匹配器。查看<a href="https://jestjs.io/docs/en/expect">Jest Expect API</a>。</p>
+<h3><a class="anchor" aria-hidden="true" id="测试异步代码"></a><a href="#测试异步代码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试异步代码</h3>
+<p>异步是前端编程经常遇到的场景。这里重点讲解一下如何使用 Jest 测试<code>Promise</code>和<code>async/await</code>。</p>
+<p>我们可能想到测试异步的方式如下：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  fetchData().catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> expect(e).toMatch(<span class="hljs-string">'error'</span>));
+});
+</code></pre>
+<p>但是这样的测试是不正确的。我们需要告诉 jest 什么时候 promise 执行完成，我们可以使用<code>done</code>函数：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> {
+  fetchData().catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    expect(e).toMatch(<span class="hljs-string">'error'</span>);
+    done();
+  });
+});
+</code></pre>
+<p>Jest 针对 promise 测试提供了一种更便捷的方式来代替<code>done</code>方式，即返回<code>promise</code>：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> fetchData().catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> expect(e).toMatch(<span class="hljs-string">'error'</span>));
+});
+</code></pre>
+<blockquote>
+<p>使用 Jest 测试 promise 时必须返回<code>promise</code>。</p>
+</blockquote>
+<p>上面的例子如果<code>fetchData()</code>成功获取数据，则不会执行<code>catch()</code>的回调函数，也就不会执行<code>expect(e).toMatch('error')</code>。这不是我们期望的，我们可以使用<code>expect.assertions</code>来确保测试过程必须执行多少个断言：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  epxect.assertions(<span class="hljs-number">1</span>); <span class="hljs-comment">// 必须有1个断言执行，</span>
+  <span class="hljs-comment">// 也就是得有一个`expect`被执行。</span>
+
+  <span class="hljs-keyword">return</span> fetchData().catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> expect(e).toMatch(<span class="hljs-string">'error'</span>));
+});
+</code></pre>
+<p>我们可以使用<code>resolves/rejects</code>来进一步简化 promise 的测试：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取的数据是张三'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> epxect(fetchData(<span class="hljs-number">1</span>)).resolves.toBe(<span class="hljs-string">'张三'</span>);
+});
+
+test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> expect(fetchData(<span class="hljs-string">'不存在的id'</span>)).rejects.toMatch(<span class="hljs-string">'error'</span>);
+});
+</code></pre>
+<p>说到 Promise，就不得不说<code>async</code>和<code>await</code>。Jest 同样支持：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取的数据是张三'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  expect.assertions(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> epxect(fetchData(<span class="hljs-number">1</span>));
+  expect(data).toBe(<span class="hljs-string">'张三'</span>);
+});
+
+test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect.assertions(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">await</span> fetchData(<span class="hljs-string">'不存在的id'</span>);
+  } <span class="hljs-keyword">catch</span> (e) {
+    expect(e).toMatch(<span class="hljs-string">'error'</span>);
+  }
+});
+</code></pre>
+<p><code>async</code>和<code>await</code>与<code>.resolves</code>和<code>.rejects</code>的结合：</p>
+<pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取的数据是张三'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">await</span> epxect(fetchData(<span class="hljs-number">1</span>)).resolves.toBe(<span class="hljs-string">'张三'</span>);
+});
+
+test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">await</span> expect(fetchData(<span class="hljs-string">'不存在的id'</span>)).rejects.toMatch(<span class="hljs-string">'error'</span>);
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setup-和-teardown"></a><a href="#setup-和-teardown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setup 和 teardown</h3>
+<p>TODO</p>
+<h3><a class="anchor" aria-hidden="true" id="模拟"></a><a href="#模拟" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模拟</h3>
+<p>TODO</p>
+<h2><a class="anchor" aria-hidden="true" id="测试-react"></a><a href="#测试-react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试 React</h2>
+<p>TODO</p>
+<h2><a class="anchor" aria-hidden="true" id="测试自定义-react-hook"></a><a href="#测试自定义-react-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试自定义 React Hook</h2>
+<p>我们可以使用<a href="https://github.com/mpeyper/react-hooks-testing-library">react-hooks-testing-library</a>测试<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html">自定义的 React Hook</a>。</p>
+<p>先安装依赖：</p>
+<pre><code class="hljs css language-shell">yarn add react-test-renderer react-hooks-testing-library --dev
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="例子-计数-hook"></a><a href="#例子-计数-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子：计数 hook</h3>
+<p>看一个计数 hook 的例子：</p>
+<p><code>useCouner.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { useState, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">const</span> increment = useCallback(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x + <span class="hljs-number">1</span>), []);
+  <span class="hljs-keyword">const</span> decrement = useCallback(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x - <span class="hljs-number">1</span>), []);
+
+  <span class="hljs-keyword">return</span> { count, increment, decrement };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useCounter;
+</code></pre>
+<p>单元测试如下：</p>
+<p><code>useCounter.spec.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-hooks-testing-library'</span>;
+<span class="hljs-keyword">import</span> useCounter <span class="hljs-keyword">from</span> <span class="hljs-string">'./useCounter'</span>;
+
+it(<span class="hljs-string">'增加计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// 初始化useCounter。</span>
+  <span class="hljs-comment">// 相当于创建了一个使用useCounter的组件。</span>
+  <span class="hljs-keyword">const</span> { result } = renderHook(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useCounter());
+
+  <span class="hljs-comment">// 调用useCounter hook的`increment()`。</span>
+  <span class="hljs-comment">// 记住：千万别丢了`act`。</span>
+  <span class="hljs-comment">// 必须在`act`中执行hook中的方法</span>
+  act(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> result.current.increment());
+
+  <span class="hljs-comment">// 期望count从0增加到了1</span>
+  expect(result.current.count).toBe(<span class="hljs-number">1</span>);
+});
+
+it(<span class="hljs-string">'减少计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> { result } = renderHook(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useCounter());
+
+  act(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> result.current.decrement());
+
+  expect(result.current.count).toBe(<span class="hljs-number">-1</span>);
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="api-renderhookcallback-options"></a><a href="#api-renderhookcallback-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API: <code>renderHook(callback[, options])</code></h3>
+<p>渲染一个用于测试的组件，这个组件会调用包含 hook 的<code>callback</code>。</p>
+<p>参数说明：</p>
+<ul>
+<li><code>callback</code> (<code>() =&gt; any</code>) - 测试组件每次渲染时调用的方法。这个方法应该调用需要测试的 hook。</li>
+<li><code>options</code> (<code>object</code>) - 配置对象。有以下配置项：
+<ul>
+<li><code>initialProps</code> (<code>object</code>) - 传递给<code>callback</code>函数的初始值</li>
+<li><code>wrapper</code> (<code>componenet</code>) - pass a React Component as the wrapper option to have it rendered around the inner element. This is most useful for creating reusable custom render functions for common data providers</li>
+</ul></li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li><code>result</code> (<code>object</code>)
+<ul>
+<li><code>current</code> (<code>any</code>) - <code>callback</code>函数返回的值</li>
+<li><code>error</code> (Error) - <code>callback</code>函数抛出的错误。</li>
+</ul></li>
+<li><code>waitForNextUpdate</code> (<code>function</code>) - 返回一个 Promise，它在下次组件渲染时结束。一般用于由于异步操作导致状态更新的情况。</li>
+<li><code>rerender</code> (<code>function([newProps])</code>) - 重新渲染测试组件的方法。重新渲染测试组件时，会再次调用<code>callback</code>函数。如果指定了<code>newProps</code>，则会将<code>newProps</code>传递给<code>callback</code>。</li>
+<li><code>unmount</code> (<code>function()</code>) - 卸载测试组件。一般用于触发<code>useEffect</code> hook 的清除动作。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="api-actcallback"></a><a href="#api-actcallback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API: <code>act(callback)</code></h3>
+<p>与<a href="https://zh-hans.reactjs.org/docs/test-utils.html#act">react-test-renderer 的 act()</a>方法是一样的作用。</p>
+<p>为断言准备一个组件，包裹要渲染的代码并在调用<code>act()</code>时执行更新。这会使得测试更接近 React 在浏览器中的工作方式。</p>
+<h3><a class="anchor" aria-hidden="true" id="测试含有-http-请求的-hook"></a><a href="#测试含有-http-请求的-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试含有 http 请求的 hook</h3>
+<p><code>useFetchUsers.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+<span class="hljs-keyword">import</span> { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">interface</span> User {
+  userId: <span class="hljs-built_in">string</span>;
+  userName: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useFetchUsers</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [users, setUsers] = useState&lt;User[]&gt;([]);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> fetchUsers = <span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> http.get&lt;User[]&gt;(<span class="hljs-string">'/users'</span>);
+      setUsers(result);
+    };
+
+    fetchUsers();
+  }, []);
+
+  <span class="hljs-keyword">return</span> users;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useFetchUsers;
+</code></pre>
+<p><code>useFetchUsers.spec.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+<span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-hooks-testing-library'</span>;
+<span class="hljs-keyword">import</span> useFetchUsers <span class="hljs-keyword">from</span> <span class="hljs-string">'./useFetchUsers'</span>;
+
+jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
+
+it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  (http.get <span class="hljs-keyword">as</span> jest.Mock).mockResolvedValue(
+    <span class="hljs-built_in">Promise</span>.resolve([{ userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> }]),
+  );
+
+  <span class="hljs-keyword">const</span> { result, waitForNextUpdate } = renderHook(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useFetchUsers());
+
+  expect(result.current).toEqual([]);
+
+  <span class="hljs-keyword">await</span> waitForNextUpdate();
+
+  expect(result.current[<span class="hljs-number">0</span>]).toEqual({ userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> });
+});
+</code></pre>
+<p>上面的测试代码有两个要点：</p>
+<ol>
+<li>使用<code>jest.mock('@sinoui/http')</code>模拟了<code>@sinoui/http</code>模块，并使用<code>http.get.mockResolvedValue(Promise.resolve(users))</code>模拟<code>get</code>请求的响应。</li>
+<li><code>await waitForNextUpdate()</code>等待 HTTP 请求 promise 的完成时更新 hook 中的状态的时机。</li>
+</ol>
+<p>测试代码可以测试通过，但是在<code>react@16.8.0</code>版本中会有下面的警告：</p>
+<pre><code class="hljs css language-log">    console.error node_modules/react-test-renderer/cjs/react-test-renderer.development.js:<span class="hljs-number">102</span>
+      Warning: An update <span class="hljs-keyword">to</span> TestHook inside a test was not wrapped <span class="hljs-keyword">in</span> act(...).
+
+      When testing, code that causes React <span class="hljs-keyword">state</span> updates should be wrapped into act(...):
+
+      act(() =&gt; {
+        /* fire events that update <span class="hljs-keyword">state</span> */
+      });
+      /* assert <span class="hljs-keyword">on</span> the output */
+
+      This ensures that you're testing the behavior the <span class="hljs-keyword">user</span> would see <span class="hljs-keyword">in</span> the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+          <span class="hljs-keyword">in</span> TestHook
+          <span class="hljs-keyword">in</span> Suspense
+          <span class="hljs-keyword">in</span> ErrorBoundary
+</code></pre>
+<p>这种情况可以升级到<code>react@16.9.0-alpha.0</code>解决问题。如果是 React 应用，建议等待<code>React@16.9.0</code>再更新。如是库项目，则可以用类似下面的方式来处理：</p>
+<p><code>package.json</code>:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"@sinoui/use-rest-page-api"</span>,
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"react-hooks-testing-library"</span>: <span class="hljs-string">"^0.5.0"</span>,
+    <span class="hljs-attr">"react-test-renderer"</span>: <span class="hljs-string">"^16.9.0-alpha.0"</span>,
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.9.0-alpha.0"</span>
+  },
+  <span class="hljs-attr">"peerDependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.8.0"</span>
+  }
+}
+</code></pre>
+<p>注意：确保<code>dependencies</code>中没有<code>react</code>依赖。</p>
+<p>然后执行<code>yarn intall</code>，安装依赖。</p>
+<p>最后，将单元测试中的<code>await waitForNextUpdate()</code>更换成<code>await act(waitFormNextUpdate)</code>，如下所示：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+<span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-hooks-testing-library'</span>;
+<span class="hljs-keyword">import</span> useFetchUsers <span class="hljs-keyword">from</span> <span class="hljs-string">'./useFetchUsers'</span>;
+
+jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
+
+it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  (http.get <span class="hljs-keyword">as</span> jest.Mock).mockResolvedValue(
+    <span class="hljs-built_in">Promise</span>.resolve([{ userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> }]),
+  );
+
+  <span class="hljs-keyword">const</span> { result, waitForNextUpdate } = renderHook(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useFetchUsers());
+
+  expect(result.current).toEqual([]);
+
+  <span class="hljs-keyword">await</span> act(waitForNextUpdate);
+
+  expect(result.current[<span class="hljs-number">0</span>]).toEqual({ userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> });
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="测试使用了-react-hook-的组件"></a><a href="#测试使用了-react-hook-的组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试使用了 React Hook 的组件</h2>
+<p>TODO</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-27 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-function-overloading"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript中的重载函数</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#体验一下">体验一下</a></li><li><a href="#核心概念">核心概念</a><ul class="toc-headings"><li><a href="#匹配器-matchers">匹配器 Matchers</a></li><li><a href="#测试异步代码">测试异步代码</a></li><li><a href="#setup-和-teardown">setup 和 teardown</a></li><li><a href="#模拟">模拟</a></li></ul></li><li><a href="#测试-react">测试 React</a></li><li><a href="#测试自定义-react-hook">测试自定义 React Hook</a><ul class="toc-headings"><li><a href="#例子-计数-hook">例子：计数 hook</a></li><li><a href="#api-renderhookcallback-options">API: <code>renderHook(callback[, options])</code></a></li><li><a href="#api-actcallback">API: <code>act(callback)</code></a></li><li><a href="#测试含有-http-请求的-hook">测试含有 http 请求的 hook</a></li></ul></li><li><a href="#测试使用了-react-hook-的组件">测试使用了 React Hook 的组件</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
