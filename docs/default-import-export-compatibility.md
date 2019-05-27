@@ -35,7 +35,7 @@ Node.js 采用的是 Commonjs 模块导入、导出标准。Commonjs 非常流�
 const PI = 3.14;
 
 function getCircleArea(radius) {
-  return 2 * PI * radius;
+  return PI * radius * radius;
 }
 
 function sum(a, b) {
@@ -147,7 +147,7 @@ console.log(obj.a); // 输出什么？是不是很矛盾？
 const PI = 3.14;
 
 function getCircleArea(radius) {
-  return 2 * PI * radius * radius;
+  return PI * radius * radius;
 }
 
 function sum(a, b) {
@@ -190,7 +190,7 @@ module.exports = 3.14;
 export const PI = 3.14;
 
 export default function calcCircleArea(radius) {
-  return 2 * PI * radius * radius;
+  return PI * radius * radius;
 }
 ```
 
@@ -243,7 +243,7 @@ TypeScript 是在 ES6 的语法基础上添加了类型。所以 TypeScript 中�
 export const PI = 3.14;
 
 export default function calcCircleArea(radius) {
-  return 2 * PI * radius * radius;
+  return PI * radius * radius;
 }
 ```
 
@@ -261,7 +261,7 @@ var PI = 3.14;
 exports.PI = PI;
 
 function calcCircleArea(radius) {
-  return 2 * PI * radius * radius;
+  return PI * radius * radius;
 }
 ```
 
@@ -275,7 +275,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const PI = 3.14;
 
 function calcCircleArea(radius) {
-  return 2 * PI * radius * radius;
+  return PI * radius * radius;
 }
 
 exports.PI = PI;
@@ -289,7 +289,7 @@ exports.default = calcCircleArea;
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.PI = 3.14;
 function calcCircleArea(radius) {
-  return 2 * exports.PI * radius * radius;
+  return exports.PI * radius * radius;
 }
 exports.default = calcCircleArea;
 ```
@@ -386,29 +386,6 @@ function _interopRequireDefault(obj) {
 ```
 
 可以看出来，对于默认导入，会判断`__esModule`是否为`true`，如果为 true，Babel 则认为引入的模块中的默认导出是通过`export.default`导出的，否则则是`module.exports`。就是这样一个小小的方法保证了这两者模块语法的兼容性导入。
-
-## Node.js 的 CommonJS
-
-Node.js 遵循 Commonjs，默认导入和默认导出的关系如下：
-
-默认导出：
-
-`PI.js`:
-
-```js
-const PI = 3.14;
-module.exports = PI;
-```
-
-默认导入：
-
-`index.js`:
-
-```js
-const PI = require('./PI');
-
-console.log(PI);
-```
 
 ## 常见错误
 
