@@ -469,7 +469,7 @@ it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyw
 </code></pre>
 <p>上面的测试代码有两个要点：</p>
 <ol>
-<li>使用<code>jest.mock('@sinoui/http')</code>模拟了<code>@sinoui/http</code>模块，并使用<code>http.get.mockResolvedValue(Promise.resolve(users))</code>模拟<code>get</code>请求的响应。</li>
+<li>使用<code>jest.mock('@sinoui/http')</code>模拟了<code>@sinoui/http</code>模块，并使用<code>http.get.mockResolvedValue(users)</code>模拟<code>get</code>请求的响应。</li>
 <li><code>await waitForNextUpdate()</code>等待 HTTP 请求 promise 的完成时更新 hook 中的状态的时机。</li>
 </ol>
 <p>测试代码可以测试通过，但是在<code>react@16.8.0</code>版本中会有下面的警告：</p>
