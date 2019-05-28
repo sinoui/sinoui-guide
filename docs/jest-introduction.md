@@ -537,7 +537,7 @@ it('获取用户数据', async () => {
 
 上面的测试代码有两个要点：
 
-1. 使用`jest.mock('@sinoui/http')`模拟了`@sinoui/http`模块，并使用`http.get.mockResolvedValue(Promise.resolve(users))`模拟`get`请求的响应。
+1. 使用`jest.mock('@sinoui/http')`模拟了`@sinoui/http`模块，并使用`http.get.mockResolvedValue(users)`模拟`get`请求的响应。
 2. `await waitForNextUpdate()`等待 HTTP 请求 promise 的完成时更新 hook 中的状态的时机。
 
 测试代码可以测试通过，但是在`react@16.8.0`版本中会有下面的警告：
