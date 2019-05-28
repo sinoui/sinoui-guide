@@ -67,7 +67,7 @@ Watch Usage: Press w to show more.
 
 ## 核心概念
 
-单元测试技术上来说，有几个必须掌握的核心概念，包括：匹配器（编写断言必备技能）、setup和teardown、模拟、测试异步代码。接下来4个篇章将一一道来。
+单元测试技术上来说，有几个必须掌握的核心概念，包括：匹配器（编写断言必备技能）、setup 和 teardown、模拟、测试异步代码。接下来 4 个篇章将一一道来。
 
 ## 匹配器 Matchers
 
@@ -263,9 +263,9 @@ TODO
 
 ## 模拟
 
-模拟函数通过屏蔽函数的实际实现来轻松实现测试代码之间的链接。比如你的代码需要请求API获取数据，但是执行单元测试时又无法保证有相应的服务器启动并可访问到。这时你就可以使用模拟函数，屏蔽掉真实API请求，而模拟其行为：如果你的测试预期请求真实API成功并返回数据，那么你就模拟这个行为，并返回数据。
+模拟函数通过屏蔽函数的实际实现来轻松实现测试代码之间的链接。比如你的代码需要请求 API 获取数据，但是执行单元测试时又无法保证有相应的服务器启动并可访问到。这时你就可以使用模拟函数，屏蔽掉真实 API 请求，而模拟其行为：如果你的测试预期请求真实 API 成功并返回数据，那么你就模拟这个行为，并返回数据。
 
-模拟函数，可以捕获到对函数的调用（以及在这些调用中传递的参数），在使用new实例化时捕获构造函数的实例，并允许返回值的测试时配置（根据测试需要指定返回值）。
+模拟函数，可以捕获到对函数的调用（以及在这些调用中传递的参数），在使用 new 实例化时捕获构造函数的实例，并允许返回值的测试时配置（根据测试需要指定返回值）。
 
 有两种方式来模拟函数：
 
@@ -290,7 +290,7 @@ function forEach<T>(items: T[], callback: (item: T) => void) {
 
 ```ts
 it('test forEach', () => {
-  const mockCallback = jest.fn(x => 42 + x);
+  const mockCallback = jest.fn((x) => 42 + x);
   forEach([0, 1], mockCallback);
 
   // 模拟函数被调用了两次
@@ -309,7 +309,7 @@ it('test forEach', () => {
 
 每一个模拟函数都有`.mock`属性，它会记录模拟函数调用和返回值情况。它的用法如上面的例子所示。
 
-### Mock的返回值
+### Mock 的返回值
 
 我们有个`map`实现，它会将一个数组的每一项调用回调函数，将回调函数的返回值组成一个新的数组：
 
@@ -351,7 +351,7 @@ function getUsers() {
 }
 ```
 
-现在为了不真的发送API请求而测试我们的代码，我们需要用到`jest.mock(...)`函数来自动模拟@sinoui/http模块。备注：如果真的发送API请求来测试我们的代码，这样的测试是很慢的而且是脆弱的，一旦API停止服务或者网络访问不了了，那么测试就无法进行。
+现在为了不真的发送 API 请求而测试我们的代码，我们需要用到`jest.mock(...)`函数来自动模拟@sinoui/http 模块。备注：如果真的发送 API 请求来测试我们的代码，这样的测试是很慢的而且是脆弱的，一旦 API 停止服务或者网络访问不了了，那么测试就无法进行。
 
 ```ts
 import http from '@sinoui/http';
@@ -360,12 +360,12 @@ import getUsers from './users';
 jest.mock('@sinoui/http');
 
 test('获取用户数据', () => {
-  const users = [{name: 'Jacking'}];
+  const users = [{ name: 'Jacking' }];
 
   // 模拟`http.get`的返回值为`Promise.resolve(uers)`。
   http.get.mockResolvedValue(users);
 
-  return getUsers().then(result => expect(result).toEqual(users));
+  return getUsers().then((result) => expect(result).toEqual(users));
 });
 ```
 
@@ -377,7 +377,7 @@ test('获取用户数据', () => {
 // foo.js
 module.exports = function() {
   // 实现代码
-}
+};
 
 // test.js
 jest.mock('../foo');
@@ -521,9 +521,9 @@ import useFetchUsers from './useFetchUsers';
 jest.mock('@sinoui/http');
 
 it('获取用户数据', async () => {
-  (http.get as jest.Mock).mockResolvedValue(
-    Promise.resolve([{ userId: '1', userName: '张三' }]),
-  );
+  (http.get as jest.Mock).mockResolvedValue([
+    { userId: '1', userName: '张三' },
+  ]);
 
   const { result, waitForNextUpdate } = renderHook(() => useFetchUsers());
 
