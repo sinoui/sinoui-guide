@@ -99,7 +99,8 @@ Watch Usage: Press w to show more.
 <p><code>index.spec.ts</code>就是一个使用 Jest 编写的单元测试，核心内容是<code>expect(sum(1, 1)).toBe(2)</code>，也就是你期望个<code>sum()</code>两个参数<code>1</code>和<code>1</code>，它的返回结果是<code>2</code>。这个期望就是<code>sum()</code>这个函数的核心作用。</p>
 <p>我们使用 jest 测试的是方法的作用——我们用单元测试代码来表达期望它能做什么事情。只要单元测试通过，说明被测试的代码也就符合我们的预期。</p>
 <h2><a class="anchor" aria-hidden="true" id="核心概念"></a><a href="#核心概念" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>核心概念</h2>
-<h3><a class="anchor" aria-hidden="true" id="匹配器-matchers"></a><a href="#匹配器-matchers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>匹配器 Matchers</h3>
+<p>单元测试技术上来说，有几个必须掌握的核心概念，包括：匹配器（编写断言必备技能）、setup 和 teardown、模拟、测试异步代码。接下来 4 个篇章将一一道来。</p>
+<h2><a class="anchor" aria-hidden="true" id="匹配器-matchers"></a><a href="#匹配器-matchers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>匹配器 Matchers</h2>
 <p>我们可以使用匹配器验证值。如下所示：</p>
 <pre><code class="hljs css language-ts">test(<span class="hljs-string">'two plus two is four'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   expect(<span class="hljs-number">2</span> + <span class="hljs-number">2</span>).toBe(<span class="hljs-number">4</span>);
@@ -177,7 +178,7 @@ test(<span class="hljs-string">'因网络错误无法获取用户信息'</span>,
 });
 </code></pre>
 <p>还有很多匹配器。查看<a href="https://jestjs.io/docs/en/expect">Jest Expect API</a>。</p>
-<h3><a class="anchor" aria-hidden="true" id="测试异步代码"></a><a href="#测试异步代码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试异步代码</h3>
+<h2><a class="anchor" aria-hidden="true" id="测试异步代码"></a><a href="#测试异步代码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试异步代码</h2>
 <p>异步是前端编程经常遇到的场景。这里重点讲解一下如何使用 Jest 测试<code>Promise</code>和<code>async/await</code>。</p>
 <p>我们可能想到测试异步的方式如下：</p>
 <pre><code class="hljs css language-ts">test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
@@ -224,7 +225,7 @@ test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-fu
   expect(data).toBe(<span class="hljs-string">'张三'</span>);
 });
 
-test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-keyword">async</span> () =&gt; {
   expect.assertions(<span class="hljs-number">1</span>);
   <span class="hljs-keyword">try</span> {
     <span class="hljs-keyword">await</span> fetchData(<span class="hljs-string">'不存在的id'</span>);
@@ -242,10 +243,107 @@ test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-ke
   <span class="hljs-keyword">await</span> expect(fetchData(<span class="hljs-string">'不存在的id'</span>)).rejects.toMatch(<span class="hljs-string">'error'</span>);
 });
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="setup-和-teardown"></a><a href="#setup-和-teardown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setup 和 teardown</h3>
+<h2><a class="anchor" aria-hidden="true" id="setup-和-teardown"></a><a href="#setup-和-teardown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setup 和 teardown</h2>
 <p>TODO</p>
-<h3><a class="anchor" aria-hidden="true" id="模拟"></a><a href="#模拟" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模拟</h3>
-<p>TODO</p>
+<h2><a class="anchor" aria-hidden="true" id="模拟"></a><a href="#模拟" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模拟</h2>
+<p>模拟函数通过屏蔽函数的实际实现来轻松实现测试代码之间的链接。比如你的代码需要请求 API 获取数据，但是执行单元测试时又无法保证有相应的服务器启动并可访问到。这时你就可以使用模拟函数，屏蔽掉真实 API 请求，而模拟其行为：如果你的测试预期请求真实 API 成功并返回数据，那么你就模拟这个行为，并返回数据。</p>
+<p>模拟函数，可以捕获到对函数的调用（以及在这些调用中传递的参数），在使用 new 实例化时捕获构造函数的实例，并允许返回值的测试时配置（根据测试需要指定返回值）。</p>
+<p>有两种方式来模拟函数：</p>
+<ol>
+<li>在测试代码级别上创建模拟函数</li>
+<li>编写手工模拟来覆盖模块依赖</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="使用模拟函数"></a><a href="#使用模拟函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用模拟函数</h3>
+<blockquote>
+<p>通过<code>jest.fn()</code>创建模拟函数。</p>
+</blockquote>
+<p>我们有一个<code>forEach</code>实现，会使用指定数组中的每一项挨个调用回调函数：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forEach</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">items: T[], callback: (item: T) =&gt; <span class="hljs-built_in">void</span></span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>; index &lt; items.length; index++) {
+    callback(items[index]);
+  }
+}
+</code></pre>
+<p>为了测试这个函数，我们可以使用模拟函数，并且检查模拟状态以确保回调函数按照期望被执行了：</p>
+<pre><code class="hljs css language-ts">it(<span class="hljs-string">'test forEach'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> mockCallback = jest.fn(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> <span class="hljs-number">42</span> + x);
+  forEach([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], mockCallback);
+
+  <span class="hljs-comment">// 模拟函数被调用了两次</span>
+  expect(mockCallback.mock.calls.length).toBe(<span class="hljs-number">2</span>);
+
+  <span class="hljs-comment">// 第一次调用的第一个参数是0</span>
+  expect(mockCallback.mock.calls[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]).toBe(<span class="hljs-number">0</span>);
+
+  <span class="hljs-comment">// 第二次调用的第一个参数是1</span>
+  expect(mockCallback.mock.calls[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]).toBe(<span class="hljs-number">1</span>);
+
+  <span class="hljs-comment">// 第一次调用回调函数时返回值是42</span>
+  expect(mockCallback.mock.results[<span class="hljs-number">0</span>].value).toBe(<span class="hljs-number">42</span>);
+});
+</code></pre>
+<p>每一个模拟函数都有<code>.mock</code>属性，它会记录模拟函数调用和返回值情况。它的用法如上面的例子所示。</p>
+<h3><a class="anchor" aria-hidden="true" id="mock-的返回值"></a><a href="#mock-的返回值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mock 的返回值</h3>
+<p>我们有个<code>map</code>实现，它会将一个数组的每一项调用回调函数，将回调函数的返回值组成一个新的数组：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">U</span>&gt;(<span class="hljs-params">items: T[], callback: (item: T, index: <span class="hljs-built_in">number</span>) =&gt; U</span>): <span class="hljs-title">U</span>[] </span>{
+  <span class="hljs-keyword">const</span> result = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>; index &lt; items.length; index++) {
+    result.push(callback(item[index], index));
+  }
+  <span class="hljs-keyword">return</span> result;
+}
+</code></pre>
+<p>我们使用模拟函数作为回调函数来测试这个<code>map</code>：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> callbackMock = jest.fn();
+
+callbackMock
+  .mockReturnValueOnce(<span class="hljs-number">10</span>)
+  .mockReturnValueOnce(<span class="hljs-number">20</span>)
+  .mockReturnValue(<span class="hljs-number">1</span>);
+
+<span class="hljs-keyword">const</span> result = map([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], callbackMock);
+
+expect(callbackMock.mock.calls.length).toBe(<span class="hljs-number">4</span>);
+expect(result).toEqual([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="模拟模块"></a><a href="#模拟模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模拟模块</h3>
+<p>我们常常需要对外部依赖的模块进行模拟，才能快速有效地测试我们的代码。比如我们获取用户数据的方法用到了<a href="https://github.com/sinoui/http">@sinoui/http</a>：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUsers</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> http.get(<span class="hljs-string">'/users.json'</span>);
+}
+</code></pre>
+<p>现在为了不真的发送 API 请求而测试我们的代码，我们需要用到<code>jest.mock(...)</code>函数来自动模拟@sinoui/http 模块。备注：如果真的发送 API 请求来测试我们的代码，这样的测试是很慢的而且是脆弱的，一旦 API 停止服务或者网络访问不了了，那么测试就无法进行。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+<span class="hljs-keyword">import</span> getUsers <span class="hljs-keyword">from</span> <span class="hljs-string">'./users'</span>;
+
+jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
+
+test(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> users = [{ name: <span class="hljs-string">'Jacking'</span> }];
+
+  <span class="hljs-comment">// 模拟`http.get`的返回值为`Promise.resolve(uers)`。</span>
+  http.get.mockResolvedValue(users);
+
+  <span class="hljs-keyword">return</span> getUsers().then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> expect(result).toEqual(users));
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="模拟实现"></a><a href="#模拟实现" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模拟实现</h3>
+<p>如果你需要模拟一个模块默认导出的函数，那么你需要用到<code>mockImplementation</code>：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// foo.js</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// 实现代码</span>
+};
+
+<span class="hljs-comment">// test.js</span>
+jest.mock(<span class="hljs-string">'../foo'</span>);
+<span class="hljs-keyword">const</span> foo = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../foo'</span>);
+
+foo.mockImplementation(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span>);
+foo();
+<span class="hljs-comment">// &gt; 42</span>
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="测试-react"></a><a href="#测试-react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试 React</h2>
 <p>TODO</p>
 <h2><a class="anchor" aria-hidden="true" id="测试自定义-react-hook"></a><a href="#测试自定义-react-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试自定义 React Hook</h2>
@@ -356,9 +454,9 @@ it(<span class="hljs-string">'减少计数'</span>, <span class="hljs-function">
 jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
 
 it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyword">async</span> () =&gt; {
-  (http.get <span class="hljs-keyword">as</span> jest.Mock).mockResolvedValue(
-    <span class="hljs-built_in">Promise</span>.resolve([{ userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> }]),
-  );
+  (http.get <span class="hljs-keyword">as</span> jest.Mock).mockResolvedValue([
+    { userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> },
+  ]);
 
   <span class="hljs-keyword">const</span> { result, waitForNextUpdate } = renderHook(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useFetchUsers());
 
@@ -429,4 +527,4 @@ it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyw
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="测试使用了-react-hook-的组件"></a><a href="#测试使用了-react-hook-的组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试使用了 React Hook 的组件</h2>
 <p>TODO</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-27 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-function-overloading"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript中的重载函数</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#体验一下">体验一下</a></li><li><a href="#核心概念">核心概念</a><ul class="toc-headings"><li><a href="#匹配器-matchers">匹配器 Matchers</a></li><li><a href="#测试异步代码">测试异步代码</a></li><li><a href="#setup-和-teardown">setup 和 teardown</a></li><li><a href="#模拟">模拟</a></li></ul></li><li><a href="#测试-react">测试 React</a></li><li><a href="#测试自定义-react-hook">测试自定义 React Hook</a><ul class="toc-headings"><li><a href="#例子-计数-hook">例子：计数 hook</a></li><li><a href="#api-renderhookcallback-options">API: <code>renderHook(callback[, options])</code></a></li><li><a href="#api-actcallback">API: <code>act(callback)</code></a></li><li><a href="#测试含有-http-请求的-hook">测试含有 http 请求的 hook</a></li></ul></li><li><a href="#测试使用了-react-hook-的组件">测试使用了 React Hook 的组件</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-28 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-function-overloading"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript中的重载函数</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#体验一下">体验一下</a></li><li><a href="#核心概念">核心概念</a></li><li><a href="#匹配器-matchers">匹配器 Matchers</a></li><li><a href="#测试异步代码">测试异步代码</a></li><li><a href="#setup-和-teardown">setup 和 teardown</a></li><li><a href="#模拟">模拟</a><ul class="toc-headings"><li><a href="#使用模拟函数">使用模拟函数</a></li><li><a href="#mock-的返回值">Mock 的返回值</a></li><li><a href="#模拟模块">模拟模块</a></li><li><a href="#模拟实现">模拟实现</a></li></ul></li><li><a href="#测试-react">测试 React</a></li><li><a href="#测试自定义-react-hook">测试自定义 React Hook</a><ul class="toc-headings"><li><a href="#例子-计数-hook">例子：计数 hook</a></li><li><a href="#api-renderhookcallback-options">API: <code>renderHook(callback[, options])</code></a></li><li><a href="#api-actcallback">API: <code>act(callback)</code></a></li><li><a href="#测试含有-http-请求的-hook">测试含有 http 请求的 hook</a></li></ul></li><li><a href="#测试使用了-react-hook-的组件">测试使用了 React Hook 的组件</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
