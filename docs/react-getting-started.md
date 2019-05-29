@@ -427,6 +427,8 @@ export default Table;
 
 ## 属性
 
+> 在 React 中，使用`属性(props)`和`状态(state)`来处理数据。
+
 目前，`Table`组件只能渲染出固定的几个人的信息，这不是我们想要的效果，并且这样的`Table`组件也不够复用。在 React 中，使用`属性(props)`和`状态(state)`来处理数据。先来讲讲属性的方式如何处理数据。
 
 首先，移除`TableBody`组件中的数据。
