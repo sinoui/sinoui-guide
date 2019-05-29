@@ -253,7 +253,7 @@ test('获取的数据是张三', async () => {
 });
 
 test('获取数据失败', async () => {
-  await expect(fetchData('不存在的id')).rejects.toMatch('error');
+  await expect(fetchData('不存在的id')).rejects.toThrow('error');
 });
 ```
 
