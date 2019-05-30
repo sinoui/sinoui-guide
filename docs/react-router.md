@@ -68,6 +68,20 @@ export default AppRouter;
 - `Router`组件本身只是一个容器，真正的路由需要通过`Route`组件定义
 - `Route`组件中，`path`属性是指跳转的`url`,`component`属性用来定义跳转到的页面组件
 
+> 注意：`path`只需要配置 URL 中的路径就行，不需要理会请求参数部分。
+>
+> 如，你的路由配置如下:
+>
+> ```tsx
+> <Route path="/list" component={ListPage} />
+> ```
+>
+> 那么以下 URL 均匹配到这个路由配置，显示`ListPage`：
+>
+> - /list
+> - /list?searchText=react
+> - /list?searchText=react&beginTime=20180101&endTime=20190530
+
 ## 嵌套路由
 
 ```jsx
@@ -315,10 +329,12 @@ import { Route, Redirect } from 'react-router';
 
 ### 1. 路径参数
 
+> 用于传递数据的 id。注意不要因为需要传递一些查询条件等临时数据，不要使用路径参数，而是使用下一节介绍的请求参数。
+
 ```react
 
 //通过路由传递gwlx和recordId参数
-<Route path='/archive/dispatch/:gwlxId/:recordId/edit' component={XxxDetailPage} />
+<Route path='/archive/dispatch/:gwlxId' component={XxxDetailPage} />
 
 
 // HelloWorldPage.tsx中参数获取
@@ -338,16 +354,39 @@ export default withRouter(HelloWorldPage);
 
 ### 2. 请求参数
 
-```react
+> 请求参数可以用来传递除数据 id 之外的数据。如查询条件。
+>
+> 首先看一下一个普通的 URL：
+>
+> `/archive/dispatch-list?userId=123&userName=张三`
+>
+> 其中`/archive/dispatch-list`是路径部分，而`?userId=123&userName=张三`是查询参数，也称之为请求参数。
+>
+> 我们可以通过`location.search`获取到查询参数。可以使用`qs`模块解析查询参数。
+>
+> ```ts
+> const searchParams = qs.parse(
+>   props.location.search ? props.location.search.substr(1) : '',
+> );
+> ```
+>
+> 在创建这样的 URL 时，也可以用`qs`模块格式化请求参数：
+>
+> ```ts
+> const searchParams = { userId: '123', userName: '张三' };
+> const url = `/archive/dispatch-list?${qs.stringify(searchParams)}`;
+> ```
+
+```tsx
 // Button.tsx
 
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 
 function Button(props) {
   return (
     <button
       onClick={() =>
-        props.history.push(`/archive/dispatch/:gwlxId/:recordId/edit?userId=123&userName=张三`)
+        props.history.push(`/archive/dispatch-list?userId=123&userName=张三`)
       }
     >
       点击跳转页面
@@ -359,11 +398,13 @@ export default withRouter(Button);
 
 // HelloWorldPage.tsx中参数获取
 
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 import qs from 'qs';
 
 function HelloWorldPage(props) {
-  const { userId, userName } = qs.parse(props.location.search.substr(1));
+  const { userId, userName } = qs.parse(
+    props.location.search ? props.location.search.substr(1) : '',
+  );
   return (
     <>
       <div>用户名为：{userName}</div>
