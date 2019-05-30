@@ -34,7 +34,8 @@
     "语言篇": [
       "default-import-export-compatibility",
       "ts-function-overloading",
-      "jest-introduction"
+      "jest-introduction",
+      "react-component-test-guide"
     ]
   }
 }
