@@ -240,11 +240,162 @@ test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-ke
 });
 
 test(<span class="hljs-string">'获取数据失败'</span>, <span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-keyword">await</span> expect(fetchData(<span class="hljs-string">'不存在的id'</span>)).rejects.toMatch(<span class="hljs-string">'error'</span>);
+  <span class="hljs-keyword">await</span> expect(fetchData(<span class="hljs-string">'不存在的id'</span>)).rejects.toThrow(<span class="hljs-string">'error'</span>);
 });
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="setup-和-teardown"></a><a href="#setup-和-teardown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setup 和 teardown</h2>
-<p>TODO</p>
+<p>编写单元测试时，我们经常需要在测试前做一些准备工作，并在测试后进行一些整理工作，<code>Jest</code>提供辅助函数来处理这个问题。</p>
+<h3><a class="anchor" aria-hidden="true" id="为多次测试重复设置"></a><a href="#为多次测试重复设置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>为多次测试重复设置</h3>
+<p>例如，我们考虑一些与城市信息数据库进行交互的测试。 你必须在每个测试之前调用方法 <code>initializeCityDatabase()</code> ，同时必须在每个测试后，调用方法 <code>clearCityDatabase()</code>。 你可以这样做：</p>
+<pre><code class="hljs css language-js">beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  initializeCityDatabase();
+});
+
+afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  clearCityDatabase();
+});
+
+test(<span class="hljs-string">'city database has Vienna'</span>, () =&gt; {
+  expect(isCity(<span class="hljs-string">'Vienna'</span>)).toBeTruthy();
+});
+
+test(<span class="hljs-string">'city database has San Juan'</span>, () =&gt; {
+  expect(isCity(<span class="hljs-string">'San Juan'</span>)).toBeTruthy();
+});
+</code></pre>
+<p><code>beforeEach</code> 和 <code>afterEach</code> 能够通过与<a href="https://jestjs.io/docs/zh-Hans/asynchronous">异步代码测试</a> 相同的方式处理异步代码 — — 他们可以采取 <code>done</code> 参数或返回一个 promise。 例如，如果 <code>initializeCityDatabase()</code> 返回解决数据库初始化时的 promise ，我们会想返回这一 promise︰</p>
+<pre><code class="hljs css language-js">beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> initializeCityDatabase();
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="一次性设置"></a><a href="#一次性设置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>一次性设置</h3>
+<p>在某些情况下，你只需要在文件的开头做一次设置。 当这种设置是异步行为时，可能非常恼人，你不太可能一行就解决它。 Jest 提供 <code>beforeAll</code> 和 <code>afterAll</code> 处理这种情况。</p>
+<p>例如，如果 <code>initializeCityDatabase</code> 和 <code>clearCityDatabase</code> 都返回了 promise ，城市数据库可以在测试中重用，我们就能把我们的测试代码改成这样:</p>
+<pre><code class="hljs css language-js">beforeAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> initializeCityDatabase();
+});
+
+afterAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> clearCityDatabase();
+});
+
+test(<span class="hljs-string">'city database has Vienna'</span>, () =&gt; {
+  expect(isCity(<span class="hljs-string">'Vienna'</span>)).toBeTruthy();
+});
+
+test(<span class="hljs-string">'city database has San Juan'</span>, () =&gt; {
+  expect(isCity(<span class="hljs-string">'San Juan'</span>)).toBeTruthy();
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="作用域"></a><a href="#作用域" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>作用域</h3>
+<p>默认情况下，<code>before</code> 和 <code>after</code> 的块可以应用到文件中的每个测试。 此外可以通过 <code>describe</code> 块来将测试分组。 当 <code>before</code> 和 <code>after</code> 的块在 <code>describe</code> 块内部时，则其只适用于该 <code>describe</code> 块内的测试。</p>
+<p>比如说，我们不仅有一个城市的数据库，还有一个食品数据库。我们可以为不同的测试做不同的设置︰</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// Applies to all tests in this file</span>
+beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> initializeCityDatabase();
+});
+
+test(<span class="hljs-string">'city database has Vienna'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect(isCity(<span class="hljs-string">'Vienna'</span>)).toBeTruthy();
+});
+
+test(<span class="hljs-string">'city database has San Juan'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  expect(isCity(<span class="hljs-string">'San Juan'</span>)).toBeTruthy();
+});
+
+describe(<span class="hljs-string">'matching cities to foods'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// Applies only to tests in this describe block</span>
+  beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> initializeFoodDatabase();
+  });
+
+  test(<span class="hljs-string">'Vienna &lt;3 sausage'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    expect(isValidCityFoodPair(<span class="hljs-string">'Vienna'</span>, <span class="hljs-string">'Wiener Schnitzel'</span>)).toBe(<span class="hljs-literal">true</span>);
+  });
+
+  test(<span class="hljs-string">'San Juan &lt;3 plantains'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    expect(isValidCityFoodPair(<span class="hljs-string">'San Juan'</span>, <span class="hljs-string">'Mofongo'</span>)).toBe(<span class="hljs-literal">true</span>);
+  });
+});
+</code></pre>
+<p>注意：顶级的 beforeEach 在描述块内的 beforeEach 之前执行，以下的例子可以方便我们认识到执行的顺序。</p>
+<pre><code class="hljs css language-ts">beforeAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'1 - beforeAll'</span>));
+afterAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'1 - afterAll'</span>));
+beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'1 - beforeEach'</span>));
+afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'1 - afterEach'</span>));
+test(<span class="hljs-string">''</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'1 - test'</span>));
+describe(<span class="hljs-string">'Scoped / Nested block'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  beforeAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2 - beforeAll'</span>));
+  afterAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2 - afterAll'</span>));
+  beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2 - beforeEach'</span>));
+  afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2 - afterEach'</span>));
+  test(<span class="hljs-string">''</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2 - test'</span>));
+});
+
+<span class="hljs-comment">// 1 - beforeAll</span>
+<span class="hljs-comment">// 1 - beforeEach</span>
+<span class="hljs-comment">// 1 - test</span>
+<span class="hljs-comment">// 1 - afterEach</span>
+<span class="hljs-comment">// 2 - beforeAll</span>
+<span class="hljs-comment">// 1 - beforeEach</span>
+<span class="hljs-comment">// 2 - beforeEach</span>
+<span class="hljs-comment">// 2 - test</span>
+<span class="hljs-comment">// 2 - afterEach</span>
+<span class="hljs-comment">// 1 - afterEach</span>
+<span class="hljs-comment">// 2 - afterAll</span>
+<span class="hljs-comment">// 1 - afterAll</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="desribe-和-test-块的执行顺序"></a><a href="#desribe-和-test-块的执行顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>desribe 和 test 块的执行顺序</h3>
+<p>Jest 会在执行具体的 <code>test</code> 块之前执行所有的 <code>describe</code> 处理器部分。这也是为什么在 <code>before*</code> 和 <code>after*</code> 中做前后期准备，而不是在 <code>describe</code> 中的原因。一旦 <code>describe</code> 部分完成执行，随机顺序执行所有的测试。</p>
+<pre><code class="hljs css language-ts">describe(<span class="hljs-string">'outer'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'describe outer-a'</span>);
+
+  describe(<span class="hljs-string">'describe inner 1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'describe inner 1'</span>);
+    test(<span class="hljs-string">'test 1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'test for describe inner 1'</span>);
+      expect(<span class="hljs-literal">true</span>).toEqual(<span class="hljs-literal">true</span>);
+    });
+  });
+
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'describe outer-b'</span>);
+
+  test(<span class="hljs-string">'test 1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'test for describe outer'</span>);
+    expect(<span class="hljs-literal">true</span>).toEqual(<span class="hljs-literal">true</span>);
+  });
+
+  describe(<span class="hljs-string">'describe inner 2'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'describe inner 2'</span>);
+    test(<span class="hljs-string">'test for describe inner 2'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'test for describe inner 2'</span>);
+      expect(<span class="hljs-literal">false</span>).toEqual(<span class="hljs-literal">false</span>);
+    });
+  });
+
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'describe outer-c'</span>);
+});
+
+<span class="hljs-comment">// describe outer-a</span>
+<span class="hljs-comment">// describe inner 1</span>
+<span class="hljs-comment">// describe outer-b</span>
+<span class="hljs-comment">// describe inner 2</span>
+<span class="hljs-comment">// describe outer-c</span>
+<span class="hljs-comment">// test for describe inner 1</span>
+<span class="hljs-comment">// test for describe outer</span>
+<span class="hljs-comment">// test for describe inner 2</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="建议"></a><a href="#建议" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>建议</h3>
+<p>如果测试失败，第一件要检查的事就是，当仅运行这条测试时，它是否仍然失败。 在 Jest 中很容易地只运行一个测试 — — 只需暂时将 <code>test</code> 命令更改为 <code>test.only</code>:</p>
+<pre><code class="hljs css language-js">test.only(<span class="hljs-string">'this will be the only test that runs'</span>, () =&gt; {
+  expect(<span class="hljs-literal">true</span>).toBe(<span class="hljs-literal">false</span>);
+});
+
+test(<span class="hljs-string">'this test will not run'</span>, () =&gt; {
+  expect(<span class="hljs-string">'A'</span>).toBe(<span class="hljs-string">'A'</span>);
+});
+</code></pre>
+<p>如果你有一个测试，当它作为一个更大的用例中的一部分时，经常运行失败，但是当你单独运行它时，并不会失败，所以最好考虑其他测试对这个测试的影响。 通常可以通过修改 <code>beforeEach</code> 来清除一些共享的状态来修复这种问题。 如果不确定某些共享状态是否被修改，还可以尝试在 <code>beforeEach</code> 中 log 数据来 debug。</p>
 <h2><a class="anchor" aria-hidden="true" id="模拟"></a><a href="#模拟" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模拟</h2>
 <p>模拟函数通过屏蔽函数的实际实现来轻松实现测试代码之间的链接。比如你的代码需要请求 API 获取数据，但是执行单元测试时又无法保证有相应的服务器启动并可访问到。这时你就可以使用模拟函数，屏蔽掉真实 API 请求，而模拟其行为：如果你的测试预期请求真实 API 成功并返回数据，那么你就模拟这个行为，并返回数据。</p>
 <p>模拟函数，可以捕获到对函数的调用（以及在这些调用中传递的参数），在使用 new 实例化时捕获构造函数的实例，并允许返回值的测试时配置（根据测试需要指定返回值）。</p>
@@ -527,4 +678,4 @@ it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyw
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="测试使用了-react-hook-的组件"></a><a href="#测试使用了-react-hook-的组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>测试使用了 React Hook 的组件</h2>
 <p>TODO</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-28 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-function-overloading"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript中的重载函数</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#体验一下">体验一下</a></li><li><a href="#核心概念">核心概念</a></li><li><a href="#匹配器-matchers">匹配器 Matchers</a></li><li><a href="#测试异步代码">测试异步代码</a></li><li><a href="#setup-和-teardown">setup 和 teardown</a></li><li><a href="#模拟">模拟</a><ul class="toc-headings"><li><a href="#使用模拟函数">使用模拟函数</a></li><li><a href="#mock-的返回值">Mock 的返回值</a></li><li><a href="#模拟模块">模拟模块</a></li><li><a href="#模拟实现">模拟实现</a></li></ul></li><li><a href="#测试-react">测试 React</a></li><li><a href="#测试自定义-react-hook">测试自定义 React Hook</a><ul class="toc-headings"><li><a href="#例子-计数-hook">例子：计数 hook</a></li><li><a href="#api-renderhookcallback-options">API: <code>renderHook(callback[, options])</code></a></li><li><a href="#api-actcallback">API: <code>act(callback)</code></a></li><li><a href="#测试含有-http-请求的-hook">测试含有 http 请求的 hook</a></li></ul></li><li><a href="#测试使用了-react-hook-的组件">测试使用了 React Hook 的组件</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-29 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-function-overloading"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript中的重载函数</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#体验一下">体验一下</a></li><li><a href="#核心概念">核心概念</a></li><li><a href="#匹配器-matchers">匹配器 Matchers</a></li><li><a href="#测试异步代码">测试异步代码</a></li><li><a href="#setup-和-teardown">setup 和 teardown</a><ul class="toc-headings"><li><a href="#为多次测试重复设置">为多次测试重复设置</a></li><li><a href="#一次性设置">一次性设置</a></li><li><a href="#作用域">作用域</a></li><li><a href="#desribe-和-test-块的执行顺序">desribe 和 test 块的执行顺序</a></li><li><a href="#建议">建议</a></li></ul></li><li><a href="#模拟">模拟</a><ul class="toc-headings"><li><a href="#使用模拟函数">使用模拟函数</a></li><li><a href="#mock-的返回值">Mock 的返回值</a></li><li><a href="#模拟模块">模拟模块</a></li><li><a href="#模拟实现">模拟实现</a></li></ul></li><li><a href="#测试-react">测试 React</a></li><li><a href="#测试自定义-react-hook">测试自定义 React Hook</a><ul class="toc-headings"><li><a href="#例子-计数-hook">例子：计数 hook</a></li><li><a href="#api-renderhookcallback-options">API: <code>renderHook(callback[, options])</code></a></li><li><a href="#api-actcallback">API: <code>act(callback)</code></a></li><li><a href="#测试含有-http-请求的-hook">测试含有 http 请求的 hook</a></li></ul></li><li><a href="#测试使用了-react-hook-的组件">测试使用了 React Hook 的组件</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
