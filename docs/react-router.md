@@ -418,6 +418,12 @@ export default withRouter(HelloWorldPage);
 
 ### 3. `history state`
 
+使用请求参数可以传递很多数据，但是同时也会污染 URL。有时，我们只想向新页面传递一些临时的数据，又不想让用户在浏览器地址栏上看到非常长的 URL，或者不想让用户收藏这个链接，再次打开这个链接时还带着这些临时数据。如果是这样的情况，我们可以使用[history state](https://developer.mozilla.org/zh-CN/docs/Web/API/History)来传递数据。
+
+> 请注意：如果是给列表页传递查询条件，使用请求参数。
+>
+> 千万注意：刷新页面或者重新打开页面，不会再有之前的`history state`数据。浏览器的历史回退、前进会保持页面的`history state`。
+
 ```react
 // Button.tsx
 
