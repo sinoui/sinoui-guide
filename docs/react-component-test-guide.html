@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>测试React组件 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;使用&lt;a href=&quot;https://github.com/testing-library/react-testing-library&quot;&gt;react-testing-library&lt;/a&gt;测试 React 组件。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="测试React组件 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;使用&lt;a href=&quot;https://github.com/testing-library/react-testing-library&quot;&gt;react-testing-library&lt;/a&gt;测试 React 组件。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>语言篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">测试React组件</h1></header><article><div><span><p>使用<a href="https://github.com/testing-library/react-testing-library">react-testing-library</a>测试 React 组件。</p>
+<h2><a class="anchor" aria-hidden="true" id="指导原则"></a><a href="#指导原则" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>指导原则</h2>
+<blockquote>
+<p><a href="https://twitter.com/kentcdodds/status/977018512689455106">The more your tests resemble the way your software is used, the more confidence they can give you.</a></p>
+<p><a href="https://twitter.com/kentcdodds/status/977018512689455106">你的测试越像你的软件使用方式，你就会对你的软件越有信心。</a></p>
+</blockquote>
+<p>按照终端用户使用组件的方式来编写测试。</p>
+<h2><a class="anchor" aria-hidden="true" id="基本方法"></a><a href="#基本方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本方法</h2>
+<p>对于 React 组件，我们会使用 React DOM 来测试它。为了确保它表现得和浏览器中一样，我们会把代码渲染的部分包裹起来，并更新为<code>ReactTestUtils.act()</code>调用。我们可以使用<a href="https://github.com/testing-library/react-testing-library">react-testing-library</a>简化 React 组件的单元测试。</p>
+<h2><a class="anchor" aria-hidden="true" id="准备"></a><a href="#准备" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>准备</h2>
+<p>通过<a href="https://github.com/sinoui/ts-lib-scripts">ts-lib-scripts</a>创建一个 TypeScript 项目，然后添加以下依赖：</p>
+<pre><code class="hljs css language-shell">yarn add @types/react @types/react-dom react react-dom @sinoui/http @sinoui/use-data-api
+yarn add react-testinng-library jest-dom --dev
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="例子一枚"></a><a href="#例子一枚" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子一枚</h2>
+<p>一个来自 React 官网的例子：计数器组件：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">document</span>.title = <span class="hljs-string">`You clicked <span class="hljs-subst">${count}</span> times`</span>;
+  });
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">data-testid</span>=<span class="hljs-string">"label"</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-testid</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setCount(count + 1)}&gt;
+        Click me
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="使用-react-dom-test-utils-测试"></a><a href="#使用-react-dom-test-utils-测试" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用'react-dom/test-utils'测试</h3>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> { act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom/test-utils'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'jest-dom/extend-expect'</span>;
+<span class="hljs-keyword">import</span> Counter <span class="hljs-keyword">from</span> <span class="hljs-string">'./Counter'</span>;
+
+let container: HTMLDivElement;
+beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  container = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+  <span class="hljs-built_in">document</span>.body.appendChild(container);
+});
+
+afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">document</span>.body.removeChild(container);
+  container = <span class="hljs-literal">null</span>;
+});
+
+it(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-regexp">//</span> 测试首次渲染和 effect
+  act(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    ReactDOM.render(&lt;Counter /&gt;, container);
+  });
+
+  const button = container.querySelector(<span class="hljs-string">'[data-testid="button"]'</span>);
+  const label = container.querySelector(<span class="hljs-string">'[data-testid="label"]'</span>);
+
+  expect(label).toHaveTextContent(<span class="hljs-string">'You clicked 0 times'</span>);
+  expect(<span class="hljs-built_in">document</span>.title).toBe(<span class="hljs-string">'You clicked 0 times'</span>);
+
+  <span class="hljs-regexp">//</span> 测试第二次渲染和 effect
+  act(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    button!.dispatchEvent(<span class="hljs-keyword">new</span> MouseEvent(<span class="hljs-string">'click'</span>, { bubbles: <span class="hljs-literal">true</span> }));
+  });
+  expect(label).toHaveTextContent(<span class="hljs-string">'You clicked 1 times'</span>);
+  expect(<span class="hljs-built_in">document</span>.title).toBe(<span class="hljs-string">'You clicked 1 times'</span>);
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="使用-react-testing-library-测试"></a><a href="#使用-react-testing-library-测试" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用'react-testing-library'测试</h3>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render, fireEvent, cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'jest-dom/extend-expect'</span>;
+<span class="hljs-keyword">import</span> Counter <span class="hljs-keyword">from</span> <span class="hljs-string">'./Counter'</span>;
+
+afterEach(cleanup);
+
+test(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// 测试首次渲染和 effect</span>
+  <span class="hljs-keyword">const</span> { getByTestId } = render(&lt;Counter /&gt;);
+
+  <span class="hljs-keyword">const</span> label = getByTestId(<span class="hljs-string">'label'</span>);
+  <span class="hljs-keyword">const</span> button = getByTestId(<span class="hljs-string">'button'</span>);
+
+  expect(label).toHaveTextContent(<span class="hljs-string">'You clicked 0 times'</span>);
+  expect(<span class="hljs-built_in">document</span>.title).toBe(<span class="hljs-string">'You clicked 0 times'</span>);
+
+  <span class="hljs-comment">// 测试第二次渲染和 effect</span>
+  fireEvent.click(button);
+  expect(label).toHaveTextContent(<span class="hljs-string">'You clicked 1 times'</span>);
+  expect(<span class="hljs-built_in">document</span>.title).toBe(<span class="hljs-string">'You clicked 1 times'</span>);
+});
+</code></pre>
+<p>使用<code>react-testing-library</code>测试 React 组件简洁多了。</p>
+<h3><a class="anchor" aria-hidden="true" id="分解一下"></a><a href="#分解一下" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>分解一下</h3>
+<h4><a class="anchor" aria-hidden="true" id="在-dom-环境中渲染被测试组件"></a><a href="#在-dom-环境中渲染被测试组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在 DOM 环境中渲染被测试组件</h4>
+<p>在每次测试组件时，需要将组件渲染到 DOM 中。</p>
+<p>react-dom/test-utils:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> { act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom/test-utils'</span>;
+<span class="hljs-keyword">import</span> Counter <span class="hljs-keyword">from</span> <span class="hljs-string">'./Counter'</span>;
+
+let container: HTMLDivElement;
+beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  container = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+  <span class="hljs-built_in">document</span>.body.appendChild(container);
+});
+
+it(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  act(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    ReactDOM.render(&lt;Counter /&gt;, container);
+  });
+});
+</code></pre>
+<p>react-testing-library:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<span class="hljs-keyword">import</span> Counter <span class="hljs-keyword">from</span> <span class="hljs-string">'./Counter'</span>;
+
+test(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  const result = render(&lt;Counter /&gt;);
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="清除组件"></a><a href="#清除组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>清除组件</h4>
+<p>在每个测试结束时，需要清除渲染出来的组件。</p>
+<p>react-dom/test-utils:</p>
+<pre><code class="hljs css language-tsx">afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">document</span>.body.removeChild(container);
+  container = <span class="hljs-literal">null</span>;
+});
+</code></pre>
+<p>react-testing-library:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+
+afterEach(cleanup);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="获取组件内的-dom-元素"></a><a href="#获取组件内的-dom-元素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取组件内的 DOM 元素</h4>
+<p>在验证组件是否按照预期渲染出来或者模拟用户与组件进行交互，都需要获取组件内的 DOM 元素。推荐使用<code>data-testid=&quot;testid&quot;</code>来定位 DOM 元素。</p>
+<p>首先需要在 DOM 元素上添加<code>data-testid</code>，如下：</p>
+<pre><code class="hljs css language-tsx"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">data-testid</span>=<span class="hljs-string">"label"</span>&gt;</span>You clicked </span><span class="hljs-template-variable">{count}</span><span class="xml"> times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</span></code></pre>
+<p>在单元测试中，我们可以通过 CSS 的属性选择器查找到这个元素：</p>
+<p>react-dom/test-utils:</p>
+<pre><code class="hljs css language-tsx">const label = container.query<span class="hljs-constructor">Selector('[<span class="hljs-params">data</span>-<span class="hljs-params">testid</span>=<span class="hljs-string">"label"</span>]')</span>;
+</code></pre>
+<p>react-testing-library:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-comment">{ getByTestId }</span> = render(&lt;Counter /&gt;);
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">label</span> = getByTestId(<span class="hljs-string">'label'</span>);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="触发-dom-事件"></a><a href="#触发-dom-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>触发 DOM 事件</h4>
+<p>用户会与组件渲染出来的 UI 进行交互。我们需要模拟用户与组件的交互动作，也就是发送 DOM 事件，然后验证组件是否按照预期重新渲染了。</p>
+<p>我们来看看怎么触发事件：</p>
+<p>react-dom/test-utils:</p>
+<pre><code class="hljs css language-tsx">const button = container.query<span class="hljs-constructor">Selector('[<span class="hljs-params">data</span>-<span class="hljs-params">testid</span>=<span class="hljs-string">"button"</span>]')</span>;
+act(<span class="hljs-literal">()</span> =&gt; {
+  button.dispatch<span class="hljs-constructor">Event(<span class="hljs-params">new</span> MouseEvent('<span class="hljs-params">click</span>', { <span class="hljs-params">bubbles</span>: <span class="hljs-params">true</span> })</span>);
+});
+</code></pre>
+<p>react-testing-library:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">const</span> button = getByTestId(<span class="hljs-string">'button'</span>);
+fireEvent.<span class="hljs-built_in">click</span>(button);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="验证生成的-dom"></a><a href="#验证生成的-dom" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>验证生成的 DOM</h4>
+<p>使用<a href="https://github.com/testing-library/jest-dom">jest-dom</a>来验证生成的 DOM。</p>
+<p>例子 1：<code>.toHaveTextContent</code>验证 DOM 节点是否包含指定的文本内容：</p>
+<pre><code class="hljs css language-tsx">const <span class="hljs-keyword">label</span><span class="bash"> = getByTestId(<span class="hljs-string">'label'</span>);</span>
+
+expect(<span class="hljs-keyword">label</span><span class="bash">).toHaveTextContent(<span class="hljs-string">'You clicked 0 times'</span>);</span>
+</code></pre>
+<p>例子 2：<code>.toHaveClass</code>验证 DOM 节点是否包含指定的<code>css class</code>：</p>
+<pre><code class="hljs css language-tsx">expect(get<span class="hljs-constructor">ByTestId('<span class="hljs-params">button</span>')</span>).<span class="hljs-keyword">to</span><span class="hljs-constructor">HaveClass('<span class="hljs-params">btn</span>', '<span class="hljs-params">btn</span>--<span class="hljs-params">disabled</span>')</span>;
+</code></pre>
+<p>例子 3：<code>.toContainHTML</code>验证 DOM 节点是否包含指定的 HTML 内容：</p>
+<pre><code class="hljs css language-tsx">expect(get<span class="hljs-constructor">ByTestId('<span class="hljs-params">button</span>')</span>).<span class="hljs-keyword">to</span><span class="hljs-constructor">ContainHTML('&lt;<span class="hljs-params">icon</span>&gt;<span class="hljs-params">button</span>&lt;<span class="hljs-operator">/</span><span class="hljs-params">icon</span>&gt;点击')</span>;
+</code></pre>
+<p>还有很多这样的方法，请参考<a href="https://github.com/testing-library/jest-dom">jest-dom</a>的说明。</p>
+<h3><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p>测试一个 React 组件，大致分成这几个步骤：</p>
+<ol>
+<li>在 DOM 中渲染组件</li>
+<li>验证组件初始化渲染出的 DOM</li>
+<li>模拟用户与组件的交互，触发 DOM 事件</li>
+<li>验证组件重新渲染后的 DOM</li>
+</ol>
+<p><a href="https://github.com/testing-library/react-testing-library">react-testing-library</a>能帮助我们简化 React 组件测试，推荐使用。</p>
+<p><a href="https://github.com/testing-library/jest-dom">jest-dom</a>能帮助你快速写出 DOM 状态断言（即：快速验证 DOM 是否符合预期），推荐使用。</p>
+<h2><a class="anchor" aria-hidden="true" id="更复杂一点的例子"></a><a href="#更复杂一点的例子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更复杂一点的例子</h2>
+<p>我们现在再来测试一个加载数据的例子——加载并展示一组人员的组件：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> useDataApi <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/use-data-api'</span>;
+
+<span class="hljs-keyword">const</span> url = <span class="hljs-string">'/users'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UserList</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { data, isLoading, doFetch } = useDataApi&lt;string[]&gt;(url, []);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> doFetch(url)}&gt;
+        重新加载数据
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      {isLoading ? (
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>加载中<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      ) : (
+        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+          {data.map((user) =&gt; (
+            <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{user}</span>&gt;</span>{user}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+          ))}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+      )}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> UserList;
+</code></pre>
+<p>对应的单元测试：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render, fireEvent, cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+<span class="hljs-keyword">import</span> UserList <span class="hljs-keyword">from</span> <span class="hljs-string">'./UserList'</span>;
+
+jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
+
+afterEach(cleanup);
+
+test(<span class="hljs-string">'初始加载并渲染数据'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  (http.get <span class="hljs-keyword">as</span> jest.Mock)
+    .mockResolvedValueOnce([<span class="hljs-string">'用户 0'</span>])
+    .mockResolvedValue([<span class="hljs-string">'用户 1'</span>, <span class="hljs-string">'用户 2'</span>, <span class="hljs-string">'用户 3'</span>, <span class="hljs-string">'用户 4'</span>]);
+
+  <span class="hljs-comment">// 初始加载数据</span>
+  <span class="hljs-keyword">const</span> { findAllByText, getByText, queryByText } = render(&lt;UserList /&gt;);
+
+  expect(queryByText(<span class="hljs-string">'加载中'</span>)).toBeDefined();
+
+  <span class="hljs-keyword">const</span> users = <span class="hljs-keyword">await</span> findAllByText(<span class="hljs-regexp">/用户 [0-9]/</span>);
+  expect(users).toHaveLength(<span class="hljs-number">1</span>);
+  expect(queryByText(<span class="hljs-string">'加载中'</span>)).toBeNull();
+
+  <span class="hljs-comment">// 重新加载数据</span>
+  fireEvent.click(getByText(<span class="hljs-string">'重新加载数据'</span>));
+  expect(queryByText(<span class="hljs-string">'加载中'</span>)).toBeDefined();
+
+  <span class="hljs-keyword">await</span> expect(findAllByText(<span class="hljs-regexp">/用户 [0-9]/</span>)).resolves.toHaveLength(<span class="hljs-number">4</span>);
+  expect(queryByText(<span class="hljs-string">'加载中'</span>)).toBeNull();
+});
+</code></pre>
+<p>这个例子出现了一些新的东西，主要是两点：</p>
+<ul>
+<li>等待元素出现：等待异步事件完成，检查 DOM 情况。如等待加载用户数据完成后，我们需要检查 DOM 中显示了一组用户。</li>
+<li>判断 DOM 节点是否存在。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="等待元素出现"></a><a href="#等待元素出现" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>等待元素出现</h3>
+<p>如果需要测试加载数据完成后组件新渲染出来的 DOM 元素，则需要用到这一小节用到的知识点：</p>
+<p>首先介绍一个基础函数——<code>waitForElement</code>：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> waitForElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-testing-library'</span><span class="token punctuation">;</span>
+
+<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'等待元素出现'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> getAllByText <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">UserList</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> users <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">waitForElement</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">getAllByText</span><span class="token punctuation">(</span><span class="token regex">/用户 [0-9]/</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>waitForElement</code>会等待<code>getAllByText(/用户 [0-9]/)</code>获取到元素时结束。否则它会一直等待。它是怎么实现的呢？</p>
+<p>首先掌握一个知识点：调用<code>getAllByText()</code>方法，如果没找到符合条件的 DOM 元素，会抛出异常，找到则返回符合条件的所有 DOM 元素。</p>
+<p>调用<code>waitForElement(callback)</code>，它首先会调用一次<code>callback</code>，如果捕捉到<code>callback</code>的异常，则进入等待环节；否则直接将<code>callback</code>的执行结果返回。在等待环节，<code>waitForElement</code>会使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver">Mutation Observer</a>开启 DOM 变更监听，只要 DOM 元素发生变化，则再次调用<code>callback</code>，尝试获取到元素。除非超时，否则会一直处于等待环节。</p>
+<p>react-testing-library 提供了更便捷的<code>find</code>系列方法，如<code>getAllByText()</code>有对应的<code>findAllByText()</code>，用法如下：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { waitForElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+
+it(<span class="hljs-string">'等待元素出现'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> { findAllByText } = render(&lt;UserList /&gt;);
+
+  <span class="hljs-keyword">const</span> users = <span class="hljs-keyword">await</span> findAllByText(<span class="hljs-regexp">/用户 [0-9]/</span>);
+});
+</code></pre>
+<p><code>find</code>系列方法内部使用的是<code>waitForElement</code>方法。</p>
+<h3><a class="anchor" aria-hidden="true" id="判断-dom-节点是否存在"></a><a href="#判断-dom-节点是否存在" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>判断 DOM 节点是否存在</h3>
+<p>在上一小节，我们已经知道，<code>getAllByText()</code>方法在获取不到 DOM 元素时，会抛出异常，所以，如果要判断 DOM 节点不存在，有一种写法：</p>
+<pre><code class="hljs css language-tsx">expect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> getByText(<span class="hljs-string">'加载中'</span>)).toThrow();
+</code></pre>
+<p>但是这样的写法实在别扭。我们可以使用<code>query</code>系列的方法获取 DOM 节点，如果没找到，则会返回<code>null</code>：</p>
+<pre><code class="hljs css language-txt"><span class="hljs-variable">const</span> { <span class="hljs-variable">queryByText</span> } = <span class="hljs-function"><span class="hljs-title">render</span>(&lt;<span class="hljs-variable">UserList</span> /&gt;);
+
+<span class="hljs-title">expect</span>(<span class="hljs-title">queryByText</span>(<span class="hljs-string">'加载中'</span>)).toBeNull();
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="小结-1"></a><a href="#小结-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p>react-testing-library 提供了很多便捷的查找 DOM 元素的方法。这些方法有一个规则：</p>
+<ul>
+<li><code>query</code>系列 - 查询 DOM 元素，如果没找到 DOM 元素，则会返回<code>null</code>，否则返回找到的 DOM 元素。</li>
+<li><code>get</code>系列 - 查询 DOM 元素，如果没有找到 DOM 元素，则抛出异常，否则返回找到的 DOM 元素。</li>
+<li><code>find</code>系列 - 查询 DOM 元素，如果没有找到 DOM 元素，则一直等待，直到有 DOM 元素返回或者超时。</li>
+</ul>
+<p>还有一个小规则：</p>
+<ul>
+<li>查询单个元素 - 方法中不带上<code>All</code>的，则是查询单个元素的。等同于<code>querySelector</code>。</li>
+<li>查询一组元素 - 方法中带上<code>All</code>的，则是查询一组元素的。等同于<code>querySelectorAll</code>。</li>
+</ul>
+<p>我们可以通过以下途径查找元素：</p>
+<ul>
+<li><code>ByText</code> - 通过文本查找元素</li>
+<li><code>ByTestId</code> - 通过<code>data-testid</code>属性查找元素</li>
+<li><code>ByLabelText</code> - 通过<code>label</code>或者<code>aria-label</code>属性查找元素</li>
+<li><code>ByPlaceholder</code> - 通过输入框的<code>placehoder</code>属性查找元素</li>
+<li><code>ByDisplayValue</code> - 通过表单项元素的可见值（大约等同于表单项项）查找元素</li>
+<li><code>ByTitle</code> - 通过<code>title</code>属性查找元素</li>
+<li><code>ByRole</code> - 通过<code>aria-role</code>属性查找元素</li>
+<li><code>ByAltText</code> - 通过<code>img</code>的<code>alt</code>属性查找元素</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="结束语"></a><a href="#结束语" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>结束语</h3>
+<p>今天我们学习了 React 组件的单元测试之术。对于 UI 组件的单元测试，我们应站在使用者的角度，不要让测试代码过分关注组件内部实现。这样的单元测试才会更健壮、稳固，在未来会起到更大的作用：比如我需要优化组件的实现，但是不能改变它的使用方式和功能，这时我们的单元测试就会起到极大的作用，不需要做测试代码调整，只要修改的代码通过这些测试，则表明这些修改没有影响到组件使用者。</p>
+<p>之前我们在内部使用<a href="https://github.com/airbnb/enzyme">Enzyme</a>对组件进行单元测试，很容易让测试代码陷入到组件的内部实现细节中去，这样的测试代码很脆弱，只要我们修改一点组件代码，就有可能需要同步修改测试代码。到后期，我们发现很难坚持这样的 React 组件单元测试。</p>
+<p>可能你觉得今天介绍的不再是单元测试，更像集成测试。但不管怎样，找到适合我们自身的测试之道，并对我们自身的工作流程有益处，才是我们需要考虑的。</p>
+<p>让我们站在使用者的角度，一起用<a href="https://github.com/testing-library/react-testing-library">react-testing-library</a>来测试 React 组件吧。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-30 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/jest-introduction"><span class="arrow-prev">← </span><span>基于 Jest 的单元测试</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#指导原则">指导原则</a></li><li><a href="#基本方法">基本方法</a></li><li><a href="#准备">准备</a></li><li><a href="#例子一枚">例子一枚</a><ul class="toc-headings"><li><a href="#使用-react-dom-test-utils-测试">使用'react-dom/test-utils'测试</a></li><li><a href="#使用-react-testing-library-测试">使用'react-testing-library'测试</a></li><li><a href="#分解一下">分解一下</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#更复杂一点的例子">更复杂一点的例子</a><ul class="toc-headings"><li><a href="#等待元素出现">等待元素出现</a></li><li><a href="#判断-dom-节点是否存在">判断 DOM 节点是否存在</a></li><li><a href="#小结-1">小结</a></li><li><a href="#结束语">结束语</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
