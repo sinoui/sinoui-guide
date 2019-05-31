@@ -410,7 +410,7 @@ react-testing-library 提供了很多便捷的查找 DOM 元素的方法。这�
 - `ByTestId` - 通过`data-testid`属性查找元素
 - `ByLabelText` - 通过`label`或者`aria-label`属性查找元素
 - `ByPlaceholder` - 通过输入框的`placehoder`属性查找元素
-- `ByDisplayValue` - 通过表单项元素的可见值（大约等同于表单项项）查找元素
+- `ByDisplayValue` - 通过表单项元素的可见值（大约等同于表单项值）查找元素
 - `ByTitle` - 通过`title`属性查找元素
 - `ByRole` - 通过`aria-role`属性查找元素
 - `ByAltText` - 通过`img`的`alt`属性查找元素
