@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>npm依赖与版本号 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在日常开发中，经常需要依赖，在发布公共库时，也需要管理依赖和版本号。这篇文章会介绍在 Node 中我们如何管理依赖和版本号。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="npm依赖与版本号 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;在日常开发中，经常需要依赖，在发布公共库时，也需要管理依赖和版本号。这篇文章会介绍在 Node 中我们如何管理依赖和版本号。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>工具篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">npm依赖与版本号</h1></header><article><div><span><p>在日常开发中，经常需要依赖，在发布公共库时，也需要管理依赖和版本号。这篇文章会介绍在 Node 中我们如何管理依赖和版本号。</p>
+<h2><a class="anchor" aria-hidden="true" id="摘要"></a><a href="#摘要" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>摘要</h2>
+<p>咱们将学会：</p>
+<ul>
+<li>如何管理版本号</li>
+<li>如何管理应用依赖</li>
+<li>如何管理公共库依赖</li>
+<li>区分<code>dependencies</code>、<code>devDependencies</code>、<code>peerDependencies</code></li>
+</ul>
+<p>学习的内容是<code>package.json</code>中的四个配置：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.8.6"</span>
+  },
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"prettier"</span>: <span class="hljs-string">"^1.17.1"</span>
+  },
+  <span class="hljs-attr">"peerDependencies"</span>: {
+    <span class="hljs-attr">"some-lib"</span>: <span class="hljs-string">"&gt;=16.8.0"</span>
+  }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="项目版本号"></a><a href="#项目版本号" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>项目版本号</h2>
+<p>我们在<code>package.json</code>的<code>version</code>中定义包版本号。如果你要发布包，<code>version</code>的定义就必须遵循<a href="/sinoui-guide/docs/semver">语义化版本号</a>规则。如果是内部项目，也推荐遵循<a href="/sinoui-guide/docs/semver">语义化版本号</a>规则。</p>
+<p>可以使用<a href="https://github.com/npm/node-semver">node-semver</a>来检验版本号是否符合<a href="/sinoui-guide/docs/semver">语义化版本号</a>规则。</p>
+<p>语义化版本号规则：</p>
+<blockquote>
+<p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
+<ol>
+<li>主版本号：当你做了不兼容的 API 修改，</li>
+<li>次版本号：当你做了向下兼容的功能性新增，</li>
+<li>修订号：当你做了向下兼容的问题修正。</li>
+</ol>
+<p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+</blockquote>
+<p>如： <code>1.0.0</code>，<code>1.0.1</code>，<code>1.0.0-alpha.1</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="dependencies"></a><a href="#dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>dependencies</code></h2>
+<p>当我们的包依赖第三方包时，我们可以在<code>package.json</code>的<code>dependencies</code>中添加依赖关系。依赖关系是由包名称和版本范围组成的，或者由包名称和 git URL 或者本地路径组成的。</p>
+<blockquote>
+<p><strong>千万不要将项目用到的工具包依赖添加到<code>dependencies</code>中。</strong>如不能将打包工具<code>webpack</code>、代码格式化工具<code>prettier</code>、测试工具<code>jest</code>添加到<code>dependencies</code>中。见<code>devDependencies</code>。</p>
+</blockquote>
+<p>看看版本范围都有哪些语法：</p>
+<ul>
+<li><code>version</code> - 直接指定的版本号，必须精确匹配。如<code>1.0.2</code>，只能匹配到<code>1.0.2</code>，不能是<code>1.0.3</code>、<code>1.1.0</code>或者<code>2.0.0</code>。</li>
+<li><code>&gt;version</code> - 必须大于指定版本号。如<code>&gt;1.0.2</code>，能够匹配到<code>1.0.3</code>、<code>1.1.0</code>、<code>2.0.0</code>，但是不能匹配到<code>1.0.2</code>、<code>1.0.0</code>、<code>0.9.0</code>。</li>
+<li><code>&gt;=version</code> - 必须大于等于指定版本号。</li>
+<li><code>&lt;version</code> - 必须小于指定版本号。</li>
+<li><code>&lt;=version</code> - 必须小于等于指定版本号。</li>
+<li><code>~version</code> - “大致相当的版本号”，只能匹配到修订号大于指定版本号的修订号，但主版本号和次版本号必须一致。如<code>~1.1.3</code>，能够匹配到<code>1.1.5</code>、<code>1.1.8</code>，但是不能匹配到<code>1.2.0</code>、 <code>2.0.0</code>、<code>1.1.0</code>。</li>
+<li><code>^version</code> - “兼容版本号”。匹配到的版本号要大于指定版本号，但是主版本号必须一致。如<code>^1.1.3</code>，能够匹配到<code>1.1.5</code>、<code>1.1.8</code>、<code>1.2.0</code>、<code>1.8.5</code>，但是不能匹配到<code>2.0.0</code>、<code>1.1.0</code>。</li>
+<li><code>1.2.x</code> - <code>1.2.0</code>、<code>1.2.1</code>等，但不能是<code>1.3.0</code>。</li>
+<li><code>1.x</code> - <code>1.1.0</code>、<code>1.2.1</code>等，但不能是<code>2.0.0</code>。</li>
+<li><code>http://...</code> - 可下载安装包的 URL。</li>
+<li><code>*</code> - 匹配任何版本。</li>
+<li><code>version1 ~ version2</code> - 相当于<code>&gt;=version1 &lt;=version2</code>。</li>
+<li><code>range1 || range2</code> - 范围 1 或者是范围 2。</li>
+<li><code>tag</code> - 指定包的发布标签。如<code>docz@latest</code>。</li>
+<li><code>path</code> - 指定本地路径。</li>
+</ul>
+<p>例子：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"foo"</span>: <span class="hljs-string">"1.0.0 - 2.9999.9999"</span>,
+    <span class="hljs-attr">"bar"</span>: <span class="hljs-string">"&gt;=1.0.2 &lt;2.1.2"</span>,
+    <span class="hljs-attr">"baz"</span>: <span class="hljs-string">"&gt;1.0.2 &lt;=2.3.4"</span>,
+    <span class="hljs-attr">"boo"</span>: <span class="hljs-string">"2.0.1"</span>,
+    <span class="hljs-attr">"qux"</span>: <span class="hljs-string">"&lt;1.0.0 || &gt;=2.3.1 &lt;2.4.5 || &gt;=2.5.2 &lt;3.0.0"</span>,
+    <span class="hljs-attr">"asd"</span>: <span class="hljs-string">"http://asdf.com/asdf.tar.gz"</span>,
+    <span class="hljs-attr">"til"</span>: <span class="hljs-string">"~1.2"</span>,
+    <span class="hljs-attr">"elf"</span>: <span class="hljs-string">"~1.2.3"</span>,
+    <span class="hljs-attr">"two"</span>: <span class="hljs-string">"2.x"</span>,
+    <span class="hljs-attr">"thr"</span>: <span class="hljs-string">"3.3.x"</span>,
+    <span class="hljs-attr">"lat"</span>: <span class="hljs-string">"latest"</span>,
+    <span class="hljs-attr">"dyl"</span>: <span class="hljs-string">"file:../dyl"</span>
+  }
+}
+</code></pre>
+<p>我们可以通过下面的命令行添加依赖：</p>
+<pre><code class="hljs css language-shell">yarn add react
+</code></pre>
+<p>或者</p>
+<pre><code class="hljs css language-shell">npm i --save react
+</code></pre>
+<p>在安装时，也可以指定版本号范围：</p>
+<pre><code class="hljs css language-shell">yarn add react@16.8.6
+</code></pre>
+<p>我们也可以直接在<code>package.json</code>手动添加依赖关系，然后通过<code>yarn install</code>或者<code>npm install</code>安装依赖。</p>
+<p>如果我们的库需要发布给其他人用，推荐手动维护依赖关系。</p>
+<h2><a class="anchor" aria-hidden="true" id="devdependencies"></a><a href="#devdependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>devDependencies</code></h2>
+<p>如果有人计划在他们的程序中下载并使用你的模块，那么他们可能不希望下载你的模块用到的构建工具、测试工具、文档工具、代码检测工具等依赖。</p>
+<p>这种情况，你的模块最好将使用到的工具依赖定义在<code>package.json</code>的<code>devDependencies</code>中。</p>
+<p>例子：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"prettier"</span>: <span class="hljs-string">"^1.17.1"</span>,
+    <span class="hljs-attr">"eslint"</span>: <span class="hljs-string">"^5.16.0"</span>,
+    <span class="hljs-attr">"jest"</span>: <span class="hljs-string">"^24.8.0"</span>
+  }
+}
+</code></pre>
+<p><code>devDependencies</code>的语法与<code>dependencies</code>一致。</p>
+<h2><a class="anchor" aria-hidden="true" id="peerdependencies"></a><a href="#peerdependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>peerDependencies</code></h2>
+<p>在插件开发的场景下，你的插件需要某些依赖的支持，但是你又没必要去安装，因为插件的宿主会去安装这些依赖，你就可以用<code>peerDependencies</code>去声明一下需要依赖的插件和版本，如果出问题 npm 就会有警告来提醒使用者去解决版本冲突问题。</p>
+<p>也就是说<code>peerDependencies</code>是用来定义使用你的模块的应用程序必须自己安装的依赖，而且这些依赖需要符合<code>peerDependencies</code>中定义的版本规则，否则会发出警告。</p>
+<p>比如，我们有一个 React 组件模块，它就没必要安装<code>react</code>依赖，但是使用 React 组件库的项目必须安装<code>react</code>才能将项目运行起来。</p>
+<p>my-react-lib:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-react-lib"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.1.0"</span>,
+  <span class="hljs-attr">"peerDependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"&gt;16.8.0"</span>
+  }
+}
+</code></pre>
+<p>my-react-app:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-react-app"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"my-react-lib"</span>: <span class="hljs-string">"^1.1.0"</span>,
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.8.6"</span>,
+    <span class="hljs-attr">"react-dom"</span>: <span class="hljs-string">"^16.8.6"</span>
+  }
+}
+</code></pre>
+<p>为什么需要<code>peerDependencies</code>呢？不能直接使用<code>dependencies</code>么？</p>
+<p>首先，我们看一个情况：还是拿 React 组件库举例：</p>
+<p>my-react-lib1:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-react-lib1"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.1.0"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.0.0"</span>
+  }
+}
+</code></pre>
+<p>my-react-lib2:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-react-lib2"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.8.0"</span>
+  }
+}
+</code></pre>
+<p>然后我们在 my-react-app 中先添加<code>my-react-lib1</code>，而且此刻最新的 react 版本是<code>16.4.0</code>：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-react-app"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.4.0"</span>,
+    <span class="hljs-attr">"my-react-lib1"</span>: <span class="hljs-string">"^1.1.0"</span>
+  }
+}
+</code></pre>
+<p>过了一段时间后，再添加<code>my-react-lib2</code>，此刻最新的 react 版本是<code>16.8.6</code>：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-react-app"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.4.0"</span>,
+    <span class="hljs-attr">"my-react-lib1"</span>: <span class="hljs-string">"^1.1.0"</span>,
+    <span class="hljs-attr">"my-react-lib2"</span>: <span class="hljs-string">"^1.0.0"</span>
+  }
+}
+</code></pre>
+<p>如果你用的是<code>yarn.lock</code>，搜索<code>react@16</code>，你会发现它很有可能有两处，类似如下：</p>
+<pre><code class="hljs">react@^16.4.0:
+  version <span class="hljs-string">"16.4.0"</span>
+  resolved <span class="hljs-string">"https://registry.yarnpkg.com/react/-/react-16.4.0.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"</span>
+  integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/<span class="hljs-attribute">ewzgsd5fxKXw</span>==
+  dependencies:
+    loose-envify <span class="hljs-string">"^1.1.0"</span>
+    object-assign <span class="hljs-string">"^4.1.1"</span>
+    prop-types <span class="hljs-string">"^15.6.2"</span>
+   <span class="hljs-built_in"> scheduler </span><span class="hljs-string">"^0.13.6"</span>
+
+react@^16.8.0:
+  version <span class="hljs-string">"16.8.6"</span>
+  resolved <span class="hljs-string">"https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"</span>
+  integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/<span class="hljs-attribute">ewzgsd5fxKXw</span>==
+  dependencies:
+    loose-envify <span class="hljs-string">"^1.1.0"</span>
+    object-assign <span class="hljs-string">"^4.1.1"</span>
+    prop-types <span class="hljs-string">"^15.6.2"</span>
+   <span class="hljs-built_in"> scheduler </span><span class="hljs-string">"^0.13.6"</span>
+</code></pre>
+<p>（注明：以上例子可能不太容易复现，或者不太对，这是我根据以往工作中遇到的类似情况整理的。）</p>
+<p>这种情况，我们可以手动调整一下<code>yarn.lock</code>，然后重新安装一下，或者调整一下<code>dependencies.react</code>版本号。</p>
+<p>我们在实际项目中就遇到过一次因错误使用依赖关系，导致项目中存在多个版本的<code>styled-components</code>，程序出现莫名其妙的错误。虽然 npm、yarn 已经在不停地改善依赖管理，上面列举的情况也许不会再存在，但是我们还是应遵循约定，对于类似插件的库，将符合条件的依赖放在<code>peerDependencies</code>中定义。</p>
+<h2><a class="anchor" aria-hidden="true" id="参考资料"></a><a href="#参考资料" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考资料</h2>
+<ul>
+<li><a href="https://docs.npmjs.com/files/package.json">npm package.json</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-2 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/package-manage"><span class="arrow-prev">← </span><span>包管理工具：npm、npx和yarn</span></a><a class="docs-next button" href="/sinoui-guide/docs/optimized-for-change"><span>应变而优</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#摘要">摘要</a></li><li><a href="#项目版本号">项目版本号</a></li><li><a href="#dependencies"><code>dependencies</code></a></li><li><a href="#devdependencies"><code>devDependencies</code></a></li><li><a href="#peerdependencies"><code>peerDependencies</code></a></li><li><a href="#参考资料">参考资料</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
