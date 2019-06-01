@@ -30,7 +30,7 @@
       "docusaurus-circuleci",
       "package-manage"
     ],
-    "方法论": ["optimized-for-change", "tdd-introduction"],
+    "方法论": ["optimized-for-change", "tdd-introduction", "semver"],
     "语言篇": [
       "default-import-export-compatibility",
       "ts-function-overloading",
