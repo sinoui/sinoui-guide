@@ -68,7 +68,7 @@
 <h2><a class="anchor" aria-hidden="true" id="准备"></a><a href="#准备" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>准备</h2>
 <p>通过<a href="https://github.com/sinoui/ts-lib-scripts">ts-lib-scripts</a>创建一个 TypeScript 项目，然后添加以下依赖：</p>
 <pre><code class="hljs css language-shell">yarn add @types/react @types/react-dom react react-dom @sinoui/http @sinoui/use-data-api
-yarn add react-testinng-library jest-dom --dev
+yarn add @testing-library/react jest-dom --dev
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="例子一枚"></a><a href="#例子一枚" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子一枚</h2>
 <p>一个来自 React 官网的例子：计数器组件：</p>
@@ -127,7 +127,7 @@ it(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-f
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="使用-react-testing-library-测试"></a><a href="#使用-react-testing-library-测试" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用'react-testing-library'测试</h3>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { render, fireEvent, cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<span class="hljs-keyword">import</span> { render, fireEvent, cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react'</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">'jest-dom/extend-expect'</span>;
 <span class="hljs-keyword">import</span> Counter <span class="hljs-keyword">from</span> <span class="hljs-string">'./Counter'</span>;
 
@@ -173,7 +173,7 @@ it(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-f
 </code></pre>
 <p>react-testing-library:</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react'</span>;
 <span class="hljs-keyword">import</span> Counter <span class="hljs-keyword">from</span> <span class="hljs-string">'./Counter'</span>;
 
 test(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
@@ -189,7 +189,7 @@ test(<span class="hljs-string">'渲染并更新计数'</span>, <span class="hljs
 });
 </code></pre>
 <p>react-testing-library:</p>
-<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react'</span>;
 
 afterEach(cleanup);
 </code></pre>
@@ -276,7 +276,7 @@ expect(<span class="hljs-keyword">label</span><span class="bash">).toHaveTextCon
 </code></pre>
 <p>对应的单元测试：</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { render, fireEvent, cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<span class="hljs-keyword">import</span> { render, fireEvent, cleanup } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react'</span>;
 <span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
 <span class="hljs-keyword">import</span> UserList <span class="hljs-keyword">from</span> <span class="hljs-string">'./UserList'</span>;
 
@@ -314,7 +314,7 @@ test(<span class="hljs-string">'初始加载并渲染数据'</span>, <span class
 <h3><a class="anchor" aria-hidden="true" id="等待元素出现"></a><a href="#等待元素出现" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>等待元素出现</h3>
 <p>如果需要测试加载数据完成后组件新渲染出来的 DOM 元素，则需要用到这一小节用到的知识点：</p>
 <p>首先介绍一个基础函数——<code>waitForElement</code>：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> waitForElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-testing-library'</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> waitForElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@testing-library/react'</span><span class="token punctuation">;</span>
 
 <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'等待元素出现'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">{</span> getAllByText <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">UserList</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -326,7 +326,7 @@ test(<span class="hljs-string">'初始加载并渲染数据'</span>, <span class
 <p>首先掌握一个知识点：调用<code>getAllByText()</code>方法，如果没找到符合条件的 DOM 元素，会抛出异常，找到则返回符合条件的所有 DOM 元素。</p>
 <p>调用<code>waitForElement(callback)</code>，它首先会调用一次<code>callback</code>，如果捕捉到<code>callback</code>的异常，则进入等待环节；否则直接将<code>callback</code>的执行结果返回。在等待环节，<code>waitForElement</code>会使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver">Mutation Observer</a>开启 DOM 变更监听，只要 DOM 元素发生变化，则再次调用<code>callback</code>，尝试获取到元素。除非超时，否则会一直处于等待环节。</p>
 <p>react-testing-library 提供了更便捷的<code>find</code>系列方法，如<code>getAllByText()</code>有对应的<code>findAllByText()</code>，用法如下：</p>
-<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { waitForElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-testing-library'</span>;
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { waitForElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react'</span>;
 
 it(<span class="hljs-string">'等待元素出现'</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-keyword">const</span> { findAllByText } = render(&lt;UserList /&gt;);
@@ -372,4 +372,4 @@ it(<span class="hljs-string">'等待元素出现'</span>, <span class="hljs-keyw
 <p>之前我们在内部使用<a href="https://github.com/airbnb/enzyme">Enzyme</a>对组件进行单元测试，很容易让测试代码陷入到组件的内部实现细节中去，这样的测试代码很脆弱，只要我们修改一点组件代码，就有可能需要同步修改测试代码。到后期，我们发现很难坚持这样的 React 组件单元测试。</p>
 <p>可能你觉得今天介绍的不再是单元测试，更像集成测试。但不管怎样，找到适合我们自身的测试之道，并对我们自身的工作流程有益处，才是我们需要考虑的。</p>
 <p>让我们站在使用者的角度，一起用<a href="https://github.com/testing-library/react-testing-library">react-testing-library</a>来测试 React 组件吧。</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-31 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/jest-introduction"><span class="arrow-prev">← </span><span>基于 Jest 的单元测试</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#指导原则">指导原则</a></li><li><a href="#基本方法">基本方法</a></li><li><a href="#准备">准备</a></li><li><a href="#例子一枚">例子一枚</a><ul class="toc-headings"><li><a href="#使用-react-dom-test-utils-测试">使用'react-dom/test-utils'测试</a></li><li><a href="#使用-react-testing-library-测试">使用'react-testing-library'测试</a></li><li><a href="#分解一下">分解一下</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#更复杂一点的例子">更复杂一点的例子</a><ul class="toc-headings"><li><a href="#等待元素出现">等待元素出现</a></li><li><a href="#判断-dom-节点是否存在">判断 DOM 节点是否存在</a></li><li><a href="#小结-1">小结</a></li></ul></li><li><a href="#结束语">结束语</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-2 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/jest-introduction"><span class="arrow-prev">← </span><span>基于 Jest 的单元测试</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#指导原则">指导原则</a></li><li><a href="#基本方法">基本方法</a></li><li><a href="#准备">准备</a></li><li><a href="#例子一枚">例子一枚</a><ul class="toc-headings"><li><a href="#使用-react-dom-test-utils-测试">使用'react-dom/test-utils'测试</a></li><li><a href="#使用-react-testing-library-测试">使用'react-testing-library'测试</a></li><li><a href="#分解一下">分解一下</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#更复杂一点的例子">更复杂一点的例子</a><ul class="toc-headings"><li><a href="#等待元素出现">等待元素出现</a></li><li><a href="#判断-dom-节点是否存在">判断 DOM 节点是否存在</a></li><li><a href="#小结-1">小结</a></li></ul></li><li><a href="#结束语">结束语</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
