@@ -145,8 +145,6 @@ localeCompare() 用本地特定顺序比较两个字符串
 
 - repeat(num)
   返回指定重复次数的由元素组成的字符串对象。
-- padStart() 、 padEnd()
-
   ES2017 引入了字符串补全长度的功能。如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全。
   padStart 和 padEnd 一共接受两个参数，第一个参数用来指定字符串的最小长度，第二个参数是用来补全的字符串。
   如果原字符串的长度，等于或大于指定的最小长度，则返回原字符串。
@@ -715,6 +713,121 @@ class Point {
 `Point`类除了构造方法，还定义了一个`toString`方法。注意，定义“类”的方法的时候，前面不需要加上`function`这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。
 
 ### 构造方法（constructor）
+
+`constructor`方法是类的默认方法，通过`new`命令生成对象实例时，自动调用该方法。一个类必须有`constructor`方法，如果没有显式定义，一个空的`constructor`方法会被默认添加。
+
+```ts
+class Point {}
+
+// 等同于
+class Point {
+  constructor() {}
+}
+```
+
+上面代码中，定义了一个空的类`Point`，JavaScript 引擎会自动为它添加一个空的`constructor`方法。
+
+`constructor`方法默认返回实例对象（即`this`），完全可以指定返回另外一个对象。
+
+```typescript
+class Foo {
+  constructor() {
+    return Object.create(null);
+  }
+}
+
+new Foo() instanceof Foo;
+// false
+```
+
+### 方法
+
+```typescript
+class Point {
+  constructor() {}
+
+  // 公有方法，可在class之外调用
+  public methodA() {}
+  // 私有方法，只能在类的内部访问，外部不能访问
+  private methodB() {}
+}
+```
+
+### 属性
+
+```typescript
+public userName:string = "张三";
+private isLogged:boolean; // 需要在构造函数中初始化
+private isLogged?:boolean; // 不是必须在构造函数中初始化
+private methodC = ()=> {}  // 属性方法
+```
+
+### 创建
+
+```typescript
+const classA = new Point();
+```
+
+### 继承
+
+Class 可以通过`extends`关键字实现继承。
+
+```typescript
+class Point {}
+
+class ColorPoint extends Point {}
+```
+
+上面代码定义了一个`ColorPoint`类，该类通过`extends`关键字，继承了`Point`类的所有属性和方法。但是由于没有部署任何代码，所以这两个类完全一样，等于复制了一个`Point`类。下面，我们在`ColorPoint`内部加上代码。
+
+```typescript
+class ColorPoint extends Point {
+  constructor(x, y, color) {
+    super(x, y); // 调用父类的constructor(x, y)
+    this.color = color;
+  }
+
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的toString()
+  }
+}
+```
+
+上面代码中，`constructor`方法和`toString`方法之中，都出现了`super`关键字，它在这里表示父类的构造函数，用来新建父类的`this`对象。
+
+子类必须在`constructor`方法中调用`super`方法，否则新建实例时会报错。这是因为子类自己的`this`对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，加上子类自己的实例属性和方法。如果不调用`super`方法，子类就得不到`this`对象。
+
+```typescript
+class Point {
+  /* ... */
+}
+
+class ColorPoint extends Point {
+  constructor() {}
+}
+
+let cp = new ColorPoint(); // ReferenceError
+```
+
+上面代码中，`ColorPoint`继承了父类`Point`，但是它的构造函数没有调用`super`方法，导致新建实例时报错。
+
+**注意：**在子类的构造函数中，只有调用`super`之后，才可以使用`this`关键字，否则会报错。这是因为子类实例的构建，基于父类实例，只有`super`方法才能调用父类实例。
+
+父类的静态方法，也会被子类继承。
+
+```typescript
+class A {
+  static hello() {
+    console.log('hello world');
+  }
+}
+
+class B extends A {}
+
+B.hello(); // hello world
+```
+
+上面代码中，`hello()`是`A`类的静态方法，`B`继承`A`，也继承了`A`的静态方法。
 
 ## 模块
 
