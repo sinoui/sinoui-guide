@@ -24,7 +24,7 @@ sidebar_label: 测试React组件
 
 ```shell
 yarn add @types/react @types/react-dom react react-dom @sinoui/http @sinoui/use-data-api
-yarn add react-testinng-library jest-dom --dev
+yarn add @testing-library/react jest-dom --dev
 ```
 
 ## 例子一枚
@@ -93,7 +93,7 @@ it('渲染并更新计数', () => {
 
 ```tsx
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import 'jest-dom/extend-expect';
 import Counter from './Counter';
 
@@ -149,7 +149,7 @@ react-testing-library:
 
 ```tsx
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import Counter from './Counter';
 
 test('渲染并更新计数', () => {
@@ -173,7 +173,7 @@ afterEach(() => {
 react-testing-library:
 
 ```tsx
-import { cleanup } from 'react-testing-library';
+import { cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 ```
@@ -303,7 +303,7 @@ export default UserList;
 
 ```tsx
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import http from '@sinoui/http';
 import UserList from './UserList';
 
@@ -346,7 +346,7 @@ test('初始加载并渲染数据', async () => {
 首先介绍一个基础函数——`waitForElement`：
 
 ```jsx
-import { waitForElement } from 'react-testing-library';
+import { waitForElement } from '@testing-library/react';
 
 it('等待元素出现', async () => {
   const { getAllByText } = render(<UserList />);
@@ -364,7 +364,7 @@ it('等待元素出现', async () => {
 react-testing-library 提供了更便捷的`find`系列方法，如`getAllByText()`有对应的`findAllByText()`，用法如下：
 
 ```tsx
-import { waitForElement } from 'react-testing-library';
+import { waitForElement } from '@testing-library/react';
 
 it('等待元素出现', async () => {
   const { findAllByText } = render(<UserList />);

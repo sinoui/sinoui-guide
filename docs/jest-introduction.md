@@ -381,7 +381,7 @@ describe('Scoped / Nested block', () => {
 // 1 - afterAll
 ```
 
-### desribe 和 test 块的执行顺序
+### describe 和 test 块的执行顺序
 
 Jest 会在执行具体的 `test` 块之前执行所有的 `describe` 处理器部分。这也是为什么在 `before*` 和 `after*` 中做前后期准备，而不是在 `describe` 中的原因。一旦 `describe` 部分完成执行，随机顺序执行所有的测试。
 
