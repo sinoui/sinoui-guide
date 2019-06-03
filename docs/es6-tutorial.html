@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ES6简明教程 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;TODO: 敬请期待。&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ES6简明教程 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;TODO: 敬请期待。&lt;/p&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ES6简明教程 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;let-vs-const&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#let-vs-const&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;let vs const&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ES6简明教程 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;let-vs-const&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#let-vs-const&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;let vs const&lt;/h2&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -56,5 +56,657 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ES6简明教程</h1></header><article><div><span><p>TODO: 敬请期待。</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-10 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-fetch-data"><span class="arrow-prev">← </span><span>加载数据</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-tutorial"><span class="function-name-prevnext">TypeScript简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ES6简明教程</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="let-vs-const"></a><a href="#let-vs-const" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>let vs const</h2>
+<p><code>const</code>声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
+<p><code>let</code>命令，用来声明变量。它的用法类似于<code>var</code>，但是所声明的变量，只在<code>let</code>命令所在的代码块内有效。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> userName = <span class="hljs-string">'jacking'</span>;
+
+<span class="hljs-built_in">console</span>.log(userName); <span class="hljs-comment">// 输出jacking</span>
+
+userName = <span class="hljs-string">'ocean'</span>;
+
+<span class="hljs-built_in">console</span>.log(userName); <span class="hljs-comment">// 输出ocean</span>
+
+<span class="hljs-keyword">const</span> width = <span class="hljs-number">100</span>;
+
+<span class="hljs-built_in">console</span>.log(width); <span class="hljs-comment">// 输出100</span>
+
+width = <span class="hljs-number">120</span>; <span class="hljs-comment">// 报错，不能执行</span>
+
+{
+  <span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span>;
+  <span class="hljs-keyword">const</span> b = <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// 报错： a is not defined.</span>
+<span class="hljs-built_in">console</span>.log(b); <span class="hljs-comment">// 1</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="字符串"></a><a href="#字符串" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符串</h2>
+<h3><a class="anchor" aria-hidden="true" id="创建"></a><a href="#创建" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建</h3>
+<p>创建一个字符串，将一组字符串用引号包起来，将其赋值给一个字符串变量</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> string = <span class="hljs-string">'Hello, JavaScript!'</span>;
+
+<span class="hljs-keyword">const</span> name = <span class="hljs-string">'JavaScript'</span>;
+<span class="hljs-keyword">const</span> string = <span class="hljs-string">`Hello,<span class="hljs-subst">${name}</span>!`</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="模板字符串"></a><a href="#模板字符串" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模板字符串</h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> firstName = <span class="hljs-string">'Jacking'</span>;
+<span class="hljs-keyword">const</span> secondName = <span class="hljs-string">'Liu'</span>;
+
+<span class="hljs-keyword">const</span> userName = <span class="hljs-string">`My name is: <span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${secondName}</span>`</span>; <span class="hljs-comment">//My name is: Jacking Liu</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="字符串操作"></a><a href="#字符串操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符串操作</h3>
+<h4><a class="anchor" aria-hidden="true" id="字符串查找方法"></a><a href="#字符串查找方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符串查找方法</h4>
+<ul>
+<li><p>charAt()函数
+返回指定位置的字符</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Hello world!'</span>;
+<span class="hljs-built_in">document</span>.write(str.charAt(<span class="hljs-number">1</span>)); <span class="hljs-comment">// 'e',如果参数取值不在0到str.length-1之间，则会返回空字符串</span>
+</code></pre></li>
+<li><p>charCodeAt()函数
+返回在指定的位置的字符的 Unicode 编码。</p></li>
+</ul>
+<ul>
+<li><p>fromCharCode()函数
+接受指定的 Unicode 值，然后返回一个字符串;</p>
+<pre><code class="hljs css language-ts"><span class="hljs-built_in">document</span>.write(<span class="hljs-built_in">String</span>.fromCharCode(<span class="hljs-number">72</span>, <span class="hljs-number">69</span>, <span class="hljs-number">76</span>, <span class="hljs-number">76</span>, <span class="hljs-number">79</span>)); <span class="hljs-comment">// HELLO</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="位置方法"></a><a href="#位置方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>位置方法</h4>
+<ul>
+<li>indexOf() 函数
+检索指定字符在字符串中首次出现的位置</li>
+<li>lastIndexOf() 函数
+检索指定字符在字符串中最后出现的位置
+indexOf() 和 lastIndexOf()函数存在共性，功能都是查找指定字符在字符串中的下标，参数要求相同，指定字符在字符串中时返回首次出现的下标，否则返回-1。
+除此之外还有：</li>
+<li>includes()：返回布尔值，表示是否找到了参数字符串。</li>
+<li>startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。</li>
+<li>endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="匹配方法"></a><a href="#匹配方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>匹配方法</h4>
+<ul>
+<li><p>match()函数
+找到一个或多个正则表达式的匹配</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'1 plus 2 equal 3'</span>;
+<span class="hljs-built_in">document</span>.write(str.match(<span class="hljs-regexp">/\d+/g</span>)); <span class="hljs-comment">// 1,2,3</span>
+</code></pre></li>
+<li><p>search()函数
+检索字符串中指定的值或检索与正则表达式相匹配的字符串，返回第一个与正则表达式匹配的子字符串起始位置。</p></li>
+<li><p>replace() 函数
+用来查找某字符串并将其替换为另一个字符串</p></li>
+<li><p>split() 函数
+根据指定分隔符将字符串分割成多个子字符串，并返回数组</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="拼接方法"></a><a href="#拼接方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>拼接方法</h4>
+<p>​ concat()函数</p>
+<p>​ 用于连接两个或多个字符串或两个和多个数组</p>
+<h4><a class="anchor" aria-hidden="true" id="截取方法"></a><a href="#截取方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>截取方法</h4>
+<ul>
+<li>slice()函数
+根据下标截取字符串，返回新的字符串</li>
+<li>substring() 函数
+提取两个下标之间的字符</li>
+<li>substr()
+提取从开始下标的指定数目的字符</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="空格处理"></a><a href="#空格处理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>空格处理</h4>
+<ul>
+<li>清除字符串前置和后缀空格方法 trim()</li>
+<li>清除字符左边空格方法 trimLeft()</li>
+<li>清除字符右边空格方法 trimRight()</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="比较方法"></a><a href="#比较方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>比较方法</h4>
+<p>localeCompare() 用本地特定顺序比较两个字符串</p>
+<p>转换方法</p>
+<ul>
+<li>toUpperCase() 和 toLocaleCase() 函数
+把小写字符转化为大写</li>
+<li>toLowerCase() 和 toLocaleLowerCase()函数
+把大写字符转换为小写字符</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="扩展方法"></a><a href="#扩展方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>扩展方法</h4>
+<ul>
+<li><p>repeat(num)
+返回指定重复次数的由元素组成的字符串对象。</p></li>
+<li><p>padStart() 、 padEnd()</p>
+<p>ES2017 引入了字符串补全长度的功能。如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全。
+padStart 和 padEnd 一共接受两个参数，第一个参数用来指定字符串的最小长度，第二个参数是用来补全的字符串。
+如果原字符串的长度，等于或大于指定的最小长度，则返回原字符串。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-string">'x'</span>.padStart(<span class="hljs-number">4</span>, <span class="hljs-string">'ab'</span>); <span class="hljs-comment">// 'abax'</span>
+
+<span class="hljs-string">'x'</span>.padEnd(<span class="hljs-number">5</span>, <span class="hljs-string">'ab'</span>); <span class="hljs-comment">// 'xabab'</span>
+<span class="hljs-string">'xxx'</span>.padStart(<span class="hljs-number">2</span>, <span class="hljs-string">'ab'</span>); <span class="hljs-comment">// 'xxx'</span>
+<span class="hljs-string">'xxx'</span>.padEnd(<span class="hljs-number">2</span>, <span class="hljs-string">'ab'</span>); <span class="hljs-comment">// 'xxx'</span>
+</code></pre>
+<p>如果用来补全的字符串与原字符串，两者的长度之和超过了指定的最小长度，则会截去超出位数的补全字符串。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-string">'abc'</span>.padStart(<span class="hljs-number">10</span>, <span class="hljs-string">'0123456789'</span>);
+<span class="hljs-comment">// '0123456abc'</span>
+</code></pre>
+<p>如果省略第二个参数，默认使用空格补全长度。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-string">'x'</span>.padStart(<span class="hljs-number">4</span>); <span class="hljs-comment">// '   x'</span>
+<span class="hljs-string">'x'</span>.padEnd(<span class="hljs-number">4</span>); <span class="hljs-comment">// 'x   '</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="数组"></a><a href="#数组" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组</h2>
+<blockquote>
+<p>数组对象用于在单个变量中存储多个值。</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="数组创建"></a><a href="#数组创建" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组创建</h3>
+<ul>
+<li><p>常规方法</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> myCarr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+myCarr[<span class="hljs-number">0</span>] = <span class="hljs-string">'cat'</span>;
+myCarr[<span class="hljs-number">1</span>] = <span class="hljs-string">'dog'</span>;
+myCarr[<span class="hljs-number">3</span>] = <span class="hljs-string">'turkey'</span>;
+</code></pre></li>
+<li><p>简洁方式</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> myPets = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-string">'cat'</span>, <span class="hljs-string">'dog'</span>, <span class="hljs-string">'turkey'</span>);
+<span class="hljs-keyword">const</span> myPets = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">20</span>); <span class="hljs-comment">//创建一个长度为20的数组</span>
+</code></pre></li>
+<li><p>隐式创建</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> myPets = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'dog'</span>, <span class="hljs-string">'turkey'</span>];
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="数组访问"></a><a href="#数组访问" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组访问</h3>
+<p>通过指定数组名以及索引号码，可以访问某个特定的元素。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> pet = myPets[<span class="hljs-number">0</span>]; <span class="hljs-comment">//获取数组的第一个元素值</span>
+myPets[<span class="hljs-number">1</span>] = <span class="hljs-string">'monkey'</span>; <span class="hljs-comment">//给数组的第二个元素重新赋值</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="数组解构"></a><a href="#数组解构" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组解构</h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> [first, ...rest] = numbers; <span class="hljs-comment">// first = 1; rest=[2,3];</span>
+<span class="hljs-keyword">const</span> [, second] = numbers; <span class="hljs-comment">// second = 2;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="数组操作方法"></a><a href="#数组操作方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组操作方法</h3>
+<h4><a class="anchor" aria-hidden="true" id="数组合并-向数组中添加元素"></a><a href="#数组合并-向数组中添加元素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组合并/向数组中添加元素</h4>
+<ul>
+<li><p><code>concat()</code> 连接两个或更多数组，并返回结果。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
+array.concat(arr1); <span class="hljs-comment">// [1, 2, 3,"a","b", "c"]</span>
+</code></pre></li>
+<li><p><code>push()</code> 向数组末尾添加一个或更多元素，并返回新的长度</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+array.push(<span class="hljs-number">7</span>, <span class="hljs-number">8</span>); <span class="hljs-comment">// 5</span>
+<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// [1,2,3,7,8]</span>
+</code></pre></li>
+<li><p><code>unshift()</code> 向数组的开头添加一个或更多元素，并返回新的长度</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+array.unshift(<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>); <span class="hljs-comment">// 5</span>
+</code></pre></li>
+<li><p><code>splice()</code> 从数组中添加或删除元素</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Mango'</span>];
+fruits.splice(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-string">'Lemon'</span>, <span class="hljs-string">'Kiwi'</span>); <span class="hljs-comment">// 2规定从何处添加/删除，0规定应该删除多少元素，如果不设置，则删除从index开始到原数组结尾的所有元素</span>
+<span class="hljs-built_in">console</span>.log(fruits); <span class="hljs-comment">//["Banana", "Orange","Lemon","Kiwi","Apple", "Mango"]</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="数组元素的删除"></a><a href="#数组元素的删除" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组元素的删除</h4>
+<ul>
+<li><p><code>pop()</code> 删除数组的最后一个元素并返回删除的元素</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+array.pop(); <span class="hljs-comment">// 3</span>
+</code></pre></li>
+<li><p><code>shift()</code> 删除数组的第一个元素并返回该元素的值,数组中元素自动前移</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Mango'</span>];
+fruits.shift(); <span class="hljs-comment">// Banana</span>
+<span class="hljs-built_in">console</span>.log(fruits); <span class="hljs-comment">// ["Orange", "Apple","Mango"]</span>
+</code></pre></li>
+<li><p><code>slice(start, end)</code> 截取数组的一部分并返回一个新的数组(包含从 start 到 end(不包括该元素))</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Mango'</span>];
+fruits.slice(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// ["Orange", "Apple"]</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="查找"></a><a href="#查找" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>查找</h4>
+<ul>
+<li><p><code>find()</code> 返回符合传入测试（函数）条件的数组元素</p>
+<p>该方法为数组中的每个元素都调用一次函数执行：</p>
+<ul>
+<li>当数组中的元素满足测试条件时返回<code>true</code>，find()返回符合条件的元素，之后的值不会再调用执行函数</li>
+<li>如果没有符合条件的元素，则返回<code>undefined</code></li>
+<li>对于空数组，函数不会执行</li>
+<li>该方法不会改变数组的原始值</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> ages = [<span class="hljs-number">32</span>, <span class="hljs-number">33</span>, <span class="hljs-number">16</span>, <span class="hljs-number">40</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAdult</span>(<span class="hljs-params">age</span>) </span>{
+  <span class="hljs-keyword">return</span> age &gt;= <span class="hljs-number">18</span>;
+}
+
+ages.find(checkAdult); <span class="hljs-comment">// 32</span>
+</code></pre></li>
+<li><p><code>findIndex()</code> 方法返回传入一个测试条件（函数）符合条件的数组第一个元素位置</p>
+<p>该方法为数组中的每个元素都调用一次函数执行：</p>
+<ul>
+<li>当数组中的元素在测试条件返回<code>true</code>时，该方法返回符合条件的元素的索引位置，之后的值不会再调用执行函数。</li>
+<li>如果没有符合条件的元素则返回-1</li>
+<li>对于空数组，函数不会执行</li>
+<li>该方法不会改变数组的原始值</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> ages = [<span class="hljs-number">32</span>, <span class="hljs-number">33</span>, <span class="hljs-number">16</span>, <span class="hljs-number">40</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAdult</span>(<span class="hljs-params">age</span>) </span>{
+  <span class="hljs-keyword">return</span> age &lt;= <span class="hljs-number">18</span>;
+}
+
+ages.findIndex(checkAdult); <span class="hljs-comment">// 2</span>
+</code></pre></li>
+<li><p><code>indexOf()</code> 方法可返回某个指定的字符串值在字符串中首次出现的位置。</p>
+<p><code>array.indexOf(item,start)</code>:</p>
+<ul>
+<li><code>item</code> 必须。查找的元素</li>
+<li><code>start</code> 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到<code>stringObject.length - 1</code>。如省略该参数，则将从字符串的首字符开始检索。</li>
+</ul></li>
+<li><p><code>includes()</code>方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的<code>includes</code>方法类似</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="遍历"></a><a href="#遍历" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>遍历</h4>
+<ul>
+<li><p><code>map()</code> 通过指定函数处理数组的每个元素，并返回处理之后的数组</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+<span class="hljs-keyword">const</span> newNums = nums.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> num * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2,4,6,8]</span>
+</code></pre></li>
+<li><p><code>forEach()</code> 方法用于调用数组的每个元素，并将元素传递给回调函数</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+<span class="hljs-keyword">let</span> result = <span class="hljs-number">0</span>;
+nums.forEach(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> (result += num)); <span class="hljs-comment">// 10</span>
+</code></pre></li>
+<li><p><code>filter()</code> 创建一个新数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。不会对空数组进行检测，不会改变原始数组。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> ages = [<span class="hljs-number">32</span>, <span class="hljs-number">33</span>, <span class="hljs-number">16</span>, <span class="hljs-number">40</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAdult</span>(<span class="hljs-params">age</span>) </span>{
+  <span class="hljs-keyword">return</span> age &gt;= <span class="hljs-number">18</span>;
+}
+
+ages.filter(checkAdult); <span class="hljs-comment">// [32,33,40]</span>
+</code></pre></li>
+<li><p><code>reduce()</code> 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+<span class="hljs-keyword">const</span> sum = nums.reduce(<span class="hljs-function">(<span class="hljs-params">acc, num</span>) =&gt;</span> acc + num, <span class="hljs-number">0</span>); <span class="hljs-comment">//10</span>
+</code></pre></li>
+<li><p><code>reduceRight()</code> 方法的功能和 <a href="http://www.runoob.com/jsref/jsref-reduce.html">reduce()</a> 功能是一样的，不同的是<code>reduceRight()</code> 从数组的末尾向前将数组中的数组项做累加。</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="其它方法"></a><a href="#其它方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>其它方法</h4>
+<ul>
+<li><p><code>every()</code> 用于检测数组所有元素是否都符合指定条件</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> ages = [<span class="hljs-number">32</span>, <span class="hljs-number">33</span>, <span class="hljs-number">16</span>, <span class="hljs-number">40</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAdult</span>(<span class="hljs-params">age</span>) </span>{
+  <span class="hljs-keyword">return</span> age &gt;= <span class="hljs-number">18</span>;
+}
+
+ages.every(checkAdult); <span class="hljs-comment">//false</span>
+</code></pre>
+<ul>
+<li>如果数组中检测到有一个元素不满足，则整个表达式返回<code>false</code>，且剩余的元素不会再进行检测。</li>
+<li>如果所有元素都满足条件，则返回<code>true</code></li>
+<li>every()不会对空数组进行检测，并且不会改变原始数组</li>
+</ul></li>
+<li><p><code>fill()</code> 用于将一个固定值替换数组的元素</p>
+<p>语法：<code>array.fill(value, start, end)</code></p>
+<ul>
+<li><code>value</code> 必需。填充的值</li>
+<li><code>start</code> 可选。开始填充的位置</li>
+<li><code>end</code> 可选。停止填充的位置（默认为 array.length）</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Mango'</span>];
+fruits.fill(<span class="hljs-string">'Runoob'</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// ["Banana", "Orange", "Runoob", "Runoob"]</span>
+</code></pre></li>
+<li><p><code>slice()</code>获取子数组</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-keyword">const</span> newItems = numbers.slice(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// [1,2,3]</span>
+</code></pre></li>
+<li><p><code>join()</code> 把数组的所有元素放入一个字符串</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>];
+
+numbers.join(<span class="hljs-string">','</span>); <span class="hljs-comment">// "1,2,3“</span>
+</code></pre></li>
+<li><p><code>reverse()</code> 反转数组的元素顺序</p></li>
+<li><p><code>some()</code> 检测数组中是否有元素符合指定条件</p></li>
+<li><p><code>sort()</code> 对数组元素进行排序</p></li>
+<li><p><code>toString()</code> 把数组转换为字符串，并返回结果</p></li>
+<li><p><code>valueOf()</code> 返回数组对象的原始值</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="扩展方法-1"></a><a href="#扩展方法-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>扩展方法</h4>
+<ul>
+<li>Array.of 方法用于将一组值，转换为数组</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-built_in">Array</span>.of(<span class="hljs-number">3</span>, <span class="hljs-number">11</span>, <span class="hljs-number">8</span>); <span class="hljs-comment">// [3,11,8]</span>
+<span class="hljs-built_in">Array</span>.of(<span class="hljs-number">3</span>); <span class="hljs-comment">// [3]</span>
+<span class="hljs-built_in">Array</span>.of(<span class="hljs-number">3</span>).length; <span class="hljs-comment">// 1</span>
+</code></pre>
+<blockquote>
+<p>这个方法的主要目的，是弥补数组构造函数 Array()的不足。因为参数个数的不同，会导致 Array()的行为有差异。</p>
+</blockquote>
+<pre><code class="hljs css language-ts"><span class="hljs-built_in">Array</span>(); <span class="hljs-comment">// []</span>
+<span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>); <span class="hljs-comment">// [, , ,]</span>
+<span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>, <span class="hljs-number">11</span>, <span class="hljs-number">8</span>); <span class="hljs-comment">// [3, 11, 8]</span>
+</code></pre>
+<ul>
+<li>数组实例的 copyWithin()
+<blockquote>
+<p>数组实例的 copyWithin 方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</p>
+</blockquote></li>
+</ul>
+<p>Array.prototype.copyWithin(target, start = 0, end = this.length)
+它接受三个参数。</p>
+<p>target（必需）：从该位置开始替换数据。如果为负值，表示倒数。
+start（可选）：从该位置开始读取数据，默认为 0。如果为负值，表示倒数。
+end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。
+这三个参数都应该是数值，如果不是，会自动转为数值。</p>
+<pre><code class="hljs css language-ts">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>].copyWithin(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>);
+<span class="hljs-comment">// [4, 5, 3, 4, 5]</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="对象"></a><a href="#对象" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象</h2>
+<h3><a class="anchor" aria-hidden="true" id="对象创建"></a><a href="#对象创建" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象创建</h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> to = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+<span class="hljs-comment">// 定义对象line</span>
+<span class="hljs-keyword">const</span> line = {
+  <span class="hljs-keyword">from</span>,
+  to,
+  length() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.from.distinct(<span class="hljs-keyword">this</span>.to);
+  },
+};
+
+<span class="hljs-comment">// 调用line对象中的length方法</span>
+line.length(); <span class="hljs-comment">// 1;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="对象合并"></a><a href="#对象合并" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象合并</h3>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> defaultConfig = {
+  width: <span class="hljs-number">100</span>,
+  height: <span class="hljs-number">100</span>,
+};
+
+<span class="hljs-keyword">const</span> config = { ...defaultConfig, height: <span class="hljs-number">150</span> }; <span class="hljs-comment">// {width: 100, height: 150}</span>
+<span class="hljs-keyword">const</span> newConfig = { ...config, count: <span class="hljs-number">2</span> }; <span class="hljs-comment">// {width: 100, height: 150, count: 2}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="对象解构"></a><a href="#对象解构" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象解构</h3>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> config = {
+  width: <span class="hljs-number">100</span>,
+  height: <span class="hljs-number">100</span>,
+  length: <span class="hljs-number">100</span>,
+};
+
+<span class="hljs-keyword">const</span> config2 = {
+  width: <span class="hljs-number">100</span>,
+  height: <span class="hljs-number">100</span>,
+  length: <span class="hljs-number">100</span>,
+  area: <span class="hljs-number">100</span>,
+};
+
+<span class="hljs-keyword">const</span> { width, height, length } = config; <span class="hljs-comment">// width = 100; height = 100; length = 100;</span>
+<span class="hljs-keyword">const</span> size = width * height * length; <span class="hljs-comment">// 1000000</span>
+<span class="hljs-keyword">const</span> { width: newWidth } = config; <span class="hljs-comment">// newWidth = 100;</span>
+<span class="hljs-built_in">console</span>.log(newWidth); <span class="hljs-comment">// 100;</span>
+</code></pre>
+<p>解构变量的默认值：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// 指定参数的默认值</span>
+<span class="hljs-keyword">const</span> { area = <span class="hljs-number">200</span> } = config; <span class="hljs-comment">// area = 200;</span>
+</code></pre>
+<p>相当于：</p>
+<pre><code class="hljs css language-typescript">area = config.area || <span class="hljs-number">200</span>;
+</code></pre>
+<p>嵌套用法：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> config = {
+  width: <span class="hljs-number">100</span>,
+  height: <span class="hljs-number">100</span>,
+  config2: {
+    size: <span class="hljs-number">300</span>,
+  },
+};
+
+<span class="hljs-keyword">const</span> {
+  config2: { size },
+} = config;
+
+<span class="hljs-built_in">console</span>.log(size); <span class="hljs-comment">// 300</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="对象操作"></a><a href="#对象操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象操作</h3>
+<h4><a class="anchor" aria-hidden="true" id="遍历-1"></a><a href="#遍历-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>遍历</h4>
+<ul>
+<li><p><code>Object.keys()</code>返回一个表示给定对象的所有可枚举属性的字符串数组。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> data = { a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">9</span>, d: <span class="hljs-number">4</span>, e: <span class="hljs-number">5</span> };
+
+<span class="hljs-built_in">Object</span>.keys(data); <span class="hljs-comment">// ["a","b","c","d","e"]</span>
+</code></pre></li>
+<li><p><code>Object.values()</code>返回一个包含对象自身的所有可枚举属性值的数组。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> data = { a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">9</span>, d: <span class="hljs-number">4</span>, e: <span class="hljs-number">5</span> };
+
+<span class="hljs-built_in">Object</span>.values(data); <span class="hljs-comment">// [1,2,3,4,5]</span>
+</code></pre></li>
+<li><p><code>Object.entries()</code>返回给定对象自身可枚举属性的键值对数组。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> obj = { foo: <span class="hljs-string">'bar'</span>, baz: <span class="hljs-number">42</span> };
+<span class="hljs-built_in">Object</span>.entries(obj); <span class="hljs-comment">// [ ["foo", "bar"], ["baz", 42] ]</span>
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="删除对象属性"></a><a href="#删除对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>删除对象属性</h4>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> obj = {
+  userId: <span class="hljs-string">'001'</span>,
+  userName: <span class="hljs-string">'张三'</span>,
+};
+
+<span class="hljs-keyword">delete</span> obj.userName; <span class="hljs-comment">// obj.userName=undefind</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="函数"></a><a href="#函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数</h2>
+<h3><a class="anchor" aria-hidden="true" id="箭头函数"></a><a href="#箭头函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>箭头函数</h3>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> sum = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> a + b;
+};
+</code></pre>
+<p>等价于：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> sum = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;
+</code></pre>
+<p>备注：省略<code>=&gt;</code>后面的<code>{</code>和<code>}</code>，只适合方法体只有一条语句，且此语句的返回值作为整个函数的返回值。</p>
+<p>相当于：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p>如果箭头函数只有一个参数，可以省略参数声明部分的<code>(</code>和<code>)</code>。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+<span class="hljs-keyword">const</span> newNums = nums.map(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> num * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8];</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="语义发生冲突"></a><a href="#语义发生冲突" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>{}</code>语义发生冲突</h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> zip = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+  a, b;
+}; <span class="hljs-comment">// 报错</span>
+</code></pre>
+<p>正确的方式一：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> zip = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> { a, b };
+};
+</code></pre>
+<p>正确的方式二：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> zip = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> ({
+  a,
+  b,
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="参数"></a><a href="#参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参数</h3>
+<p>rest 参数（剩余参数）：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">...nums</span>) </span>{
+  <span class="hljs-keyword">return</span> nums.reduce(<span class="hljs-function">(<span class="hljs-params">acc, item</span>) =&gt;</span> acc + item, <span class="hljs-number">0</span>);
+}
+
+sum(); <span class="hljs-comment">//0</span>
+sum(<span class="hljs-number">1</span>); <span class="hljs-comment">//1</span>
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">//3</span>
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">//6</span>
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">//10</span>
+</code></pre>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b, ...nums</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b + nums.reduce(<span class="hljs-function">(<span class="hljs-params">acc, item</span>) =&gt;</span> acc + item, <span class="hljs-number">0</span>);
+}
+
+sum(); <span class="hljs-comment">//提示错误</span>
+sum(<span class="hljs-number">1</span>); <span class="hljs-comment">//提示错误</span>
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">//3</span>
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">//6</span>
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// 10</span>
+</code></pre>
+<p>参数默认值：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span>(<span class="hljs-params">width = 0, height = 0</span>) </span>{
+  <span class="hljs-keyword">return</span> width * height;
+}
+
+area(); <span class="hljs-comment">//0</span>
+area(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>); <span class="hljs-comment">//10</span>
+</code></pre>
+<p>可选参数：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getItemById</span>(<span class="hljs-params">id, items</span>) </span>{
+  <span class="hljs-keyword">return</span> items ? items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.id === id) : <span class="hljs-literal">null</span>;
+}
+
+getItemById(<span class="hljs-string">'1'</span>); <span class="hljs-comment">// null;</span>
+getItemById(<span class="hljs-string">'1'</span>, [{ id: <span class="hljs-string">'1'</span>, text: <span class="hljs-string">'阅读'</span> }]); <span class="hljs-comment">// {id: '1', text: '阅读'}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="类"></a><a href="#类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类</h2>
+<h3><a class="anchor" aria-hidden="true" id="定义"></a><a href="#定义" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定义</h3>
+<p>基本上，<code>ES6</code> 的<code>class</code>可以看作只是一个语法糖，它的绝大部分功能，<code>ES5</code> 都可以做到，新的<code>class</code>写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> Point {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">x, y</span>) {
+    <span class="hljs-keyword">this</span>.x = x;
+    <span class="hljs-keyword">this</span>.y = y;
+  }
+
+  toString() {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'('</span> + <span class="hljs-keyword">this</span>.x + <span class="hljs-string">', '</span> + <span class="hljs-keyword">this</span>.y + <span class="hljs-string">')'</span>;
+  }
+}
+</code></pre>
+<p>上面代码定义了一个“类”，可以看到里面有一个<code>constructor</code>方法，这就是构造方法，而<code>this</code>关键字则代表实例对象。</p>
+<p><code>Point</code>类除了构造方法，还定义了一个<code>toString</code>方法。注意，定义“类”的方法的时候，前面不需要加上<code>function</code>这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。</p>
+<h3><a class="anchor" aria-hidden="true" id="构造方法-constructor"></a><a href="#构造方法-constructor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>构造方法（constructor）</h3>
+<h2><a class="anchor" aria-hidden="true" id="模块"></a><a href="#模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模块</h2>
+<p>一个 js 文件（ts 文件）就是一个模块。可以从模块中导出多个元素。</p>
+<blockquote>
+<p>.js -&gt; es6</p>
+<p>.jsx -&gt; es6 + jsx</p>
+<p>.ts -&gt; typescript</p>
+<p>.tsx -&gt; typescript + jsx</p>
+</blockquote>
+<p>导出：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// lib/math.ts</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{
+  <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pow</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{
+  <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> pi = <span class="hljs-number">3.141593</span>;
+</code></pre>
+<p>导入：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// app.ts</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> math <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/math'</span>;
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2π = '</span> + math.sum(math.pi, math.pi));
+</code></pre>
+<p>导入：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// another-app.ts</span>
+<span class="hljs-keyword">import</span> { sum, pi } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/math'</span>;
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2π = '</span> + sum(pi, pi));
+</code></pre>
+<p>异步导入：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// app3.ts</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./lib/math'</span>).then(<span class="hljs-function">(<span class="hljs-params">math</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2π = '</span> + math.sum(math.pi, math.pi));
+  });
+}
+
+&lt;button onClick={log} /&gt;;
+</code></pre>
+<p>异步导入：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// app4.ts</span>
+<span class="hljs-keyword">import</span>(<span class="hljs-string">'./lib/math'</span>).then(<span class="hljs-function">(<span class="hljs-params">{ sum, pi }</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2π = '</span> + sum(pi, pi));
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="promise"></a><a href="#promise" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Promise</h2>
+<p>promise 是用于异步编程的 api。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">timeout</span>(<span class="hljs-params">duration: <span class="hljs-built_in">number</span> = 0</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      resolve();
+    }, duration);
+  });
+}
+
+<span class="hljs-keyword">const</span> onPromiseSuccess = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> timeout(<span class="hljs-number">2000</span>);
+};
+<span class="hljs-keyword">const</span> p = timeout(<span class="hljs-number">1000</span>)
+  .then(onPromiseSuccess)
+  .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'hmm'</span>);
+  })
+  .catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all([timeout(<span class="hljs-number">100</span>), timeout(<span class="hljs-number">200</span>)]);
+  });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="async-await"></a><a href="#async-await" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>async/await</h2>
+<p>对 promise 的封装。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadTodos</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> userId = <span class="hljs-keyword">await</span> http.get(<span class="hljs-string">'/oa/current-user-id'</span>);
+  <span class="hljs-keyword">const</span> todos = <span class="hljs-keyword">await</span> http.get(<span class="hljs-string">`/oa/todos?userId=<span class="hljs-subst">${userId}</span>`</span>);
+
+  <span class="hljs-keyword">return</span> todos;
+}
+
+loadTodos().then(<span class="hljs-function">(<span class="hljs-params">todos</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(todos);
+});
+</code></pre>
+<p>相当于：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadTodos</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> http
+    .get(<span class="hljs-string">'/oa/current-user-id'</span>)
+    .then(<span class="hljs-function">(<span class="hljs-params">userId</span>) =&gt;</span> http.get(<span class="hljs-string">`/oa/todos?userId=<span class="hljs-subst">${userId}</span>`</span>));
+}
+
+loadTodos().then(<span class="hljs-function">(<span class="hljs-params">todos</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(todos);
+});
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="按照顺序执行异步操作"></a><a href="#按照顺序执行异步操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>按照顺序执行异步操作</h4>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+
+<span class="hljs-keyword">const</span> urls = [<span class="hljs-string">'/oa/todos'</span>, <span class="hljs-string">'/oa/status'</span>, <span class="hljs-string">'/oa/todos/1'</span>, <span class="hljs-string">'/oa/todos/2'</span>];
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadUrls</span>(<span class="hljs-params">urls: <span class="hljs-built_in">string</span>[]</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> url of urls) {
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> http.get(url);
+    <span class="hljs-built_in">console</span>.log(result);
+  }
+}
+
+loadUrls(urls);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="并行执行异步操作"></a><a href="#并行执行异步操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>并行执行异步操作</h4>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
+
+<span class="hljs-keyword">const</span> urls = [<span class="hljs-string">'/oa/todos'</span>, <span class="hljs-string">'/oa/status'</span>, <span class="hljs-string">'/oa/todos/1'</span>, <span class="hljs-string">'/oa/todos/2'</span>];
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadUrls</span>(<span class="hljs-params">urls: <span class="hljs-built_in">string</span>[]</span>) </span>{
+  <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(urls.map(<span class="hljs-function">(<span class="hljs-params">url</span>) =&gt;</span> http.get(url)));
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'执行完'</span>);
+}
+
+loadUrls(urls);
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-3 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-fetch-data"><span class="arrow-prev">← </span><span>加载数据</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-tutorial"><span class="function-name-prevnext">TypeScript简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#let-vs-const">let vs const</a></li><li><a href="#字符串">字符串</a><ul class="toc-headings"><li><a href="#创建">创建</a></li><li><a href="#模板字符串">模板字符串</a></li><li><a href="#字符串操作">字符串操作</a></li></ul></li><li><a href="#数组">数组</a><ul class="toc-headings"><li><a href="#数组创建">数组创建</a></li><li><a href="#数组访问">数组访问</a></li><li><a href="#数组解构">数组解构</a></li><li><a href="#数组操作方法">数组操作方法</a></li></ul></li><li><a href="#对象">对象</a><ul class="toc-headings"><li><a href="#对象创建">对象创建</a></li><li><a href="#对象合并">对象合并</a></li><li><a href="#对象解构">对象解构</a></li><li><a href="#对象操作">对象操作</a></li></ul></li><li><a href="#函数">函数</a><ul class="toc-headings"><li><a href="#箭头函数">箭头函数</a></li><li><a href="#语义发生冲突"><code>{}</code>语义发生冲突</a></li><li><a href="#参数">参数</a></li></ul></li><li><a href="#类">类</a><ul class="toc-headings"><li><a href="#定义">定义</a></li><li><a href="#构造方法-constructor">构造方法（constructor）</a></li></ul></li><li><a href="#模块">模块</a></li><li><a href="#promise">Promise</a></li><li><a href="#async-await">async/await</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
