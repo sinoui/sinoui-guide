@@ -216,6 +216,15 @@ const [first, ...rest] = numbers; // first = 1; rest=[2,3];
 const [, second] = numbers; // second = 2;
 ```
 
+### 数组展开操作符
+
+```typescript
+const items = [1,3,5];
+const item1 = 2;
+const item2 = 4;
+const newItems = [...items,item1,items2]; // [1,3,5,2,4]数组操作方法
+```
+
 ### 数组操作方法
 
 #### 数组合并/向数组中添加元素
@@ -441,6 +450,7 @@ Array(3, 11, 8); // [3, 11, 8]
 ```
 
 - 数组实例的 copyWithin()
+
   > 数组实例的 copyWithin 方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。
 
 Array.prototype.copyWithin(target, start = 0, end = this.length)
