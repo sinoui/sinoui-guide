@@ -65,7 +65,7 @@ const userName = `My name is: ${firstName} ${secondName}`; //My name is: Jacking
 
   ```ts
   const str = 'Hello world!';
-  document.write(str.charAt(1)); // 'e',如果参数取值不在0到str.length-1之间，则会返回空字符串
+  console.log(str.charAt(1)); // 'e',如果参数取值不在0到str.length-1之间，则会返回空字符串
   ```
 
 - charCodeAt()函数
@@ -75,7 +75,7 @@ const userName = `My name is: ${firstName} ${secondName}`; //My name is: Jacking
   接受指定的 Unicode 值，然后返回一个字符串;
 
   ```ts
-  document.write(String.fromCharCode(72, 69, 76, 76, 79)); // HELLO
+  console.log(String.fromCharCode(72, 69, 76, 76, 79)); // HELLO
   ```
 
 #### 位置方法
@@ -97,7 +97,7 @@ const userName = `My name is: ${firstName} ${secondName}`; //My name is: Jacking
 
   ```ts
   const str = '1 plus 2 equal 3';
-  document.write(str.match(/\d+/g)); // 1,2,3
+  console.log(str.match(/\d+/g)); // 1,2,3
   ```
 
 - search()函数
