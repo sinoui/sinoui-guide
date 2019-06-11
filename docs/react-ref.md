@@ -170,7 +170,7 @@ class AutoFocusTextInput extends React.Component {
 
 虽然你可以向[子组件添加 ref](为-class-组件添加-ref)，但这不是一个理想的解决方案，因为你只能获取组件实例而不是 DOM 节点。并且，它还在函数组件上无效。
 
-有一下几种方式：
+有以下几种方式：
 
 - Ref 转发：Ref 转发使组件可以像暴露自己的 ref 一样暴露子组件的 ref。
 - 使用其他的属性名传递`ref`，如 styled-components 旧版本通过`innerRef`属性接收`ref`。
@@ -219,7 +219,7 @@ function AutoFocusTextInput() {
 
 重点：
 
-- [React.forward()](https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref) 会创建一个 React 组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。
+- [React.forward()](https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref) 会创建一个 React 组件，这个组件能够将其接收的 ref 属性转发到其组件树下的另一个组件中。
 - `CustomTextInput.displayName = 'CustomTextInput';`是为了在调试工具中显示正确的组件名，方便调试。
 
 可以看一下去掉`CustomTextInput.displayName = 'CustomTextInput';`前后的 React Devtools 展现的元素树结构：
