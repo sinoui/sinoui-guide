@@ -186,7 +186,7 @@
 <h3><a class="anchor" aria-hidden="true" id="将-dom-refs-暴露给父组件"></a><a href="#将-dom-refs-暴露给父组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将 DOM Refs 暴露给父组件</h3>
 <p>在极少数情况下，你可能希望在父组件中引用子节点的 DOM 节点。通常不建议这样做，因为它会打破组件的封装，但它偶尔可用于触发焦点或测量子 DOM 节点的大小或位置。</p>
 <p>虽然你可以向<a href="为-class-组件添加-ref">子组件添加 ref</a>，但这不是一个理想的解决方案，因为你只能获取组件实例而不是 DOM 节点。并且，它还在函数组件上无效。</p>
-<p>有一下几种方式：</p>
+<p>有以下几种方式：</p>
 <ul>
 <li>Ref 转发：Ref 转发使组件可以像暴露自己的 ref 一样暴露子组件的 ref。</li>
 <li>使用其他的属性名传递<code>ref</code>，如 styled-components 旧版本通过<code>innerRef</code>属性接收<code>ref</code>。</li>
@@ -227,7 +227,7 @@ export default CustomTextInput;
 </span></code></pre>
 <p>重点：</p>
 <ul>
-<li><a href="https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref">React.forward()</a> 会创建一个 React 组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。</li>
+<li><a href="https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref">React.forward()</a> 会创建一个 React 组件，这个组件能够将其接收的 ref 属性转发到其组件树下的另一个组件中。</li>
 <li><code>CustomTextInput.displayName = 'CustomTextInput';</code>是为了在调试工具中显示正确的组件名，方便调试。</li>
 </ul>
 <p>可以看一下去掉<code>CustomTextInput.displayName = 'CustomTextInput';</code>前后的 React Devtools 展现的元素树结构：</p>
@@ -261,4 +261,4 @@ export default CustomTextInput;
 <li><a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#useref">useRef API</a></li>
 <li><a href="https://zh-hans.reactjs.org/docs/hooks-faq.html#is-there-something-like-instance-variables">React Hooks FAQ - 有类似实例变量的东西吗？</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-11 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-fetch-data"><span class="arrow-prev">← </span><span>加载数据</span></a><a class="docs-next button" href="/sinoui-guide/docs/es6-tutorial"><span>ES6简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#dom-refs">DOM Refs</a><ul class="toc-headings"><li><a href="#何时使用-refs">何时使用 Refs</a></li><li><a href="#创建-refs">创建 refs</a></li><li><a href="#访问-refs">访问 refs</a></li><li><a href="#为-dom-元素添加-ref">为 DOM 元素添加 ref</a></li><li><a href="#为-class-组件添加-ref">为 class 组件添加 ref</a></li><li><a href="#将-dom-refs-暴露给父组件">将 DOM Refs 暴露给父组件</a></li></ul></li><li><a href="#函数组件中的-实例变量">函数组件中的“实例变量”</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-11 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-fetch-data"><span class="arrow-prev">← </span><span>加载数据</span></a><a class="docs-next button" href="/sinoui-guide/docs/es6-tutorial"><span>ES6简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#dom-refs">DOM Refs</a><ul class="toc-headings"><li><a href="#何时使用-refs">何时使用 Refs</a></li><li><a href="#创建-refs">创建 refs</a></li><li><a href="#访问-refs">访问 refs</a></li><li><a href="#为-dom-元素添加-ref">为 DOM 元素添加 ref</a></li><li><a href="#为-class-组件添加-ref">为 class 组件添加 ref</a></li><li><a href="#将-dom-refs-暴露给父组件">将 DOM Refs 暴露给父组件</a></li></ul></li><li><a href="#函数组件中的-实例变量">函数组件中的“实例变量”</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
