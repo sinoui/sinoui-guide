@@ -7,7 +7,8 @@
       "react-props-state",
       "react-hook",
       "react-lifting-state-up",
-      "react-fetch-data"
+      "react-fetch-data",
+      "react-ref"
     ],
     "TypeScript/ES6": ["es6-tutorial", "ts-tutorial", "react-ts-tutorial"],
     "样式": ["styled-components-guide", "react-animation"],
