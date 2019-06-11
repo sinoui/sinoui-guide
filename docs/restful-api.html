@@ -112,9 +112,9 @@ DELETE   /products/id  删除指定产品信息
 <tr><th>状态码</th><th>含义</th><th>说明</th></tr>
 </thead>
 <tbody>
-<tr><td>200（ok）</td><td>服务器成功返回用户请求的数据，表明该操作是幂等操作</td><td>对应的是 HTTP GET</td></tr>
-<tr><td>201(CREATED)</td><td>用户新建或修改数据成功，表明该操作非幂等操作</td><td>对应的是 HTTP POST/PUT</td></tr>
-<tr><td>204(NOT CONTENT)</td><td>用户删除操作成功</td><td>对应的是 HTTP DELETE</td></tr>
+<tr><td>200（ok）</td><td>服务器成功返回用户请求的数据，表明该操作是幂等操作</td><td>获取资源成功时返回此状态码，通常用于 GET 请求</td></tr>
+<tr><td>201(CREATED)</td><td>用户新建或修改数据成功，表明该操作非幂等操作</td><td>当用户提交数据尝试新建、修改数据记录成功时返回此状态码，通常用于 POST/PUT 请求</td></tr>
+<tr><td>204(NOT CONTENT)</td><td>用户删除操作成功</td><td>删除资源成功时返回此状态码，通常用于 DELETE 请求</td></tr>
 <tr><td>400(INVALID REQUEST)</td><td>请求错误，应用服务未进行新建或修改数据的操作</td><td>当用户提交数据尝试新建、修改数据记录时，应用服务对数据有效性校验发现数据不符合业务要求时，通常会返回此状态码</td></tr>
 <tr><td>401(UNAUTHORIZED)</td><td>表明用户没有有效身份信息</td><td>当用户会话令牌失效，服务器无法获得用户认证令牌时，返回此状态码</td></tr>
 <tr><td>403(Forbidden)</td><td>表明用户尝试访问被禁止获取的数据记录</td><td>当用户尝试打开一个并未授权其可以打开的文件时，应用服务返回此状态码</td></tr>
@@ -129,4 +129,4 @@ DELETE   /products/id  删除指定产品信息
 <li><a href="http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html">RESTful Api 最佳实践</a></li>
 <li><a href="https://www.jianshu.com/p/8b769356ee67">RESTful 接口设计规范总结</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-15 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/app-dev-index"><span class="arrow-prev">← </span><span>开篇</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-router"><span>React Router 使用教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#restful-架构简介">RESTful 架构简介</a></li><li><a href="#协议">协议</a></li><li><a href="#版本">版本</a></li><li><a href="#路径接口命名">路径(接口命名)</a></li><li><a href="#http-方法">HTTP 方法</a></li><li><a href="#过滤信息">过滤信息</a><ul class="toc-headings"><li><a href="#新-oa-中的过滤信息">新 OA 中的过滤信息</a></li></ul></li><li><a href="#数据传递格式标准">数据传递格式标准</a></li><li><a href="#返回状态码">返回状态码</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-11 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/app-dev-index"><span class="arrow-prev">← </span><span>开篇</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-router"><span>React Router 使用教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#restful-架构简介">RESTful 架构简介</a></li><li><a href="#协议">协议</a></li><li><a href="#版本">版本</a></li><li><a href="#路径接口命名">路径(接口命名)</a></li><li><a href="#http-方法">HTTP 方法</a></li><li><a href="#过滤信息">过滤信息</a><ul class="toc-headings"><li><a href="#新-oa-中的过滤信息">新 OA 中的过滤信息</a></li></ul></li><li><a href="#数据传递格式标准">数据传递格式标准</a></li><li><a href="#返回状态码">返回状态码</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

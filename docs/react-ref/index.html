@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ref · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在 React 中，Ref 主要用于下面两个用途：&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ref · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;在 React 中，Ref 主要用于下面两个用途：&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理（高阶）<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/context-and-reducer-hook">使用Context和reducer hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ref</h1></header><article><div><span><p>在 React 中，Ref 主要用于下面两个用途：</p>
+<ul>
+<li>引用 DOM 节点</li>
+<li>函数组件中的“实例变量”</li>
+</ul>
+<p>本篇文章将会阐述这两个常见用法。</p>
+<h2><a class="anchor" aria-hidden="true" id="dom-refs"></a><a href="#dom-refs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DOM Refs</h2>
+<p>此章节对应的是 Ref 的第一个用途，即“引用 DOM 节点”，我们称之为<code>DOM Refs</code>。</p>
+<blockquote>
+<p>Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法中创建的 React 元素。</p>
+</blockquote>
+<p>在典型的 React 数据流中，<a href="/sinoui-guide/docs/react-props-state">props</a>是父组件与子组件交互的唯一方式。要修改一个子组件，你需要使用新的 props 来重新渲染它。但是，在某些情况下，你需要在典型数据流之外强制修改子组件。被修改的子组件可能是一个 React 组件的实例，也可能是一个 DOM 元素。对于这两种情况，React 都提供了解决办法。</p>
+<h3><a class="anchor" aria-hidden="true" id="何时使用-refs"></a><a href="#何时使用-refs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>何时使用 Refs</h3>
+<p>下面是几个适合使用 refs 的情况：</p>
+<ul>
+<li>管理焦点、文本选择或媒体播放。</li>
+<li>触发强制动画。</li>
+<li>集成第三方 DOM 库。</li>
+</ul>
+<p><strong>避免使用 refs 来做任何可以通过声明式实现来完成的事情。</strong>举个例子，避免在<code>Dialog</code>组件里暴露<code>open()</code>和<code>close()</code>方法，最好传递<code>isOpen</code>属性。</p>
+<h3><a class="anchor" aria-hidden="true" id="创建-refs"></a><a href="#创建-refs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建 refs</h3>
+<p>在函数组件中，使用<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#useref">useRef</a>创建 refs，并可以通过<code>ref</code>属性附加到 React 元素。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> myRef = useRef();
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{myRef}</span> /&gt;</span>;
+}
+</span></code></pre>
+<p>在类组件中，使用<a href="https://zh-hans.reactjs.org/docs/react-api.html#reactcreateref">React.createRef()</a>创建 refs，并可以通过<code>ref</code>属性附加到 React 元素。我们通常将 refs 分配给实例属性。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  constructor(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.myRef = <span class="hljs-type">React</span>.createRef();
+  }
+  render() {
+    <span class="hljs-keyword">return</span> &lt;div ref={<span class="hljs-keyword">this</span>.myRef} /&gt;;
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="访问-refs"></a><a href="#访问-refs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问 refs</h3>
+<p><code>ref</code>是一个有<code>current</code>属性的对象，<code>current</code>属性就是被引用的节点。</p>
+<p>函数组件中：</p>
+<pre><code class="hljs css language-tsx">const <span class="hljs-keyword">node</span> <span class="hljs-title">= myRef</span>.current;
+</code></pre>
+<p>类组件中：</p>
+<pre><code class="hljs css language-tsx">const <span class="hljs-keyword">node</span> <span class="hljs-title">= this</span>.myRef.current;
+</code></pre>
+<p>ref 的值根据节点的类型而有所不同：</p>
+<ul>
+<li>当<code>ref</code>属性用于 HTML 元素时，通过<code>useRef</code>或者<code>createRef</code>创建的<code>ref</code>接收底层 DOM 元素作为其<code>current</code>属性。</li>
+<li>当<code>ref</code>属性用于自定义 class 组件时，<code>ref</code>对象接收组件的挂载实例作为其<code>current</code>属性。</li>
+<li>你不能在函数组件上使用<code>ref</code>属性，因为它们没有实例。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="为-dom-元素添加-ref"></a><a href="#为-dom-元素添加-ref" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>为 DOM 元素添加 ref</h3>
+<p>函数组件：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CumstomTextInput</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> textInputRef = useRef&lt;HTMLInputElement&gt;();
+
+  <span class="hljs-keyword">const</span> focusTextInput = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (textInputRef.current) {
+      textInputRef.current.focus();
+    }
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{textInputRef}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{focusTextInput}</span>&gt;</span>Focus the text input<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p>类组件：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomTextInput</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  constructor(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-comment">// 创建一个 ref 来存储 textInput 的 DOM 元素</span>
+    <span class="hljs-keyword">this</span>.textInput = <span class="hljs-type">React</span>.createRef();
+    <span class="hljs-keyword">this</span>.focusTextInput = <span class="hljs-keyword">this</span>.focusTextInput.bind(<span class="hljs-keyword">this</span>);
+  }
+
+  focusTextInput() {
+    <span class="hljs-comment">// 直接使用原生 API 使 text 输入框获得焦点</span>
+    <span class="hljs-comment">// 注意：我们通过 "current" 来访问 DOM 节点</span>
+    <span class="hljs-keyword">this</span>.textInput.current.focus();
+  }
+
+  render() {
+    <span class="hljs-comment">// 告诉 React 我们想把 &lt;input&gt; ref 关联到</span>
+    <span class="hljs-comment">// 构造器里创建的 `textInput` 上</span>
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;
+        &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">"text"</span> ref={<span class="hljs-keyword">this</span>.textInput} /&gt;
+
+        &lt;input
+          <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">"button"</span>
+          value=<span class="hljs-string">"Focus the text input"</span>
+          onClick={<span class="hljs-keyword">this</span>.focusTextInput}
+        /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+<p>React 会在组件挂载时给<code>current</code>属性传入 DOM 元素，并在组件卸载时传入<code>null</code>值。<code>ref</code>会在<code>useEffect</code>、<code>componentDidMount</code>、<code>componentDidUpdate</code>触发之前更新。</p>
+<h3><a class="anchor" aria-hidden="true" id="为-class-组件添加-ref"></a><a href="#为-class-组件添加-ref" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>为 class 组件添加 ref</h3>
+<p>如果我们想包装上面的<code>CustomTextInput</code>（类组件），来模拟它挂载之后立即被点击的操作，我们可以使用 ref 来获取这个自定义的 input 组件并手动调用它的<code>focusTextInput</code>方法：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutoFocusTextInput</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  constructor(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.textInput = <span class="hljs-type">React</span>.createRef&lt;<span class="hljs-type">CustomTextInput</span>&gt;();
+  }
+
+  componentDidMount() {
+    <span class="hljs-keyword">this</span>.textInput.current.focusTextInput();
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> &lt;<span class="hljs-type">CustomTextInput</span> ref={<span class="hljs-keyword">this</span>.textInput} /&gt;;
+  }
+}
+</code></pre>
+<p>请注意：<code>CustomTextInput</code>是类组件时，上面的代码才有效！</p>
+<h3><a class="anchor" aria-hidden="true" id="将-dom-refs-暴露给父组件"></a><a href="#将-dom-refs-暴露给父组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将 DOM Refs 暴露给父组件</h3>
+<p>在极少数情况下，你可能希望在父组件中引用子节点的 DOM 节点。通常不建议这样做，因为它会打破组件的封装，但它偶尔可用于触发焦点或测量子 DOM 节点的大小或位置。</p>
+<p>虽然你可以向<a href="为-class-组件添加-ref">子组件添加 ref</a>，但这不是一个理想的解决方案，因为你只能获取组件实例而不是 DOM 节点。并且，它还在函数组件上无效。</p>
+<p>有一下几种方式：</p>
+<ul>
+<li>Ref 转发：Ref 转发使组件可以像暴露自己的 ref 一样暴露子组件的 ref。</li>
+<li>使用其他的属性名传递<code>ref</code>，如 styled-components 旧版本通过<code>innerRef</code>属性接收<code>ref</code>。</li>
+<li>使用<a href="https://zh-hans.reactjs.org/docs/react-dom.html#finddomnode">findDOMNode()</a>获取子组件的 DOM 元素。 —— 警告：不要再使用这个 API，即将被废弃。</li>
+</ul>
+<p>这里重点说一下 Ref 转发。</p>
+<p>上文我们在<code>AutoFocusTextInput</code>时，只处理了 class 组件的版本，如果是函数组件，可以通过 ref 转发来实现。</p>
+<p><code>CustomTextInput</code>组件：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">const</span> CumstomTextInput = React.forwardRef(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">props, ref</span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{ref}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  );
+});
+
+CustomTextInput.displayName = 'CustomTextInput';
+
+export default CustomTextInput;
+</span></code></pre>
+<p><code>AutoFocusTextInput</code>组件：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./CustomTextInput'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AutoFocusTextInput</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> textInputRef = useRef();
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (textInputRef.current) {
+      textInputRef.current.focus();
+    }
+  }, []);
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CustomTextInput</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{textInputRef}</span> /&gt;</span>;
+}
+</span></code></pre>
+<p>重点：</p>
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/react-api.html#reactforwardref">React.forward()</a> 会创建一个 React 组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。</li>
+<li><code>CustomTextInput.displayName = 'CustomTextInput';</code>是为了在调试工具中显示正确的组件名，方便调试。</li>
+</ul>
+<p>可以看一下去掉<code>CustomTextInput.displayName = 'CustomTextInput';</code>前后的 React Devtools 展现的元素树结构：</p>
+<p>去掉后：</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-forwardref-auto-displayname.png" alt="未指定displayName的forwardRef组件"></p>
+<p>加上后：</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-forwardref-displayname.png" alt="指定了displayName的forwardRef组件"></p>
+<h2><a class="anchor" aria-hidden="true" id="函数组件中的-实例变量"></a><a href="#函数组件中的-实例变量" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数组件中的“实例变量”</h2>
+<p>在函数组件中，我们可以使用<code>useRef()</code>创建一个<code>ref</code>对象。不管这个函数组件重绘了多少次，<code>useRef()</code>返回的总是第一次渲染此函数组件时创建的<code>ref</code>对象。而且<code>ref</code>对象的<code>current</code>属性可以存放任何 js 数据，所以，我们可以借助<code>useRef()</code>创建的<code>ref</code>对象实现类似 class 的“实例变量”。</p>
+<p>如下面的例子：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Timer</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> intervalRef = useRef();
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> id = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-comment">// ...</span>
+    });
+    intervalRef.current = id;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      clearInterval(intervalRef.current);
+    };
+  });
+
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/refs-and-the-dom.html">Refs and the DOM</a></li>
+<li><a href="https://zh-hans.reactjs.org/docs/forwarding-refs.html">Refs 转发</a></li>
+<li><a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#useref">useRef API</a></li>
+<li><a href="https://zh-hans.reactjs.org/docs/hooks-faq.html#is-there-something-like-instance-variables">React Hooks FAQ - 有类似实例变量的东西吗？</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-11 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-fetch-data"><span class="arrow-prev">← </span><span>加载数据</span></a><a class="docs-next button" href="/sinoui-guide/docs/es6-tutorial"><span>ES6简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#dom-refs">DOM Refs</a><ul class="toc-headings"><li><a href="#何时使用-refs">何时使用 Refs</a></li><li><a href="#创建-refs">创建 refs</a></li><li><a href="#访问-refs">访问 refs</a></li><li><a href="#为-dom-元素添加-ref">为 DOM 元素添加 ref</a></li><li><a href="#为-class-组件添加-ref">为 class 组件添加 ref</a></li><li><a href="#将-dom-refs-暴露给父组件">将 DOM Refs 暴露给父组件</a></li></ul></li><li><a href="#函数组件中的-实例变量">函数组件中的“实例变量”</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
