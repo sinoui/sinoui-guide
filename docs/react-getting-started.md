@@ -219,7 +219,7 @@ JSX 使我们在 JavaScript 中创建和维护元素变得简单。这也是大�
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import "./App";
+import App from "./App";
 import "./index.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
