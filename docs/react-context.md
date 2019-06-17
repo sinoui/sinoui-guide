@@ -145,12 +145,12 @@ function 子组件() {
 
 假设我们的应用程序中，需要对文本颜色进行主题定制。我们可以这样实现。
 
-首先创建主题定制上下文，`ThemeContet.ts`:
+首先创建主题定制上下文，`ThemeContext.ts`:
 
 ```ts
 import React from 'react';
 
-const ThemeContext = React.useContext({
+const ThemeContext = React.createContext({
   color: 'blue', // 默认的文本颜色为blue
 });
 
@@ -170,13 +170,16 @@ import H1 from './H1';
 
 function App() {
   return (
-    <ThemeContext value={{ color: 'red' }}>
-      <div>
-        <H1>主题定制</H1>
-        <Text>使用React Context共享主题定制数据</Text>
-        <Button>这是一个主题定制按钮</Button>
-      </div>
-    </ThemeContext>
+    <>
+      <Button>这是color为blue的按钮</Button>
+      <ThemeContext.Provider value={{ color: 'red' }}>
+        <div>
+          <H1>主题定制</H1>
+          <Text>使用React Context共享主题定制数据</Text>
+          <Button>这是一个主题定制按钮</Button>
+        </div>
+      </ThemeContext.Provider>
+    </>
   );
 }
 
@@ -230,7 +233,7 @@ export default Button;
 
 ### 共享登录状态
 
-假设有整个应用有两个页面，即登录页（LoginPage）和主页面（MainPage）。在登录页登录后，进入主页面。主页面上有退出登录按钮，点击退出登录后，调到登录页。
+假设整个应用有两个页面，即登录页（LoginPage）和主页面（MainPage）。在登录页登录后，进入主页面。主页面上有退出登录按钮，点击退出登录后，调到登录页。
 
 `UserStateContext.ts`:
 
@@ -287,7 +290,7 @@ function App() {
         logout,
       }}
     >
-      {userState.isLogin ? <MainPgae /> : <LoginPage />}
+      {userState.isLogin ? <MainPage /> : <LoginPage />}
     </UserStateContext.Provider>
   );
 }
@@ -303,7 +306,7 @@ function LoginPage() {
   const { login } = useContext(UserStateContext);
 
   const handleLogin = async () => {
-    const userId = await login(); // 这里login()方法自己实现，可以直接替换成一个固定的值，如: `userId = '1';`
+    const userId = await loginApi(); // 这里loginApi()方法自己实现，可以直接替换成一个固定的值，如: `userId = '1';`
     login(userId);
   };
 
@@ -564,18 +567,19 @@ function App() {
 `useContext`只能在函数组件中使用，如果需要在类组件中使用 Context，则需要使用`Context.Consumer`来获取 Context 值：
 
 ```tsx
-class TodoContext extends React.Component {
+class TodoList extends React.Component {
   public render() {
-    return;
-    <TodoContext.Consumer>
-      {({ todos }) => (
-        <div>
-          {todos.map((todo, index) => (
-            <TodoItem todo={todo} todoIndex={index} key={todo.id} />
-          ))}
-        </div>
-      )}
-    </TodoContext.Consumer>;
+    return (
+      <TodoContext.Consumer>
+        {({ todos }) => (
+          <div>
+            {todos.map((todo, index) => (
+              <TodoItem todo={todo} todoIndex={index} key={todo.id} />
+            ))}
+          </div>
+        )}
+      </TodoContext.Consumer>
+    );
   }
 }
 ```
