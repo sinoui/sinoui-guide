@@ -157,10 +157,10 @@
 <h2><a class="anchor" aria-hidden="true" id="示例"></a><a href="#示例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h2>
 <h3><a class="anchor" aria-hidden="true" id="简单的主题定制"></a><a href="#简单的主题定制" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>简单的主题定制</h3>
 <p>假设我们的应用程序中，需要对文本颜色进行主题定制。我们可以这样实现。</p>
-<p>首先创建主题定制上下文，<code>ThemeContet.ts</code>:</p>
+<p>首先创建主题定制上下文，<code>ThemeContext.ts</code>:</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 
-<span class="hljs-keyword">const</span> ThemeContext = React.useContext({
+<span class="hljs-keyword">const</span> ThemeContext = React.createContext({
   color: <span class="hljs-string">'blue'</span>, <span class="hljs-comment">// 默认的文本颜色为blue</span>
 });
 
@@ -168,25 +168,28 @@
 </code></pre>
 <p>在应用程序级别指定满足需求的主题定制颜色（如红色）：</p>
 <p><code>App.tsx</code>:</p>
-<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> ThemeContext <span class="hljs-keyword">from</span> <span class="hljs-string">'./ThemeContext'</span>;
-<span class="hljs-keyword">import</span> Text <span class="hljs-keyword">from</span> <span class="hljs-string">'./Text'</span>;
-<span class="hljs-keyword">import</span> Button <span class="hljs-keyword">from</span> <span class="hljs-string">'./Button'</span>;
-<span class="hljs-keyword">import</span> H1 <span class="hljs-keyword">from</span> <span class="hljs-string">'./H1'</span>;
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React from <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ThemeContext from <span class="hljs-string">'./ThemeContext'</span>;
+<span class="hljs-keyword">import</span> Text from <span class="hljs-string">'./Text'</span>;
+<span class="hljs-keyword">import</span> Button from <span class="hljs-string">'./Button'</span>;
+<span class="hljs-keyword">import</span> H1 from <span class="hljs-string">'./H1'</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">function</span> App() {
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeContext</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">color:</span> '<span class="hljs-attr">red</span>' }}&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">H1</span>&gt;</span>主题定制<span class="hljs-tag">&lt;/<span class="hljs-name">H1</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>使用React Context共享主题定制数据<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>这是一个主题定制按钮<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeContext</span>&gt;</span></span>
+    &lt;&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>这是color为blue的按钮<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>
+      &lt;ThemeContext.Provider <span class="hljs-keyword">value</span>={{ color: <span class="hljs-string">'red'</span> }}&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">H1</span>&gt;</span>主题定制<span class="hljs-tag">&lt;/<span class="hljs-name">H1</span>&gt;</span></span><span class="xml">
+          </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>使用React Context共享主题定制数据<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span></span><span class="xml">
+          </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>这是一个主题定制按钮<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><span class="xml">
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+      &lt;/ThemeContext.Provider&gt;
+    &lt;/&gt;
   );
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+export <span class="hljs-keyword">default</span> App;
 </code></pre>
 <p><code>H1.tsx</code>:</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useContext } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
@@ -225,7 +228,7 @@ export default Text;
 export default Button;
 </span></code></pre>
 <h3><a class="anchor" aria-hidden="true" id="共享登录状态"></a><a href="#共享登录状态" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>共享登录状态</h3>
-<p>假设有整个应用有两个页面，即登录页（LoginPage）和主页面（MainPage）。在登录页登录后，进入主页面。主页面上有退出登录按钮，点击退出登录后，调到登录页。</p>
+<p>假设整个应用有两个页面，即登录页（LoginPage）和主页面（MainPage）。在登录页登录后，进入主页面。主页面上有退出登录按钮，点击退出登录后，调到登录页。</p>
 <p><code>UserStateContext.ts</code>:</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 
@@ -276,7 +279,7 @@ export default Button;
         <span class="hljs-attr">logout</span>,
       }}
     &gt;</span>
-      {userState.isLogin ? <span class="hljs-tag">&lt;<span class="hljs-name">MainPgae</span> /&gt;</span> : <span class="hljs-tag">&lt;<span class="hljs-name">LoginPage</span> /&gt;</span>}
+      {userState.isLogin ? <span class="hljs-tag">&lt;<span class="hljs-name">MainPage</span> /&gt;</span> : <span class="hljs-tag">&lt;<span class="hljs-name">LoginPage</span> /&gt;</span>}
     <span class="hljs-tag">&lt;/<span class="hljs-name">UserStateContext.Provider</span>&gt;</span>
   );
 }
@@ -289,7 +292,7 @@ export default Button;
   <span class="hljs-keyword">const</span> { login } = useContext(UserStateContext);
 
   <span class="hljs-keyword">const</span> handleLogin = <span class="hljs-keyword">async</span> () =&gt; {
-    <span class="hljs-keyword">const</span> userId = <span class="hljs-keyword">await</span> login(); <span class="hljs-comment">// 这里login()方法自己实现，可以直接替换成一个固定的值，如: `userId = '1';`</span>
+    <span class="hljs-keyword">const</span> userId = <span class="hljs-keyword">await</span> loginApi(); <span class="hljs-comment">// 这里loginApi()方法自己实现，可以直接替换成一个固定的值，如: `userId = '1';`</span>
     login(userId);
   };
 
@@ -511,18 +514,19 @@ export default TodoList;
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="在类组件中使用-context-值"></a><a href="#在类组件中使用-context-值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在类组件中使用 Context 值</h2>
 <p><code>useContext</code>只能在函数组件中使用，如果需要在类组件中使用 Context，则需要使用<code>Context.Consumer</code>来获取 Context 值：</p>
-<pre><code class="hljs css language-tsx"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoContext</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+<pre><code class="hljs css language-tsx"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   public render() {
-    <span class="hljs-keyword">return</span>;
-    &lt;<span class="hljs-type">TodoContext</span>.<span class="hljs-type">Consumer</span>&gt;
-      {({ todos }) =&gt; (
-        &lt;div&gt;
-          {todos.map((todo, index) =&gt; (
-            &lt;<span class="hljs-type">TodoItem</span> todo={todo} todoIndex={index} key={todo.id} /&gt;
-          ))}
-        &lt;/div&gt;
-      )}
-    &lt;/<span class="hljs-type">TodoContext</span>.<span class="hljs-type">Consumer</span>&gt;;
+    <span class="hljs-keyword">return</span> (
+      &lt;<span class="hljs-type">TodoContext</span>.<span class="hljs-type">Consumer</span>&gt;
+        {({ todos }) =&gt; (
+          &lt;div&gt;
+            {todos.map((todo, index) =&gt; (
+              &lt;<span class="hljs-type">TodoItem</span> todo={todo} todoIndex={index} key={todo.id} /&gt;
+            ))}
+          &lt;/div&gt;
+        )}
+      &lt;/<span class="hljs-type">TodoContext</span>.<span class="hljs-type">Consumer</span>&gt;
+    );
   }
 }
 </code></pre>
@@ -593,4 +597,4 @@ Button.contextTypes = {
 <li><a href="https://zh-hans.reactjs.org/docs/composition-vs-inheritance.html">组合组件</a></li>
 <li><a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usecontext">React useContext</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-17 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-animation"><span class="arrow-prev">← </span><span>动画</span></a><a class="docs-next button" href="/sinoui-guide/docs/redux-getting-started"><span>Redux入门</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#目标">目标</a></li><li><a href="#背景">背景</a><ul class="toc-headings"><li><a href="#全局共享状态">全局共享状态</a></li><li><a href="#复杂的状态管理与深的-ui-组件层次">复杂的状态管理与深的 UI 组件层次</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#使用-react-context">使用 React Context</a><ul class="toc-headings"><li><a href="#创建-react-context">创建 React Context</a></li><li><a href="#提供-context-数据">提供 Context 数据</a></li><li><a href="#使用-context-数据">使用 Context 数据</a></li></ul></li><li><a href="#示例">示例</a><ul class="toc-headings"><li><a href="#简单的主题定制">简单的主题定制</a></li><li><a href="#共享登录状态">共享登录状态</a></li><li><a href="#使用多个-context">使用多个 Context</a></li><li><a href="#页面状态-待办列表页">页面状态：待办列表页</a></li></ul></li><li><a href="#注意事项">注意事项</a></li><li><a href="#在类组件中使用-context-值">在类组件中使用 Context 值</a></li><li><a href="#废弃的-api">废弃的 API</a></li><li><a href="#总结">总结</a></li><li><a href="#参考资料">参考资料</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-17 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-animation"><span class="arrow-prev">← </span><span>动画</span></a><a class="docs-next button" href="/sinoui-guide/docs/redux-getting-started"><span>Redux入门</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#目标">目标</a></li><li><a href="#背景">背景</a><ul class="toc-headings"><li><a href="#全局共享状态">全局共享状态</a></li><li><a href="#复杂的状态管理与深的-ui-组件层次">复杂的状态管理与深的 UI 组件层次</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#使用-react-context">使用 React Context</a><ul class="toc-headings"><li><a href="#创建-react-context">创建 React Context</a></li><li><a href="#提供-context-数据">提供 Context 数据</a></li><li><a href="#使用-context-数据">使用 Context 数据</a></li></ul></li><li><a href="#示例">示例</a><ul class="toc-headings"><li><a href="#简单的主题定制">简单的主题定制</a></li><li><a href="#共享登录状态">共享登录状态</a></li><li><a href="#使用多个-context">使用多个 Context</a></li><li><a href="#页面状态-待办列表页">页面状态：待办列表页</a></li></ul></li><li><a href="#注意事项">注意事项</a></li><li><a href="#在类组件中使用-context-值">在类组件中使用 Context 值</a></li><li><a href="#废弃的-api">废弃的 API</a></li><li><a href="#总结">总结</a></li><li><a href="#参考资料">参考资料</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
