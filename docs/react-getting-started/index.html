@@ -113,7 +113,7 @@ npm start
 </code></pre>
 <p>打开<code>public/index.html</code>文件，这个 HTML 文件中有一个非常重要的<code>div</code>元素，它的<code>id</code>为<code>root</code>，稍后会看到项目的代码会将 React 渲染在这个 div 中。项目的源码放在<code>src/</code>目录中。</p>
 <p>打开<code>src/index.js</code>文件，找到下面一行代码：</p>
-<pre><code class="hljs css language-jsx">ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx">ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>这行代码的意思是将<code>&lt;App /&gt;</code>渲染在<code>#root</code>的 DOM 元素中。</p>
 <p>可以体验一下<code>create-react-app</code>的自动编译和刷新的功能，打开<code>src/App.js</code>，找到下面的代码：</p>
@@ -123,9 +123,9 @@ npm start
 <p>现在，将<code>src/</code>中所有的文件都删除掉，我们从头开始。首先创建<code>index.js</code>和<code>index.css</code>两个文件。</p>
 <p>在<code>index.css</code>文件中粘贴<a href="/sinoui-guide/docs/assets/css/primitive.css">Primitive CSS</a>文件中的内容。你也可以使用 Bootstrap 的样式或者其他 CSS 框架的样式，也可以省略这一步。</p>
 <p>现在，在<code>index.js</code>中导入 React、ReactDOM 和<code>index.css</code>：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">"react-dom"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">"./index.css"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./index.css'</span><span class="token punctuation">;</span>
 </code></pre>
 <p>再创建一个 App 组件。代码如下：</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -138,12 +138,12 @@ npm start
 </code></pre>
 <p>App 组件中有一个<code>class</code>为<code>App</code>的<code>div</code>，<code>div</code>中包含了<code>h1</code>标签。需要特别注意的是，在 JavaScript 代码中，需要使用<code>className</code>来定义标签的<code>class</code>。</p>
 <p>最后，我们在<code>#root</code>标签中渲染出<code>App</code>：</p>
-<pre><code class="hljs css language-jsx">ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx">ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>至此，<code>src/index.js</code>文件就完成了。完整的代码如下：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">"react-dom"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">"./index.css"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./index.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -153,7 +153,7 @@ npm start
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>现在，再看看<code>http://localhost:3000</code>页面，页面上会呈现出<code>Hello, World!</code>。👏 我们完成了 React 应用的开始部分。</p>
 <h3><a class="anchor" aria-hidden="true" id="调试-react"></a><a href="#调试-react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>调试 React</h3>
@@ -167,11 +167,11 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 </code></pre>
 <p>React 并不强制使用 JSX。在底层，JSX 会被替换成<code>createElement</code>，它接受标记，包含属性的对象和组件的子项，并呈现相同的信息。以下代码将具有与上述<code>JSX</code>相同的输出。</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">const</span> heading <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>
-  <span class="token string">"h1"</span><span class="token punctuation">,</span>
+  <span class="token string">'h1'</span><span class="token punctuation">,</span>
   <span class="token punctuation">{</span>
-    className<span class="token punctuation">:</span> <span class="token string">"site-heading"</span>
+    className<span class="token punctuation">:</span> <span class="token string">'site-heading'</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token string">"Hello, React"</span>
+  <span class="token string">'Hello, React'</span><span class="token punctuation">,</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>JSX 实际上更接近 JavaScript，而不是 HTML，因此在编写时需要注意几个关键的区别。</p>
@@ -185,10 +185,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"alert('我被点击了')"</span>&gt;</span>点击我<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 </code></pre>
 <p>在 JSX 中，应写成下面的方式：</p>
-<pre><code class="hljs css language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"我被点击了"</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>点击我<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<pre><code class="hljs css language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'我被点击了'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>点击我<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>可以在 JSX 中使用大括号的方式嵌入 JavaScript 表达式，如变量、方法和属性。</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"Jacking"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">'Jacking'</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> heading <span class="token operator">=</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
 </code></pre>
 <p>JSX 使我们在 JavaScript 中创建和维护元素变得简单。这也是大家喜欢 React 的一个原因。</p>
@@ -197,15 +197,15 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>大部分 React 程序有很多小组件，而且都会加载到<code>App</code>组件中去。<strong>组件一般都会有自己的文件</strong>，所以让我们改变我们的程序以做到这一点。</p>
 <p>从<code>src/index.js</code>中删除<code>App</code>，并添加上<code>./App</code>的导入：</p>
 <p><code>src/index.js</code></p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">"react-dom"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">"./App"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">"./index.css"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./index.css'</span><span class="token punctuation">;</span>
 
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>然后在<code>src/</code>目录下创建一个新的<code>App.js</code>文件，内容如下：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -222,7 +222,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>React 16.8 推出 React Hooks 后，类组件变得不那么重要了，所以这里我们从函数组件开始介绍。</p>
 <p>让我们来创建一个新的组件，这个组件将以表格的方式展现一组人员信息，代码如下：</p>
 <p><code>src/Table.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">Table</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -258,7 +258,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token keyword">export</span> <span class="token keyword">default</span> Table<span class="token punctuation">;</span>
 </code></pre>
 <p>我们创建了一个自定义的函数组件。我们需要将自定义组件的名称首字母大写，以区分常规的 HTML 元素。回到<code>App.js</code>文件，将 Table 载入其中。首先我们需要导入 Table：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> Table <span class="token keyword">from</span> <span class="token string">"./Table"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> Table <span class="token keyword">from</span> <span class="token string">'./Table'</span><span class="token punctuation">;</span>
 </code></pre>
 <p>然后，我们将<code>&lt;h1&gt;</code>替换成<code>&lt;Table /&gt;</code>，如下所示：</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -268,8 +268,8 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>完整的<code>src/App.js</code>代码如下：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> Table <span class="token keyword">from</span> <span class="token string">"./Table"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Table <span class="token keyword">from</span> <span class="token string">'./Table'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -286,7 +286,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>这样我们就创建了一个自定义的函数组件。我们可以在任何地方重复使用这个组件。当然，这个组件有一个问题——它的数据是在组件中硬编码的（写死的），这样它的用途就不大。这个问题我们在属性章节解决它。</p>
 <p>我们看到表格由表头(table header)和表内容(table body)组成，我们可以将它们拆分为两个独立的组件——TableHeader 和 TableBody。</p>
 <p><code>src/TableHeader.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">TableHeader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -302,7 +302,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token keyword">export</span> <span class="token keyword">default</span> TableHeader<span class="token punctuation">;</span>
 </code></pre>
 <p><code>src/TableBody.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">TableBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -330,9 +330,9 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token keyword">export</span> <span class="token keyword">default</span> TableBody<span class="token punctuation">;</span>
 </code></pre>
 <p><code>src/Table.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> TableHeader <span class="token keyword">from</span> <span class="token string">"./TableHeader"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> TableBody <span class="token keyword">from</span> <span class="token string">"./TableBody"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TableHeader <span class="token keyword">from</span> <span class="token string">'./TableHeader'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TableBody <span class="token keyword">from</span> <span class="token string">'./TableBody'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">Table</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -348,9 +348,9 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>我们看到，组件可以嵌套其他组件。接下来讲解一下类组件。在没有出现 React Hooks 之前，类组件是非常常用的组件形式，所以咱们通过百度等查找到的 React 组件资料，会充斥非常多的类组件形式。</p>
 <h3><a class="anchor" aria-hidden="true" id="类组件"></a><a href="#类组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类组件</h3>
 <p>这一小节，我们将<code>Table</code>组件用类组件的方式实现一下：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> TableHeader <span class="token keyword">from</span> <span class="token string">"./TableHeader"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> TableBody <span class="token keyword">from</span> <span class="token string">"./TableBody"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TableHeader <span class="token keyword">from</span> <span class="token string">'./TableHeader'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TableBody <span class="token keyword">from</span> <span class="token string">'./TableBody'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Table</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -381,21 +381,21 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <pre><code class="hljs css language-jsx"><span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> users <span class="token operator">=</span> <span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"工程师"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'张三'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'工程师'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"李四"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"喜剧演员"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'李四'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'喜剧演员'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"王五"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"警卫"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'王五'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'警卫'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"赵六"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"调酒师"</span>
-    <span class="token punctuation">}</span>
+      name<span class="token punctuation">:</span> <span class="token string">'赵六'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'调酒师'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">]</span><span class="token punctuation">;</span>
 
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -468,7 +468,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>你可以将状态看成是任何需要保存或者修改但是不需要添加到数据库中的数据，比如，从购物车中添加或者删除商品。</p>
 <p>首先，我们需要创建一个状态。</p>
 <p><code>src/App.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>users<span class="token punctuation">,</span> setUsers<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -476,39 +476,39 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 </code></pre>
 <p>接着将整个对象数组迁移到<code>users</code>状态中。</p>
 <p><code>src/App.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>users<span class="token punctuation">,</span> setUsers<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"工程师"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'张三'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'工程师'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"李四"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"喜剧演员"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'李四'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'喜剧演员'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"王五"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"警卫"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'王五'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'警卫'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"赵六"</span><span class="token punctuation">,</span>
-      job<span class="token punctuation">:</span> <span class="token string">"调酒师"</span>
-    <span class="token punctuation">}</span>
+      name<span class="token punctuation">:</span> <span class="token string">'赵六'</span><span class="token punctuation">,</span>
+      job<span class="token punctuation">:</span> <span class="token string">'调酒师'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>现在，数据已经存储在状态中。需要将<code>users</code>状态存储的数据传递给<code>Table</code>组件。</p>
 <p><code>src/App.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>users<span class="token punctuation">,</span> setUsers<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
-      name<span class="token punctuation">:</span> <span class="token string">"张三"</span>
+      name<span class="token punctuation">:</span> <span class="token string">'张三'</span><span class="token punctuation">,</span>
       <span class="token comment">// 剩下的数据</span>
-    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -520,7 +520,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 </code></pre>
 <p>既然我们想要从表格中删除一个人员，那么我们在<code>App</code>组件中创建<code>removeUser</code>方法。我们可以通过<code>setUsers</code>方法更新状态。</p>
 <p><code>src/App.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">removeUser</span> <span class="token operator">=</span> <span class="token parameter">index</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">removeUser</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token function">setUsers</span><span class="token punctuation">(</span>users<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">user<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=></span> index <span class="token operator">!==</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
@@ -592,12 +592,12 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token punctuation">}</span>
 </code></pre>
 <p>接着，我们创建一个新组件<code>Form</code>。表单中包含了用户名和工作两个变化的数据，所以需要用状态来存储。初始情况下，用户名和工作都是空字符串。</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">Form</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> initialFormData <span class="token operator">=</span> <span class="token punctuation">{</span>
-    name<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-    job<span class="token punctuation">:</span> <span class="token string">""</span>
+    name<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    job<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
   <span class="token keyword">const</span> <span class="token punctuation">[</span>formData<span class="token punctuation">,</span> setFormData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>initialFormData<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -607,32 +607,32 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 </code></pre>
 <p>我们的目标是表单中的每一个表单项发生变化时更新<code>formData</code>状态，并且在我们提交表单时，将数据传递给<code>App</code>组件中的<code>users</code>状态。当<code>App</code>组件的<code>users</code>状态发生变化时，我们的<code>Table</code>组件就会同步更新。</p>
 <p>首先，我们创建一个函数，用来监听表单项发生变化的事件。这个函数会接收到<code>event</code>参数，这个参数代表表单项值变化事件。<code>event</code>中有<code>name</code>和<code>value</code>两个属性，代表表单项的名称和值。</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">handleChange</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">handleChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> value <span class="token punctuation">}</span> <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
 
   <span class="token function">seteFormData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     <span class="token operator">...</span>formData<span class="token punctuation">,</span>
-    <span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">:</span> value
+    <span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">:</span> value<span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>然后在<code>Form</code>组件中添加两个输入框。我们从<code>formData</code>状态中取出<code>name</code>和<code>job</code>，分别传递给用户名、工作输入框（通过<code>value</code>属性）。然后将<code>haneleChange</code>传递给输入框的<code>onChange</code>属性，这样完成了表单项值变化监听。</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">Form</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> initialFormData <span class="token operator">=</span> <span class="token punctuation">{</span>
-    name<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-    job<span class="token punctuation">:</span> <span class="token string">""</span>
+    name<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    job<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
   <span class="token keyword">const</span> <span class="token punctuation">[</span>formData<span class="token punctuation">,</span> setFormData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>initialFormData<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token keyword">const</span> <span class="token function-variable function">handleChange</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">handleChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> value <span class="token punctuation">}</span> <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
 
     <span class="token function">seteFormData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       <span class="token operator">...</span>formData<span class="token punctuation">,</span>
-      <span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">:</span> value
+      <span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">:</span> value<span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
@@ -663,7 +663,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p><img src="/sinoui-guide/docs/assets/images/react-tutorial-submit-form-1.png" alt=""></p>
 <p>最后一步我们来处理一下表单数据提交。我们在<code>App.js</code>中创建一个<code>addUser()</code>方法，会将新的<code>user</code>参数添加到<code>users</code>状态中。这里使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax">ES6 展开操作符</a>。</p>
 <p><code>App.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">addUser</span> <span class="token operator">=</span> <span class="token parameter">user</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">addUser</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">user</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token function">setUsers</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span>users<span class="token punctuation">,</span> user<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
@@ -689,18 +689,18 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>这个章节将会用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">Fetch API</a>获取<a href="https://fcc-weather-api.glitch.me/api/current?lat=39.92&amp;lon=116.46">北京的天气数据</a>，并在页面上展现北京市当前的天气情况。</p>
 <p>这个章节不再从零开始讲解如何创建一个 React 应用和创建组件。这里重点讲解一个新的 React 钩子<a href="https://zh-hans.reactjs.org/docs/hooks-effect.html">useEffect</a>。它有很多用途，其中之一就是可以在组件创建完成后执行一些 JavaScript 代码（在这里执行的 JavaScript 代码，我们称之为副作用）。我们的应用期望在组件创建后，立马访问气象 API 获取北京市气象数据。代码如下。</p>
 <p><code>src/App.js</code>:</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>weather<span class="token punctuation">,</span> setWeather<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> url <span class="token operator">=</span>
-      <span class="token string">"https://fcc-weather-api.glitch.me/api/current?lat=39.92&amp;lon=116.46"</span><span class="token punctuation">;</span>
+      <span class="token string">'https://fcc-weather-api.glitch.me/api/current?lat=39.92&amp;lon=116.46'</span><span class="token punctuation">;</span>
 
     <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=></span> result<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=></span> <span class="token function">setWeather</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">result</span><span class="token punctuation">)</span> <span class="token operator">=></span> result<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">result</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setWeather</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token keyword">if</span> <span class="token punctuation">(</span>weather<span class="token punctuation">)</span> <span class="token punctuation">{</span>

@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Redux入门 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;TODO: 敬请期待。&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Redux入门 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;TODO: 敬请期待。&lt;/p&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Redux入门 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;目标&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#目标&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;目标&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Redux入门 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;目标&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#目标&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;目标&lt;/h2&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -56,5 +56,592 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Redux入门</h1></header><article><div><span><p>TODO: 敬请期待。</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-5-10 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-context"><span class="arrow-prev">← </span><span>React Context</span></a><a class="docs-next button" href="/sinoui-guide/docs/context-and-reducer-hook"><span>使用Context和reducer hook做状态管理</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Redux入门</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="目标"></a><a href="#目标" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>目标</h2>
+<p>Redux 是管理复杂状态的库，也可以说是一种管理状态的模式。</p>
+<p>学习 Redux 的动机、核心概念和三个基本原则。学会如何使用 Redux 来清晰地、可预测的 管理 React 程序中的状态。</p>
+<p>本章还会用 redux 搭配 react 构建出一个<a href="https://github.com/sinoui/todo-list-redux">待办列表</a>：</p>
+<ul>
+<li><a href="https://sinoui.github.io/todo-list-redux/">待办列表演示效果</a></li>
+<li><a href="https://github.com/sinoui/todo-list-redux">待办列表源码</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="动机"></a><a href="#动机" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动机</h2>
+<p>随着 JavaScript 单页应用开发日趋复杂，<strong>JavaScript 需要管理比任何时候都要多的 state （状态）</strong>。 这些 state 可能包括服务器响应、缓存数据、本地生成尚未持久化到服务器的数据，也包括 UI 状态，如激活的路由，被选中的标签，是否显示加载动效或者分页器等等。</p>
+<p>管理不断变化的 state 非常困难。如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。<strong>state 在什么时候，由于什么原因，如何变化已然不受控制</strong>。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。</p>
+<p>如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。前端开发者正在经受前所未有的复杂性。</p>
+<p>这里的复杂性很大程度上来自于：<strong>我们总是将两个难以理清的概念混淆在一起：变化和异步</strong>。如果把二者分开，能做的很好，但混到一起，就变得一团糟。React 试图在视图层禁止异步和直接操作 DOM 来解决这个问题。美中不足的是，React 依旧把处理 state 中数据的问题留给了你。Redux 就是为了帮你解决这个问题。</p>
+<p>跟随 Flux、CQRS 和 Event Sourcing 的脚步，通过限制更新发生的时间和方式，<strong>Redux 试图让 state 的变化变得可预测</strong>。这些限制条件反映在 Redux 的三大原则中。</p>
+<h2><a class="anchor" aria-hidden="true" id="核心概念"></a><a href="#核心概念" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>核心概念</h2>
+<p>Redux 是管理<strong>状态</strong>的，它管理的状态就是一个普通的 JavaScript 对象，可能长成这样：</p>
+<pre><code class="hljs css language-ts">{
+  todos: [{
+    id: <span class="hljs-number">1</span>,
+    text: <span class="hljs-string">'Eat food'</span>,
+    completed: <span class="hljs-literal">true</span>
+  }, {
+    id: <span class="hljs-number">2</span>,
+    text: <span class="hljs-string">'Exercise'</span>,
+    completed: <span class="hljs-literal">false</span>
+  }],
+  visibilityFilter: <span class="hljs-string">'SHOW_COMPLETED'</span>
+}
+</code></pre>
+<p>这个普通的 JavaScript 对象没有 setter 方法，且其他代码不能随意修改它，造成难以复现的 bug。</p>
+<p>要想更新 state 中的数据，你需要<strong>发起一个 action</strong>。Action 就是一个普通的 JavaScript 对象，用来描述发生了什么。下面是一些 action 的示例：</p>
+<pre><code class="hljs css language-ts">{ <span class="hljs-keyword">type</span>: <span class="hljs-string">'ADD_TODO'</span>, payload: <span class="hljs-string">'Go to swimming pool'</span> }
+{ <span class="hljs-keyword">type</span>: <span class="hljs-string">'TOGGLE_TODO'</span>, payload: <span class="hljs-number">1</span> }
+{ <span class="hljs-keyword">type</span>: <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>, payload: <span class="hljs-string">'SHOW_ALL'</span> }
+</code></pre>
+<p>强制使用 action 来描述所有变化带来的好处是可以清晰地知道应用中到底发生了什么。如果一些东西改变了，就可以知道为什么变。action 就像是描述发生了什么的指示器。最终，为了把 action 和 state 串起来，开发一些函数，这就是<strong>reducer</strong>。reducer 只是一个接收 state 和 action，并返回新的 state 的函数。对于大的应用来说，不大可能仅仅只写一个这样的函数，所以我们编写很多小函数来分别管理 state 的一部分：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visibilityFilter</span>(<span class="hljs-params">state = 'SHOW_ALL', action</span>) </span>{
+  <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>) {
+    <span class="hljs-keyword">return</span> action.filter;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">todos</span>(<span class="hljs-params">state = [], action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'ADD_TODO'</span>:
+      <span class="hljs-keyword">return</span> state.concat([{ text: action.text, completed: <span class="hljs-literal">false</span> }]);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'TOGGLE_TODO'</span>:
+      <span class="hljs-keyword">return</span> state.map(<span class="hljs-function">(<span class="hljs-params">todo, index</span>) =&gt;</span>
+        action.index === index
+          ? { text: todo.text, completed: !todo.completed }
+          : todo,
+      );
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+</code></pre>
+<p>再开发一个 reducer 调用这两个 reducer，进而来管理整个应用的 state：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">todoApp</span>(<span class="hljs-params">state = {}, action</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    todos: todos(state.todos, action),
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+  };
+}
+</code></pre>
+<p>这差不多就是 Redux 思想的全部：状态、Action、reducer。</p>
+<h2><a class="anchor" aria-hidden="true" id="三大原则"></a><a href="#三大原则" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>三大原则</h2>
+<h3><a class="anchor" aria-hidden="true" id="单一数据源"></a><a href="#单一数据源" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>单一数据源</h3>
+<blockquote>
+<p>整个应用的状态被储存在一棵 object tree 中，并且这个 object tree 只存在与唯一一个 store 中。</p>
+</blockquote>
+<p>这样做有多方面的好处：</p>
+<ul>
+<li>开发同构应用变得非常容易（SSR）。</li>
+<li>调试也变得非常容易。</li>
+<li>可轻松实现如“撤销/重做”这类功能。</li>
+</ul>
+<pre><code class="hljs css language-ts"><span class="hljs-built_in">console</span>.log(store.getStore());
+
+<span class="hljs-comment">/* 输出
+{
+  visibilityFilter: 'SHOW_ALL',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true,
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+}
+*/</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="状态是只读的"></a><a href="#状态是只读的" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>状态是只读的</h3>
+<blockquote>
+<p>唯一改变 state 的方法是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
+</blockquote>
+<p>这样确保了视图和网络都不能直接修改 state，相反它们只能表达想要修改的意图。因为所有的修改都被集中化处理，且严格按照一个接一个的顺序执行，因此不用担心 race condition 的出现。Action 就是普通对象而已，因此它们可以被日志打印、序列化、储存、后期调试或测试时回放出来。</p>
+<pre><code class="hljs css language-ts">store.dispatch({
+  <span class="hljs-keyword">type</span>: <span class="hljs-string">'COMPLETE_TODO'</span>,
+  index: <span class="hljs-number">1</span>,
+});
+
+store.dispatch({
+  <span class="hljs-keyword">type</span>: <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>,
+  filter: <span class="hljs-string">'SHOW_COMPLETED'</span>,
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="使用纯函数来执行修改"></a><a href="#使用纯函数来执行修改" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用纯函数来执行修改</h3>
+<blockquote>
+<p>为了描述 action 如何改变状态树，你需要编写 reducers。</p>
+</blockquote>
+<p>Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。刚开始你可以只有一个 reducer，随着应用变大，你可以把它拆成多个小的 reducers，分别独立地操作 state tree 的不同部分，因为 reducer 只是函数，你可以控制它们被调用的顺序，传入附加数据，甚至编写可复用的 reducer 来处理一些通用任务，如分页器。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visibilityFilter</span>(<span class="hljs-params">state = 'SHOW_ALL', action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>:
+      <span class="hljs-keyword">return</span> action.filter;
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">todos</span>(<span class="hljs-params">state = [], action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'ADD_TODO'</span>:
+      <span class="hljs-keyword">return</span> [
+        ...state,
+        {
+          text: action.text,
+          completed: <span class="hljs-literal">false</span>,
+        },
+      ];
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'COMPLETE_TODO'</span>:
+      <span class="hljs-keyword">return</span> state.map(<span class="hljs-function">(<span class="hljs-params">todo, index</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (index === action.index) {
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, todo, {
+            completed: <span class="hljs-literal">true</span>,
+          });
+        }
+        <span class="hljs-keyword">return</span> todo;
+      });
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-keyword">import</span> { combineReducers, createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
+<span class="hljs-keyword">let</span> reducer = combineReducers({ visibilityFilter, todos });
+<span class="hljs-keyword">let</span> store = createStore(reducer);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="示例-待办列表"></a><a href="#示例-待办列表" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例：待办列表</h2>
+<p>你可以直接从<a href="https://github.com/sinoui/todo-list-redux">待办列表站点</a>下载示例源码，也可以自己通过<code>npx create-react-app todo-list-redux --typescript</code>创建一个空项目来做这个示例的练习。</p>
+<p>首先看一下<a href="https://sinoui.github.io/todo-list-redux/">待办列表最终效果</a>。</p>
+<p>注意：本次示例主要演示 Redux 的用法，所以示例讲解先从 Redux 部分开始。日常开发时建议还是从 UI 和模拟数据开始，然后逐渐用 Redux 的部分替换掉模拟数据，实现功能。</p>
+<h3><a class="anchor" aria-hidden="true" id="定义状态和动作的数据结构"></a><a href="#定义状态和动作的数据结构" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定义状态和动作的数据结构</h3>
+<p>确认完需求后，就可以分析出该应用程序有哪些状态和动作，并且用 TypeScript 类型定义出来：</p>
+<p><code>react-app-env.d.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">/**
+ * 待办事项
+ */</span>
+<span class="hljs-keyword">interface</span> Todo {
+  id: <span class="hljs-built_in">number</span>;
+  <span class="hljs-comment">/**
+   * 标题
+   */</span>
+  text: <span class="hljs-built_in">string</span>;
+  <span class="hljs-comment">/**
+   * 是否已完成
+   */</span>
+  completed?: <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-comment">/**
+ * 应用程序状态
+ *
+ * @interface State
+ */</span>
+<span class="hljs-keyword">interface</span> State {
+  <span class="hljs-comment">/**
+   * 待办列表
+   */</span>
+  todos: Todo[];
+  <span class="hljs-comment">/**
+   * 可见性过滤条件
+   */</span>
+  visibilityFilter: VISIBILITY_FILTER;
+}
+
+<span class="hljs-comment">// 接下来是三个动作的类型</span>
+
+<span class="hljs-comment">/**
+ * 添加待办事项动作
+ */</span>
+<span class="hljs-keyword">interface</span> AddTodoAction {
+  <span class="hljs-keyword">type</span>: <span class="hljs-string">'ADD_TODO'</span>;
+  <span class="hljs-comment">/**
+   * 需要添加的待办事项对象
+   */</span>
+  payload: TODO;
+}
+
+<span class="hljs-comment">/**
+ * 设置过滤条件动作
+ */</span>
+<span class="hljs-keyword">interface</span> SetVisibilityFilterAction {
+  <span class="hljs-keyword">type</span>: <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>;
+  <span class="hljs-comment">/**
+   * 过滤条件
+   */</span>
+  payload: VISIBILITY_FILTER;
+}
+
+<span class="hljs-comment">/**
+ * 切换待办事项状态的动作
+ */</span>
+<span class="hljs-keyword">interface</span> ToggleTodoAction {
+  <span class="hljs-keyword">type</span>: <span class="hljs-string">'TOGGLE_TODO'</span>;
+  <span class="hljs-comment">/**
+   * 需要切换状态的待办事项id
+   */</span>
+  payload: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-comment">/**
+ * 可见性过滤条件
+ *
+ * * SHOW_ALL - 显示全部
+ * * SHOW_ACTIVE - 显示未完成的待办事项
+ * * SHOW_COMPLETED - 显示已完成的待办事项
+ */</span>
+<span class="hljs-keyword">type</span> VISIBILITY_FILTER = <span class="hljs-string">'SHOW_ALL'</span> | <span class="hljs-string">'SHOW_ACTIVE'</span> | <span class="hljs-string">'SHOW_COMPLETED'</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="动作创建器"></a><a href="#动作创建器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动作创建器</h3>
+<p>接着定义一些动作创建器，来辅助我们创建动作：</p>
+<p><code>actions/index.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> nextTodoId = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">/**
+ * 创建添加待办事项的动作
+ *
+ * @param text 待办事项标题
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addTodo</span>(<span class="hljs-params">text: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">AddTodoAction</span> </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">'ADD_TODO'</span>,
+    payload: {
+      id: nextTodoId++,
+      text,
+    },
+  };
+}
+
+<span class="hljs-comment">/**
+ * 创建设置可见性过滤条件的动作
+ *
+ * @param filter 过滤条件
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setVisibilityFilter</span>(<span class="hljs-params">
+  filter: VISIBILITY_FILTER,
+</span>): <span class="hljs-title">SetVisibilityFilterAction</span> </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>,
+    payload: filter,
+  };
+}
+
+<span class="hljs-comment">/**
+ * 创建切换待办事项状态的动作
+ *
+ * @param id 待办事项id
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggleTodo</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">ToggleTodoAction</span> </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">'TOGGLE_TODO'</span>,
+    payload: id,
+  };
+}
+
+<span class="hljs-keyword">export</span> { addTodo, setVisibilityFilter, toggleTodo };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="reducers"></a><a href="#reducers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>reducers</h3>
+<p>定义完动作和状态后，就需要考虑由动作引发的状态变更的实现，也就是 reducer：</p>
+<p><code>reducers/todos.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">/**
+ * 待办事项列表reducer
+ *
+ * @param {Todo[]} [state=[]]
+ * @param {(AddTodoAction | ToggleTodoAction)} action
+ * @returns
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">todos</span>(<span class="hljs-params">state: Todo[] = [], action: AddTodoAction | ToggleTodoAction</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'ADD_TODO'</span>:
+      <span class="hljs-keyword">return</span> [...state, action.payload];
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'TOGGLE_TODO'</span>:
+      <span class="hljs-keyword">return</span> state.map(<span class="hljs-function">(<span class="hljs-params">todo</span>) =&gt;</span>
+        todo.id === action.payload
+          ? { ...todo, completed: !todo.completed }
+          : todo,
+      );
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> todos;
+</code></pre>
+<p><code>reducers/visibilityFilter.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">/**
+ * 过滤条件reducer
+ *
+ * @param {VISIBILITY_FILTER} [state='SHOW_ALL']
+ * @param {SetVisibilityFilterAction} action
+ * @returns
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">visibilityFilter</span>(<span class="hljs-params">
+  state: VISIBILITY_FILTER = 'SHOW_ALL',
+  action: SetVisibilityFilterAction,
+</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SET_VISIBILITY_FILTER'</span>:
+      <span class="hljs-keyword">return</span> action.payload;
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> visibilityFilter;
+</code></pre>
+<p><code>reducers/index.ts</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { combineReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
+<span class="hljs-keyword">import</span> todos <span class="hljs-keyword">from</span> <span class="hljs-string">'./todos'</span>;
+<span class="hljs-keyword">import</span> visibilityFilter <span class="hljs-keyword">from</span> <span class="hljs-string">'./visibilityFilter'</span>;
+
+<span class="hljs-keyword">const</span> todoApp = combineReducers({
+  todos,
+  visibilityFilter,
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> todoApp;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="初始化应用程序"></a><a href="#初始化应用程序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>初始化应用程序</h3>
+<p><code>index.ts</code>文件中使用 ReactDOM 将整个应用程序渲染到 DOM 中。这里不再讲解。</p>
+<p>在<code>App.ts</code>中创建 Redux store，并采用 React Redux 托管 Redux store：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> TodoApp <span class="hljs-keyword">from</span> <span class="hljs-string">'./todo-app'</span>;
+<span class="hljs-keyword">import</span> todoApp <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducers'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./primitive.css'</span>;
+
+<span class="hljs-keyword">const</span> store = createStore(todoApp);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TodoApp</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;
+</code></pre>
+<p><code>todo-app/TodoApp.tsx</code>，待办列表应用的 UI 分成三部分，即添加、待办列表和页脚:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> AddTodo <span class="hljs-keyword">from</span> <span class="hljs-string">'./AddTodo'</span>;
+<span class="hljs-keyword">import</span> TodoList <span class="hljs-keyword">from</span> <span class="hljs-string">'./TodoList'</span>;
+<span class="hljs-keyword">import</span> Footer <span class="hljs-keyword">from</span> <span class="hljs-string">'./Footer'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TodoApp</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">AddTodo</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TodoList</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Footer</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> TodoApp;
+</code></pre>
+<p>接下来分别介绍这三个 UI 部分的实现。</p>
+<h3><a class="anchor" aria-hidden="true" id="展示待办列表"></a><a href="#展示待办列表" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>展示待办列表</h3>
+<p><code>todo-app/Todo.tsx</code>，展示单条待办事项：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> { toggleTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions'</span>;
+
+interface Props {
+  <span class="hljs-comment">/**
+   * 待办事项
+   */</span>
+  todo: Todo;
+}
+
+<span class="hljs-comment">/**
+ * 待办事项
+ *
+ * @param {Props} props
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Todo</span>(<span class="hljs-params">props: Props</span>) </span>{
+  <span class="hljs-keyword">const</span> dispatch = useDispatch();
+
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    dispatch(toggleTodo(props.todo.id));
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>
+      <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+        <span class="hljs-attr">textDecoration:</span> <span class="hljs-attr">props.todo.completed</span> ? '<span class="hljs-attr">line-through</span>' <span class="hljs-attr">:</span> '<span class="hljs-attr">none</span>',
+      }}
+    &gt;</span>
+      {props.todo.text}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> React.memo(Todo);
+</code></pre>
+<p>这里用到了 react redux 的<a href="https://react-redux.js.org/api/hooks#usedispatch">useDispatch</a>，获取到由 react redux 托管的 Redux Store 的<code>dispatch</code>方法。在点击待办事项时，发送切换待办事项状态的 Action。</p>
+<p><code>todo-app/TodoList.tsx</code>，展示待办事项列表：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> Todo <span class="hljs-keyword">from</span> <span class="hljs-string">'./Todo'</span>;
+
+<span class="hljs-comment">/**
+ * 获取可见的待办事项
+ *
+ * @param todos 待办事项列表
+ * @param filter 过滤条件
+ */</span>
+<span class="hljs-keyword">const</span> getVisibleTodos = <span class="hljs-function">(<span class="hljs-params">todos: Todo[], filter: VISIBILITY_FILTER</span>) =&gt;</span> {
+  <span class="hljs-keyword">switch</span> (filter) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SHOW_COMPLETED'</span>:
+      <span class="hljs-keyword">return</span> todos.filter(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> t.completed);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SHOW_ACTIVE'</span>:
+      <span class="hljs-keyword">return</span> todos.filter(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> !t.completed);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SHOW_ALL'</span>:
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> todos;
+  }
+};
+
+<span class="hljs-comment">/**
+ * 待办事项列表
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TodoList</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> todos = useSelector(<span class="hljs-function">(<span class="hljs-params">state: State</span>) =&gt;</span>
+    getVisibleTodos(state.todos, state.visibilityFilter),
+  );
+
+  <span class="hljs-keyword">return</span> (
+    &lt;&gt;
+      &lt;h2&gt;待办事项清单&lt;/h2&gt;
+      &lt;ul&gt;
+        {todos.map((todo) =&gt; (
+          &lt;Todo key={todo.id} todo={todo} /&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/&gt;
+  );
+}
+
+export default React.memo(TodoList);
+</code></pre>
+<p>这里用到了 React Redux 的<a href="https://react-redux.js.org/api/hooks#useselector">useSelector</a>方法，用来获取由 React Redux 托管的 Redux Store 的状态。<code>useSelector(selector)</code>方法的<code>selector</code>参数是一个函数，用来从 Redux store 的整个状态中获取到需要用到的数据，比如这里通过</p>
+<pre><code class="hljs css language-tsx">(<span class="hljs-keyword">state</span>: State) =&gt; getVisibleTodos(<span class="hljs-keyword">state</span>.todos, <span class="hljs-keyword">state</span>.visibilityFilter);
+</code></pre>
+<p>这个 selector 函数，从 Redux Store 中获取到了可见的待办事项列表。</p>
+<h3><a class="anchor" aria-hidden="true" id="显示过滤条件"></a><a href="#显示过滤条件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>显示过滤条件</h3>
+<p><code>todo-app/FilterLinker.tsx</code>:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { useDispatch, useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> { setVisibilityFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions'</span>;
+
+interface Props {
+  <span class="hljs-comment">/**
+   * 过滤条件
+   */</span>
+  filter: VISIBILITY_FILTER;
+  <span class="hljs-comment">/**
+   * 链接显示的内容
+   */</span>
+  children: React.ReactNode;
+}
+
+<span class="hljs-comment">/**
+ * 过滤链接组件
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FilterLink</span>(<span class="hljs-params">props: Props</span>) </span>{
+  <span class="hljs-keyword">const</span> dispatch = useDispatch();
+  <span class="hljs-keyword">const</span> currentFilter = useSelector(<span class="hljs-function">(<span class="hljs-params">state: State</span>) =&gt;</span> state.visibilityFilter);
+  <span class="hljs-keyword">const</span> isActive = currentFilter === props.filter;
+
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function">(<span class="hljs-params">event: React.MouseEvent</span>) =&gt;</span> {
+    event.preventDefault();
+    dispatch(setVisibilityFilter(props.filter));
+  };
+
+  <span class="hljs-keyword">if</span> (isActive) {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>;
+  }
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">{</span>`#${<span class="hljs-attr">props.filter</span>}`} <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>
+      {props.children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> React.memo(FilterLink);
+</code></pre>
+<p><code>todo-app/Footer.tsx</code>:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> FilterLink <span class="hljs-keyword">from</span> <span class="hljs-string">'./FilterLink'</span>;
+
+<span class="hljs-keyword">const</span> Footer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    显示: <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">"SHOW_ALL"</span>&gt;</span>所有<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+    {', '}
+    <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">"SHOW_ACTIVE"</span>&gt;</span>未完成<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+    {', '}
+    <span class="hljs-tag">&lt;<span class="hljs-name">FilterLink</span> <span class="hljs-attr">filter</span>=<span class="hljs-string">"SHOW_COMPLETED"</span>&gt;</span>已完成<span class="hljs-tag">&lt;/<span class="hljs-name">FilterLink</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> React.memo(Footer);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="添加待办事项"></a><a href="#添加待办事项" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加待办事项</h3>
+<p><code>todo-app/AddTodo.tsx</code>:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
+<span class="hljs-keyword">import</span> { addTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions'</span>;
+
+<span class="hljs-comment">/**
+ * 添加待办事项组件
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddTodo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> dispatch = useDispatch();
+  <span class="hljs-keyword">const</span> [todoText, setTodoText] = useState(<span class="hljs-string">''</span>);
+
+  <span class="hljs-keyword">const</span> handleChange = <span class="hljs-function">(<span class="hljs-params">event: React.ChangeEvent&lt;HTMLInputElement&gt;</span>) =&gt;</span> {
+    setTodoText(event.target.value);
+  };
+
+  <span class="hljs-keyword">const</span> handleSubmit = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    dispatch(addTodo(todoText));
+    setTodoText(<span class="hljs-string">''</span>);
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">display:</span> '<span class="hljs-attr">flex</span>' }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+        <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{todoText}</span>
+        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">width:</span> '<span class="hljs-attr">auto</span>', <span class="hljs-attr">flex:</span> <span class="hljs-attr">1</span> }}
+      /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleSubmit}</span>&gt;</span>
+        添加
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  );
+}
+
+export default React.memo(AddTodo);
+</span></code></pre>
+<p>这就完成了待办事项的开发。</p>
+<p>这个示例程序采用 Redux 管理待办事项的状态，并使用 React Redux 将 Redux 状态与 React 紧密结合在一起。</p>
+<p>程序中用了一个缓存小技巧<code>React.memo</code>，来缓存组件，可以避免组件不必要的重新渲染。</p>
+<h2><a class="anchor" aria-hidden="true" id="何时采用-redux"></a><a href="#何时采用-redux" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>何时采用 Redux</h2>
+<p>在采用 Redux 之前，首先问自己，真的有必要引入 Redux 么？如果你的功能状态管理非常复杂，才需要考虑是否需要引入 Redux。可以这样说，Redux 库是非常规武器，可以定位为“核武器”，但是 Redux 模式可以作为常规武器，比如可以使用<code>React useReducer</code>管理组件局部状态。</p>
+<p>在使用 Redux 时，需要做一些权衡。它不是设计为以最快或者最短的方式编写代码。它旨在帮助回答“何时某个状态发生变化，数据来自何处？”这一问题，具有可预测的行为。它要求您遵循应用程序中特定约束来实现：将应用程序的状态存储为纯数据，将更改描述为普通对象，并使用不可变式更新数据的纯函数来处理这些变更。这往往是关于“样板”的投诉的来源。这些约束需要开发人员的努力，但也开辟了许多其他可能性（例如存储持久化和同步）。</p>
+<h2><a class="anchor" aria-hidden="true" id="参考"></a><a href="#参考" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考</h2>
+<ul>
+<li><a href="https://redux.js.org/">Redux 官网</a></li>
+<li><a href="https://github.com/reduxjs/react-redux">Redux 源码</a></li>
+<li><a href="https://react-redux.js.org/">React Redux 官网</a></li>
+<li><a href="https://www.redux.org.cn/">Redux 中文官网</a></li>
+<li><a href="https://github.com/redux-utilities/flux-standard-action">Flex 标准 Action</a></li>
+<li><a href="https://react-redux.js.org/api/hooks">React Redux Hook API</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-18 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-context"><span class="arrow-prev">← </span><span>React Context</span></a><a class="docs-next button" href="/sinoui-guide/docs/context-and-reducer-hook"><span>使用Context和reducer hook做状态管理</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#目标">目标</a></li><li><a href="#动机">动机</a></li><li><a href="#核心概念">核心概念</a></li><li><a href="#三大原则">三大原则</a><ul class="toc-headings"><li><a href="#单一数据源">单一数据源</a></li><li><a href="#状态是只读的">状态是只读的</a></li><li><a href="#使用纯函数来执行修改">使用纯函数来执行修改</a></li></ul></li><li><a href="#示例-待办列表">示例：待办列表</a><ul class="toc-headings"><li><a href="#定义状态和动作的数据结构">定义状态和动作的数据结构</a></li><li><a href="#动作创建器">动作创建器</a></li><li><a href="#reducers">reducers</a></li><li><a href="#初始化应用程序">初始化应用程序</a></li><li><a href="#展示待办列表">展示待办列表</a></li><li><a href="#显示过滤条件">显示过滤条件</a></li><li><a href="#添加待办事项">添加待办事项</a></li></ul></li><li><a href="#何时采用-redux">何时采用 Redux</a></li><li><a href="#参考">参考</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
