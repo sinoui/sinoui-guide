@@ -261,7 +261,7 @@ import produce from 'immer';
 
 const todoReducers = produce((draft, action) => {
   switch (action.type) {
-    case 'ADD_TOOD':
+    case 'ADD_TODO':
       draft.push(action.payload);
       return;
     case 'TOGGLE_TODO':
