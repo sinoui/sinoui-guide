@@ -95,7 +95,7 @@ const state = {
 };
 
 const newState = produce(state, (draft) => {
-  draft.address.city = '北京';
+  draft.address.city = '上海';
 });
 
 console.log(state);
