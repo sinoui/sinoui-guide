@@ -83,7 +83,7 @@ react-tutorial
 打开`src/index.js`文件，找到下面一行代码：
 
 ```jsx
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 这行代码的意思是将`<App />`渲染在`#root`的 DOM 元素中。
@@ -103,9 +103,9 @@ Edit <code>src/App.js</code> and save to reload.
 现在，在`index.js`中导入 React、ReactDOM 和`index.css`：
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 ```
 
 再创建一个 App 组件。代码如下：
@@ -125,15 +125,15 @@ App 组件中有一个`class`为`App`的`div`，`div`中包含了`h1`标签。�
 最后，我们在`#root`标签中渲染出`App`：
 
 ```jsx
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 至此，`src/index.js`文件就完成了。完整的代码如下：
 
 ```jsx
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 
 function App() {
   return (
@@ -143,7 +143,7 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 现在，再看看`http://localhost:3000`页面，页面上会呈现出`Hello, World!`。👏 我们完成了 React 应用的开始部分。
@@ -170,11 +170,11 @@ React 并不强制使用 JSX。在底层，JSX 会被替换成`createElement`，
 
 ```jsx
 const heading = React.createElement(
-  "h1",
+  'h1',
   {
-    className: "site-heading"
+    className: 'site-heading',
   },
-  "Hello, React"
+  'Hello, React',
 );
 ```
 
@@ -194,13 +194,13 @@ JSX 实际上更接近 JavaScript，而不是 HTML，因此在编写时需要注
 在 JSX 中，应写成下面的方式：
 
 ```jsx
-<button onClick={() => alert("我被点击了")}>点击我</button>
+<button onClick={() => alert('我被点击了')}>点击我</button>
 ```
 
 可以在 JSX 中使用大括号的方式嵌入 JavaScript 表达式，如变量、方法和属性。
 
 ```jsx
-const name = "Jacking";
+const name = 'Jacking';
 const heading = <h1>Hello, {name}</h1>;
 ```
 
@@ -217,18 +217,18 @@ JSX 使我们在 JavaScript 中创建和维护元素变得简单。这也是大�
 `src/index.js`
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import "./App";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 然后在`src/`目录下创建一个新的`App.js`文件，内容如下：
 
 ```jsx
-import React from "react";
+import React from 'react';
 
 function App() {
   return (
@@ -252,7 +252,7 @@ React 16.8 推出 React Hooks 后，类组件变得不那么重要了，所以�
 `src/Table.js`:
 
 ```jsx
-import React from "react";
+import React from 'react';
 
 function Table() {
   return (
@@ -291,7 +291,7 @@ export default Table;
 我们创建了一个自定义的函数组件。我们需要将自定义组件的名称首字母大写，以区分常规的 HTML 元素。回到`App.js`文件，将 Table 载入其中。首先我们需要导入 Table：
 
 ```jsx
-import Table from "./Table";
+import Table from './Table';
 ```
 
 然后，我们将`<h1>`替换成`<Table />`，如下所示：
@@ -307,8 +307,8 @@ return (
 完整的`src/App.js`代码如下：
 
 ```jsx
-import React from "react";
-import Table from "./Table";
+import React from 'react';
+import Table from './Table';
 
 function App() {
   return (
@@ -332,7 +332,7 @@ export default App;
 `src/TableHeader.js`:
 
 ```jsx
-import React from "react";
+import React from 'react';
 
 function TableHeader() {
   return (
@@ -351,7 +351,7 @@ export default TableHeader;
 `src/TableBody.js`:
 
 ```jsx
-import React from "react";
+import React from 'react';
 
 function TableBody() {
   return (
@@ -382,9 +382,9 @@ export default TableBody;
 `src/Table.js`:
 
 ```jsx
-import React from "react";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import React from 'react';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 function Table() {
   return (
@@ -405,9 +405,9 @@ export default Table;
 这一小节，我们将`Table`组件用类组件的方式实现一下：
 
 ```jsx
-import React from "react";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import React from 'react';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 class Table extends React.Component {
   render() {
@@ -447,21 +447,21 @@ function TableBody() {
 function App() {
   const users = [
     {
-      name: "张三",
-      job: "工程师"
+      name: '张三',
+      job: '工程师',
     },
     {
-      name: "李四",
-      job: "喜剧演员"
+      name: '李四',
+      job: '喜剧演员',
     },
     {
-      name: "王五",
-      job: "警卫"
+      name: '王五',
+      job: '警卫',
     },
     {
-      name: "赵六",
-      job: "调酒师"
-    }
+      name: '赵六',
+      job: '调酒师',
+    },
   ];
 
   return (
@@ -566,7 +566,7 @@ function TableBody(props) {
 `src/App.js`:
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function App() {
   const [users, setUsers] = useState();
@@ -578,26 +578,26 @@ function App() {
 `src/App.js`:
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function App() {
   const [users, setUsers] = useState([
     {
-      name: "张三",
-      job: "工程师"
+      name: '张三',
+      job: '工程师',
     },
     {
-      name: "李四",
-      job: "喜剧演员"
+      name: '李四',
+      job: '喜剧演员',
     },
     {
-      name: "王五",
-      job: "警卫"
+      name: '王五',
+      job: '警卫',
     },
     {
-      name: "赵六",
-      job: "调酒师"
-    }
+      name: '赵六',
+      job: '调酒师',
+    },
   ]);
 }
 ```
@@ -607,14 +607,14 @@ function App() {
 `src/App.js`:
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function App() {
   const [users, setUsers] = useState([
     {
-      name: "张三"
+      name: '张三',
       // 剩下的数据
-    }
+    },
   ]);
 
   return (
@@ -630,7 +630,7 @@ function App() {
 `src/App.js`:
 
 ```jsx
-const removeUser = index => {
+const removeUser = (index) => {
   setUsers(users.filter((user, i) => index !== i));
 };
 ```
@@ -741,12 +741,12 @@ function App() {
 接着，我们创建一个新组件`Form`。表单中包含了用户名和工作两个变化的数据，所以需要用状态来存储。初始情况下，用户名和工作都是空字符串。
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function Form() {
   const initialFormData = {
-    name: "",
-    job: ""
+    name: '',
+    job: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -760,12 +760,12 @@ export default Form;
 首先，我们创建一个函数，用来监听表单项发生变化的事件。这个函数会接收到`event`参数，这个参数代表表单项值变化事件。`event`中有`name`和`value`两个属性，代表表单项的名称和值。
 
 ```jsx
-const handleChange = event => {
+const handleChange = (event) => {
   const { name, value } = event.target;
 
   seteFormData({
     ...formData,
-    [name]: value
+    [name]: value,
   });
 };
 ```
@@ -773,22 +773,22 @@ const handleChange = event => {
 然后在`Form`组件中添加两个输入框。我们从`formData`状态中取出`name`和`job`，分别传递给用户名、工作输入框（通过`value`属性）。然后将`haneleChange`传递给输入框的`onChange`属性，这样完成了表单项值变化监听。
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function Form() {
   const initialFormData = {
-    name: "",
-    job: ""
+    name: '',
+    job: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     seteFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -829,7 +829,7 @@ return (
 `App.js`:
 
 ```jsx
-const addUser = user => {
+const addUser = (user) => {
   setUsers([...users, user]);
 };
 ```
@@ -875,18 +875,18 @@ const submitForm = () => {
 `src/App.js`:
 
 ```jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [weather, setWeather] = useState();
 
   useEffect(() => {
     const url =
-      "https://fcc-weather-api.glitch.me/api/current?lat=39.92&lon=116.46";
+      'https://fcc-weather-api.glitch.me/api/current?lat=39.92&lon=116.46';
 
     fetch(url)
-      .then(result => result.json())
-      .then(result => setWeather(result));
+      .then((result) => result.json())
+      .then((result) => setWeather(result));
   }, []);
 
   if (weather) {

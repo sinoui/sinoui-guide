@@ -36,11 +36,11 @@ npx create-react-app jsx-tutorial
 我们通过 JSX 创建 React 元素，然后通过 React DOM 将 React 元素渲染成 DOM，并放在`#root`元素中。
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const element = <h1>Hello, World!</h1>; // 创建React元素
-ReactDOM.render(element, document.getElementById("root")); // 将React元素渲染成DOM，并放在`#root`DOM元素中
+ReactDOM.render(element, document.getElementById('root')); // 将React元素渲染成DOM，并放在`#root`DOM元素中
 ```
 
 页面上会展示出 “Hello, world!”。
@@ -58,10 +58,10 @@ React 不强制要求使用 JSX，但是大多数人发现，在 JavaScript 代�
 在下面的例子中，我们声明了一个名为`name`的变量，然后在 JSX 中使用它，并将它包裹在大括号中：
 
 ```jsx
-const name = "Josh Perez";
+const name = 'Josh Perez';
 const element = <h1>Hello, {name}</h1>;
 
-ReactDOM.render(element, document.getElementById("root"));
+ReactDOM.render(element, document.getElementById('root'));
 ```
 
 在 JSX 语法中，你可以在大括号内放置任何有效的 JavaScript 表达式。例如，`2 + 2`、`user.firstName`或`formatName(user)`都是有效的 JavaScript 表达式。
@@ -70,17 +70,17 @@ ReactDOM.render(element, document.getElementById("root"));
 
 ```jsx
 function formatName(user) {
-  return user.firstName + " " + user.lastName;
+  return user.firstName + ' ' + user.lastName;
 }
 
 const user = {
-  firstName: "Harper",
-  lastName: "Perez"
+  firstName: 'Harper',
+  lastName: 'Perez',
 };
 
 const element = <h1>Hello, {formatName(user)}!</h1>;
 
-ReactDOM.render(element, document.getElementById("root"));
+ReactDOM.render(element, document.getElementById('root'));
 ```
 
 ## JSX 本身就是一个表达式
@@ -149,9 +149,9 @@ const element = <h1 className="greeting">Hello, world!</h1>;
 
 ```jsx
 const element = React.createElement(
-  "h1",
-  { className: "greeting" },
-  "Hello, world!"
+  'h1',
+  { className: 'greeting' },
+  'Hello, world!',
 );
 ```
 
@@ -160,11 +160,11 @@ const element = React.createElement(
 ```jsx
 // 注意：这是简化过的结构
 const element = {
-  type: "h1",
+  type: 'h1',
   props: {
-    className: "greeting",
-    children: "Hello, world!"
-  }
+    className: 'greeting',
+    children: 'Hello, world!',
+  },
 };
 ```
 
@@ -179,8 +179,8 @@ const element = {
 我们创建一个`Greeting`组件，它会根据用户是否登录来决定显示不同的问候语：
 
 ```jsx
-import React from "react";
-import RectDOM from "react-dom";
+import React from 'react';
+import RectDOM from 'react-dom';
 
 function Greeting(props) {
   const { isLoggedIn } = props;
@@ -194,7 +194,7 @@ function Greeting(props) {
 
 ReactDOM.render(
   <Greeting isLoggedIn={false} />,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 ```
 
@@ -215,10 +215,10 @@ function Mailbox(props) {
   );
 }
 
-const messages = ["React", "Re: React", "Re:Re: React"];
+const messages = ['React', 'Re: React', 'Re:Re: React'];
 ReactDOM.render(
   <Mailbox unreadMessages={messages} />,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 ```
 
@@ -244,8 +244,8 @@ function Greeting() {
 当组件在某些条件下不需要渲染任何东西，就相当于隐藏了一样。这种情况下直接返回`null`，组件就不会进行任何渲染了。
 
 ```jsx
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 function WarningBanner(props) {
   if (!props.warn) {
@@ -262,13 +262,13 @@ function App() {
     <div>
       <WarningBanner warn={showWarning} />
       <button onClick={() => setShowWarning(!showWarning)}>
-        {showWarning ? "隐藏" : "显示"}
+        {showWarning ? '隐藏' : '显示'}
       </button>
     </div>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 ## 列表 & key
@@ -277,7 +277,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 ```jsx
 const numbers = [1, 2, 3, 4, 5];
-const doubled = numbers.map(number => number * 2);
+const doubled = numbers.map((number) => number * 2);
 console.log(doubled);
 ```
 
@@ -290,13 +290,13 @@ console.log(doubled);
 我们在页面上渲染一组数字：
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map(number => <li>{number}</li>); // 将数组转换成一组li元素
+const listItems = numbers.map((number) => <li>{number}</li>); // 将数组转换成一组li元素
 
-ReactDOM.render(<ul>{listItems}</ul>, document.getElementById("root")); // 将一组li元素包含在ul元素中，并在#root中渲染出来。
+ReactDOM.render(<ul>{listItems}</ul>, document.getElementById('root')); // 将一组li元素包含在ul元素中，并在#root中渲染出来。
 ```
 
 这段代码渲染出了 1 到 5 的项目符号列表。
@@ -307,7 +307,7 @@ ReactDOM.render(<ul>{listItems}</ul>, document.getElementById("root")); // 将�
 
 ```jsx
 const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map(number => (
+const listItems = numbers.map((number) => (
   <li key={number.toString()}>{number}</li>
 ));
 ```
@@ -315,7 +315,7 @@ const listItems = numbers.map(number => (
 一个元素的 key 最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用来自数据 id 来作为元素的 key：
 
 ```jsx
-const todoItems = todos.map(todo => <li key={todo.id}>{todo.text}</li>);
+const todoItems = todos.map((todo) => <li key={todo.id}>{todo.text}</li>);
 ```
 
 当元素没有确定 id 的时候，万不得已你可以使用元素索引 index 作为 key：
@@ -338,8 +338,8 @@ const todoItems = todos.map((todo, index) => (
 **例子：不正确的使用 key 的方式**
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 function ListItem(props) {
   const value = props.value;
@@ -351,7 +351,7 @@ function ListItem(props) {
 
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map(number => (
+  const listItems = numbers.map((number) => (
     // 错误！元素的 key 应该在这里指定：
     <ListItem value={number} />
   ));
@@ -361,15 +361,15 @@ function NumberList(props) {
 const numbers = [1, 2, 3, 4, 5];
 ReactDOM.render(
   <NumberList numbers={numbers} />,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 ```
 
 **例子：正确的使用 key 的方式**
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 function ListItem(props) {
   // 正确！这里不需要指定 key：
@@ -378,7 +378,7 @@ function ListItem(props) {
 
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map(number => (
+  const listItems = numbers.map((number) => (
     // 正确！key 应该在数组的上下文中被指定
     <ListItem key={number.toString()} value={number} />
   ));
@@ -388,7 +388,7 @@ function NumberList(props) {
 const numbers = [1, 2, 3, 4, 5];
 ReactDOM.render(
   <NumberList numbers={numbers} />,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 ```
 
@@ -399,18 +399,18 @@ ReactDOM.render(
 数组元素中使用的 key 在其兄弟节点之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 key 值：
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 function Blog(props) {
   const sidebar = (
     <ul>
-      {props.posts.map(post => (
+      {props.posts.map((post) => (
         <li key={post.id}>{post.title}</li>
       ))}
     </ul>
   );
-  const content = props.posts.map(post => (
+  const content = props.posts.map((post) => (
     <div key={post.id}>
       <h3>{post.title}</h3>
       <p>{post.content}</p>
@@ -426,16 +426,16 @@ function Blog(props) {
 }
 
 const posts = [
-  { id: 1, title: "Hello World", content: "Welcome to learning React!" },
-  { id: 2, title: "Installation", content: "You can install React from npm." }
+  { id: 1, title: 'Hello World', content: 'Welcome to learning React!' },
+  { id: 2, title: 'Installation', content: 'You can install React from npm.' },
 ];
-ReactDOM.render(<Blog posts={posts} />, document.getElementById("root"));
+ReactDOM.render(<Blog posts={posts} />, document.getElementById('root'));
 ```
 
 key 会传递信息给 React ，但不会传递给你的组件。如果你的组件中需要使用 key 属性的值，请用其他属性名显式传递这个值：
 
 ```jsx
-const content = posts.map(post => (
+const content = posts.map((post) => (
   <Post key={post.id} id={post.id} title={post.title} />
 ));
 ```
@@ -449,7 +449,7 @@ const content = posts.map(post => (
 ```jsx
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map(number => (
+  const listItems = numbers.map((number) => (
     <ListItem key={number.toString()} value={number} />
   ));
   return <ul>{listItems}</ul>;
@@ -463,7 +463,7 @@ function NumberList(props) {
   const numbers = props.numbers;
   return (
     <ul>
-      {numbers.map(number => (
+      {numbers.map((number) => (
         <ListItem key={number.toString()} value={number} />
       ))}
     </ul>

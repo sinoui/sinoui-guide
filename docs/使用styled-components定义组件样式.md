@@ -40,7 +40,7 @@ yarn add styled-components
 `Wrapper.js`
 
 ```jsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   height: 200px;
@@ -57,7 +57,7 @@ export default Wrapper;
 `H1.js`
 
 ```jsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const H1 = styled.h1`
   font-size: 32px;
@@ -71,10 +71,10 @@ export default H1;
 `App.js`
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import Wrapper from "./Wrapper";
-import H1 from "./H1";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Wrapper from './Wrapper';
+import H1 from './H1';
 
 function App() {
   return (
@@ -84,7 +84,7 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 运行程序，我们就能看到如下效果：
@@ -102,16 +102,16 @@ ReactDOM.render(<App />, document.getElementById("root"));
 `Button.js`
 
 ```jsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Button = styled.button`
   min-width: 64px;
-  background: ${props => (props.primary ? "blue" : "transparent")};
-  color: ${props => (props.primary ? "white" : "palevioletred")};
+  background: ${(props) => (props.primary ? 'blue' : 'transparent')};
+  color: ${(props) => (props.primary ? 'white' : 'palevioletred')};
   font-size: 14px;
   margin: 8px;
   padding: 8px;
-  border: ${props => (props.primary ? "none" : `2px solid palevioletred`)};
+  border: ${(props) => (props.primary ? 'none' : `2px solid palevioletred`)};
   border-radius: 3px;
 `;
 
@@ -136,7 +136,7 @@ export default Button;
 `Button.js`
 
 ```jsx
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const disabledStyle = css`
   background: transparent;
@@ -146,14 +146,14 @@ const disabledStyle = css`
 
 const Button = styled.button`
   min-width: 64px;
-  background: ${props => (props.primary ? "blue" : "transparent")};
-  color: ${props => (props.primary ? "white" : "palevioletred")};
+  background: ${(props) => (props.primary ? 'blue' : 'transparent')};
+  color: ${(props) => (props.primary ? 'white' : 'palevioletred')};
   font-size: 14px;
   margin: 8px;
   padding: 8px;
-  border: ${props => (props.primary ? "none" : `2px solid palevioletred`)};
+  border: ${(props) => (props.primary ? 'none' : `2px solid palevioletred`)};
   border-radius: 3px;
-  ${props => props.disabled && disabledStyle};
+  ${(props) => props.disabled && disabledStyle};
 `;
 
 export default Button;
@@ -172,16 +172,16 @@ export default Button;
 最后，我们还可以直接传入一个样式属性来控制组件样式的规则，比如，我们希望能自定义按钮的最小宽度，此时我们可以调整`Button.js`为：
 
 ```jsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Button = styled.button`
-  min-width: ${props => props.minWidth || 64}px;
-  background: ${props => (props.primary ? "blue" : "transparent")};
-  color: ${props => (props.primary ? "white" : "palevioletred")};
+  min-width: ${(props) => props.minWidth || 64}px;
+  background: ${(props) => (props.primary ? 'blue' : 'transparent')};
+  color: ${(props) => (props.primary ? 'white' : 'palevioletred')};
   font-size: 14px;
   margin: 8px;
   padding: 8px;
-  border: ${props => (props.primary ? "none" : `2px solid palevioletred`)};
+  border: ${(props) => (props.primary ? 'none' : `2px solid palevioletred`)};
   border-radius: 3px;
 `;
 
@@ -234,8 +234,8 @@ const BlueButton = styled(Button)`
 `styled-components`实际上也是通过`className`的方式添加样式，所以，只要我们的组件有`className`,我们就能使用`styled-components`自定义其样式。
 
 ```jsx
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const P = ({ className, children }) => <p className={className}>{children}</p>;
 
@@ -265,19 +265,19 @@ export { P, CustomP };
 我们可以使用`attrs`API 来为样式组件添加一些属性，它们也可以通过标签模板插值函数拿到 props 传值。
 
 ```jsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const PasswordInput = styled.input.attrs({
-  type: "password",
-  margin: props => props.size || "1em",
-  padding: props => props.size || "1em"
+  type: 'password',
+  margin: (props) => props.size || '1em',
+  padding: (props) => props.size || '1em',
 })`
   color: palevioletred;
   font-size: 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
-  margin: ${props => props.margin};
-  padding: ${props => props.padding};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
 `;
 
 export default PasswordInput;
@@ -298,7 +298,7 @@ export default PasswordInput;
 带有`@keyframes`的`CSS animations`，一般来说会产生复用。`styled-components`暴露了一个`keyframes`的`API`，我们使用它产生一个可以复用的变量。这样，我们在书写`css`样式的时候使用 JavaScript 的功能，为`CSS`附能，并且避免了名称冲突。
 
 ```jsx
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const rotateStyle = keyframes`
     from {
