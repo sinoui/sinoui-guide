@@ -8,7 +8,7 @@ sidebar_label: Node.js
 
 ## 常用 API
 
-# ensureDir(dir,options,callback)
+### ensureDir(dir,options,callback)
 
 确认目录是否存在，如果不存在，则创建一个，类似于`mkdir -p`。
 
@@ -26,7 +26,7 @@ async function checkDir() {
 }
 ```
 
-# pathExists(file,callback)
+### pathExists(file,callback)
 
 通过检查文件系统来测试给定路径是否存在。类似于`fs.exists`
 
@@ -41,7 +41,7 @@ async function checkExists() {
 }
 ```
 
-# move(src, dest,options,callback)
+### move(src, dest,options,callback)
 
 移动文件或目录,甚至可以跨设备，类似于`mv`
 
@@ -65,7 +65,7 @@ async function moveFile() {
 }
 ```
 
-# ensureFile(file,callback)
+### ensureFile(file,callback)
 
 确认文件是否存在。如果请求创建的文件位于不存在的目录中，则会创建这些目录，如果该文件已经存在，则不进行修改。
 
