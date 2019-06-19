@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Express入门 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Express 是一个简洁而灵活的 node.js Web 应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Express入门 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;Express 是一个简洁而灵活的 node.js Web 应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>语言篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/nodejs">Node.js</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/express-guide">Express入门</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Express入门</h1></header><article><div><span><p>Express 是一个简洁而灵活的 node.js Web 应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
+<p>Express 框架核心特性：</p>
+<ul>
+<li>可以设置中间件来响应 HTTP 请求。</li>
+<li>定义了路由用于执行不同的 HTTP 请求动作。</li>
+<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="hello-world"></a><a href="#hello-world" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hello，World</h2>
+<p><code>server.js</code></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> app = express(); <span class="hljs-comment">// （1）</span>
+
+app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello World!'</span>)); <span class="hljs-comment">// (2)</span>
+
+app.listen(<span class="hljs-number">3000</span>, () =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Example app listening on port 3000!'</span>));
+</code></pre>
+<p>上述示例中：</p>
+<ol>
+<li>代码(1)创建 express</li>
+<li>代码(2)设定 API</li>
+<li>app.listen(3000)设置端口号为 3000</li>
+<li>使用 node server.js 启动，访问<a href="http://localhost:3000/">http://localhost:3000/</a>将看到页面显示<code>Hello World</code></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="路由映射"></a><a href="#路由映射" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>路由映射</h2>
+<h3><a class="anchor" aria-hidden="true" id="基本路由"></a><a href="#基本路由" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本路由</h3>
+<p>路由是指确定应用程序如何响应对特定端点的客户端请求，该请求是路径和特定的 HTTP 请求。每个路由都可以有一个或多个处理函数，这些函数在路由匹配时执行。</p>
+<p>定义路由结构：</p>
+<pre><code class="hljs css language-js">app.METHOD(PATH, HANDLER);
+</code></pre>
+<p>这里：</p>
+<ul>
+<li>app 是一个实例 express</li>
+<li>METHOD 是一个 HTTP 请求方法，小写</li>
+<li>PATH 是服务器上的路径</li>
+<li>HANDLER 是路由匹配时执行的功能</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> app = express();
+
+<span class="hljs-comment">//  主页输出 "Hello World"</span>
+app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Hello World'</span>);
+});
+
+<span class="hljs-comment">// post请求</span>
+app.post(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Hello World'</span>);
+});
+
+<span class="hljs-comment">//  /list_user 页面 GET 请求</span>
+app.get(<span class="hljs-string">'/list_user'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'用户列表页面'</span>);
+});
+
+<span class="hljs-comment">// 响应对/user路由的PUT请求：</span>
+app.put(<span class="hljs-string">'/user'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Got a PUT request at /user'</span>);
+});
+
+<span class="hljs-comment">// 响应对/user路由的DELETE请求</span>
+app.delete(<span class="hljs-string">'/user'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Got a DELETE request at /user'</span>);
+});
+</code></pre>
+<p>有一种特殊的路由方法，app.all()用于在路径上为所有 HTTP 请求方法和加载中间件函数</p>
+<pre><code class="hljs css language-js">app.all(<span class="hljs-string">'/secret'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Accessing the secret section ...'</span>);
+  next(); <span class="hljs-comment">// 转到下一个url处理</span>
+});
+</code></pre>
+<p>上述代码无论是使用 GET，POST，PUT，DELETE 还是<a href="https://nodejs.org/api/http.html#http_http_methods">http 模块</a>支持的任何其他 HTTP 请求方法，都会对路由“/ secret”的请求执行处理程序。</p>
+<h3><a class="anchor" aria-hidden="true" id="approute"></a><a href="#approute" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>app.route()</h3>
+<p>可以使用 app.route()为路由路径创建可链接的路由处理程序。因为路径是在单个位置指定的，所以创建模块化路由很有帮助，可以减少了冗余和拼写错误。有关路由的更多信息，请参阅：<a href="http://www.expressjs.com.cn/en/4x/api.html#router">Router()文档</a>。</p>
+<p>以下是使用定义的链接路由处理程序的示例<code>app.route()</code>。</p>
+<pre><code class="hljs css language-javascript">app
+  .route(<span class="hljs-string">'/book'</span>)
+  .get(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    res.send(<span class="hljs-string">'Get a random book'</span>);
+  })
+  .post(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    res.send(<span class="hljs-string">'Add a book'</span>);
+  })
+  .put(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+    res.send(<span class="hljs-string">'Update the book'</span>);
+  });
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="expressrouter"></a><a href="#expressrouter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>express.Router</h3>
+<p>使用 express.Router 类创建模块化，可安装的路由处理程序。 Router 实例是一个完整的中间件和路由系统;因此，它通常被称为“迷你 app”。</p>
+<p>以下示例将路由器创建为模块，在其中加载中间件功能，定义一些路由，并将路由器模块安装在主应用程序中的路径上。</p>
+<p><code>birds.js</code></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
+
+<span class="hljs-comment">// middleware that is specific to this router</span>
+router.use(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">timeLog</span>(<span class="hljs-params">req, res, next</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Time: '</span>, <span class="hljs-built_in">Date</span>.now());
+  next();
+});
+<span class="hljs-comment">// 定义首页路由</span>
+router.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Birds home page'</span>);
+});
+<span class="hljs-comment">// 定义about页面路由</span>
+router.get(<span class="hljs-string">'/about'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'About birds'</span>);
+});
+
+<span class="hljs-built_in">module</span>.exports = router;
+</code></pre>
+<p>在应用程序中加载路由器模块：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> birds = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./birds'</span>);
+<span class="hljs-comment">// ...</span>
+app.use(<span class="hljs-string">'/birds'</span>, birds);
+</code></pre>
+<p>该应用程序现在能够处理请求<code>/birds</code>和<code>/birds/about</code>，以及调用<code>timeLog</code>中间件功能。</p>
+<h2><a class="anchor" aria-hidden="true" id="请求数据处理"></a><a href="#请求数据处理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>请求数据处理</h2>
+<ul>
+<li><p>路径参数</p>
+<pre><code class="hljs css language-js">app.get(<span class="hljs-string">'/user/:name'</span>,(req,res)=&gt;
+    <span class="hljs-keyword">const</span> {name} = req.params; <span class="hljs-comment">// 获取路径参数</span>
+})
+</code></pre></li>
+<li><p>请求参数</p>
+<pre><code class="hljs css language-js">app.get(<span class="hljs-string">'/todo/:userId?page=0&amp;size=15'</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> { page, size } = req.query; <span class="hljs-comment">// 获取请求参数</span>
+});
+</code></pre></li>
+<li><p>表单数据</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> app = express();
+
+<span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>);
+app.use(bodyParser.json()); <span class="hljs-comment">//数据JSON类型</span>
+app.use(bodyParser.urlencoded({ <span class="hljs-attr">extended</span>: <span class="hljs-literal">true</span> })); <span class="hljs-comment">//解析post请求数据,返回键值对中的值可以是任何类型</span>
+
+<span class="hljs-comment">// 新增人员信息</span>
+app.post(<span class="hljs-string">'/form-data'</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> formData = req.body; <span class="hljs-comment">// 获取表单数据</span>
+});
+</code></pre></li>
+<li><p>JSON 数据</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> app = express();
+
+<span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>);
+app.use(bodyParser.json()); <span class="hljs-comment">//数据JSON类型</span>
+app.use(bodyParser.urlencoded({ <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span> })); <span class="hljs-comment">//解析post请求数据,返回键值对中的值就为'String'或'Array'形式</span>
+
+<span class="hljs-comment">// 新增人员信息</span>
+app.post(<span class="hljs-string">'/user'</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> user = req.body; <span class="hljs-comment">// 人员数据</span>
+});
+</code></pre></li>
+<li><p>文件上传</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-keyword">const</span> multipart = <span class="hljs-built_in">require</span>(<span class="hljs-string">'connect-multiparty'</span>);
+<span class="hljs-keyword">const</span> multipartMiddleware = multipart();
+
+<span class="hljs-comment">// 文件上传</span>
+app.post(<span class="hljs-string">'/upload/file'</span>, multipartMiddleware, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> file = req.files.file; <span class="hljs-comment">// 获取文件信息</span>
+});
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="响应数据处理"></a><a href="#响应数据处理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>响应数据处理</h2>
+<ul>
+<li><p>JSON 数据</p>
+<pre><code class="hljs css language-js">app.get(<span class="hljs-string">"/test/users"</span>, (req, res) =&gt; {
+    <span class="hljs-keyword">const</span> { page = <span class="hljs-number">0</span>, size = <span class="hljs-number">15</span> } = req.query;
+    <span class="hljs-keyword">const</span> pageNo = <span class="hljs-built_in">parseInt</span>(page, <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">const</span> pageSize = <span class="hljs-built_in">parseInt</span>(size, <span class="hljs-number">10</span>);
+    res.json({
+      <span class="hljs-attr">totalElements</span>: items.length,
+      <span class="hljs-attr">number</span>: pageNo,
+      <span class="hljs-attr">totalPages</span>: <span class="hljs-built_in">Math</span>.ceil(items.length / size),
+      <span class="hljs-attr">size</span>: pageSize,
+      <span class="hljs-attr">content</span>: items.slice(pageNo * size, (pageNo + <span class="hljs-number">1</span>) * size)
+    });
+
+    <span class="hljs-comment">// 返回500并输出错误信息</span>
+    res.status(<span class="hljs-number">500</span>).json({ <span class="hljs-attr">error</span>: <span class="hljs-string">'message'</span> });
+</code></pre></li>
+<li><p>只发响应状态：<code>status(200).end()</code>。别忘记<code>end()</code>。</p>
+<pre><code class="hljs css language-js">app.delete(<span class="hljs-string">'/user/:id'</span>, (req, res) =&gt; {
+  res.status(<span class="hljs-number">204</span>).end();
+});
+</code></pre></li>
+<li><p>下载文件：<code>sendFile</code></p>
+<p>res.sendFile(path [，options][，fn])：传送指定路径的文件 -会自动根据文件 extension 设定 Content-Type</p>
+<pre><code class="hljs css language-js">app.get(<span class="hljs-string">'/file/:name'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
+  <span class="hljs-keyword">var</span> options = {
+    <span class="hljs-attr">root</span>: __dirname + <span class="hljs-string">'/public/'</span>, <span class="hljs-comment">// 设置路径</span>
+    dotfiles: <span class="hljs-string">'deny'</span>, <span class="hljs-comment">//</span>
+    headers: {
+      <span class="hljs-string">'x-timestamp'</span>: <span class="hljs-built_in">Date</span>.now(), <span class="hljs-comment">// 设置请求头</span>
+      <span class="hljs-string">'x-sent'</span>: <span class="hljs-literal">true</span>,
+    },
+  };
+
+  <span class="hljs-keyword">var</span> fileName = req.params.name;
+  res.sendFile(fileName, options, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+    <span class="hljs-comment">//此回调函数是在发生错误或者发送完成时调用</span>
+    <span class="hljs-keyword">if</span> (err) {
+      next(err);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Sent:'</span>, fileName);
+    }
+  });
+});
+</code></pre>
+<p>简单用法：</p>
+<pre><code class="hljs css language-js">app.get(<span class="hljs-string">'/index.htm'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.sendFile(__dirname + <span class="hljs-string">'/'</span> + <span class="hljs-string">'index.htm'</span>);
+});
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>此篇文档只是简单的 Express 入门，希望我们可以从中对如何创建 express 实例，如何设置访问 IP 和端口号，如何处理路由映射以及请求数据及响应数据的处理有一定的了解。</p>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<ul>
+<li><a href="http://www.expressjs.com.cn/">Express-基于 Node.js 平台的 Web 应用开发框架</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-19 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/nodejs"><span class="arrow-prev">← </span><span>Node.js</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hello-world">Hello，World</a></li><li><a href="#路由映射">路由映射</a><ul class="toc-headings"><li><a href="#基本路由">基本路由</a></li><li><a href="#approute">app.route()</a></li><li><a href="#expressrouter">express.Router</a></li></ul></li><li><a href="#请求数据处理">请求数据处理</a></li><li><a href="#响应数据处理">响应数据处理</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
