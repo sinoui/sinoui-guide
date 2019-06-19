@@ -81,3 +81,14 @@ async function ensureFileFn() {
   }
 }
 ```
+
+## 总结
+
+此篇文章主要列出了项目中用到的几个 Api,更多操作文件的 Api,我们后续会继续补充。
+
+## 参考文章
+
+* [fx-extra](<https://github.com/jprichardson/node-fs-extra#nodejs-fs-extra>)
+* [fs|Node.js API文档](<http://nodejs.cn/api/fs.html>)
+* [将`fs-extra`代替`fs`使用](<https://www.colabug.com/3668248.html>)
+
