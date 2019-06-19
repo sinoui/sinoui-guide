@@ -38,7 +38,8 @@
       "ts-function-overloading",
       "jest-introduction",
       "react-component-test-guide",
-      "nodejs"
+      "nodejs",
+      "express-guide"
     ]
   }
 }

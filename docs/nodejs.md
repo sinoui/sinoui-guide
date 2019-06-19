@@ -88,7 +88,6 @@ async function ensureFileFn() {
 
 ## 参考文章
 
-* [fx-extra](<https://github.com/jprichardson/node-fs-extra#nodejs-fs-extra>)
-* [fs|Node.js API文档](<http://nodejs.cn/api/fs.html>)
-* [将`fs-extra`代替`fs`使用](<https://www.colabug.com/3668248.html>)
-
+- [fx-extra](https://github.com/jprichardson/node-fs-extra#nodejs-fs-extra)
+- [fs|Node.js API 文档](http://nodejs.cn/api/fs.html)
+- [将`fs-extra`代替`fs`使用](https://www.colabug.com/3668248.html)
