@@ -37,7 +37,8 @@
       "default-import-export-compatibility",
       "ts-function-overloading",
       "jest-introduction",
-      "react-component-test-guide"
+      "react-component-test-guide",
+      "nodejs"
     ]
   }
 }
