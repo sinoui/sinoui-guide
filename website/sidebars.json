@@ -37,9 +37,9 @@
       "default-import-export-compatibility",
       "ts-function-overloading",
       "jest-introduction",
-      "react-component-test-guide",
-      "nodejs",
-      "express-guide"
-    ]
+      "react-component-test-guide"
+    ],
+    "Node.js": ["nodejs", "express-guide"],
+    "HTML5": ["calculate-video-duration", "calculate-md5"]
   }
 }
