@@ -174,7 +174,7 @@ function addTodo(todo) {
 }
 
 function toggleTodo(index) {
-  todos.map((todo, idx) => {
+  return todos.map((todo, idx) => {
     if (idx === index) {
       return { ...todo, completed: !todo.completed };
     }
