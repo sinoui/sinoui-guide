@@ -1,10 +1,10 @@
 ---
 id: nodejs
-title: node.js操作文件
-sidebar_label: Node.js
+title: node.js文件操作
+sidebar_label: Node.js文件操作
 ---
 
-> Node.js 的 fs 模块提供了一个 API，用于模仿以标准的 POSIX 函数的方式与文件系统进行交互。推荐使用[fs-extra](https://github.com/jprichardson/node-fs-extra)
+> Node.js 的 [fs](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html) 模块提供了一个 API，用于模仿以标准的 POSIX 函数的方式与文件系统进行交互。推荐使用[fs-extra](https://github.com/jprichardson/node-fs-extra)做日常文件操作。
 
 ## 常用 API
 
