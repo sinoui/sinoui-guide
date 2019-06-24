@@ -519,3 +519,75 @@ function XxxxPage() {
 - 用自定义 hook 做状态管理逻辑与 UI 渲染逻辑分离
 - 遇到跨级共享状态时，用 React Context
 - 如果用 React Context + custom hooks 做跨级共享状态，可以考虑用 unstated-next
+
+## unstated-next 使用要点
+
+### 要点#1: 保持 Containers 很小
+
+这对于保持 containers 小而集中非常有用。 如果你想在 containers 中对代码进行逻辑拆分，那么这一点非常重要。只需将它们移动到自己的 hooks 中，仅保存 containers 的状态即可。
+
+```tsx
+function useCount() {
+  return useState(0);
+}
+
+const CounterContainer = createContainer(useCount);
+
+function useCounter() {
+  const [count, setCount] = CounterContainer.useContainer();
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
+  const reset = () => setCount(0);
+  return { count, decrement, increment, reset };
+}
+```
+
+```tsx
+function CounterDisplay() {
+  const { count, decrement, increment } = useCounter();
+
+  return (
+    <div>
+      <button onClick={decrement}>-</button>
+      <p>You clicked {count} times</p>
+      <button onClick={increment}>+</button>
+    </div>
+  );
+}
+
+function ResetCounter() {
+  const { reset } = useCounter();
+
+  return <button onClick={reset}>重置</button>;
+}
+
+function App() {
+  <CounterContainer.Provider>
+    <div>
+      <CounterDisplay />
+      <ResetCounter />
+    </div>
+  </CounterContainer.Provider>;
+}
+```
+
+## 要点#2：组合 Containers
+
+因为我们只使用了自定义 React hooks，所以可以在其他 hooks 内部组合 containers。
+
+```typescript
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
+  return { count, decrement, increment, setCount };
+}
+
+const Counter = createContainer(useCounter);
+
+function useResettableCounter() {
+  const counter = Counter.useContainer();
+  const reset = () => counter.setCount(0);
+  return { ...counter, reset };
+}
+```
