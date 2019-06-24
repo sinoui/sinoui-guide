@@ -816,3 +816,20 @@ function CounterDisplay(props) {
   return <CounterDisplayInner {...counter} />;
 }
 ```
+
+<!-- // TODO: 这里放上React组件优化的文章链接 -->
+
+## 总结
+
+本篇文章通过计数器示例，向大家演示了：
+
+- 如何使用自定义 hook 将状态管理与 UI 分离开，并可复用状态管理逻辑。
+- 如何使用 React Context 做跨级组件间通信。
+- 如何使用 unstated-next 简化 React Hooks 共享状态和逻辑。
+
+## 参考文章
+
+- [React Context](react-context.md)
+- [unstated-next](https://github.com/jamiebuilds/unstated-next)
+- [展示/容器组件模式](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
