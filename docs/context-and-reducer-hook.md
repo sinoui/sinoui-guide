@@ -571,7 +571,7 @@ function App() {
 }
 ```
 
-## 要点#2：组合 Containers
+### 要点#2：组合 Containers
 
 因为我们只使用了自定义 React hooks，所以可以在其他 hooks 内部组合 containers。
 
@@ -589,5 +589,230 @@ function useResettableCounter() {
   const counter = Counter.useContainer();
   const reset = () => counter.setCount(0);
   return { ...counter, reset };
+}
+```
+
+### 要点#3：优化组件
+
+`unstated-next`无需优化。所有你要做的优化，都是标准的 React 优化。
+
+#### 1) 通过拆分组件来优化耗时的子树
+
+优化前:
+
+```tsx
+function CounterDisplay() {
+  const counter = Counter.useContainer();
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <p>You clicked {counter.count} times</p>
+      <button onClick={counter.increment}>+</button>
+      <div>
+        <div>
+          <div>
+            <div>SUPER EXPENSIVE RENDERING STUFF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+优化后:
+
+```tsx
+function ExpensiveComponent() {
+  return (
+    <div>
+      <div>
+        <div>
+          <div>SUPER EXPENSIVE RENDERING STUFF</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const MemoExpensiveComponent = React.memo(ExpensiveComponent);
+
+function CounterDisplay() {
+  const counter = Counter.useContainer();
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <p>You clicked {counter.count} times</p>
+      <button onClick={counter.increment}>+</button>
+      <MemoExpensiveComponent />
+    </div>
+  );
+}
+```
+
+### 2) 使用 useMemo() 优化耗时的操作
+
+优化前：
+
+```tsx
+function CounterDisplay(props) {
+  const counter = Counter.useContainer();
+
+  // 每次 `counter` 改变都要重新计算这个值，非常耗时
+  const expensiveValue = expensiveComputation(props.input);
+
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <p>You clicked {counter.count} times</p>
+      <button onClick={counter.increment}>+</button>
+    </div>
+  );
+}
+```
+
+优化后：
+
+```tsx
+function CounterDisplay(props) {
+  const counter = Counter.useContainer();
+
+  // 仅在输入更改时重新计算这个值
+  const expensiveValue = useMemo(() => {
+    return expensiveComputation(props.input);
+  }, [props.input]);
+
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <p>You clicked {counter.count} times</p>
+      <button onClick={counter.increment}>+</button>
+    </div>
+  );
+}
+```
+
+### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
+
+优化前：
+
+```tsx
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
+  return { count, decrement, increment };
+}
+
+const Counter = createContainer(useCounter);
+
+function CounterDisplay(props) {
+  const counter = Counter.useContainer();
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <p>You clicked {counter.count} times</p>
+      <button onClick={counter.increment}>+</button>
+    </div>
+  );
+}
+```
+
+优化后：
+
+```tsx
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const decrement = useCallback(() => setCount(count - 1), [count]);
+  const increment = useCallback(() => setCount(count + 1), [count]);
+  return { count, decrement, increment };
+}
+
+const Counter = createContainer(useCounter);
+
+const CounterDisplayInner = React.memo((props) => {
+  return (
+    <div>
+      <button onClick={props.decrement}>-</button>
+      <p>You clicked {props.count} times</p>
+      <button onClick={props.increment}>+</button>
+    </div>
+  );
+});
+
+function CounterDisplay(props) {
+  const counter = Counter.useContainer();
+  return <CounterDisplayInner {...counter} />;
+}
+```
+
+### 4) 使用 React.memo()、useReducer() 减少重新渲染次数
+
+优化前：
+
+```tsx
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
+  return { count, decrement, increment };
+}
+
+const Counter = createContainer(useCounter);
+
+function CounterDisplay(props) {
+  const counter = Counter.useContainer();
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <p>You clicked {counter.count} times</p>
+      <button onClick={counter.increment}>+</button>
+    </div>
+  );
+}
+```
+
+优化后：
+
+```tsx
+function counterReducer(state = 0, action) {
+  switch (action.type) {
+    case 'DECREMENT':
+      return state - 1;
+    case 'INCREMENT':
+      return state + 1;
+    default:
+      return state;
+  }
+}
+
+function useCounter() {
+  const [count, dipatch] = useReducer(counterReducer);
+  return { count, dispatch };
+}
+
+const Counter = createContainer(useCounter);
+
+const CounterDisplayInner = React.memo((props) => {
+  const decrement = () =>
+    props.dispatch({
+      type: 'DECREMENT',
+    });
+  const increment = () =>
+    props.dispatch({
+      type: 'INCREMENT',
+    });
+  return (
+    <div>
+      <button onClick={decrement}>-</button>
+      <p>You clicked {props.count} times</p>
+      <button onClick={increment}>+</button>
+    </div>
+  );
+});
+
+function CounterDisplay(props) {
+  const counter = Counter.useContainer();
+  return <CounterDisplayInner {...counter} />;
 }
 ```
