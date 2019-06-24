@@ -1,0 +1,796 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>使用Context和hook做状态管理 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;目标&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#目标&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;目标&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="使用Context和hook做状态管理 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;目标&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#目标&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;目标&lt;/h2&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>状态管理（高阶）</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理（高阶）<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/context-and-hook">使用Context和hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">使用Context和hook做状态管理</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="目标"></a><a href="#目标" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>目标</h2>
+<ul>
+<li>学习使用 Context 和 Hook 管理页面组件级别的状态</li>
+<li>学习状态管理逻辑复用的模式：自定义 Hook 和 unstated-next</li>
+<li>“hook 容器”模式</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="快速开始-计数器例子"></a><a href="#快速开始-计数器例子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>快速开始：计数器例子</h2>
+<p>大家学习过 React Hook，知道自定义 Hook 可以封装状态管理逻辑，并达到复用、共享的效果。这次从一个计数器例子开始。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p>如果我们要复用计数器状态管理这部分代码，我们可以使用自定义 hook：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { count, decrement, increment } = useCounter();
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AnotherCounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { count, decrement, increment } = useCounter();
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>当前分数：{count}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+render(
+  <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">AnotherCounterDisplay</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/&gt;</span>,
+  document.getElementById('root'),
+);
+</span></code></pre>
+<p>通过努力，<code>CounterDisplay</code>和<code>AnotherCounterDisplay</code>两个组件共享了计数状态管理逻辑。但如果要求这两个组件共享状态怎么办？这时候，我们可能会想到状态提升，如下所示：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+
+interface Counter {
+  <span class="hljs-attr">count</span>: number;
+  decrement: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span>;
+  increment: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>): <span class="hljs-title">Counter</span> </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props: { counter: Counter }</span>) </span>{
+  <span class="hljs-keyword">const</span> { count, decrement, increment } = props.counter;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AnotherCounterDisplay</span>(<span class="hljs-params">props: { counter: Counter }</span>) </span>{
+  <span class="hljs-keyword">const</span> { count, decrement, increment } = props.counter;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>当前分数：{count}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> counter = useCounter();
+
+  <span class="hljs-keyword">return</span> (
+    &lt;&gt;
+      &lt;CounterDisplay counter={counter} /&gt;
+      &lt;AnotherCounterDisplay counter={counter} /&gt;
+    &lt;/&gt;
+  );
+}
+
+render(&lt;App /&gt;, document.getElementById('root'));
+</code></pre>
+<p>如果需要共享状态的组件与共同父组件层级比较深，那么我们可以使用 React Context 简化状态提升需要逐级传输组件属性：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState, useContext } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+
+interface Counter {
+  <span class="hljs-attr">count</span>: number;
+  decrement: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span>;
+  increment: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>): <span class="hljs-title">Counter</span> </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-keyword">const</span> CounterContext = React.createContext&lt;Counter&gt;(<span class="hljs-literal">null</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { count, decrement, increment } = useContext(CounterContext);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AnotherCounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { count, decrement, increment } = useContext(CounterContext);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>当前分数：{count}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterInfo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> counter = useContext(CounterContext);
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>当前计数：{counter.count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Header</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>计数器<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">CounterInfo</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> counter = useCounter();
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{counter}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AnotherCounterDisplay</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContext.Provider</span>&gt;</span>
+  );
+}
+
+render(<span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p>现在要求<code>AnotherCounterDisplay</code>的状态单独管理，依然可以用 Context：</p>
+<pre><code class="hljs css language-tsx">function App() {
+  const counter = useCounter();
+
+  const anotherCounter = useCounter();
+
+  return (
+    <span class="hljs-tag">&lt;<span class="hljs-name">CounterContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{counter}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">CounterContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{anotherCounter}</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">AnotherCounterDisplay</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContext.Provider</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContext.Provider</span>&gt;</span>
+  );
+}
+</code></pre>
+<p>diff：</p>
+<pre><code class="hljs css language-diff">function App() {
+  const counter = useCounter();
+
+<span class="hljs-addition">+  const anotherCounter = useCounter();</span>
+
+  return (
+    &lt;CounterContext.Provider value={counter}&gt;
+      &lt;div&gt;
+        &lt;Header /&gt;
+        &lt;CounterDisplay /&gt;
+<span class="hljs-addition">+        &lt;CounterContext.Provider value={anotherCounter}&gt;</span>
+          &lt;AnotherCounterDisplay /&gt;
+<span class="hljs-addition">+        &lt;/CounterContext.Provider&gt;</span>
+      &lt;/div&gt;
+    &lt;/CounterContext.Provider&gt;
+  );
+}
+</code></pre>
+<p>我们也可以将再创建一个组件，专门用来提供计数状态管理的上下文：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterContextProvider</span>(<span class="hljs-params">{ children }: { children: React.ReactNode }</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = useCounter();
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{counter}</span>&gt;</span>
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContext.Provider</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p>这样我们的代码如下所示：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterContextProvider</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">CounterContextProvider</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">AnotherCounterDisplay</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContextProvider</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContextProvider</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>diff:</p>
+<pre><code class="hljs css language-diff">function App() {
+<span class="hljs-deletion">- const counter = useCounter();</span>
+  return (
+<span class="hljs-deletion">-    &lt;CounterContext.Provider value={counter}&gt;</span>
+<span class="hljs-addition">+    &lt;CounterContextProvider&gt;</span>
+      &lt;div&gt;
+        &lt;Header /&gt;
+        &lt;CounterDisplay /&gt;
+<span class="hljs-addition">+        &lt;CounterContextProvider&gt;</span>
+          &lt;AnotherCounterDisplay /&gt;
+<span class="hljs-addition">+        &lt;/CounterContextProvider&gt;</span>
+      &lt;/div&gt;
+<span class="hljs-deletion">-    &lt;/CounterContext.Provider&gt;</span>
+<span class="hljs-addition">+    &lt;/CounterContextProvider&gt;</span>
+  );
+}
+</code></pre>
+<p>稍微实践一下，我们会发现：为自定义 hook 创建的上下文这种模式很有用。我们来整理一下这种模式的计数器例子：</p>
+<pre><code class="hljs css language-tsx">interface Counter {
+  <span class="hljs-attr">count</span>: number;
+  decrement: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span>;
+  increment: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span>;
+}
+
+<span class="hljs-comment">// 首先定义一个React Hook</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-comment">// 然后定义一个上下文：</span>
+
+<span class="hljs-keyword">const</span> CounterContext = React.createContext&lt;Counter&gt;(<span class="hljs-literal">null</span>);
+
+<span class="hljs-comment">// 之后我们创建一个提供上下文的Provider组件：</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterContextProvider</span>(<span class="hljs-params">{ children }: { children: React.ReactNode }</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = useCounter();
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{counter}</span>&gt;</span>
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContext.Provider</span>&gt;</span>
+  );
+}
+
+// 之后，我们就可以尽情地使用了：
+
+function App() {
+  <span class="hljs-tag">&lt;<span class="hljs-name">CounterContextProvider</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContextProvider</span>&gt;</span>;
+}
+
+function CounterDisplay() {
+  const counter = useContext(CounterContext);
+
+  return <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{counter.count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+}
+</span></code></pre>
+<p>这种模式的核心点就是需要自定义 hook。然后都会有第二步和第三步，那么我们可以继续提炼一下（第二步和第三步）：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createContainer</span>&lt;<span class="hljs-title">T</span>&gt;<span class="hljs-params">(useCustomHookFn: <span class="hljs-params">()</span> =&gt; T)</span> </span>{
+  <span class="hljs-keyword">const</span> ContainerContext = React.createContext&lt;T | <span class="hljs-keyword">null</span>&gt;(<span class="hljs-keyword">null</span>);
+  <span class="hljs-keyword">const</span> Provider = ({ children }: { children: React.ReactNode }) =&gt; {
+    <span class="hljs-keyword">const</span> result = useCustomHookFn();
+
+    <span class="hljs-keyword">return</span> (
+      &lt;ContainerContext.Provider value={result}&gt;
+        {children}
+      &lt;/ContainerContext.Provider&gt;
+    );
+  };
+
+  <span class="hljs-keyword">const</span> useContainer = () =&gt; {
+    <span class="hljs-keyword">return</span> useContext(ContainerContext);
+  };
+
+  <span class="hljs-keyword">return</span> { Provider, useContainer };
+}
+</code></pre>
+<p>我们使用<code>createContainer</code>来简化自定义 hook 上下文这种模式：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-comment">// 首先定义一个React Hook</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-comment">// 然后定义计数容器</span>
+<span class="hljs-keyword">const</span> CounterContainer = createContainer(useCounter);
+
+<span class="hljs-comment">// 之后，我们就可以尽情地使用了：</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  &lt;CounterContainer.Provider&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContainer.Provider</span>&gt;</span>;
+}
+
+function CounterDisplay() {
+  const counter = CounterContainer.useContainer();
+
+  return <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{counter.count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+}
+</span></code></pre>
+<p>这里，我们引入了一个<code>container</code>名词，用来表示包装自定义 hook 到上下文，我们姑且称之为“<strong>hook 容器</strong>”，或者简称为“<strong>容器</strong>”。</p>
+<p>刚刚的<code>createContainer</code>已经由<a href="https://github.com/jamiebuilds/unstated-next">unstated-next</a>实现：</p>
+<pre><code class="hljs css language-shell">yarn add unstated-next
+</code></pre>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { createContainer } <span class="hljs-keyword">from</span> <span class="hljs-string">'unstated-next'</span>;
+
+<span class="hljs-comment">// 首先定义一个React Hook</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-comment">// 然后定义计数容器</span>
+<span class="hljs-keyword">const</span> CounterContainer = createContainer(useCounter);
+
+<span class="hljs-comment">// 之后，我们就可以尽情地使用了：</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  &lt;CounterContainer.Provider&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContainer.Provider</span>&gt;</span>;
+}
+
+function CounterDisplay() {
+  const counter = CounterContainer.useContainer();
+
+  return <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{counter.count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+}
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="页面组件的状态管理与-hook-容器-模式"></a><a href="#页面组件的状态管理与-hook-容器-模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>页面组件的状态管理与“hook 容器”模式</h2>
+<p><a href="https://mobile.twitter.com/dan_abramov">Dan Abramov</a>在 2015 年提出的<a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">展示/容器组件模式</a>，主要目的是为了将状态管理逻辑与 UI 逻辑分离开，独立维护。但是这种模式已经过时了，不再适合大规模采用，引用 Dan Abramov 的原话：</p>
+<blockquote>
+<p>Update from 2019: I wrote this article a long time ago and my views have since evolved. In particular, I don’t suggest splitting your components like this anymore. If you find it natural in your codebase, this pattern can be handy. But I’ve seen it enforced without any necessity and with almost dogmatic fervor far too many times. The main reason I found it useful was because it const me separate complex stateful logic from other aspects of the component. Hooks const me do the same thing without an arbitrary division. This text is left intact for historical reasons but don’t take it too seriously.</p>
+</blockquote>
+<p>大致的意思是：不再推荐按照展示/容器组件模式拆分组件。</p>
+<p>虽然<a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">展示/容器组件模式</a>已经过时，但是它要解决的问题：将状态管理逻辑与 UI 逻辑分离开，依然需要处理。幸运的是我们有了更好的解决方案：React Hooks。</p>
+<p>对于一个页面组件来说，我们使用组件来处理 UI 渲染，使用 React Hooks 来处理状态。大概率下页面各个部分需要共享状态。这样分析，你会发现“hook 容器”模式非常适合页面组件的开发：将页面级别的状态管理放在页面自定义 hook 中，页面的各个子组件都可以通过上下文快速获取到需要的共享状态。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useXxxxPage</span>(<span class="hljs-params"></span>) </span>{
+  ....
+}
+
+<span class="hljs-keyword">const</span> XxxxPageContainer = createContainer(useXxxxPage);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">XxxxPageHeader</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> xxxxPageState = XxxxPageContainer.useContainer();
+
+  <span class="hljs-comment">//....</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">XxxxPageContent</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> xxxxPageState = XxxxPageContainer.useContainer();
+
+  <span class="hljs-comment">//...</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">XxxxPageFooter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> xxxxPageState = XxxxPageContainer.useContainer();
+
+  <span class="hljs-comment">//...</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">XxxxPage</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">XxxxPageContainer.Provider</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">XxxxPageHeader</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">XxxxPageContent</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">XxxxPageFooter</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">XxxxPageContainer.Provider</span>&gt;</span>
+}
+</span></code></pre>
+<p><strong>强调一点</strong>：在页面级别需要共享的数据才需要放到<code>useXxxxPage</code>中。局部状态依然首推在局部组件级别解决。</p>
+<p>页面组件也是组件，在 React 中没有任何特殊的设定，只是页面组件往往会面临状态的跨级共享，而且我们在开发应用时，一般会从页面组件开始，所以，我们可以选择一种状态管理模式作为状态管理的参考实现，“hook 容器”就是一种好的模式。但是页面组件的状态管理同样需要遵循组件状态管理的最佳实践，当发现“hook 容器”不适合时，应该考虑其他的最佳实践。</p>
+<p>在做应用开发时，遵循以下几个要点：</p>
+<ul>
+<li>用组件做 UI 渲染</li>
+<li>用组件做 UI 渲染逻辑复用</li>
+<li>用 React Hooks 做组件状态管理</li>
+<li>用自定义 hook 做状态管理逻辑复用</li>
+<li>用自定义 hook 做状态管理逻辑与 UI 渲染逻辑分离</li>
+<li>遇到跨级共享状态时，用 React Context</li>
+<li>如果用 React Context + custom hooks 做跨级共享状态，可以考虑用 unstated-next</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="unstated-next-使用要点"></a><a href="#unstated-next-使用要点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>unstated-next 使用要点</h2>
+<h3><a class="anchor" aria-hidden="true" id="要点-1-保持-containers-很小"></a><a href="#要点-1-保持-containers-很小" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要点#1: 保持 Containers 很小</h3>
+<p>这对于保持 containers 小而集中非常有用。 如果你想在 containers 中对代码进行逻辑拆分，那么这一点非常重要。只需将它们移动到自己的 hooks 中，仅保存 containers 的状态即可。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCount</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> useState(<span class="hljs-number">0</span>);
+}
+
+<span class="hljs-keyword">const</span> CounterContainer = createContainer(useCount);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = CounterContainer.useContainer();
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> reset = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">return</span> { count, decrement, increment, reset };
+}
+</code></pre>
+<pre><code class="hljs css language-tsx">function CounterDisplay() {
+  const { count, decrement, increment } = useCounter();
+
+  return (
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  );
+}
+
+function ResetCounter() {
+  const { reset } = useCounter();
+
+  return <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{reset}</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>;
+}
+
+function App() {
+  <span class="hljs-tag">&lt;<span class="hljs-name">CounterContainer.Provider</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplay</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ResetCounter</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">CounterContainer.Provider</span>&gt;</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="要点-2-组合-containers"></a><a href="#要点-2-组合-containers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要点#2：组合 Containers</h3>
+<p>因为我们只使用了自定义 React hooks，所以可以在其他 hooks 内部组合 containers。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">return</span> { count, decrement, increment, setCount };
+}
+
+<span class="hljs-keyword">const</span> Counter = createContainer(useCounter);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useResettableCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">const</span> reset = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> counter.setCount(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">return</span> { ...counter, reset };
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="要点-3-优化组件"></a><a href="#要点-3-优化组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要点#3：优化组件</h3>
+<p><code>unstated-next</code>无需优化。所有你要做的优化，都是标准的 React 优化。</p>
+<h4><a class="anchor" aria-hidden="true" id="1-通过拆分组件来优化耗时的子树"></a><a href="#1-通过拆分组件来优化耗时的子树" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1) 通过拆分组件来优化耗时的子树</h4>
+<p>优化前:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {counter.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>SUPER EXPENSIVE RENDERING STUFF<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>优化后:</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ExpensiveComponent</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>SUPER EXPENSIVE RENDERING STUFF<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">const</span> MemoExpensiveComponent = React.memo(ExpensiveComponent);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {counter.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">MemoExpensiveComponent</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="2-使用-usememo-优化耗时的操作"></a><a href="#2-使用-usememo-优化耗时的操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2) 使用 useMemo() 优化耗时的操作</h4>
+<p>优化前：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+
+  <span class="hljs-comment">// 每次 `counter` 改变都要重新计算这个值，非常耗时</span>
+  <span class="hljs-keyword">const</span> expensiveValue = expensiveComputation(props.input);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {counter.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>优化后：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+
+  <span class="hljs-comment">// 仅在输入更改时重新计算这个值</span>
+  <span class="hljs-keyword">const</span> expensiveValue = useMemo(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> expensiveComputation(props.input);
+  }, [props.input]);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {counter.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-使用-reactmemo-usecallback-减少重新渲染次数"></a><a href="#3-使用-reactmemo-usecallback-减少重新渲染次数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3) 使用 React.memo()、useCallback() 减少重新渲染次数</h4>
+<p>优化前：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-keyword">const</span> Counter = createContainer(useCounter);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {counter.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>优化后：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = useCallback(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>), [count]);
+  <span class="hljs-keyword">const</span> increment = useCallback(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>), [count]);
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-keyword">const</span> Counter = createContainer(useCounter);
+
+<span class="hljs-keyword">const</span> CounterDisplayInner = React.memo(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{props.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {props.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{props.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplayInner</span> {<span class="hljs-attr">...counter</span>} /&gt;</span>;
+}
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="4-使用-reactmemo-usereducer-减少重新渲染次数"></a><a href="#4-使用-reactmemo-usereducer-减少重新渲染次数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4) 使用 React.memo()、useReducer() 减少重新渲染次数</h4>
+<p>优化前：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count - <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setCount(count + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">return</span> { count, decrement, increment };
+}
+
+<span class="hljs-keyword">const</span> Counter = createContainer(useCounter);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {counter.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{counter.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>优化后：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">counterReducer</span>(<span class="hljs-params">state = <span class="hljs-number">0</span>, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'DECREMENT'</span>:
+      <span class="hljs-keyword">return</span> state - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'INCREMENT'</span>:
+      <span class="hljs-keyword">return</span> state + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useCounter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, dipatch] = useReducer(counterReducer);
+  <span class="hljs-keyword">return</span> { count, dispatch };
+}
+
+<span class="hljs-keyword">const</span> Counter = createContainer(useCounter);
+
+<span class="hljs-keyword">const</span> CounterDisplayInner = React.memo(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> decrement = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>
+    props.dispatch({
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'DECREMENT'</span>,
+    });
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>
+    props.dispatch({
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'INCREMENT'</span>,
+    });
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {props.count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CounterDisplay</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> counter = Counter.useContainer();
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CounterDisplayInner</span> {<span class="hljs-attr">...counter</span>} /&gt;</span>;
+}
+</span></code></pre>
+<!-- // TODO: 这里放上React组件优化的文章链接 -->
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>本篇文章通过计数器示例，向大家演示了：</p>
+<ul>
+<li>如何使用自定义 hook 将状态管理与 UI 分离开，并可复用状态管理逻辑。</li>
+<li>如何使用 React Context 做跨级组件间通信。</li>
+<li>如何使用 unstated-next 简化 React Hooks 共享状态和逻辑。</li>
+</ul>
+<p>React Hooks 带来了状态管理逻辑分离与复用的新方式，鼓励大家在日常项目中使用 React 本身来处理复杂的状态管理。</p>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<ul>
+<li><a href="/sinoui-guide/docs/react-context">React Context</a></li>
+<li><a href="https://github.com/jamiebuilds/unstated-next">unstated-next</a></li>
+<li><a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">展示/容器组件模式</a></li>
+<li><a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-24 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/redux-getting-started"><span class="arrow-prev">← </span><span>Redux入门</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-redux"><span>在React中使用redux做状态管理</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#目标">目标</a></li><li><a href="#快速开始-计数器例子">快速开始：计数器例子</a></li><li><a href="#页面组件的状态管理与-hook-容器-模式">页面组件的状态管理与“hook 容器”模式</a></li><li><a href="#unstated-next-使用要点">unstated-next 使用要点</a><ul class="toc-headings"><li><a href="#要点-1-保持-containers-很小">要点#1: 保持 Containers 很小</a></li><li><a href="#要点-2-组合-containers">要点#2：组合 Containers</a></li><li><a href="#要点-3-优化组件">要点#3：优化组件</a></li></ul></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

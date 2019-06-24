@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>状态提升 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;TODO: 敬请期待。&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="状态提升 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;TODO: 敬请期待。&lt;/p&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>状态提升 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;组件数据形态&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#组件数据形态&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;组件数据形态&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="状态提升 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;组件数据形态&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#组件数据形态&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;组件数据形态&lt;/h2&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
           )
         });
-        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理（高阶）<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/context-and-reducer-hook">使用Context和reducer hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div></div></section></div><script>
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理（高阶）<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/context-and-hook">使用Context和hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -56,5 +56,182 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">状态提升</h1></header><article><div><span><p>TODO: 敬请期待。</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-17 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-hook"><span class="arrow-prev">← </span><span>React Hook</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-fetch-data"><span>加载数据</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">状态提升</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="组件数据形态"></a><a href="#组件数据形态" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>组件数据形态</h2>
+<h3><a class="anchor" aria-hidden="true" id="props"></a><a href="#props" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>props</h3>
+<p>当 React 元素为用户自定义组件时，它会将<code>JSX</code>所接收的属性（attributes）转换为单个对象传递给组件，这个对象被称之为 <code>props</code>,即<strong>属性</strong>。</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//自定义组件</span>
+<span class="token keyword">function</span> <span class="token function">Welcome</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// demo</span>
+<span class="token keyword">function</span> <span class="token function">Demo</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>张三<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="state"></a><a href="#state" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>state</h3>
+<p>State 是组件内部维护的一组用于反映组件 UI 变化的状态集合.</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// 定义count状态</span>
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+
+  <span class="hljs-comment">//使用count渲染页面</span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setCount(count + 1)}&gt;Click me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="组件间数据交互"></a><a href="#组件间数据交互" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>组件间数据交互</h2>
+<p>组件间数据交互主要有以下三种方式：</p>
+<ul>
+<li>父组件----&gt;子组件 使用属性传递</li>
+<li>子组件----&gt;父组件 调用回调函数</li>
+<li>兄弟组件 使用状态提升</li>
+</ul>
+<p>此外，如果父子之间跨级别较多，建议使用 context。</p>
+<h3><a class="anchor" aria-hidden="true" id="父-子"></a><a href="#父-子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>父--&gt;子</h3>
+<p>父子间的组件通信通常采用属性的方式传递，例如：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//自定义组件</span>
+<span class="token keyword">function</span> <span class="token function">Welcome</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// demo</span>
+<span class="token keyword">function</span> <span class="token function">Demo</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>张三<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>上述示例中：</p>
+<ul>
+<li>子组件 Welcome 接收一个 name 属性来渲染页面</li>
+<li>父组件<code>Demo</code>在使用 Welcome 时，指定 name 属性值</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="子-父"></a><a href="#子-父" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>子--&gt;父</h3>
+<p>子组件到父组件之间的数据交互通常通过调用回调函数的方式，子组件告诉父组件值要发生变化，例如：</p>
+<pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function">function <span class="hljs-title">Child</span>(<span class="hljs-params">props: any</span>)</span> {
+  <span class="hljs-keyword">return</span> &lt;input <span class="hljs-keyword">value</span>={props.vaue} onChange={props.onChange} /&gt;;
+}
+
+<span class="hljs-function">function <span class="hljs-title">Parent</span>(<span class="hljs-params"></span>)</span> {
+  <span class="hljs-keyword">const</span> [<span class="hljs-keyword">value</span>, setValue] = useState(<span class="hljs-string">''</span>);
+
+  <span class="hljs-comment">// 监听子组件值的改变，从而改变value值</span>
+  <span class="hljs-keyword">const</span> onChange = (<span class="hljs-keyword">event</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
+  };
+
+  <span class="hljs-keyword">return</span> &lt;Child <span class="hljs-keyword">value</span>={<span class="hljs-keyword">value</span>} onChange={onChange} /&gt;;
+}
+</code></pre>
+<p>上述示例中：</p>
+<ul>
+<li>子组件<code>Input</code>的值发生改变时,调用<code>onChange</code>回调函数属性通知父组件自己的值将发生改变</li>
+<li>父组件<code>Parent</code>监听子组件值的改变，重新设定 value 值</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="兄弟组件之间的数据传递"></a><a href="#兄弟组件之间的数据传递" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>兄弟组件之间的数据传递</h3>
+<p>兄弟组件之间的数据传递一般使用状态提升，比如：</p>
+<pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent } from 'react';
+
+<span class="hljs-comment">//摄氏温度转为华氏温度</span>
+<span class="hljs-keyword">function</span> <span class="hljs-keyword">to</span><span class="hljs-constructor">Fahrenheit(<span class="hljs-params">celsius</span>: <span class="hljs-params">number</span>)</span> {
+  return (celsius<span class="hljs-operator"> * </span><span class="hljs-number">9</span>)<span class="hljs-operator"> / </span><span class="hljs-number">5</span> + <span class="hljs-number">32</span>;
+}
+
+<span class="hljs-comment">// 温度输入框组件</span>
+<span class="hljs-keyword">function</span> <span class="hljs-constructor">TemperatureInput(<span class="hljs-params">props</span>: <span class="hljs-params">any</span>)</span> {
+  return (
+    &lt;div&gt;
+      &lt;p&gt;请在此处输入摄氏温度&lt;/p&gt;
+      &lt;input value={props.celsius} onChange={props.onChange} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="hljs-comment">//华氏温度展示组件</span>
+<span class="hljs-keyword">function</span> <span class="hljs-constructor">FahrenheitComponent(<span class="hljs-params">props</span>: { <span class="hljs-params">fahrenheit</span>: <span class="hljs-params">number</span> })</span> {
+  return &lt;div&gt;此时的华氏温度为:{props.fahrenheit}&lt;/div&gt;;
+}
+
+<span class="hljs-comment">//父组件</span>
+<span class="hljs-keyword">function</span> <span class="hljs-constructor">Parent()</span> {
+  const <span class="hljs-literal">[<span class="hljs-identifier">celsius</span>, <span class="hljs-identifier">setCelsius</span>]</span> = use<span class="hljs-constructor">State('')</span>;
+
+  <span class="hljs-comment">// 监听子组件值的改变，从而改变celsius值</span>
+  const onChange =<span class="hljs-function"> (<span class="hljs-params">event</span>: C<span class="hljs-params">hangeEvent</span>&lt;HTMLI<span class="hljs-params">nputElement</span>&gt;) =&gt;</span> {
+    set<span class="hljs-constructor">Celsius(<span class="hljs-params">event</span>.<span class="hljs-params">target</span>.<span class="hljs-params">value</span>)</span>;
+  };
+
+  const fahrenheit = <span class="hljs-keyword">to</span><span class="hljs-constructor">Fahrenheit(<span class="hljs-params">celsius</span>)</span>;
+  return (
+    &lt;&gt;
+      &lt;TemperatureInput celsius={celsius} onChange={onChange} /&gt;
+      &lt;FahrenheitComponent fahrenheit={fahrenheit} /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p>上述示例中：</p>
+<ul>
+<li>子组件<code>TemperatureInput</code>值发生改变时，通知父组件重新设定温度值</li>
+<li>父组件监听到<code>TemperatureInput</code>值的变化，重新设定温度值，并且将其转换成华氏温度，传递给子组件<code>FahrenheitComponent</code></li>
+<li>子组件<code>FahrenheitComponent</code>接收父组件指定的<code>fahrenheit</code>来渲染页面</li>
+<li>因此，每当<code>TemperatureInput</code>中输入框值发生变化时，<code>FahrenheitComponent</code>会重新渲染</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="跨级别组件之间的数据交互"></a><a href="#跨级别组件之间的数据交互" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>跨级别组件之间的数据交互</h3>
+<p>跨级别组件之间的数据交互通常采用<code>Context</code>,比如下面这个主题定制的示例：</p>
+<p><code>ThemeContext.ts</code></p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> ThemeContext = createContext({ color: <span class="hljs-string">'red'</span> });
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ThemeContext;
+</code></pre>
+<p><code>Button.tsx</code></p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useContext } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ThemeContext <span class="hljs-keyword">from</span> <span class="hljs-string">'./ThemeContext'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Button</span>(<span class="hljs-params">props: any</span>) </span>{
+  <span class="hljs-keyword">const</span> { color } = useContext(ThemeContext);
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">color</span> }}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+}
+</code></pre>
+<p><code>Component.tsx</code></p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Button <span class="hljs-keyword">from</span> <span class="hljs-string">'./Button'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Component</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>自定义文本颜色按钮<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>;
+}
+</code></pre>
+<p><code>Parent.tsx</code></p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useContext } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ThemeContext <span class="hljs-keyword">from</span> <span class="hljs-string">'./ThemeContext'</span>;
+<span class="hljs-keyword">import</span> Component <span class="hljs-keyword">from</span> <span class="hljs-string">'./Component'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">color:</span> '<span class="hljs-attr">blue</span>' }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Component</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeContext.Provider</span>&gt;</span>
+  );
+}
+</span></code></pre>
+<p>上述示例中：</p>
+<ul>
+<li><code>Button</code>组件作为<code>Parent</code>的“孙子”组件，需要根据 Parent 中的 color 来渲染按钮文本颜色</li>
+<li><code>Parent</code>作为祖先组件，提供 ThemeContext 的值</li>
+<li><code>Button</code>组件使用 ThemeContext 提供的 color 值渲染按钮</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>希望通过上述知识的了解，我们能够快速掌握组件之间的通讯方式，并且能够分辨清楚什么场景应该使用哪种通信方式，合理使用。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-24 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-hook"><span class="arrow-prev">← </span><span>React Hook</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-fetch-data"><span>加载数据</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#组件数据形态">组件数据形态</a><ul class="toc-headings"><li><a href="#props">props</a></li><li><a href="#state">state</a></li></ul></li><li><a href="#组件间数据交互">组件间数据交互</a><ul class="toc-headings"><li><a href="#父-子">父--&gt;子</a></li><li><a href="#子-父">子--&gt;父</a></li><li><a href="#兄弟组件之间的数据传递">兄弟组件之间的数据传递</a></li><li><a href="#跨级别组件之间的数据交互">跨级别组件之间的数据交互</a></li></ul></li><li><a href="#总结">总结</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

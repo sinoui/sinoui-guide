@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>React性能优化 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;reactmemo&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#reactmemo&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React.memo()&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="React性能优化 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;reactmemo&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#reactmemo&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React.memo()&lt;/h2&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">React性能优化</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="reactmemo"></a><a href="#reactmemo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React.memo()</h2>
+<p><code>React.memo</code> 为<a href="https://zh-hans.reactjs.org/docs/higher-order-components.html">高阶组件</a>。它与 <a href="https://zh-hans.reactjs.org/docs/react-api.html#reactpurecomponent"><code>React.PureComponent</code></a> 非常相似，但它适用于函数组件，但不适用于 class 组件。</p>
+<p>如果你的函数组件在给定相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在 <code>React.memo</code> 中调用，以此通过记忆组件渲染结果的方式来提高组件的性能表现。这意味着在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> seconds <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'I am rendering'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token constant">I</span> am update every <span class="token punctuation">{</span>seconds<span class="token punctuation">}</span> seconds<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> React<span class="token punctuation">.</span><span class="token function">memo</span><span class="token punctuation">(</span>Child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>默认情况下<code>React.memo</code>只会对复杂对象做浅层对比，如果你想要控制对比过程，那么请将自定义的比较函数通过第二个参数传入来实现，第二个参数用于对比 props 控制是否刷新，与类组件的<code>shouldComponentUpdate</code>类似。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">{ seconds }</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am rendering'</span>);
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>I am update every {seconds} seconds<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">areEqual</span>(<span class="hljs-params">prevProps, nextProps</span>) </span>{
+  <span class="hljs-keyword">if</span> (prevProps.seconds === nextProps.seconds) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> React.memo(Child, areEqual);
+</code></pre>
+<blockquote>
+<p><strong><em>注意：</em></strong></p>
+<ul>
+<li>此方法仅作为性能优化的方式存在，不能依赖它去限制组件渲染。</li>
+<li>与 class 组件中 <a href="https://zh-hans.reactjs.org/docs/react-component.html#shouldcomponentupdate"><code>shouldComponentUpdate()</code></a> 方法不同的是，如果 props 相等，<code>areEqual</code> 会返回 <code>true</code>；如果 props 不相等，则返回 <code>false</code>。这与 <code>shouldComponentUpdate</code> 方法的返回值相反。</li>
+</ul>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="reactusememo"></a><a href="#reactusememo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React.useMemo</h2>
+<p>主要用途：</p>
+<ul>
+<li><p>把“创建”函数和依赖项数组作为参数传入 <code>useMemo</code>，它仅会在某个依赖项改变时才重新计算 <code>memoized</code> 值。这种优化有助于避免在每次渲染时都进行高开销的计算。</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> pagination = React.useMemo(
+    <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+      <span class="hljs-attr">pageSize</span>: pageSize,
+      <span class="hljs-attr">currentPage</span>: pageNo + <span class="hljs-number">1</span>,
+      <span class="hljs-attr">total</span>: totalElements,
+    }),
+    [pageNo, pageSize, totalElements],
+  );
+}
+</code></pre></li>
+<li><p>如果子组件是一个 memo 组件，接收一个对象属性，使用 useMemo 处理改对象属性，则可以减少子组件不必要的渲染</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 子组件</span>
+<span class="hljs-keyword">const</span> Child = React.memo(<span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Child</span> <span class="hljs-attr">item</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">id:</span> '<span class="hljs-attr">2</span>' }} /&gt;</span>;
+}
+</span></code></pre>
+<p>上述情况 memo 将失效，为了更好的减少组件不必要的渲染，我们可以按照下面方式处理</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 子组件</span>
+<span class="hljs-keyword">const</span> Child = React.memo(<span class="hljs-function"><span class="hljs-params">props</span>=&gt;</span>{
+
+})
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">props</span>)</span>{
+    <span class="hljs-keyword">const</span> item = React.useMemo(
+    <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+      <span class="hljs-attr">pageSize</span>: pageSize,
+      <span class="hljs-attr">currentPage</span>:pageNo + <span class="hljs-number">1</span>,
+      <span class="hljs-attr">total</span>: totalElements,
+    }),
+    [
+      pageNo,
+      pageSize,
+      totalElements,
+    ],
+  );
+}
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Child</span> <span class="hljs-attr">item</span>=<span class="hljs-string">{item}/</span>&gt;</span>
+}
+
+</span></code></pre>
+<p>此时，只有在<code>pageNo</code>,<code>pageSize</code>,<code>totalElements</code>发生变化时，子组件才会重新渲染。父组件其它属性发生变化时，子组件不会重新渲染。</p></li>
+</ul>
+<p><strong>切记：</strong>传入 <code>useMemo</code> 的函数会在渲染期间执行。请不要在这个函数内部执行与渲染无关的操作。</p>
+<h2><a class="anchor" aria-hidden="true" id="reactusecallback"></a><a href="#reactusecallback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React.useCallback</h2>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> memoizedCallback = useCallback(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  doSomething(a, b);
+}, [a, b]);
+</code></pre>
+<p>此方法返回一个<code>memoized</code>回调函数。</p>
+<p>把内联回调函数及依赖项数组作为参数传入 <code>useCallback</code>，它将返回该回调函数的 <code>memoized</code>版本，该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如 <code>shouldComponentUpdate</code>）的子组件时，它将非常有用。</p>
+<p><code>useCallback(fn, deps)</code> 相当于 <code>useMemo(() =&gt; fn, deps)</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="reactusereducer"></a><a href="#reactusereducer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React.useReducer</h2>
+<p><code>useReducer</code>之所以能对深层子组件有性能优化的作用，是因为我们向子组件传递<code>dispatch</code>而不是多个回调函数。</p>
+<p>如果 reducer hook 的返回值与当前的 state 相同，React 将跳过子组件的渲染及副作用的执行。（React 使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description"><code>Object.is</code> 比较算法</a> 来比较 state。）</p>
+<h2><a class="anchor" aria-hidden="true" id="火焰图"></a><a href="#火焰图" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>火焰图</h2>
+<p>这是 react-devtools 里的一个性能分析工具，结果如图：</p>
+<p><img src="./assets/images/fire-result.png" alt="火焰图"></p>
+<p>图中有三块区域：</p>
+<ol>
+<li>组件渲染次数</li>
+<li>每次渲染时相关组件的渲染情况</li>
+<li>渲染信息</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="performance-分析"></a><a href="#performance-分析" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>performance 分析</h2>
+<p>这是 Chrome 浏览器自带的性能分析工具。</p>
+<p>操作：</p>
+<p>打开控制台，切换到<code>Performance</code>页签，确保 screenshots checkbox 是选中的，然后点击 controls，开始记录（windows 快捷键 shift + E），这时候 Devtools 就开始录制各种性能指标，你可以点击页面等进行各种操作，所有的操作都会被浏览器录制下来。录制期间， 可以点击 stop 进行快速操作结束录制，然后等待显示性能报告，stop 按钮位置如下图：</p>
+<p><img src="./assets/images/performance-active.png" alt="分析过程"></p>
+<p>分析结果如下：</p>
+<p><img src="./assets/images/performance-result.png" alt="分析结果"></p>
+<p>上图一共有三个区域：</p>
+<ol>
+<li>overview 总览图，高度概括随时间线的变动，包括 FPS，CPU，NET</li>
+<li>火焰图，从不同的角度分析框选区域 。例如：Network，Frames, Interactions, Main 等</li>
+<li>总结区域：精确到毫秒级的分析，以及按调用层级，事件分类的整理</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overview</h3>
+<p>Overview 窗格包含以下三个图表：</p>
+<ol>
+<li>FPS。每秒帧数。绿色竖线越高，FPS 越高。 FPS 图表上的红色块表示长时间帧，很可能会出现卡顿</li>
+<li>CPU。 CPU 资源。此面积图指示消耗 CPU 资源的事件类型</li>
+<li>NET。每条彩色横杠表示一种资源。横杠越长，检索资源所需的时间越长。 每个横杠的浅色部分表示等待时间（从请求资源到第一个字节下载完成的时间）</li>
+</ol>
+<p>可以放大显示一部分记录，以便简化分析。使用 Overview 窗格可以放大显示一部分记录。 放大后，火焰图会自动缩放以匹配同一部分</p>
+<h3><a class="anchor" aria-hidden="true" id="火焰图-1"></a><a href="#火焰图-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>火焰图</h3>
+<p>在火焰图上看到一到三条垂直的虚线。蓝线代表 DOMContentLoaded 事件。 绿线代表首次绘制的时间。 红线代表 load 事件</p>
+<p>在火焰图中选择事件时，Details 窗格会显示与事件相关的其他信息。</p>
+<h3><a class="anchor" aria-hidden="true" id="总结区域"></a><a href="#总结区域" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结区域</h3>
+<p>蓝色(Loading)：网络通信和 HTML 解析
+黄色(Scripting)：JavaScript 执行
+紫色(Rendering)：样式计算和布局，即重排
+绿色(Painting)：重绘
+灰色(other)：其它事件花费的时间
+白色(Idle)：空闲时间</p>
+<h2><a class="anchor" aria-hidden="true" id="class-组件的-shouldcomponentupdate"></a><a href="#class-组件的-shouldcomponentupdate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>class 组件的 shouldComponentUpdate</h2>
+<p>使用<code>shouldComponentUpdate()</code>可以让 React 知道当前状态或属性的改变是否不影响组件的输出，默认返回 ture，返回 false 时不会重新渲染。</p>
+<pre><code class="hljs css language-JS"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CounterButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.state = {<span class="hljs-attr">count</span>: <span class="hljs-number">1</span>};
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.props.color !== nextProps.color) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.state.count !== nextState.count) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+        <span class="hljs-attr">color</span>=<span class="hljs-string">{this.props.color}</span>
+        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> this.setState(state =&gt; ({count: state.count + 1}))}&gt;
+        Count: {this.state.count}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>上述示例中只有当<code>props.color</code>或者<code>state.count</code>值发生变化时，组件才会重新渲染。</p>
+<p>如果更复杂一些的组件，我们可以使用类似“浅比较”的模式来检查 <code>props</code> 和 <code>state</code> 中所有的字段，以此来决定是否组件需要更新。React 已经提供了一位好帮手来帮你实现这种常见的模式 - 你只要继承 <code>React.PureComponent</code> 就行了。所以这段代码可以改成以下这种更简洁的形式：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">class</span> <span class="token class-name">CounterButton</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>PureComponent</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span> count<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span>
+        <span class="token attr-name">color</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>color<span class="token punctuation">}</span></span>
+        <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span>
+      <span class="token punctuation">></span></span>
+        Count<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>count<span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-24 by tianyanqiu</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#reactmemo">React.memo()</a></li><li><a href="#reactusememo">React.useMemo</a></li><li><a href="#reactusecallback">React.useCallback</a></li><li><a href="#reactusereducer">React.useReducer</a></li><li><a href="#火焰图">火焰图</a></li><li><a href="#performance-分析">performance 分析</a><ul class="toc-headings"><li><a href="#overview">overview</a></li><li><a href="#火焰图-1">火焰图</a></li><li><a href="#总结区域">总结区域</a></li></ul></li><li><a href="#class-组件的-shouldcomponentupdate">class 组件的 shouldComponentUpdate</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
