@@ -1,7 +1,7 @@
 ---
-id: context-and-reducer-hook
-title: 使用Context和reducer hook做状态管理
-sidebar_label: 使用Context和reducer hook做状态管理
+id: context-and-hook
+title: 使用Context和hook做状态管理
+sidebar_label: 使用Context和hook做状态管理
 ---
 
 ## 目标
