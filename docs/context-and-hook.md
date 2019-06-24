@@ -827,6 +827,8 @@ function CounterDisplay(props) {
 - 如何使用 React Context 做跨级组件间通信。
 - 如何使用 unstated-next 简化 React Hooks 共享状态和逻辑。
 
+React Hooks 带来了状态管理逻辑分离与复用的新方式，鼓励大家在日常项目中使用 React 本身来处理复杂的状态管理。
+
 ## 参考文章
 
 - [React Context](react-context.md)
