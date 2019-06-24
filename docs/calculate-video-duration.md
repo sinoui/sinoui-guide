@@ -18,14 +18,15 @@ sidebar_label: 计算视频时长
 const video: HTMLVideoElement = document.createElement('video');
 const url = window.URL.createObjectURL(file);
 
+// 视频loadedmetadata事件处理器
 const handleLoaded = () => {
-  observer.next(video.duration);
-  observer.complete();
+  console.log('视频时长是', video.duration);
   cleanup();
 };
 
+// 视频加载错误处理器
 const handleError = (event: ErrorEvent) => {
-  observer.error(event);
+  console.log('计算视频时长失败', error);
   cleanup();
 };
 
@@ -40,7 +41,7 @@ const cleanup = () => {
 // 监听loadedmetadata事件
 video.addEventListener('loadedmetadata', handleLoaded, false);
 // 监听错误事件
-video.addEventListener('error', handleError);
+video.addEventListener('error', handleError, false);
 // 设定src
 video.src = url;
 ```

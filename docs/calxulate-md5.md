@@ -31,19 +31,15 @@ bmf.md5(file, (err: Error, md5: string) => {
 ```typescript
 const md5File = require('md5-file');
 
-/**
- * 获取文件md5值
- * @param {*} filePath 文件路径
- */
-const getFileMd5 = (filePath) => {
-  return new Promise((resolve, reject) => {
-    md5File(filePath, (err, hash) => {
-      if (err) {
-        reject(err);
-      } else resolve(hash);
-    });
-  });
-};
+const filePath = '.....'; // 文件路径
+
+md5File(filePath, (err, hash) => {
+  if (err) {
+    console.error('计算文件md5失败', err);
+  } else {
+    console.log('文件md5是', hash);
+  }
+});
 ```
 
 ## 计算字符串的 md5
@@ -55,9 +51,9 @@ const getFileMd5 = (filePath) => {
 ```typescript
 import md5 from 'blueimp-md5';
 
-function getStringMd5(str) {
-  return md5(str);
-}
+const content = 'Hello World';
+const md5Hash = md5(str);
+console.log(md5Hash);
 ```
 
 ### 基于 Node 计算字符串的 md5 值
@@ -67,10 +63,9 @@ function getStringMd5(str) {
 ```js
 import md5 from 'blueimp-md5';
 
-app.get('/test/detail/:id', (req, res) => {
-  console.log(md5(req.params.id));
-  res.json(userDetail);
-});
+const content = 'Hello, World';
+const md5Hash = md5(content);
+console.log(md5Hash);
 ```
 
 方式二：
@@ -80,8 +75,8 @@ app.get('/test/detail/:id', (req, res) => {
 ```js
 const crypto = require('crypto');
 
-const md5 = (content) => {
-  const fileMd5 = crypto.createHash('md5');
-  return fileMd5.update(content).digest('hex');
-};
+const content = 'Hello, World';
+const md5 = crypto.createHash('md5');
+const md5Hash = md5.update(content).digest('hex');
+console.log(md5Hash);
 ```
