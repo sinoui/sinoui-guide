@@ -8,6 +8,7 @@ sidebar_label: 使用Context和reducer hook做状态管理
 
 - 学习使用 Context 和 Hook 管理页面组件级别的状态
 - 学习状态管理逻辑复用的模式：自定义 Hook 和 unstated-next
+- “hook 容器”模式
 
 ## 快速开始：计数器例子
 
@@ -18,9 +19,9 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 
 function CounterDisplay() {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return (
     <div>
@@ -41,9 +42,9 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 
 function useCounter() {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return { count, decrement, increment };
 }
@@ -94,15 +95,15 @@ interface Counter {
 }
 
 function useCounter(): Counter {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return { count, decrement, increment };
 }
 
 function CounterDisplay(props: { counter: Counter }) {
-  const { count, decrement, increment } = useCounter();
+  const { count, decrement, increment } = props.counter;
 
   return (
     <div>
@@ -114,7 +115,7 @@ function CounterDisplay(props: { counter: Counter }) {
 }
 
 function AnotherCounterDisplay(props: { counter: Counter }) {
-  const { count, decrement, increment } = useCounter();
+  const { count, decrement, increment } = props.counter;
 
   return (
     <div>
@@ -152,9 +153,9 @@ interface Counter {
 }
 
 function useCounter(): Counter {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return { count, decrement, increment };
 }
@@ -162,7 +163,7 @@ function useCounter(): Counter {
 const CounterContext = React.createContext<Counter>(null);
 
 function CounterDisplay() {
-  const counter = useContext(CounterContext);
+  const { count, decrement, increment } = useContext(CounterContext);
 
   return (
     <div>
@@ -174,7 +175,7 @@ function CounterDisplay() {
 }
 
 function AnotherCounterDisplay() {
-  const counter = useCounter(CounterContext);
+  const { count, decrement, increment } = useContext(CounterContext);
 
   return (
     <div>
@@ -186,9 +187,9 @@ function AnotherCounterDisplay() {
 }
 
 function CounterInfo() {
-  const counter = useCounter(CounterContext);
+  const counter = useContext(CounterContext);
 
-  return <div>当前计数：{counter}</div>;
+  return <div>当前计数：{counter.count}</div>;
 }
 
 function Header() {
@@ -326,9 +327,9 @@ interface Counter {
 // 首先定义一个React Hook
 
 function useCounter() {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return { count, decrement, increment };
 }
@@ -393,9 +394,9 @@ function createContainer<T>(useCustomHookFn: () => T) {
 // 首先定义一个React Hook
 
 function useCounter() {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return { count, decrement, increment };
 }
@@ -432,9 +433,9 @@ import { createContainer } from 'unstated-next';
 // 首先定义一个React Hook
 
 function useCounter() {
-  let [count, setCount] = useState(0);
-  let decrement = () => setCount(count - 1);
-  let increment = () => setCount(count + 1);
+  const [count, setCount] = useState(0);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
 
   return { count, decrement, increment };
 }
@@ -457,6 +458,64 @@ function CounterDisplay() {
 }
 ```
 
-## 页面组件的状态管理与**hook 容器**模式
+## 页面组件的状态管理与“hook 容器”模式
 
-TODO: 待补充
+[Dan Abramov](https://mobile.twitter.com/dan_abramov)在 2015 年提出的[展示/容器组件模式](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)，主要目的是为了将状态管理逻辑与 UI 逻辑分离开，独立维护。但是这种模式已经过时了，不再适合大规模采用，引用 Dan Abramov 的原话：
+
+> Update from 2019: I wrote this article a long time ago and my views have since evolved. In particular, I don’t suggest splitting your components like this anymore. If you find it natural in your codebase, this pattern can be handy. But I’ve seen it enforced without any necessity and with almost dogmatic fervor far too many times. The main reason I found it useful was because it const me separate complex stateful logic from other aspects of the component. Hooks const me do the same thing without an arbitrary division. This text is left intact for historical reasons but don’t take it too seriously.
+
+大致的意思是：不再推荐按照展示/容器组件模式拆分组件。
+
+虽然[展示/容器组件模式](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)已经过时，但是它要解决的问题：将状态管理逻辑与 UI 逻辑分离开，依然需要处理。幸运的是我们有了更好的解决方案：React Hooks。
+
+对于一个页面组件来说，我们使用组件来处理 UI 渲染，使用 React Hooks 来处理状态。大概率下页面各个部分需要共享状态。这样分析，你会发现“hook 容器”模式非常适合页面组件的开发：将页面级别的状态管理放在页面自定义 hook 中，页面的各个子组件都可以通过上下文快速获取到需要的共享状态。
+
+```tsx
+function useXxxxPage() {
+  ....
+}
+
+const XxxxPageContainer = createContainer(useXxxxPage);
+
+function XxxxPageHeader() {
+  const xxxxPageState = XxxxPageContainer.useContainer();
+
+  //....
+}
+
+function XxxxPageContent() {
+  const xxxxPageState = XxxxPageContainer.useContainer();
+
+  //...
+}
+
+function XxxxPageFooter() {
+  const xxxxPageState = XxxxPageContainer.useContainer();
+
+  //...
+}
+
+function XxxxPage() {
+  return <XxxxPageContainer.Provider>
+    <div>
+      <XxxxPageHeader />
+      <XxxxPageContent />
+      <XxxxPageFooter />
+    </div>
+  </XxxxPageContainer.Provider>
+}
+```
+
+**强调一点**：在页面级别需要共享的数据才需要放到`useXxxxPage`中。局部状态依然首推在局部组件级别解决。
+
+页面组件也是组件，在 React 中没有任何特殊的设定，只是页面组件往往会面临状态的跨级共享，而且我们在开发应用时，一般会从页面组件开始，所以，我们可以选择一种状态管理模式作为状态管理的参考实现，“hook 容器”就是一种好的模式。但是页面组件的状态管理同样需要遵循组件状态管理的最佳实践，当发现“hook 容器”不适合时，应该考虑其他的最佳实践。
+
+在做应用开发时，遵循以下几个要点：
+
+- 用组件做 UI 渲染
+- 用组件做 UI 渲染逻辑复用
+- 用 React Hooks 做组件状态管理
+- 用自定义 hook 做状态管理逻辑复用
+- 用自定义 hook 做状态管理逻辑与 UI 渲染逻辑分离
+- 遇到跨级共享状态时，用 React Context
+- 如果用 React Context + custom hooks 做跨级共享状态，可以考虑用 unstated-next
