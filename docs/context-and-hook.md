@@ -6,9 +6,10 @@ sidebar_label: 使用Context和hook做状态管理
 
 ## 目标
 
-- 学习使用 Context 和 Hook 管理页面组件级别的状态
+- 学习使用 Context 和 Hook 管理组件状态
 - 学习状态管理逻辑复用的模式：自定义 Hook 和 unstated-next
 - “hook 容器”模式
+- 使用 unstated-next 来复用和共享状态、逻辑。
 
 ## 快速开始：计数器例子
 
