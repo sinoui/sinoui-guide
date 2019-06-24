@@ -650,7 +650,7 @@ function CounterDisplay() {
 }
 ```
 
-### 2) 使用 useMemo() 优化耗时的操作
+#### 2) 使用 useMemo() 优化耗时的操作
 
 优化前：
 
@@ -692,7 +692,7 @@ function CounterDisplay(props) {
 }
 ```
 
-### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
+#### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
 
 优化前：
 
@@ -746,7 +746,7 @@ function CounterDisplay(props) {
 }
 ```
 
-### 4) 使用 React.memo()、useReducer() 减少重新渲染次数
+#### 4) 使用 React.memo()、useReducer() 减少重新渲染次数
 
 优化前：
 
