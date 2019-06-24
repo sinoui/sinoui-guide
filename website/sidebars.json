@@ -15,7 +15,7 @@
     "状态管理（高阶）": [
       "react-context",
       "redux-getting-started",
-      "context-and-reducer-hook",
+      "context-and-hook",
       "react-redux",
       "immutable-getting-started"
     ]
