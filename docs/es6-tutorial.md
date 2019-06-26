@@ -552,6 +552,22 @@ const {
 console.log(size); // 300
 ```
 
+### 对象的可计算属性名
+
+* {[name]:value}  对象字面量里的属性名和方法名可以用属性名表达式的方式指定
+
+```javascript
+const suffix = ' name';
+const person = { 
+    ['first' + suffix]: 'Nicholas',
+    ['last' + suffix]: 'Zakas'
+}
+ 
+person['first name']; // "Nicholas"
+person['last name']; // "Zakas"
+
+```
+
 ### 对象操作
 
 #### 遍历
