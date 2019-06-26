@@ -6,9 +6,10 @@ sidebar_label: 使用Context和hook做状态管理
 
 ## 目标
 
-- 学习使用 Context 和 Hook 管理页面组件级别的状态
+- 学习使用 Context 和 Hook 管理组件状态
 - 学习状态管理逻辑复用的模式：自定义 Hook 和 unstated-next
 - “hook 容器”模式
+- 使用 unstated-next 来复用和共享状态、逻辑。
 
 ## 快速开始：计数器例子
 
@@ -650,7 +651,7 @@ function CounterDisplay() {
 }
 ```
 
-### 2) 使用 useMemo() 优化耗时的操作
+#### 2) 使用 useMemo() 优化耗时的操作
 
 优化前：
 
@@ -692,7 +693,7 @@ function CounterDisplay(props) {
 }
 ```
 
-### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
+#### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
 
 优化前：
 
@@ -746,7 +747,7 @@ function CounterDisplay(props) {
 }
 ```
 
-### 4) 使用 React.memo()、useReducer() 减少重新渲染次数
+#### 4) 使用 React.memo()、useReducer() 减少重新渲染次数
 
 优化前：
 
@@ -816,3 +817,22 @@ function CounterDisplay(props) {
   return <CounterDisplayInner {...counter} />;
 }
 ```
+
+<!-- // TODO: 这里放上React组件优化的文章链接 -->
+
+## 总结
+
+本篇文章通过计数器示例，向大家演示了：
+
+- 如何使用自定义 hook 将状态管理与 UI 分离开，并可复用状态管理逻辑。
+- 如何使用 React Context 做跨级组件间通信。
+- 如何使用 unstated-next 简化 React Hooks 共享状态和逻辑。
+
+React Hooks 带来了状态管理逻辑分离与复用的新方式，鼓励大家在日常项目中使用 React 本身来处理复杂的状态管理。
+
+## 参考文章
+
+- [React Context](react-context.md)
+- [unstated-next](https://github.com/jamiebuilds/unstated-next)
+- [展示/容器组件模式](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
