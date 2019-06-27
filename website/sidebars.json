@@ -12,13 +12,14 @@
     ],
     "TypeScript/ES6": ["es6-tutorial", "ts-tutorial", "react-ts-tutorial"],
     "样式": ["styled-components-guide", "react-animation"],
-    "状态管理（高阶）": [
+    "状态管理": [
       "react-context",
       "redux-getting-started",
       "context-and-hook",
       "react-redux",
       "immutable-getting-started"
-    ]
+    ],
+    "React进阶": ["react-performance-optimization"]
   },
   "app-dev": {
     "应用开发指南": ["app-dev-index", "restful-api", "react-router"]

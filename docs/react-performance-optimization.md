@@ -235,3 +235,203 @@ class CounterButton extends React.PureComponent {
   }
 }
 ```
+
+## 状态更新合并
+
+React 对状态更新做了一个优化：同时多次设置状态，不会引起多次重绘，而只会合并为一次重绘。当然这个优化是有前提的。我们来看两个例子。
+
+例子 1：
+
+```tsx
+import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+
+function Demo1() {
+  const [A, setA] = useState();
+  const [B, setB] = useState();
+
+  const handleClick = () => {
+    setA(1);
+    setB(2);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>更新</button>
+      <div>
+        {A} - {B}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo1 />, document.getElementById('root'));
+```
+
+点击例子 1 中的按钮，它会分别更新`A`和`B`两个状态，但是却只重绘了一次`Demo1`组件：
+
+![perf batch](assets/images/perf-batch.png)
+
+再看看例子 2：
+
+```tsx
+import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+
+function Demo2() {
+  const [A, setA] = useState();
+  const [B, setB] = useState();
+
+  const handleClick = () => {
+    setTimeout(() => {
+      setA(1);
+      setB(2);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>更新</button>
+      <div>
+        {A} - {B}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo2 />, document.getElementById('root'));
+```
+
+点击例子 2 中的按钮，你会发现`Demo2`组件重绘了两次：
+
+![perf batch break](assets/images/perf-batch-break.png)
+
+可以看看例子 2 与例子 1 的代码不同：
+
+```diff
+import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+
+function Demo2() {
+  const [A, setA] = useState();
+  const [B, setB] = useState();
+
+  const handleClick = () => {
++   setTimeout(() => {
+      setA(1);
+      setB(2);
++   });
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>更新</button>
+      <div>
+        {A} - {B}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo2 />, document.getElementById('root'));
+```
+
+最重要的区别是：
+
+```ts
+setTimeout(() => {
+  setA(1);
+  setB(2);
+});
+```
+
+也就是说，在`setTimeout()`中执行的状态更新，每一次设置状态都会引起重绘，而不会合并为一次重绘。不仅仅是`setTimeout()`，还包括`setInterval()`、`Promise`、`web socket`、`ajax`、`Observable`等都是这样的。这是因为这些状态更新不是在 React Scheduler 中而是在其他环境中执行的。这里不深度展开对 React Scheduler 的分析，大家感兴趣的可以了解一下相关知识。
+
+目前有两种方式解决：
+
+方式一：使用`useReducer`：
+
+```tsx
+import ReactDOM from 'react-dom';
+import React, { useReducer } from 'react';
+
+function reducer(
+  state: { A?: number; B?: number },
+  action: { type: 'CHANGE' },
+) {
+  switch (action.type) {
+    case 'CHANGE':
+      return {
+        A: 1,
+        B: 2,
+      };
+    default:
+      return state;
+  }
+}
+
+function Demo3() {
+  const [state, dispatch] = useReducer(reducer, {});
+
+  const handleClick = () => {
+    setTimeout(() => {
+      dispatch({ type: 'CHANGE' });
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>更新</button>
+      <div>
+        {state.A} - {state.B}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo3 />, document.getElementById('root'));
+```
+
+方式二：使用`ReactDOM.unstable_batchedUpdates()`：
+
+```tsx
+import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+
+function Demo2() {
+  const [A, setA] = useState();
+  const [B, setB] = useState();
+
+  const handleClick = () => {
+    setTimeout(() => {
+      ReactDOM.unstable_batchedUpdates(() => {
+        setA(1);
+        setB(2);
+      });
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>更新</button>
+      <div>
+        {A} - {B}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo2 />, document.getElementById('root'));
+```
+
+`ReactDOM.unstable_batchedUpdates(fn)`会在 React Scheduler 上下文中执行`fn`函数，所以`setA(1)`和`setB(2)`就会得到 React Scheduler 的优化，只会引发一次重绘。
+
+但是`ReactDOM.unstable_batchedUpdates()` API 还处于不稳定状态，而且是从`ReactDOM`中引出来的，就会有`React Native`的兼容性问题。建议使用`import { batch } from 'react-redux';`中的`batch`代替`ReactDOM.unstable_batchedUpdates`。
+
+## 参考资料
+
+- [将 React 作为 UI 运行时](https://overreacted.io/zh-hans/react-as-a-ui-runtime)
+- [Why React is Not Reactive?](https://www.beautiful.ai/deck/-LIw2oTJmrrwRqvsoYgD/Why-React-is-Not-Reactive)
+- [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture)
+- [[Question] Keep to single setState call?](https://github.com/facebook/react/issues/10231)
+- [SMOOSHCAST: React Fiber Deep Dive with Dan Abramov](https://www.youtube.com/watch?v=aS41Y_eyNrU&feature=youtu.be)
