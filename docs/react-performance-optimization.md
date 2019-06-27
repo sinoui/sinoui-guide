@@ -308,7 +308,7 @@ ReactDOM.render(<Demo2 />, document.getElementById('root'));
 
 ![perf batch break](assets/images/perf-batch-break.png)
 
-可以看看例子 2 与例子 1 的代码不同：
+分析例子 2 与例子 1 的代码不同：
 
 ```diff
 import ReactDOM from 'react-dom';
@@ -347,7 +347,7 @@ setTimeout(() => {
 });
 ```
 
-也就是说，在`setTimeout()`中执行的状态更新，每一次设置状态都会引起重绘，而不会合并为一次重绘。不仅仅是`setTimeout()`，还包括`setInterval()`、`Promise`、`web socket`、`ajax`、`Observable`等都是这样的。这是因为这些状态更新不是在 React Scheduler 中而是在其他环境中执行的。这里不深度展开对 React Scheduler 的分析，大家感兴趣的可以了解一下相关知识。
+在`setTimeout()`中执行状态更新，每一次状态更新都会引起重绘，而不会合并为一次重绘。不仅仅是`setTimeout()`，还包括`setInterval()`、`Promise`、`web socket`、`ajax`、`Observable`等都是这样的。这是因为这些状态更新不是在 React Scheduler 中而是在其他环境中执行的。这里不深入展开对 React Scheduler 的分析，大家感兴趣的可以了解一下相关知识。
 
 目前有两种方式解决：
 
