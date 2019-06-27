@@ -4,6 +4,8 @@ title: React性能优化
 sidebar_label: React性能优化
 ---
 
+> 注意：此文档还在修改状态。
+
 ## React.memo()
 
 `React.memo` 为[高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html)。它与 [`React.PureComponent`](https://zh-hans.reactjs.org/docs/react-api.html#reactpurecomponent) 非常相似，但它适用于函数组件，但不适用于 class 组件。
