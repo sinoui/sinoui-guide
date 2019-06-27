@@ -335,7 +335,7 @@ ReactDOM.render(&lt;Demo2 /&gt;, document.getElementById('root'));
   setB(<span class="hljs-number">2</span>);
 });
 </code></pre>
-<p>在<code>setTimeout()</code>中执行的状态更新，每一次状态更新都会引起重绘，而不会合并为一次重绘。不仅仅是<code>setTimeout()</code>，还包括<code>setInterval()</code>、<code>Promise</code>、<code>web socket</code>、<code>ajax</code>、<code>Observable</code>等都是这样的。这是因为这些状态更新不是在 React Scheduler 中而是在其他环境中执行的。这里不深入展开对 React Scheduler 的分析，大家感兴趣的可以了解一下相关知识。</p>
+<p>在<code>setTimeout()</code>中执行状态更新，每一次状态更新都会引起重绘，而不会合并为一次重绘。不仅仅是<code>setTimeout()</code>，还包括<code>setInterval()</code>、<code>Promise</code>、<code>web socket</code>、<code>ajax</code>、<code>Observable</code>等都是这样的。这是因为这些状态更新不是在 React Scheduler 中而是在其他环境中执行的。这里不深入展开对 React Scheduler 的分析，大家感兴趣的可以了解一下相关知识。</p>
 <p>目前有两种方式解决：</p>
 <p>方式一：使用<code>useReducer</code>：</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
