@@ -6,77 +6,91 @@ sidebar_label: React性能优化
 
 > 注意：此文档还在修改状态。
 
-## 缓存
+## 组件缓存
 
-由于React并不知道在父组件中的更新是否会影响到其子代，所以React会在父组件更新时，将其所有子代也重绘，这会导致很大的性能消耗。为了减少这种不必要的性能损耗，我们可以使用**缓存**的方式处理子组件。这样当`props`浅层比较的结果相同时，父组件发生变化时，React会去缓存中重用子组件先前的渲染结果，而不是重新渲染子组件。
+由于 React 并不知道在父组件中的更新是否会影响到其子代，所以 React 会在父组件更新时，将其所有子代也重绘，这会导致很大的性能消耗。为了减少这种不必要的性能损耗，我们可以使用**缓存**的方式处理子组件。这样当`props`浅层比较的结果相同时，父组件发生变化时，React 会去缓存中重用子组件先前的渲染结果，而不是重新渲染子组件。
+
+> 使用[React.memo()](https://zh-hans.reactjs.org/docs/react-api.html#reactmemo)做组件缓存。
 
 下面我们来对比看下使用缓存前后对性能的影响：
 
 使用前：
 
 ```tsx
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-function Input(props: any) {
-  return <input type="text" value={props.value} onChange={props.onChange} />;
+interface Props {
+  title: string;
 }
 
-function Demo() {
-  const [value1, setValue1] = useState('');
+function Child(props: Props) {
+  return <div>{props.title}</div>;
+}
 
-  const onChangeValue1 = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue1(event.target.value);
-  };
+function Parent() {
+  const [, setCount] = useState(0);
+
+  useEffect(() => {
+    // 每隔一秒钟重绘一次组件
+    setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
+  }, []);
 
   return (
     <div>
-      <Input value={value1} onChange={onChangeValue1} />
-      <Input value="123" />
+      <Child title="child1" />
+      <Child title="child2" />
     </div>
   );
 }
 
-ReactDOM.render(<Demo />, document.getElementById('root'));
+ReactDOM.render(<Parent />, document.getElementById('root'));
 ```
 
-此时如果改变第一个`Input`的值，第二个`Input`也会重新渲染:
+`Parent`组件每隔一秒钟发生一次状态变更，两个`Child`组件也会发生重绘，如下面的 React 渲染火焰图所示（绿色方格代表发生了重绘）：
 
 ![memo_before](./assets/images/memo_before.png)
-
-
 
 为了避免不必要的渲染，我们可以对上述示例稍加调整：
 
 ```tsx
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-function Input(props: any) {
-  return <input type="text" value={props.value} onChange={props.onChange} />;
+interface Props {
+  title: string;
 }
 
-const TextInput = React.memo(Input);
+function Child(props: Props) {
+  return <div>{props.title}</div>;
+}
 
-function Demo() {
-  const [value1, setValue1] = useState('');
+const MemoChild = React.memo(Child);
 
-  const onChangeValue1 = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue1(event.target.value);
-  };
+function Parent() {
+  const [, setCount] = useState(0);
+
+  useEffect(() => {
+    // 每隔一秒钟重绘一次组件
+    setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
+  }, []);
 
   return (
     <div>
-      <TextInput value={value1} onChange={onChangeValue1} />
-      <TextInput value='123' />
+      <MemoChild title="child1" />
+      <MemoChild title="child2" />
     </div>
   );
 }
 
-ReactDOM.render(<Demo />, document.getElementById('root'));
+ReactDOM.render(<Parent />, document.getElementById('root'));
 ```
 
-这里我们使用[React.memo](<https://zh-hans.reactjs.org/docs/react-api.html#reactmemo>)做了组件缓存，因此在改变第一个`TextInput`值时，由于第二个`TextInput`没有发生任何变化，React会从缓存中取其上次的渲染结果，而不是重新传染。
+这里我们使用[React.memo](https://zh-hans.reactjs.org/docs/react-api.html#reactmemo)做了组件缓存，因此在`Parent`组件状态发生变化时，两个`Child`组件因为属性没有发生变化，React 会从缓存中取其上次的渲染结果，而不是重新传染。渲染效果如下（火焰图中的两个`Memo(Child)`小方格都是灰色的，代表未发生重绘）：
 
 ![memo_after](./assets/images/memo_after.png)
 
@@ -131,7 +145,7 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 解决上述问题有两种方式：
 
-方式一：使用[React.useCallback](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback>)缓存处理值变化的方法
+方式一：使用[React.useCallback](https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback)缓存处理值变化的方法
 
 ```tsx
 import React, { useState, ChangeEvent, useCallback } from 'react';
@@ -166,7 +180,7 @@ function Demo() {
 ReactDOM.render(<Demo />, document.getElementById('root'));
 ```
 
-上述示例中,`useCallback`的依赖项数组为`[]`，所以，`onChangeValue1`与`onChangeValue2`这两个方法只会在组件初始化时创建一次，后续组件值发生改变时，会直接使用它的`memoized`版本。因此当其中一个`TextInput`的值发生改变时，另一个`TextInput`组件的属性满足浅层比较，React会从缓存读取其上次渲染结果，而非重新渲染。
+上述示例中,`useCallback`的依赖项数组为`[]`，所以，`onChangeValue1`与`onChangeValue2`这两个方法只会在组件初始化时创建一次，后续组件值发生改变时，会直接使用它的`memoized`版本。因此当其中一个`TextInput`的值发生改变时，另一个`TextInput`组件的属性满足浅层比较，React 会从缓存读取其上次渲染结果，而非重新渲染。
 
 ![use_callback_after](./assets/images/use_callback_after.png)
 
