@@ -416,6 +416,32 @@ class CounterButton extends React.PureComponent {
 }
 ```
 
+## 减小视图大小
+
+> 减小视图大小也是一个非常有用的优化手段。
+
+比如我们有一个数据非常多的长列表，如果我们一次性渲染，肯定会性能非常差，但是如果我们只渲染看得见的部分，性能就得到了极大的提升。
+
+下面举一个通过[windowing](https://react-window.now.sh)的例子说明一下：
+
+```jsx
+import { FixedSizeList as List } from 'react-window';
+
+const Row = ({ index, style }) => <div style={style}>Row {index}</div>;
+
+const Example = () => (
+  <List height={150} itemCount={1000} itemSize={35} width={300}>
+    {Row}
+  </List>
+);
+```
+
+在[CodeSandBox](https://codesandbox.io/s/github/bvaughn/react-window/tree/master/website/sandboxes/fixed-size-list-vertical)上看一下运行效果。
+
+这个长列表有 1000 个数据项，但是一次性只渲染 10 条数据项。这个列表的性能就会非常好。
+
+对于不可见的 UI 部分，我们都可以采用延迟渲染的技巧来减少视图大小，提升性能。
+
 ## 状态更新合并
 
 React 对状态更新做了一个优化：同时多次设置状态，不会引起多次重绘，而只会合并为一次重绘。当然这个优化是有前提的。我们来看两个例子。
