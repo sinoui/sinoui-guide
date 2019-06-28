@@ -94,9 +94,25 @@ ReactDOM.render(<Parent />, document.getElementById('root'));
 
 ![memo_after](./assets/images/memo_after.png)
 
-### 关于组件属性
+### `props`浅层比较
 
-#### 事件属性
+```js
+const objA = {
+    a: '1',
+    b: '2',
+}
+
+const objB = {
+    a: '1',
+    b: '2'
+};
+
+Object.keys(objA).every(key=>objA[key] === objB[key]); // true
+```
+
+
+
+#### 函数属性
 
 这里我们首先来看一个示例：
 
@@ -183,6 +199,62 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 上述示例中,`useCallback`的依赖项数组为`[]`，所以，`onChangeValue1`与`onChangeValue2`这两个方法只会在组件初始化时创建一次，后续组件值发生改变时，会直接使用它的`memoized`版本。因此当其中一个`TextInput`的值发生改变时，另一个`TextInput`组件的属性满足浅层比较，React 会从缓存读取其上次渲染结果，而非重新渲染。
 
 ![use_callback_after](./assets/images/use_callback_after.png)
+
+方式二：使用[React.useReducer](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer>)处理值变化
+
+```tsx
+import React, { ChangeEvent, useReducer } from 'react';
+import ReactDOM from 'react-dom';
+import produce from 'immer';
+
+interface Action {
+  type: string;
+  payload: any;
+}
+
+interface State {
+  [name: string]: any;
+}
+
+const reducer = produce((state: State, action: Action) => {
+  switch (action.type) {
+    case 'CHANGE_VALUE':
+      state[action.payload.name] = action.payload.value;
+      return state;
+    default:
+      return state;
+  }
+});
+
+function Input(props: any) {
+  const onChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
+    props.dispatch({
+      type: 'CHANGE_VALUE',
+      payload: { name: props.name, value: event.target.value },
+    });
+  };
+  return <input type="text" value={props.value} onChange={onChangeValue} />;
+}
+
+const TextInput = React.memo(Input);
+
+function Demo() {
+  const [state, dispatch] = useReducer(reducer, {});
+
+  return (
+    <div>
+      <TextInput value={state.value1} name="value1" dispatch={dispatch} />
+      <TextInput value={state.value2} name="value2" dispatch={dispatch} />
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
+```
+
+上述示例中，我们向子组件传递`dispatch`而不是回调函数。这样当第一个`TextInput`值发生改变时，第二个`TextInput`组件的属性并没有发生改变，因此其不会重新渲染。
+
+![usereducer_after](./assets/images/usereducer_after.png)
 
 ## React.memo()
 
