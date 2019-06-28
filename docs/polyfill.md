@@ -4,9 +4,9 @@ title: polyfill
 sidebar_label: polyfill
 ---
 
-自 2015 年发布 ES6 之后，JavaScript 新语法层出不穷，每年都有发布新的特性。但是旧版本浏览器却不会同步支持这些新的特性。如果是语法级别的新特性，可以通过[Babel](https://babeljs.io)或者[TypeScript](http://www.typescriptlang.org)等工具将新语法转译成 ES5 语法，这样就解决了旧版本浏览器关于 ES6 新语法的兼容问题。但是如果是新的 API，如 IE11 不支持 ES6 发布的`Array.prototype.includes`方法，就很难通过工具自动处理。对于新 API，我们一般使用`polyfill`，来弥补缺失的 API。
+自 2015 年发布 ES6 之后，JavaScript 新语法层出不穷，每年都会发布新的特性。但是旧版本浏览器却不会同步支持这些新的特性。如果是语法级别的新特性，可以通过[Babel](https://babeljs.io)或者[TypeScript](http://www.typescriptlang.org)等工具将新语法转译成 ES5 语法，这样就解决了旧版本浏览器关于 ES6 新语法的兼容问题。但是如果是新的 API，如 IE11 不支持 ES6 发布的`Array.prototype.includes`方法，就很难通过工具自动处理。对于新 API，我们一般使用`polyfill`，来弥补缺失的 API。
 
-本篇文章会列举出常用的兼容 IE11 的`polyfill`，以指导大家在开发 React 应用或者库时，能正确处理新的 API 的兼容性问题。
+本篇文章会说明如何使用 polyfill，以指导大家在开发 React 应用或者库时，能正确处理新的 API 的兼容性问题。
 
 > 注意： 我们的库和应用需要兼容 IE11。
 
@@ -97,6 +97,7 @@ import 'react-app-polyfill/ie11';
 
 // 应用中使用了array.includes()
 import 'core-js/modules/es6.array.includes';
+// 应用中使用了哪些新的API，就在这里加上此API的polyfill
 ```
 
 可以看一下`react-app-polyfill/ie11`包含哪些 polyfill:
@@ -129,4 +130,4 @@ require('core-js/features/array/from');
 
 ## 库如何使用 polyfill
 
-一般不建议在库的源码中直接引用 polyfill，因为有可能会引起比较怪异的打包问题。但是库可以使用新的 API，只是需要在`README.md`文档的醒目位置说明一下使用的新 API 的兼容性问题。
+一般不建议在库的源码中直接引用 polyfill，因为这个库有可能只在会支持新 API 的浏览器中运行（这种情况下不需要引入 polyfill）。但是库可以使用新的 API，只是需要在`README.md`文档的醒目位置说明一下使用的新 API 的兼容性问题。
