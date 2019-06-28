@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>polyfill · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;自 2015 年发布 ES6 之后，JavaScript 新语法层出不穷，每年都会发布新的特性。但是旧版本浏览器却不会同步支持这些新的特性。如果是语法级别的新特性，可以通过&lt;a href=&quot;https://babeljs.io&quot;&gt;Babel&lt;/a&gt;或者&lt;a href=&quot;http://www.typescriptlang.org&quot;&gt;TypeScript&lt;/a&gt;等工具将新语法转译成 ES5 语法，这样就解决了旧版本浏览器关于 ES6 新语法的兼容问题。但是如果是新的 API，如 IE11 不支持 ES6 发布的&lt;code&gt;Array.prototype.includes&lt;/code&gt;方法，就很难通过工具自动处理。对于新 API，我们一般使用&lt;code&gt;polyfill&lt;/code&gt;，来弥补缺失的 API。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="polyfill · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;自 2015 年发布 ES6 之后，JavaScript 新语法层出不穷，每年都会发布新的特性。但是旧版本浏览器却不会同步支持这些新的特性。如果是语法级别的新特性，可以通过&lt;a href=&quot;https://babeljs.io&quot;&gt;Babel&lt;/a&gt;或者&lt;a href=&quot;http://www.typescriptlang.org&quot;&gt;TypeScript&lt;/a&gt;等工具将新语法转译成 ES5 语法，这样就解决了旧版本浏览器关于 ES6 新语法的兼容问题。但是如果是新的 API，如 IE11 不支持 ES6 发布的&lt;code&gt;Array.prototype.includes&lt;/code&gt;方法，就很难通过工具自动处理。对于新 API，我们一般使用&lt;code&gt;polyfill&lt;/code&gt;，来弥补缺失的 API。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>语言篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/polyfill">polyfill</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node.js<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/nodejs">Node.js文件操作</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/express-guide">Express入门</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML5<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-video-duration">计算视频时长</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-md5">计算md5</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">polyfill</h1></header><article><div><span><p>自 2015 年发布 ES6 之后，JavaScript 新语法层出不穷，每年都会发布新的特性。但是旧版本浏览器却不会同步支持这些新的特性。如果是语法级别的新特性，可以通过<a href="https://babeljs.io">Babel</a>或者<a href="http://www.typescriptlang.org">TypeScript</a>等工具将新语法转译成 ES5 语法，这样就解决了旧版本浏览器关于 ES6 新语法的兼容问题。但是如果是新的 API，如 IE11 不支持 ES6 发布的<code>Array.prototype.includes</code>方法，就很难通过工具自动处理。对于新 API，我们一般使用<code>polyfill</code>，来弥补缺失的 API。</p>
+<p>本篇文章会说明如何使用 polyfill，以指导大家在开发 React 应用或者库时，能正确处理新的 API 的兼容性问题。</p>
+<blockquote>
+<p>注意： 我们的库和应用需要兼容 IE11。</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="polyfill-是什么"></a><a href="#polyfill-是什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>polyfill 是什么</h2>
+<p>我们来看一个 ES6 中的 API： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is">Object.is</a>。这个方法用来比较两个值是否相同，也就是引用相等性判断。</p>
+<p>看一下这个 API 的浏览器兼容性：</p>
+<p><img src="/sinoui-guide/docs/assets/images/object-is-compatibility.png" alt="object-is-compatibility"></p>
+<p>可以看到 IE11 是不支持<code>Object.is</code>的。</p>
+<p>我们可以根据<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is#%E6%8F%8F%E8%BF%B0">Object.is 的描述</a>自己实现一个：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Object</span>.is) {
+  <span class="hljs-built_in">Object</span>.is = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-comment">// SameValue algorithm</span>
+    <span class="hljs-keyword">if</span> (x === y) {
+      <span class="hljs-comment">// Steps 1-5, 7-10</span>
+      <span class="hljs-comment">// Steps 6.b-6.e: +0 != -0</span>
+      <span class="hljs-keyword">return</span> x !== <span class="hljs-number">0</span> || <span class="hljs-number">1</span> / x === <span class="hljs-number">1</span> / y;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// Step 6.a: NaN == NaN</span>
+      <span class="hljs-keyword">return</span> x !== x &amp;&amp; y !== y;
+    }
+  };
+}
+</code></pre>
+<p>这个实现先判断是否已经有了<code>Object.is</code>，如果没有，就自己实现一下。这就是<code>polyfill</code>，就像是补丁，通过补丁可以让我们在代码中使用新的 API 而不用担心浏览器兼容性问题。</p>
+<p>当然，我们必须在使用<code>Object.is</code>之前引用<code>Object.is</code>的 polyfill。例如 React 应用：</p>
+<p><code>polyfills.js</code>:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 在这里放所有的polyfill引用。</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/modules/es.object.is.js'</span>);
+</code></pre>
+<p><code>index.js</code>:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">'./polyfills'</span>; <span class="hljs-comment">// 必须在第一行引用哟，要不然有可能会出错。</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>;
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>, document.getElementById('root'));
+</span></code></pre>
+<p><a href="https://github.com/zloirock/core-js">core-js</a>提供了大量新 API 的 polyfill，缺什么去这里找。</p>
+<h2><a class="anchor" aria-hidden="true" id="polyfill-怎么用"></a><a href="#polyfill-怎么用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Polyfill 怎么用</h2>
+<blockquote>
+<p>因为需要 polyfill 的 API 特别多，为了不增加 JS 包大小，所以我们一般采用使用哪个新的 API，就引入这个新的 API 的 Polyfill。当然如果你的应用中用了特别多的新 API，你也可以整体引入 polyfills。</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="整体引用"></a><a href="#整体引用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>整体引用</h3>
+<p>首先安装依赖：</p>
+<pre><code class="hljs css language-shell">yarn add core-js regenerator-runtime
+</code></pre>
+<p>在<code>polyfill.js</code>文件中引入：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">'core-js/stable'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'regenerator-runtime/runtime'</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="部分引用"></a><a href="#部分引用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>部分引用</h3>
+<p>以 React 应用为例说明。</p>
+<p>首先安装依赖：</p>
+<pre><code class="hljs css language-shell">yarn add react-app-polyfill core-js regenerator-runtime
+</code></pre>
+<p>在<code>polyfill.js</code>文件中引入：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">'react-app-polyfill/ie11'</span>;
+
+<span class="hljs-comment">// 应用中使用了array.includes()</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'core-js/modules/es6.array.includes'</span>;
+<span class="hljs-comment">// 应用中使用了哪些新的API，就在这里加上此API的polyfill</span>
+</code></pre>
+<p>可以看一下<code>react-app-polyfill/ie11</code>包含哪些 polyfill:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Promise</span> === <span class="hljs-string">'undefined'</span>) {
+  <span class="hljs-comment">// Rejection tracking prevents a common issue where React gets into an</span>
+  <span class="hljs-comment">// inconsistent state due to an error, but it gets swallowed by a Promise,</span>
+  <span class="hljs-comment">// and the user has no idea what causes React's erratic future behavior.</span>
+  <span class="hljs-built_in">require</span>(<span class="hljs-string">'promise/lib/rejection-tracking'</span>).enable();
+  <span class="hljs-built_in">window</span>.Promise = <span class="hljs-built_in">require</span>(<span class="hljs-string">'promise/lib/es6-extensions.js'</span>);
+}
+
+<span class="hljs-comment">// Make sure we're in a Browser-like environment before importing polyfills</span>
+<span class="hljs-comment">// This prevents `fetch()` from being imported in a Node test environment</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> !== <span class="hljs-string">'undefined'</span>) {
+  <span class="hljs-comment">// fetch() polyfill for making API calls.</span>
+  <span class="hljs-built_in">require</span>(<span class="hljs-string">'whatwg-fetch'</span>);
+}
+
+<span class="hljs-comment">// Object.assign() is commonly used with React.</span>
+<span class="hljs-comment">// It will use the native implementation if it's present and isn't buggy.</span>
+<span class="hljs-built_in">Object</span>.assign = <span class="hljs-built_in">require</span>(<span class="hljs-string">'object-assign'</span>);
+
+<span class="hljs-comment">// Support for...of (a commonly used syntax feature that requires Symbols)</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/features/symbol'</span>);
+<span class="hljs-comment">// Support iterable spread (...Set, ...Map)</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/features/array/from'</span>);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="库如何使用-polyfill"></a><a href="#库如何使用-polyfill" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>库如何使用 polyfill</h2>
+<p>一般不建议在库的源码中直接引用 polyfill，因为这个库有可能只在会支持新 API 的浏览器中运行（这种情况下不需要引入 polyfill）。但是库可以使用新的 API，只是需要在<code>README.md</code>文档的醒目位置说明一下使用的新 API 的兼容性问题。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-28 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-component-test-guide"><span class="arrow-prev">← </span><span>测试React组件</span></a><a class="docs-next button" href="/sinoui-guide/docs/nodejs"><span>Node.js文件操作</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#polyfill-是什么">polyfill 是什么</a></li><li><a href="#polyfill-怎么用">Polyfill 怎么用</a><ul class="toc-headings"><li><a href="#整体引用">整体引用</a></li><li><a href="#部分引用">部分引用</a></li></ul></li><li><a href="#库如何使用-polyfill">库如何使用 polyfill</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
