@@ -98,21 +98,21 @@ ReactDOM.render(<Parent />, document.getElementById('root'));
 
 ```js
 const objA = {
-    a: '1',
-    b: '2',
-}
-
-const objB = {
-    a: '1',
-    b: '2'
+  a: '1',
+  b: '2',
 };
 
-Object.keys(objA).every(key=>objA[key] === objB[key]); // true
+const objB = {
+  a: '1',
+  b: '2',
+};
+
+Object.keys(objA).every((key) => objA[key] === objB[key]); // true
 ```
 
-
-
 #### 函数属性
+
+##### 动态函数属性
 
 这里我们首先来看一个示例：
 
@@ -200,7 +200,7 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![use_callback_after](./assets/images/use_callback_after.png)
 
-方式二：使用[React.useReducer](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer>)处理值变化
+方式二：使用[React.useReducer](https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer)处理值变化
 
 ```tsx
 import React, { ChangeEvent, useReducer } from 'react';
@@ -256,137 +256,455 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![usereducer_after](./assets/images/usereducer_after.png)
 
-## React.memo()
+##### 静态函数属性
 
-`React.memo` 为[高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html)。它与 [`React.PureComponent`](https://zh-hans.reactjs.org/docs/react-api.html#reactpurecomponent) 非常相似，但它适用于函数组件，但不适用于 class 组件。
+当组件属性为一个静态函数时，为了减少不必要的渲染，我们可以将函数提升到组件外部，下面我们将通过两个实例对比提升前和提升后的影响。
 
-如果你的函数组件在给定相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在 `React.memo` 中调用，以此通过记忆组件渲染结果的方式来提高组件的性能表现。这意味着在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。
-
-```jsx
-function Child({ seconds }) {
-  console.log('I am rendering');
-  return <div>I am update every {seconds} seconds</div>;
-}
-export default React.memo(Child);
-```
-
-默认情况下`React.memo`只会对复杂对象做浅层对比，如果你想要控制对比过程，那么请将自定义的比较函数通过第二个参数传入来实现，第二个参数用于对比 props 控制是否刷新，与类组件的`shouldComponentUpdate`类似。
+组件内部处理：
 
 ```tsx
-function Child({ seconds }) {
-  console.log('I am rendering');
-  return <div>I am update every {seconds} seconds</div>;
+import React, { useState, ChangeEvent, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+
+function Input(props: any) {
+  const error = props.validate(props.value);
+  return (
+    <>
+      <input type="text" value={props.value} onChange={props.onChange} />
+      <p style={{ color: 'red' }}>{error}</p>
+    </>
+  );
 }
 
-function areEqual(prevProps, nextProps) {
-  if (prevProps.seconds === nextProps.seconds) {
-    return true;
-  } else {
-    return false;
+const TextInput = React.memo(Input);
+
+function Demo() {
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+
+  const onChangeValue1 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue1(event.target.value);
+  }, []);
+
+  const onChangeValue2 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue2(event.target.value);
+  }, []);
+    
+  const validate = (value: any) => {
+    if (!value) {
+      return '必填';
+    }
+  };
+
+  return (
+    <div>
+      <TextInput value={value1} onChange={onChangeValue1} validate={validate} />
+      <TextInput value={value2} onChange={onChangeValue2} validate={validate} />
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
+```
+
+此时只要任意一个输入框的值发生改变，父组件就会重新渲染，创建新的validate函数传给子组件，这样就破坏了属性浅层比较，子组件会重新渲染。
+
+![static_fn_props_before](./assets/images/static_fn_props_before.png)
+
+我们对上述示例稍加调整，将`validate`提升至组件外部：
+
+```tsx
+import React, { useState, ChangeEvent, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+
+function Input(props: any) {
+  const error = props.validate(props.value);
+  return (
+    <>
+      <input type="text" value={props.value} onChange={props.onChange} />
+      <p style={{ color: 'red' }}>{error}</p>
+    </>
+  );
+}
+
+const TextInput = React.memo(Input);
+
+function validate(value: any) {
+  if (!value) {
+    return '必填';
   }
 }
-export default React.memo(Child, areEqual);
+
+function Demo() {
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+
+  const onChangeValue1 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue1(event.target.value);
+  }, []);
+
+  const onChangeValue2 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue2(event.target.value);
+  }, []);
+
+  return (
+    <div>
+      <TextInput value={value1} onChange={onChangeValue1} validate={validate} />
+      <TextInput value={value2} onChange={onChangeValue2} validate={validate} />
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
 ```
 
-> **_注意：_**
->
-> - 此方法仅作为性能优化的方式存在，不能依赖它去限制组件渲染。
-> - 与 class 组件中 [`shouldComponentUpdate()`](https://zh-hans.reactjs.org/docs/react-component.html#shouldcomponentupdate) 方法不同的是，如果 props 相等，`areEqual` 会返回 `true`；如果 props 不相等，则返回 `false`。这与 `shouldComponentUpdate` 方法的返回值相反。
+我们来看下渲染结果的分析图：
 
-## React.useMemo
+![static_fn_props_after](./assets/images/static_fn_props_after.png)
 
-主要用途：
+从火焰图中我们可以看出，当我们改变第一个`TextInput`值时，第二个`TextInput`并没有重新渲染。这是因为当我们把校验函数提升到组件外部，即`全局作用域`中，所以无论`Demo`内部如何变化，`validate`都不会发生改变，这样第二个`TextInput`组件的属性满足浅层比较，因此不会重新渲染。
 
-- 把“创建”函数和依赖项数组作为参数传入 `useMemo`，它仅会在某个依赖项改变时才重新计算 `memoized` 值。这种优化有助于避免在每次渲染时都进行高开销的计算。
+#### 数组、对象属性
 
-  ```js
-  function demo() {
-    const pagination = React.useMemo(
-      () => ({
-        pageSize: pageSize,
-        currentPage: pageNo + 1,
-        total: totalElements,
-      }),
-      [pageNo, pageSize, totalElements],
-    );
-  }
-  ```
+##### 动态计算出的对象属性
 
-- 如果子组件是一个 memo 组件，接收一个对象属性，使用 useMemo 处理改对象属性，则可以减少子组件不必要的渲染
+```tsx
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 
-  ```js
-  // 子组件
-  const Child = React.memo((props) => {});
+function UserInfo(props: any) {
+  const { userName, age, duty, fav, birthday } = props.userInfo;
 
-  function Parent(props) {
-    return <Child item={{ id: '2' }} />;
-  }
-  ```
+  return (
+    <div>
+      <div>姓名：{userName}</div>
+      <div>年龄：{age}</div>
+      <div>爱好：{fav}</div>
+      <div>职务：{duty}</div>
+      <div>出生年份：{birthday}</div>
+    </div>
+  );
+}
 
-  上述情况 memo 将失效，为了更好的减少组件不必要的渲染，我们可以按照下面方式处理
+const User = React.memo(UserInfo);
 
-  ```js
-  // 子组件
-  const Child = React.memo(props=>{
+const data = {
+  userName: '张三',
+  age: 19,
+  fav: '篮球、排球',
+  duty: '处员',
+};
 
-  })
+function Demo() {
+  const currentYear = new Date().getFullYear();
 
-  function Parent(props){
-      const item = React.useMemo(
-      () => ({
-        pageSize: pageSize,
-        currentPage:pageNo + 1,
-        total: totalElements,
-      }),
-      [
-        pageNo,
-        pageSize,
-        totalElements,
-      ],
-    );
-  }
-      return <Child item={item}/>
-  }
+  const [, setCount] = useState(0);
 
-  ```
+  useEffect(() => {
+    // 每隔一秒钟重绘一次组件
+    setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
+  }, []);
 
-  此时，只有在`pageNo`,`pageSize`,`totalElements`发生变化时，子组件才会重新渲染。父组件其它属性发生变化时，子组件不会重新渲染。
+  const userInfo = {
+    ...data,
+    age: `${data.age}岁`,
+    birthday: currentYear - data.age,
+  };
+  return <User userInfo={userInfo} />;
+}
 
-**切记：**传入 `useMemo` 的函数会在渲染期间执行。请不要在这个函数内部执行与渲染无关的操作。
-
-## React.useCallback
-
-```js
-const memoizedCallback = useCallback(() => {
-  doSomething(a, b);
-}, [a, b]);
+ReactDOM.render(<Demo />, document.getElementById('root'));
 ```
 
-此方法返回一个`memoized`回调函数。
+我们来思考一个问题：每次`Demo`组件重绘时，`UserInfo`会不会重绘？
 
-把内联回调函数及依赖项数组作为参数传入 `useCallback`，它将返回该回调函数的 `memoized`版本，该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如 `shouldComponentUpdate`）的子组件时，它将非常有用。
+很显然，答案是会的，因为`Demo`每次重绘，都会定义一个新的`userInfo`对象传给`UserInfo`组件，不满足其属性浅层比较，因此`UserInfo`会发生重绘。
 
-`useCallback(fn, deps)` 相当于 `useMemo(() => fn, deps)`。
+![object_props_before](./assets/images/object_props_before.png)
 
-## React.useReducer
+这种情况很容易处理，我们只需要使用[React.useMemo](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usememo>)缓存一下`userInfo`这个对象属性即可：
 
-`useReducer`之所以能对深层子组件有性能优化的作用，是因为我们向子组件传递`dispatch`而不是多个回调函数。
+```tsx
+import React, { useState, useEffect, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 
-如果 reducer hook 的返回值与当前的 state 相同，React 将跳过子组件的渲染及副作用的执行。（React 使用 [`Object.is` 比较算法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) 来比较 state。）
+function UserInfo(props: any) {
+  const { userName, age, duty, fav, birthday } = props.userInfo;
 
-## 火焰图
+  return (
+    <div>
+      <div>姓名：{userName}</div>
+      <div>年龄：{age}</div>
+      <div>爱好：{fav}</div>
+      <div>职务：{duty}</div>
+      <div>出生年份：{birthday}</div>
+    </div>
+  );
+}
 
-这是 react-devtools 里的一个性能分析工具，结果如图：
+const User = React.memo(UserInfo);
 
-![火焰图](./assets/images/fire-result.png)
+const data = {
+  userName: '张三',
+  age: 19,
+  fav: '篮球、排球',
+  duty: '处员',
+};
+
+function Demo() {
+  const currentYear = new Date().getFullYear();
+
+  const [, setCount] = useState(0);
+
+  useEffect(() => {
+    // 每隔一秒钟重绘一次组件
+    setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
+  }, []);
+
+  const userInfo = useMemo(
+    () => ({
+      ...data,
+      age: `${data.age}岁`,
+      birthday: currentYear - data.age,
+    }),
+    [data, currentYear],
+  );
+  return <User userInfo={userInfo} />;
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
+```
+
+此时，在父组件发生重绘时，子组件是不会重新渲染的，原因是因为每次重绘，`currentYear`和`data`都没发生改变，`userInfo`一直都是第一次渲染时定义的那个，不会发生改变，这样就满足了`UserInfo`组件的浅层比较，因此不会重新渲染。
+
+![object_props_after](./assets/images/object_props_after.png)
+
+##### 静态对象属性
+
+当组件属性为静态对象时,我们可以将其提升到组件外部的全局作用域，以此来满足子组件属性的浅层比较。这里我们给输入框添加label，并指定其样式，通过对比下面两个示例，看下静态对象属性对组件渲染的影响：
+
+直接传递静态对象属性
+
+```tsx
+import React, { useState, ChangeEvent, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+
+function Input(props: any) {
+  return (
+    <>
+      <label style={props.labelStyle}>{props.label}</label>
+      <input type="text" value={props.value} onChange={props.onChange} />
+    </>
+  );
+}
+
+const TextInput = React.memo(Input);
+
+function Demo() {
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+
+  const onChangeValue1 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue1(event.target.value);
+  }, []);
+
+  const onChangeValue2 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue2(event.target.value);
+  }, []);
+
+  return (
+    <div>
+      <TextInput
+        labelStyle={{ color: 'blue' }}
+        label="用户名"
+        value={value1}
+        onChange={onChangeValue1}
+      />
+      <TextInput
+        labelStyle={{ color: 'blue' }}
+        label="密码"
+        value={value2}
+        onChange={onChangeValue2}
+      />
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
+```
+
+改变一个输入框的值，由于`labelStyle`为对象属性，不满足`TextInput`属性的浅层比较，因此组件会重新渲染：
+
+![image](./assets/images/static_object_before.png)
+
+我们尝试将上述示例中的`lableStyle`提升至`Demo`组件外部的全局作用域中，再看下效果：
+
+```tsx
+import React, { useState, ChangeEvent, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+
+function Input(props: any) {
+  return (
+    <>
+      <label style={props.labelStyle}>{props.label}</label>
+      <input type="text" value={props.value} onChange={props.onChange} />
+    </>
+  );
+}
+
+const TextInput = React.memo(Input);
+
+const labelStyle = { color: 'blue' };
+
+function Demo() {
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+
+  const onChangeValue1 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue1(event.target.value);
+  }, []);
+
+  const onChangeValue2 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue2(event.target.value);
+  }, []);
+
+  return (
+    <div>
+      <TextInput
+        labelStyle={labelStyle}
+        label="用户名"
+        value={value1}
+        onChange={onChangeValue1}
+      />
+      <TextInput
+        labelStyle={labelStyle}
+        label="密码"
+        value={value2}
+        onChange={onChangeValue2}
+      />
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
+```
+
+将`labelStyle`提升至全局作用域，这样每次组件内部发生变化时，`labelStyle`并没有变，满足`TextInput`属性的浅层比较，因此在第一个`TextInput`值发生改变时，父组件会从缓存中取第二个`TextInput`的渲染结果，而不是重新渲染。
+
+火焰图：
+
+![static_object_after](./assets/images/static_object_after.png)
+
+#### children属性
+
+##### 静态`JSX`的优化 
+
+静态`JSX`优化，可以将静态的`Jsx`部分提升到组件外部定义：
+
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function ChildInner(props: any) {
+  return <p>{props.children}</p>;
+}
+
+const Child = React.memo(ChildInner);
+
+function Parent() {
+  const childs = (
+    <>
+      <Child>123</Child>
+      <Child>这是文本</Child>
+    </>
+  );
+  return <div>{childs}</div>;
+}
+
+ReactDOM.render(<Parent />, document.getElementById('root'));
+```
+
+在React应用中我们无需手动处理，可以借助[react-constant-elements工具完成](<https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements>)，需要注意的是场此插件只作用于生产环境。
+
+## 使用工具度量React组件性能
+
+### react-devtools
+
+这里我们主要是用react-devtools的火焰图来做性能分析。
+
+我们以一个具体示例来说明：
+
+```tsx
+import React, { useState, ChangeEvent, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+
+function Input(props: any) {
+  const error = props.validate(props.value);
+  return (
+    <>
+      <input type="text" value={props.value} onChange={props.onChange} />
+      <p style={{ color: 'red' }}>{error}</p>
+    </>
+  );
+}
+
+const TextInput = React.memo(Input);
+
+function validate(value: any) {
+  if (!value) {
+    return '必填';
+  }
+}
+
+function Demo() {
+  const [value1, setValue1] = useState('');
+  const [value2, setValue2] = useState('');
+
+  const onChangeValue1 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue1(event.target.value);
+  }, []);
+
+  const onChangeValue2 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue2(event.target.value);
+  }, []);
+
+  return (
+    <div>
+      <TextInput value={value1} onChange={onChangeValue1} validate={validate} />
+      <TextInput value={value2} onChange={onChangeValue2} validate={validate} />
+    </div>
+  );
+}
+
+ReactDOM.render(<Demo />, document.getElementById('root'));
+```
+
+react-devtools使用方式：
+
+* 运行上述示例
+* 打开F12控制台，将页签切换至`React`
+* 将工具条从`Elements`切换至`Profilter`
+* 点击小圆点开始分析，改变值使组件重绘点击`stop`按钮，收集分析结果
+
+![fire_action](./assets/images/fire_action.png)
+
+分析结果如下：
+
+![火焰图](./assets/images/fire_result.jpg)
 
 图中有三块区域：
 
 1. 组件渲染次数
-2. 每次渲染时相关组件的渲染情况
-3. 渲染信息
+2. 每次渲染时相关组件的渲染情况（灰色代表不渲染，绿色或黄色代表重新渲染）
+3. 渲染信息，包括组件的总渲染次数，渲染耗时，组件属性等信息
 
-## performance 分析
+从上图结果不难看出，当我们改变第一个输入框的值时，父组件发生重绘，此时第一个输入框也会重新渲染，第二个输入框组件则不会重新渲染。
+
+### performance 分析
 
 这是 Chrome 浏览器自带的性能分析工具。
 
@@ -406,7 +724,7 @@ const memoizedCallback = useCallback(() => {
 2. 火焰图，从不同的角度分析框选区域 。例如：Network，Frames, Interactions, Main 等
 3. 总结区域：精确到毫秒级的分析，以及按调用层级，事件分类的整理
 
-### overview
+#### overview
 
 Overview 窗格包含以下三个图表：
 
@@ -416,13 +734,13 @@ Overview 窗格包含以下三个图表：
 
 可以放大显示一部分记录，以便简化分析。使用 Overview 窗格可以放大显示一部分记录。 放大后，火焰图会自动缩放以匹配同一部分
 
-### 火焰图
+#### 火焰图
 
 在火焰图上看到一到三条垂直的虚线。蓝线代表 DOMContentLoaded 事件。 绿线代表首次绘制的时间。 红线代表 load 事件
 
 在火焰图中选择事件时，Details 窗格会显示与事件相关的其他信息。
 
-### 总结区域
+#### 总结区域
 
 蓝色(Loading)：网络通信和 HTML 解析
 黄色(Scripting)：JavaScript 执行
@@ -430,6 +748,8 @@ Overview 窗格包含以下三个图表：
 绿色(Painting)：重绘
 灰色(other)：其它事件花费的时间
 白色(Idle)：空闲时间
+
+### react perf devtools
 
 ## class 组件的 shouldComponentUpdate
 
