@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TypeScript简明教程 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;基础类型&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#基础类型&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;基础类型&lt;/h2&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="TypeScript简明教程 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;基础类型&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#基础类型&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;基础类型&lt;/h2&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TypeScript简明教程 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;什么是-typescript&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#什么是-typescript&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;什么是 TypeScript&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="TypeScript简明教程 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;什么是-typescript&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#什么是-typescript&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;什么是 TypeScript&lt;/h2&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -56,7 +56,9 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">TypeScript简明教程</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基础类型"></a><a href="#基础类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基础类型</h2>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">TypeScript简明教程</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="什么是-typescript"></a><a href="#什么是-typescript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>什么是 TypeScript</h2>
+<p>TODO: 敬请期待</p>
+<h2><a class="anchor" aria-hidden="true" id="基础类型"></a><a href="#基础类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基础类型</h2>
 <h3><a class="anchor" aria-hidden="true" id="布尔值"></a><a href="#布尔值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>布尔值</h3>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> isDone: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
 </code></pre>
@@ -145,6 +147,49 @@ create(<span class="hljs-string">'string'</span>); <span class="hljs-comment">//
 create(<span class="hljs-literal">false</span>); <span class="hljs-comment">// Error</span>
 create(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// Error</span>
 </code></pre>
+<h3><a class="anchor" aria-hidden="true" id="null-和-undefined"></a><a href="#null-和-undefined" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>null 和 undefined</h3>
+<p>和<code>void</code>相似，它们的本身的类型用处不是很大。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> u: <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> n: <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+</code></pre>
+<p>默认情况下<code>null</code>和<code>undefined</code>是所有类型的子类型。 就是说你可以把 <code>null</code>和<code>undefined</code>赋值给<code>number</code>类型的变量。</p>
+<h3><a class="anchor" aria-hidden="true" id="any"></a><a href="#any" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>any</h3>
+<p>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 <code>any</code>类型来标记这些变量：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
+notSure = <span class="hljs-string">'maybe a string instead'</span>;
+notSure = <span class="hljs-literal">false</span>;
+</code></pre>
+<p>在对现有代码进行改写的时候，<code>any</code>类型是十分有用的，它允许你在编译时可选择地包含或移除类型检查。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
+notSure.ifItExists(); <span class="hljs-comment">// ifItExists在代码运行过程中可能存在</span>
+</code></pre>
+<p>当你只知道一部分数据的类型时，<code>any</code>类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> list: <span class="hljs-built_in">any</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">'free'</span>];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="void"></a><a href="#void" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>void</h3>
+<p>某种程度上来说，<code>void</code>类型像是与<code>any</code>类型相反，它表示没有任何类型。当一个函数没有返回值时，我们通常会把返回值的类型设为<code>void</code>:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'这是一个函数类型声明'</span>);
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="never"></a><a href="#never" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>never</h3>
+<p><code>never</code>类型表示的是那些永不存在的值的类型。 例如， <code>never</code>类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型； 变量被永不为真的类型保护所约束时,也可能是 <code>never</code>类型。</p>
+<p><code>never</code>类型是任何类型的子类型，也可以赋值给任何类型；然而，<em>没有</em>类型是<code>never</code>的子类型或可以赋值给<code>never</code>类型（除了<code>never</code>本身之外）。 即使 <code>any</code>也不可以赋值给<code>never</code>。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// 返回never的函数必须存在无法达到的终点</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">error</span>(<span class="hljs-params">message: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">never</span> </span>{
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(message);
+}
+
+<span class="hljs-comment">// 推断的返回值类型为never</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fail</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> error(<span class="hljs-string">'Something failed'</span>);
+}
+
+<span class="hljs-comment">// 返回never的函数必须存在无法达到的终点</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">infiniteLoop</span>(<span class="hljs-params"></span>): <span class="hljs-title">never</span> </span>{
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {}
+}
+</code></pre>
 <h3><a class="anchor" aria-hidden="true" id="类型断言"></a><a href="#类型断言" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类型断言</h3>
 <p>类型断言有两种形式。其一是“尖括号”语法：</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> someValue: <span class="hljs-built_in">any</span> = <span class="hljs-string">'this is a string'</span>;
@@ -161,17 +206,17 @@ create(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">
 <p><code>!</code>和<code>?</code>是相对的，表示强制解析（也就是告诉 typescript 编译器，这里一定有值）。</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> a!: <span class="hljs-built_in">number</span> = <span class="hljs-number">6</span>;
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="接口"></a><a href="#接口" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>接口</h3>
+<h2><a class="anchor" aria-hidden="true" id="接口"></a><a href="#接口" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>接口</h2>
 <p>接口可以为对象定义结构信息。</p>
-<pre><code class="hljs css language-typescript">interface Props {
+<pre><code class="hljs css language-tsx"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Props</span> </span>{
   userName: string;
 }
 
-function Hello(props: Props) {
-  return &lt;div&gt;Hello, {props.userName}&lt;/div&gt;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span><span class="hljs-params">(props: Props)</span> </span>{
+  <span class="hljs-keyword">return</span> &lt;div&gt;Hello, {props.userName}&lt;/div&gt;;
 }
 </code></pre>
-<h4><a class="anchor" aria-hidden="true" id="可选属性"></a><a href="#可选属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可选属性</h4>
+<h3><a class="anchor" aria-hidden="true" id="可选属性"></a><a href="#可选属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可选属性</h3>
 <p>默认情况下，接口中的属性是必须的，不指定则会提示错误。如果属性不是必需的，则可以用<code>?</code>声明属性为可选属性：</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> SquareConfig {
   color?: <span class="hljs-built_in">string</span>;
@@ -191,7 +236,7 @@ function Hello(props: Props) {
 
 <span class="hljs-keyword">let</span> mySquare = createSquare({ color: <span class="hljs-string">'black'</span> });
 </code></pre>
-<h4><a class="anchor" aria-hidden="true" id="只读属性"></a><a href="#只读属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>只读属性</h4>
+<h3><a class="anchor" aria-hidden="true" id="只读属性"></a><a href="#只读属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>只读属性</h3>
 <p>一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 <code>readonly</code>来指定只读属性:</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Point {
   readonly x: <span class="hljs-built_in">number</span>;
@@ -202,27 +247,210 @@ function Hello(props: Props) {
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">let</span> p1: Point = { x: <span class="hljs-number">10</span>, y: <span class="hljs-number">20</span> };
 p1.x = <span class="hljs-number">5</span>; <span class="hljs-comment">// error!</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="函数"></a><a href="#函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数</h3>
+<h2><a class="anchor" aria-hidden="true" id="函数"></a><a href="#函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数</h2>
+<p>我们可以为函数的参数和返回值指定类型，如下面的方法：</p>
+<p>JavaScript 版本：</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>{
+  <span class="hljs-keyword">return</span> x + y;
+}
+</code></pre>
+<p>添加上 TypeScript 类型后：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{
+  <span class="hljs-keyword">return</span> x + y;
+}
+</code></pre>
+<p>给函数参数和返回值添加上类型后，我们在使用<code>add</code>方法后，不会指定了错误类型的参数：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> result = add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// OK</span>
+<span class="hljs-keyword">const</span> result2 = add(<span class="hljs-number">1</span>, <span class="hljs-string">'2'</span>); <span class="hljs-comment">// error, '2'不是number类型的数据</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="函数类型"></a><a href="#函数类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数类型</h3>
+<p>函数是 JavaScript 的一等公民——它可以作为值传递。既然函数可以作为值传递，那么就可以在 ts 中给变量指定函数类型。如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">let</span> add: <span class="hljs-function">(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 声明add变量为(x: number, y: number) =&gt; number这样的函数</span>
+
+add = <span class="hljs-function">(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">number</span> {
+  <span class="hljs-keyword">return</span> x + y;
+};
+
+<span class="hljs-keyword">const</span> result: <span class="hljs-built_in">number</span> = add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+<span class="hljs-built_in">console</span>.log(result); <span class="hljs-comment">// 3</span>
+</code></pre>
+<p>我们也可以在接口中定义函数类型的属性：</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Point {
-  readonly width: <span class="hljs-built_in">number</span>;
-  readonly height: <span class="hljs-built_in">number</span>;
-  distinct: <span class="hljs-function">(<span class="hljs-params">anotherPoint: Point</span>) =&gt;</span> <span class="hljs-built_in">number</span>;
+  readonly x: <span class="hljs-built_in">number</span>;
+  readonly y: <span class="hljs-built_in">number</span>;
+  distinct(anotherPoint: Point): <span class="hljs-built_in">number</span>;
 }
 
 <span class="hljs-keyword">const</span> point: Point = {
-  width: <span class="hljs-number">100</span>,
-  height: <span class="hljs-number">100</span>,
-  distinct: <span class="hljs-function">(<span class="hljs-params">anotherPoint: Point</span>) =&gt;</span> {
+  x: <span class="hljs-number">100</span>,
+  y: <span class="hljs-number">100</span>,
+  distinct(anotherPoint: Point) {
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(
-      <span class="hljs-built_in">Math</span>.abs(<span class="hljs-built_in">Math</span>.pow(anotherPoint.x - <span class="hljs-keyword">this</span>.x)) +
-        <span class="hljs-built_in">Math</span>.abs(<span class="hljs-built_in">Math</span>.pow(anotherPoint.y - <span class="hljs-keyword">this</span>.y)),
+      <span class="hljs-built_in">Math</span>.abs(<span class="hljs-built_in">Math</span>.pow(anotherPoint.x - <span class="hljs-keyword">this</span>.x, <span class="hljs-number">2</span>)) +
+        <span class="hljs-built_in">Math</span>.abs(<span class="hljs-built_in">Math</span>.pow(anotherPoint.y - <span class="hljs-keyword">this</span>.y, <span class="hljs-number">2</span>)),
     );
   },
 };
 
 <span class="hljs-built_in">console</span>.log(point.distinct(point)); <span class="hljs-comment">// 0</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="类"></a><a href="#类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类</h3>
+<p>我们在<code>Point</code>接口中定义了一个<code>distinct</code>属性，它的类型是一个接收<code>Point</code>类型参数并返回<code>number</code>类型值的函数。当然我们也可以这样定义函数类型的接口属性：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Point {
+  readonly x: <span class="hljs-built_in">number</span>;
+  readonly y: <span class="hljs-built_in">number</span>;
+
+  distinct: <span class="hljs-function">(<span class="hljs-params">anotherPoint: Point</span>) =&gt;</span> <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="可选与默认值参数"></a><a href="#可选与默认值参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可选与默认值参数</h3>
+<p>在 TypeScript 中函数中每个参数都是必须指定的，这些参数不能指定为<code>null</code>或者<code>undefined</code>。如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName: <span class="hljs-built_in">string</span></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
+}
+
+<span class="hljs-keyword">const</span> result1 = buildName(<span class="hljs-string">'Bob'</span>); <span class="hljs-comment">// error, 传参不足</span>
+<span class="hljs-keyword">const</span> result2 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>, <span class="hljs-string">'Sr.'</span>); <span class="hljs-comment">// error, 传参太多</span>
+<span class="hljs-keyword">const</span> result3 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>); <span class="hljs-comment">// ok</span>
+</code></pre>
+<p>如果<code>lastName</code>参数可以为<code>undefined</code>，则我们可以使用<code>?</code>表示<code>lastName</code>是可选的参数：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildNmae</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName?: <span class="hljs-built_in">string</span></span>) </span>{
+  <span class="hljs-keyword">if</span> (lastName) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> firstName;
+  }
+}
+
+<span class="hljs-keyword">let</span> result1 = buildName(<span class="hljs-string">'Bob'</span>); <span class="hljs-comment">// OK</span>
+<span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>, <span class="hljs-string">'Sr.'</span>); <span class="hljs-comment">// error, 太多参数</span>
+<span class="hljs-keyword">let</span> result3 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>); <span class="hljs-comment">// OK</span>
+</code></pre>
+<p>需要注意的是，可选参数必须在必选参数之后定义。如果我们必须让<code>firstName</code>参数是可选的，也就是说它可以是<code>undefined</code>，那么你要么将<code>firstName</code>参数移到<code>lastName</code>参数之后，要么你使用<code>string | undefined</code>这样的联合类型：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">lastName: <span class="hljs-built_in">string</span>, firstName?: <span class="hljs-built_in">string</span></span>) </span>{
+  <span class="hljs-keyword">if</span> (firstName) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> lastName;
+  }
+}
+</code></pre>
+<p>或者：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>, lastName: <span class="hljs-built_in">string</span></span>) </span>{
+  <span class="hljs-keyword">if</span> (firstName) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> lastName;
+  }
+}
+</code></pre>
+<p>一个函数可以有多个可选参数，如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName?: <span class="hljs-built_in">string</span>, lastName?: <span class="hljs-built_in">string</span></span>) </span>{
+  <span class="hljs-keyword">if</span> (firstName &amp;&amp; lastName) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> firstName || lastName;
+  }
+}
+</code></pre>
+<p>我们可以用<code>lastName: string = 'Smith'</code>这样的方式指定一个默认值，这样当<code>lastName</code>参数为<code>undefined</code>或者没有指定该参数时，<code>lastName</code>参数就是默认值<code>Smith</code>：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName: <span class="hljs-built_in">string</span> = 'Smith'</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
+}
+
+<span class="hljs-keyword">const</span> result1 = buildName(<span class="hljs-string">'Bob'</span>); <span class="hljs-comment">// OK, result1 = Bob Smith</span>
+<span class="hljs-keyword">const</span> result2 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>); <span class="hljs-comment">// OK, result2 = Bob Adams</span>
+</code></pre>
+<p>注意，默认值参数不需要再指定<code>?</code>。</p>
+<h3><a class="anchor" aria-hidden="true" id="剩余参数"></a><a href="#剩余参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>剩余参数</h3>
+<p>ES6 支持剩余参数语法，TypeScript 中可以为剩余参数指定类型，如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span>, ...rest: <span class="hljs-built_in">number</span>[]</span>) </span>{
+  <span class="hljs-keyword">return</span> x + y + reduce(<span class="hljs-function">(<span class="hljs-params">acc, value</span>) =&gt;</span> acc + value, <span class="hljs-number">0</span>);
+}
+
+<span class="hljs-keyword">const</span> result1 = sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// OK, result1 = 3</span>
+<span class="hljs-keyword">const</span> result2 = sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// OK, result2 = 6</span>
+<span class="hljs-keyword">const</span> result3 = sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// OK, result3 = 10</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="函数中的-this-非重点"></a><a href="#函数中的-this-非重点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数中的<code>this</code> （非重点）</h3>
+<p>对象中的函数属性的<code>this</code>是指向对象本身，如<code>Point</code>对象中的<code>distinct</code>，它内部的<code>this.x</code>指向的是对象本身的<code>x</code>属性，但是如果我们将这个函数定义为箭头函数的话，你会发现 TypeScript 会发出错误警告，这是因为箭头函数中的<code>this</code>指向的不再是对象本身，如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Point {
+  readonly x: <span class="hljs-built_in">number</span>;
+  readonly y: <span class="hljs-built_in">number</span>;
+  distinct(anotherPoint: Point): <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">const</span> point: Point = {
+  x: <span class="hljs-number">100</span>,
+  y: <span class="hljs-number">100</span>,
+  distinct: <span class="hljs-function">(<span class="hljs-params">anotherPoint: Point</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(
+      <span class="hljs-built_in">Math</span>.abs(<span class="hljs-built_in">Math</span>.pow(anotherPoint.x - <span class="hljs-keyword">this</span>.x, <span class="hljs-number">2</span>)) + <span class="hljs-comment">// error, The containing arrow function captures the global value of 'this'. ts(7041)</span>
+        <span class="hljs-built_in">Math</span>.abs(<span class="hljs-built_in">Math</span>.pow(anotherPoint.y - <span class="hljs-keyword">this</span>.y, <span class="hljs-number">2</span>)), <span class="hljs-comment">// error, The containing arrow function captures the global value of 'this'. ts(7041)</span>
+    );
+  },
+};
+</code></pre>
+<p>很多时候，我们需要明确告知某个对象函数的<code>this</code>不是指向本身，而是指向<code>void</code>或者其它对象。如我们在用一些库时需要指定选项对象。如下面的一个错误示例：</p>
+<p><strong>错误示例</strong></p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// 选项接口</span>
+<span class="hljs-keyword">interface</span> Option {
+  delay: <span class="hljs-built_in">number</span>;
+  callback: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delayExec</span>(<span class="hljs-params">option: Option</span>) </span>{
+  <span class="hljs-keyword">const</span> { callback, delay } = option;
+  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    callback();
+  }, delay);
+}
+
+<span class="hljs-keyword">const</span> option: Option = {
+  delay: <span class="hljs-number">1000</span>,
+  callback() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.delay);
+  },
+};
+delayExec(option);
+</code></pre>
+<p><strong>正确示例</strong></p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// 选项接口</span>
+<span class="hljs-keyword">interface</span> Option {
+  delay: <span class="hljs-built_in">number</span>;
+  callback: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delayExec</span>(<span class="hljs-params">option: Option</span>) </span>{
+  <span class="hljs-keyword">const</span> { callback, delay } = option;
+  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    callback();
+  }, delay);
+}
+
+<span class="hljs-keyword">const</span> option: Option = {
+  delay: <span class="hljs-number">1000</span>,
+  callback: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(option.delay);
+  },
+};
+delayExec(option);
+</code></pre>
+<p>为了避免出现错误示例的情况， 我们可以在接口类型声明中指定<code>callback</code>函数的<code>this</code>指向的是<code>void</code>，如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">// 选项接口</span>
+<span class="hljs-keyword">interface</span> Option {
+  delay: <span class="hljs-built_in">number</span>;
+  callback(<span class="hljs-keyword">this</span>: <span class="hljs-built_in">void</span>): <span class="hljs-built_in">void</span>;
+}
+</code></pre>
+<p>这样，如果我们的 callback 是下面的实现，TypeScript 就会发出错误警告：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> option: Option = {
+  delay: <span class="hljs-number">1000</span>,
+  callback() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.delay); <span class="hljs-comment">// error, The containing arrow function captures the global value of 'this'. ts(7041)</span>
+  },
+};
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="类"></a><a href="#类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类</h2>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">class</span> Greeter {
   greeting: <span class="hljs-built_in">string</span>;
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params">message: <span class="hljs-built_in">string</span></span>) {
@@ -237,7 +465,7 @@ p1.x = <span class="hljs-number">5</span>; <span class="hljs-comment">// error!<
 </code></pre>
 <p>上述示例中， 我们声明一个 <code>Greeter</code>类。这个类有 3 个成员：一个<code>greeting</code>属性，一个构造函数和一个 <code>greet</code>方法。</p>
 <p>我们在引用任何一个类成员的时候都用了 <code>this</code>, 它表示我们访问的是类的成员。</p>
-<h4><a class="anchor" aria-hidden="true" id="继承"></a><a href="#继承" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>继承</h4>
+<h3><a class="anchor" aria-hidden="true" id="继承"></a><a href="#继承" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>继承</h3>
 <p>在 TypeScript 里，我们可以使用常用的面向对象模式。 基于类的程序设计中一种最基本的模式是允许使用继承来扩展现有的类。</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">class</span> Animal {
   move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) {
@@ -258,8 +486,8 @@ dog.bark();
 </code></pre>
 <p>上述示例展示了最基本的继承：类从基类中继承了属性和方法。这里，<code>Dog</code>是一个派生类，它派生自<code>Animal</code>基类，通过<code>extends</code>关键字。派生类通常被称为子类，基类通常被称作超类。</p>
 <p>因为 <code>Dog</code>继承了 <code>Animal</code>的功能，因此我们可以创建一个 <code>Dog</code>的实例，它能够 <code>bark()</code>和 <code>move()</code>。</p>
-<h4><a class="anchor" aria-hidden="true" id="公有-私有与受保护的修饰符"></a><a href="#公有-私有与受保护的修饰符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>公有、私有与受保护的修饰符</h4>
-<h5><a class="anchor" aria-hidden="true" id="默认为-public"></a><a href="#默认为-public" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>默认为<code>public</code></h5>
+<h3><a class="anchor" aria-hidden="true" id="公有-私有与受保护的修饰符"></a><a href="#公有-私有与受保护的修饰符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>公有、私有与受保护的修饰符</h3>
+<h4><a class="anchor" aria-hidden="true" id="默认为-public"></a><a href="#默认为-public" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>默认为<code>public</code></h4>
 <p>在<code>TypeScript</code>里，成员都默认为<code>public</code>。</p>
 <p>也可以明确的将一个成员标记成 <code>public</code>。 我们可以用下面的方式来重写上面的 <code>Animal</code>类：</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">class</span> Animal {
@@ -272,7 +500,7 @@ dog.bark();
   }
 }
 </code></pre>
-<h5><a class="anchor" aria-hidden="true" id="理解-private"></a><a href="#理解-private" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>理解<code>private</code></h5>
+<h4><a class="anchor" aria-hidden="true" id="理解-private"></a><a href="#理解-private" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>理解<code>private</code></h4>
 <p>当成员被标记成 <code>private</code>时，它就不能在声明它的类的外部访问。比如：</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">class</span> Animal {
   <span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span>;
@@ -313,7 +541,7 @@ animal = rhino;
 animal = employee; <span class="hljs-comment">// 错误: Animal 与 Employee 不兼容.</span>
 </code></pre>
 <p>这个例子中有 <code>Animal</code>和 <code>Rhino</code>两个类， <code>Rhino</code>是 <code>Animal</code>类的子类。 还有一个 <code>Employee</code>类，其类型看上去与<code>Animal</code>是相同的。 我们创建了几个这些类的实例，并相互赋值来看看会发生什么。 因为 <code>Animal</code>和 <code>Rhino</code>共享了来自 <code>Animal</code>里的私有成员定义 <code>private name: string</code>，因此它们是兼容的。 然而 <code>Employee</code>却不是这样。当把 <code>Employee</code>赋值给 <code>Animal</code>的时候，得到一个错误，说它们的类型不兼容。 尽管 <code>Employee</code>里也有一个私有成员 <code>name</code>，但它明显不是 <code>Animal</code>里面定义的那个。</p>
-<h5><a class="anchor" aria-hidden="true" id="理解-protected"></a><a href="#理解-protected" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>理解 <code>protected</code></h5>
+<h4><a class="anchor" aria-hidden="true" id="理解-protected"></a><a href="#理解-protected" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>理解 <code>protected</code></h4>
 <p><code>protected</code>修饰符与 <code>private</code>修饰符的行为很相似，但有一点不同， <code>protected</code>成员在派生类中仍然可以访问。</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">class</span> Person {
   <span class="hljs-keyword">protected</span> name: <span class="hljs-built_in">string</span>;
@@ -365,47 +593,72 @@ animal = employee; <span class="hljs-comment">// 错误: Animal 与 Employee 不
 <span class="hljs-keyword">let</span> howard = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">'Howard'</span>, <span class="hljs-string">'Sales'</span>);
 <span class="hljs-keyword">let</span> john = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">'John'</span>); <span class="hljs-comment">// 错误: 'Person' 的构造函数是被保护的.</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="null-和-undefined"></a><a href="#null-和-undefined" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>null 和 undefined</h3>
-<p>和<code>void</code>相似，它们的本身的类型用处不是很大。</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> u: <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;
-<span class="hljs-keyword">let</span> n: <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+<h2><a class="anchor" aria-hidden="true" id="类型推论"></a><a href="#类型推论" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类型推论</h2>
+<p>很多时候，一个变量的类型是显而易见的，如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">let</span> x: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;
+
+x = <span class="hljs-number">1</span>; <span class="hljs-comment">// OK</span>
+x = <span class="hljs-string">'1'</span>; <span class="hljs-comment">// error</span>
 </code></pre>
-<p>默认情况下<code>null</code>和<code>undefined</code>是所有类型的子类型。 就是说你可以把 <code>null</code>和<code>undefined</code>赋值给<code>number</code>类型的变量。</p>
-<h3><a class="anchor" aria-hidden="true" id="any"></a><a href="#any" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>any</h3>
-<p>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 <code>any</code>类型来标记这些变量：</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
-notSure = <span class="hljs-string">'maybe a string instead'</span>;
-notSure = <span class="hljs-literal">false</span>;
+<p><code>x</code>被赋值为<code>0</code>，所以我们一般会推测它的类型为<code>number</code>。对于这种显而易见的类型，TypeScript 允许我们省略类型声明，如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span>;
+
+x = <span class="hljs-number">1</span>; <span class="hljs-comment">// OK</span>
+x = <span class="hljs-string">'1'</span>; <span class="hljs-comment">// error</span>
 </code></pre>
-<p>在对现有代码进行改写的时候，<code>any</code>类型是十分有用的，它允许你在编译时可选择地包含或移除类型检查。</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
-notSure.ifItExists(); <span class="hljs-comment">// ifItExists在代码运行过程中可能存在</span>
+<p>对于能够显而易见的推断出变量类型的，TypeScript 允许我们不显示指定类型，这就是<strong>类型推论</strong>。</p>
+<p>下面多举几个例子：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> x = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">null</span>]; <span class="hljs-comment">// x的类型推断为：Array&lt;number | null&gt;</span>
+
+<span class="hljs-keyword">const</span> zoo = [<span class="hljs-keyword">new</span> Rhino(), <span class="hljs-keyword">new</span> Elephant(), <span class="hljs-keyword">new</span> Snake()]; <span class="hljs-comment">// zoo的类型推断为：Array&lt;Rhino | Elephant | Snake&gt;</span>
+
+<span class="hljs-built_in">window</span>.onscroll = <span class="hljs-function">(<span class="hljs-params">uiEvent</span>) =&gt;</span> {
+  <span class="hljs-comment">// uiEvent的类型推断为：Event。TypeScript类型推论的依据是：这个函数是`onscroll`事件的监听器，所以它的参数类型就是Event。</span>
+  <span class="hljs-built_in">console</span>.log(uiEvent);
+};
 </code></pre>
-<p>当你只知道一部分数据的类型时，<code>any</code>类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据：</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> list: <span class="hljs-built_in">any</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">'free'</span>];
+<p>看一个 React 的例子：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+  <span class="hljs-attr">onClick</span>=<span class="hljs-string">{(event)</span> =&gt;</span> {
+    // event的类型被推断为：React.MouseEvent<span class="hljs-tag">&lt;<span class="hljs-name">HTMLButtonElement,</span> <span class="hljs-attr">MouseEvent</span>&gt;</span>
+    console.log(event);
+  }}
+&gt;
+  点击我
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="void"></a><a href="#void" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>void</h3>
-<p>某种程度上来说，<code>void</code>类型像是与<code>any</code>类型相反，它表示没有任何类型。当一个函数没有返回值时，我们通常会把返回值的类型设为<code>void</code>:</p>
-<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'这是一个函数类型声明'</span>);
-}
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="never"></a><a href="#never" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>never</h3>
-<p><code>never</code>类型表示的是那些永不存在的值的类型。 例如， <code>never</code>类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型； 变量被永不为真的类型保护所约束时,也可能是 <code>never</code>类型。</p>
-<p><code>never</code>类型是任何类型的子类型，也可以赋值给任何类型；然而，<em>没有</em>类型是<code>never</code>的子类型或可以赋值给<code>never</code>类型（除了<code>never</code>本身之外）。 即使 <code>any</code>也不可以赋值给<code>never</code>。</p>
-<pre><code class="hljs css language-ts"><span class="hljs-comment">// 返回never的函数必须存在无法达到的终点</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">error</span>(<span class="hljs-params">message: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">never</span> </span>{
-  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(message);
+<p>方法的返回值类型也可以推断：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>) </span>{
+  <span class="hljs-keyword">return</span> x + y;
 }
 
-<span class="hljs-comment">// 推断的返回值类型为never</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fail</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> error(<span class="hljs-string">'Something failed'</span>);
-}
+<span class="hljs-keyword">const</span> result: <span class="hljs-built_in">number</span> = add(x, y);
+</code></pre>
+<p>上面的<code>add</code>方法的返回值通过<code>return x + y</code>就能推导出是<code>number</code>类型的，所以它的返回值类型就是<code>number</code>。</p>
+<p>但是有一些具有二义性的类型就无法正确推断出来，如下所示的函数，原本希望它的返回值类型是一个<code>[string, (newValue: string) =&gt; void]</code>这样的元组类型，但是它推断出来的类型却是<code>(string | ((newValue: string) =&gt; void))[]</code>：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useState</span>(<span class="hljs-params">defaultValue: <span class="hljs-built_in">string</span></span>) </span>{
+  <span class="hljs-keyword">let</span> value = defaultValue;
 
-<span class="hljs-comment">// 返回never的函数必须存在无法达到的终点</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">infiniteLoop</span>(<span class="hljs-params"></span>): <span class="hljs-title">never</span> </span>{
-  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {}
+  <span class="hljs-keyword">let</span> setState = <span class="hljs-function">(<span class="hljs-params">newValue: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    value = newValue;
+  };
+
+  <span class="hljs-keyword">return</span> [value, setState];
 }
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-1 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/es6-tutorial"><span class="arrow-prev">← </span><span>ES6简明教程</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-ts-tutorial"><span class="function-name-prevnext">在React中使用TypeScript</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基础类型">基础类型</a><ul class="toc-headings"><li><a href="#布尔值">布尔值</a></li><li><a href="#数字">数字</a></li><li><a href="#字符串">字符串</a></li><li><a href="#数组">数组</a></li><li><a href="#元组tuple">元组(Tuple)</a></li><li><a href="#枚举">枚举</a></li><li><a href="#对象">对象</a></li><li><a href="#类型断言">类型断言</a></li><li><a href="#ts-非空断言关键字">ts 非空断言关键字<code>!</code></a></li><li><a href="#接口">接口</a></li><li><a href="#函数">函数</a></li><li><a href="#类">类</a></li><li><a href="#null-和-undefined">null 和 undefined</a></li><li><a href="#any">any</a></li><li><a href="#void">void</a></li><li><a href="#never">never</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+<p>这种情况下，我们需要显示地声明函数返回值类型：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useState</span>(<span class="hljs-params">defaultValue: <span class="hljs-built_in">string</span></span>): [<span class="hljs-title">string</span>, (<span class="hljs-params">newValue: <span class="hljs-built_in">string</span></span>) =&gt; <span class="hljs-title">void</span>] </span>{
+  <span class="hljs-keyword">let</span> value = defaultValue;
+
+  <span class="hljs-keyword">let</span> setState = <span class="hljs-function">(<span class="hljs-params">newValue: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    value = newValue;
+  };
+
+  <span class="hljs-keyword">return</span> [value, setState];
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="泛型"></a><a href="#泛型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>泛型</h2>
+<p>TODO: 敬请期待</p>
+<h2><a class="anchor" aria-hidden="true" id="高级类型"></a><a href="#高级类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>高级类型</h2>
+<p>TODO: 敬请期待</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-1 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/es6-tutorial"><span class="arrow-prev">← </span><span>ES6简明教程</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-ts-tutorial"><span class="function-name-prevnext">在React中使用TypeScript</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#什么是-typescript">什么是 TypeScript</a></li><li><a href="#基础类型">基础类型</a><ul class="toc-headings"><li><a href="#布尔值">布尔值</a></li><li><a href="#数字">数字</a></li><li><a href="#字符串">字符串</a></li><li><a href="#数组">数组</a></li><li><a href="#元组tuple">元组(Tuple)</a></li><li><a href="#枚举">枚举</a></li><li><a href="#对象">对象</a></li><li><a href="#null-和-undefined">null 和 undefined</a></li><li><a href="#any">any</a></li><li><a href="#void">void</a></li><li><a href="#never">never</a></li><li><a href="#类型断言">类型断言</a></li><li><a href="#ts-非空断言关键字">ts 非空断言关键字<code>!</code></a></li></ul></li><li><a href="#接口">接口</a><ul class="toc-headings"><li><a href="#可选属性">可选属性</a></li><li><a href="#只读属性">只读属性</a></li></ul></li><li><a href="#函数">函数</a><ul class="toc-headings"><li><a href="#函数类型">函数类型</a></li><li><a href="#可选与默认值参数">可选与默认值参数</a></li><li><a href="#剩余参数">剩余参数</a></li><li><a href="#函数中的-this-非重点">函数中的<code>this</code> （非重点）</a></li></ul></li><li><a href="#类">类</a><ul class="toc-headings"><li><a href="#继承">继承</a></li><li><a href="#公有-私有与受保护的修饰符">公有、私有与受保护的修饰符</a></li></ul></li><li><a href="#类型推论">类型推论</a></li><li><a href="#泛型">泛型</a></li><li><a href="#高级类型">高级类型</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

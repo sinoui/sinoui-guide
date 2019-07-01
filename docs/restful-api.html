@@ -123,10 +123,122 @@ DELETE   /products/id  删除指定产品信息
 <tr><td>500(INTERNAL SERVER ERROR)</td><td>应用服务发生错误</td><td>应用服务发生错误，不能正确接收服务请求</td></tr>
 </tbody>
 </table>
+<h2><a class="anchor" aria-hidden="true" id="数据交换参考"></a><a href="#数据交换参考" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数据交换参考</h2>
+<h3><a class="anchor" aria-hidden="true" id="获取列表数据"></a><a href="#获取列表数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取列表数据</h3>
+<h4><a class="anchor" aria-hidden="true" id="请求"></a><a href="#请求" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>请求</h4>
+<pre><code class="hljs css language-js">GET  /products?page=<span class="hljs-number">0</span>&amp;size=<span class="hljs-number">15</span>&amp;title=pad
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="成功的响应"></a><a href="#成功的响应" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>成功的响应</h4>
+<p>状态码：200</p>
+<p>响应内容：<code>application/json</code></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"content"</span>:[
+    {
+      <span class="hljs-string">"id"</span>: <span class="hljs-string">"1"</span>,
+      <span class="hljs-string">"title"</span>: <span class="hljs-string">"电脑pad"</span>,
+      <span class="hljs-string">"price"</span>:<span class="hljs-string">"5000"</span>,
+    },
+     {
+      <span class="hljs-string">"id"</span>: <span class="hljs-string">"2"</span>,
+      <span class="hljs-string">"title"</span>: <span class="hljs-string">"平板pad"</span>,
+      <span class="hljs-string">"price"</span>:<span class="hljs-string">"3000"</span>,
+    },
+  ],
+  <span class="hljs-attr">number</span>:<span class="hljs-number">0</span>,   <span class="hljs-comment">// 当前页</span>
+  numberOfElements:<span class="hljs-number">5</span>, <span class="hljs-comment">// 当前页总数</span>
+  size:<span class="hljs-number">15</span>,   <span class="hljs-comment">// 每页显示数</span>
+  totalPages:<span class="hljs-number">1</span>,  <span class="hljs-comment">// 总页数</span>
+  totalElements:<span class="hljs-number">5</span>,  <span class="hljs-comment">// 数据总数</span>
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="失败响应"></a><a href="#失败响应" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>失败响应</h4>
+<p>通过状态码表示失败响应</p>
+<ul>
+<li>404 - 找不到资源</li>
+<li>500 - 应用服务发生错误</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="新建数据"></a><a href="#新建数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>新建数据</h3>
+<h4><a class="anchor" aria-hidden="true" id="请求-1"></a><a href="#请求-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>请求</h4>
+<pre><code class="hljs css language-js">POST  /products
+传参：{
+  <span class="hljs-string">"title"</span>:<span class="hljs-string">"手机"</span>,
+  <span class="hljs-string">"price"</span>:<span class="hljs-string">"5000"</span>,
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="成功的响应-1"></a><a href="#成功的响应-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>成功的响应</h4>
+<p>状态码：201、200</p>
+<p>响应内容：<code>application/json</code></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"id"</span>:<span class="hljs-string">"100"</span>,
+  <span class="hljs-string">"title"</span>:<span class="hljs-string">"手机"</span>,
+  <span class="hljs-string">"price"</span>:<span class="hljs-string">"5000"</span>,
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="失败响应-1"></a><a href="#失败响应-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>失败响应</h4>
+<p>通过状态码表示失败响应</p>
+<ul>
+<li>404 - 找不到资源</li>
+<li>500 - 应用服务发生错误</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="通过-id-获取一条数据"></a><a href="#通过-id-获取一条数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过 id 获取一条数据</h3>
+<h4><a class="anchor" aria-hidden="true" id="请求-2"></a><a href="#请求-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>请求</h4>
+<pre><code class="hljs css language-js">GET / products / <span class="hljs-number">1</span>;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="成功的响应-2"></a><a href="#成功的响应-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>成功的响应</h4>
+<p>状态码：200</p>
+<p>响应内容：<code>application/json</code></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"id"</span>: <span class="hljs-string">"1"</span>,
+  <span class="hljs-string">"title"</span>: <span class="hljs-string">"电脑"</span>,
+  <span class="hljs-string">"price"</span>:<span class="hljs-string">"5000"</span>,
+},
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="失败响应-2"></a><a href="#失败响应-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>失败响应</h4>
+<p>通过状态码表示失败响应</p>
+<ul>
+<li>404 - 找不到资源</li>
+<li>500 - 应用服务发生错误</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="更新一条数据"></a><a href="#更新一条数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更新一条数据</h3>
+<h4><a class="anchor" aria-hidden="true" id="请求-3"></a><a href="#请求-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>请求</h4>
+<pre><code class="hljs css language-js">PUT / products / <span class="hljs-number">1</span>;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="成功的响应-3"></a><a href="#成功的响应-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>成功的响应</h4>
+<p>状态码：201、200</p>
+<p>响应内容：<code>application/json</code></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"id"</span>: <span class="hljs-string">"1"</span>,
+  <span class="hljs-string">"title"</span>: <span class="hljs-string">"电脑"</span>,
+  <span class="hljs-string">"price"</span>:<span class="hljs-string">"10000"</span>,
+},
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="失败响应-3"></a><a href="#失败响应-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>失败响应</h4>
+<p>通过状态码表示失败响应</p>
+<ul>
+<li>404 - 找不到资源</li>
+<li>500 - 应用服务发生错误</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="删除数据"></a><a href="#删除数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>删除数据</h3>
+<h4><a class="anchor" aria-hidden="true" id="请求-4"></a><a href="#请求-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>请求</h4>
+<pre><code class="hljs css language-js">DELETE / products / <span class="hljs-number">1</span>;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="成功的响应-4"></a><a href="#成功的响应-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>成功的响应</h4>
+<p>状态码：200</p>
+<p>响应内容：<code>application/json</code></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"flag"</span>:<span class="hljs-string">"true"</span>
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="失败响应-4"></a><a href="#失败响应-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>失败响应</h4>
+<p>通过状态码表示失败响应</p>
+<ul>
+<li>404 - 找不到资源</li>
+<li>500 - 应用服务发生错误</li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h2>
 <ul>
 <li><a href="http://www.ruanyifeng.com/blog/2011/09/restful.html">理解 RESTful 架构</a></li>
 <li><a href="http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html">RESTful Api 最佳实践</a></li>
 <li><a href="https://www.jianshu.com/p/8b769356ee67">RESTful 接口设计规范总结</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-17 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/app-dev-index"><span class="arrow-prev">← </span><span>开篇</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-router"><span>React Router 使用教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#restful-架构简介">RESTful 架构简介</a></li><li><a href="#协议">协议</a></li><li><a href="#版本">版本</a></li><li><a href="#路径接口命名">路径(接口命名)</a></li><li><a href="#http-方法">HTTP 方法</a></li><li><a href="#过滤信息">过滤信息</a><ul class="toc-headings"><li><a href="#新-oa-中的过滤信息">新 OA 中的过滤信息</a></li></ul></li><li><a href="#数据传递格式标准">数据传递格式标准</a></li><li><a href="#返回状态码">返回状态码</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-1 by chenaihua</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/app-dev-index"><span class="arrow-prev">← </span><span>开篇</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-router"><span>React Router 使用教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#restful-架构简介">RESTful 架构简介</a></li><li><a href="#协议">协议</a></li><li><a href="#版本">版本</a></li><li><a href="#路径接口命名">路径(接口命名)</a></li><li><a href="#http-方法">HTTP 方法</a></li><li><a href="#过滤信息">过滤信息</a><ul class="toc-headings"><li><a href="#新-oa-中的过滤信息">新 OA 中的过滤信息</a></li></ul></li><li><a href="#数据传递格式标准">数据传递格式标准</a></li><li><a href="#返回状态码">返回状态码</a></li><li><a href="#数据交换参考">数据交换参考</a><ul class="toc-headings"><li><a href="#获取列表数据">获取列表数据</a></li><li><a href="#新建数据">新建数据</a></li><li><a href="#通过-id-获取一条数据">通过 id 获取一条数据</a></li><li><a href="#更新一条数据">更新一条数据</a></li><li><a href="#删除数据">删除数据</a></li></ul></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
