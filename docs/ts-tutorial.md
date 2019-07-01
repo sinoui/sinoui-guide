@@ -401,7 +401,7 @@ let result2 = buildName('Bob', 'Adams', 'Sr.'); // error, 太多参数
 let result3 = buildName('Bob', 'Adams'); // OK
 ```
 
-需要注意的是，可选参数必须在必选参数之后定义。如果我们必须让`firstName`参数是可选的，也就是说它可以是`undefined`，那么你要么将`firstName`参数移到`lastName`参数之后，要么你使用`string | undefined`这样的联合类型：
+需要注意的是，可选参数必须在必选参数之后定义。如果我们必须让`firstName`参数是可选的，那么你要么将`firstName`参数移到`lastName`参数之后，要么你使用`string | undefined`这样的联合类型：
 
 ```typescript
 function buildName(lastName: string, firstName?: string) {
