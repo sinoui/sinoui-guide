@@ -325,7 +325,7 @@ add = <span class="hljs-function">(<span class="hljs-params">x: <span class="hlj
 <span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>, <span class="hljs-string">'Sr.'</span>); <span class="hljs-comment">// error, 太多参数</span>
 <span class="hljs-keyword">let</span> result3 = buildName(<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Adams'</span>); <span class="hljs-comment">// OK</span>
 </code></pre>
-<p>需要注意的是，可选参数必须在必选参数之后定义。如果我们必须让<code>firstName</code>参数是可选的，也就是说它可以是<code>undefined</code>，那么你要么将<code>firstName</code>参数移到<code>lastName</code>参数之后，要么你使用<code>string | undefined</code>这样的联合类型：</p>
+<p>需要注意的是，可选参数必须在必选参数之后定义。如果我们必须让<code>firstName</code>参数是可选的，那么你要么将<code>firstName</code>参数移到<code>lastName</code>参数之后，要么你使用<code>string | undefined</code>这样的联合类型：</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">lastName: <span class="hljs-built_in">string</span>, firstName?: <span class="hljs-built_in">string</span></span>) </span>{
   <span class="hljs-keyword">if</span> (firstName) {
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
@@ -352,7 +352,7 @@ add = <span class="hljs-function">(<span class="hljs-params">x: <span class="hlj
   }
 }
 </code></pre>
-<p>我们可以用<code>lastName: string = 'Smith'</code>这样的方式指定一个默认值，这样当<code>lastName</code>参数为<code>undefined</code>或者没有指定该参数时，<code>lastName</code>参数就是默认值<code>Smith</code>：</p>
+<p>我们可以用<code>lastName: string = 'Smith'</code>这样的方式为可选参数指定一个默认值，这样当<code>lastName</code>参数为<code>undefined</code>或者没有指定该参数时，<code>lastName</code>参数就是默认值<code>Smith</code>：</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName: <span class="hljs-built_in">string</span> = 'Smith'</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>;
 }
