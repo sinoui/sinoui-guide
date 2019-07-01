@@ -437,7 +437,7 @@ function buildName(firstName?: string, lastName?: string) {
 }
 ```
 
-我们可以用`lastName: string = 'Smith'`这样的方式指定一个默认值，这样当`lastName`参数为`undefined`或者没有指定该参数时，`lastName`参数就是默认值`Smith`：
+我们可以用`lastName: string = 'Smith'`这样的方式为可选参数指定一个默认值，这样当`lastName`参数为`undefined`或者没有指定该参数时，`lastName`参数就是默认值`Smith`：
 
 ```typescript
 function buildName(firstName: string, lastName: string = 'Smith') {
