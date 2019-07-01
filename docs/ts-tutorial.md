@@ -388,7 +388,7 @@ const result3 = buildName('Bob', 'Adams'); // ok
 如果`lastName`参数可以为`undefined`，则我们可以使用`?`表示`lastName`是可选的参数：
 
 ```typescript
-function buildNmae(firstName: string, lastName?: string) {
+function buildName(firstName: string, lastName?: string) {
   if (lastName) {
     return `${firstName} ${lastName}`;
   } else {
