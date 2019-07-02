@@ -235,9 +235,15 @@ const strLength: number = (someValue as string).length;
 
 `!`和`?`是相对的，表示强制解析（也就是告诉 typescript 编译器，这里一定有值）。
 
-```ts
-const a!: number = 6;
-```
+如下所示：
+
+![null check](assets/images/ts-tutorial-null-check.png)
+
+错误提示：
+
+![null check info](assets/images/ts-tutorial-null-check-info.png)
+
+如果某个变量的类型为`Xxx | null | undefined`，但是你确定在用这个变量时它肯定有值，那么你可以使用`!`来告诉 TypeScript 这个变量不可能为`null`或`undefined`。
 
 ## 接口
 
