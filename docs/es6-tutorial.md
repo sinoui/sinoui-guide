@@ -136,7 +136,7 @@ localeCompare() 用本地特定顺序比较两个字符串
 
 转换方法
 
-- toUpperCase() 和 toLocaleCase() 函数
+- toUpperCase() 和 toLocaleUpperCase() 函数
   把小写字符转化为大写
 - toLowerCase() 和 toLocaleLowerCase()函数
   把大写字符转换为小写字符
@@ -219,10 +219,10 @@ const [, second] = numbers; // second = 2;
 ### 数组展开操作符
 
 ```typescript
-const items = [1,3,5];
+const items = [1, 3, 5];
 const item1 = 2;
 const item2 = 4;
-const newItems = [...items,item1,items2]; // [1,3,5,2,4]数组操作方法
+const newItems = [...items, item1, items2]; // [1,3,5,2,4]数组操作方法
 ```
 
 ### 数组操作方法
@@ -554,18 +554,17 @@ console.log(size); // 300
 
 ### 对象的可计算属性名
 
-* {[name]:value}  对象字面量里的属性名和方法名可以用属性名表达式的方式指定
+- {[name]:value} 对象字面量里的属性名和方法名可以用属性名表达式的方式指定
 
 ```javascript
 const suffix = ' name';
-const person = { 
-    ['first' + suffix]: 'Nicholas',
-    ['last' + suffix]: 'Zakas'
-}
- 
+const person = {
+  ['first' + suffix]: 'Nicholas',
+  ['last' + suffix]: 'Zakas',
+};
+
 person['first name']; // "Nicholas"
 person['last name']; // "Zakas"
-
 ```
 
 ### 对象操作
@@ -736,7 +735,7 @@ class Point {
 
 上面代码定义了一个“类”，可以看到里面有一个`constructor`方法，这就是构造方法，而`this`关键字则代表实例对象。
 
-`Point`类除了构造方法，还定义了一个`toString`方法。注意，定义“类”的方法的时候，前面不需要加上`function`这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。
+`Point`类除了构造方法，还定义了一个`toString`方法。注意，定义“类”的方法的时候，前面不需要加上`function`这个关键字，直接把函数定义放进去就可以了。另外，方法之间不需要逗号分隔，加了会报错。
 
 ### 构造方法（constructor）
 
@@ -772,26 +771,23 @@ new Foo() instanceof Foo;
 class Point {
   constructor() {}
 
-  // 公有方法，可在class之外调用
-  public methodA() {}
-  // 私有方法，只能在类的内部访问，外部不能访问
-  private methodB() {}
+  methodA() {}
+  methodB() {}
 }
 ```
 
 ### 属性
 
 ```typescript
-public userName:string = "张三";
-private isLogged:boolean; // 需要在构造函数中初始化
-private isLogged?:boolean; // 不是必须在构造函数中初始化
-private methodC = ()=> {}  // 属性方法
+userName: string = '张三';
+methodC = () => {}; // 属性方法
 ```
 
 ### 创建
 
 ```typescript
 const classA = new Point();
+// 通过new关键字，创建一个类实例对象，会调用类的构造方法
 ```
 
 ### 继承
