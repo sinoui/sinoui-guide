@@ -4,11 +4,70 @@ title: TypeScript简明教程
 sidebar_label: TypeScript简明教程
 ---
 
-## 什么是 TypeScript
+## TypeScript 是什么
 
-TODO: 敬请期待
+TypeScript 是 JavaScript 加上类型声明，它可以编译成纯 JavaScript。TypeScript 支持所有 JavaScript 语法，包括 ES2015 ~ ES2019 的新语法。在 JavaScript 语法基础之上，给代码添加上了类型声明，这样我们就可以享受到静态类型编程带来的好处，如精准的语法智能提示、静态类型检查、增强可读性、友好的代码重构等。
+
+我们打开 VSCode，试着编写一段 TypeScript 代码，体验一下智能提示：
+
+![intelli-sense](assets/images/ts-tutorial-intelli-sense.png)
+
+![intelli-sense-2](assets/images/ts-tutorial-intelli-sense-2.png)
+
+![error lint](assets/images/ts-tutorial-error-lint.png)
+
+JavaScript 代码有了静态类型，在日常开发中感觉如虎添翼。而且 TypeScript 会编译成 JavaScript，与 JavaScript 代码可以混合着用，与第三方 JavaScript 库也可以无缝组合在一起使用。所以，大家可以放心在项目中启用 TypeScript。
+
+本篇教程向大家介绍 TypeScript 的基本类型语法，让大家无忧使用 TypeScript 编写前端代码。
+
+## 开始使用 TypeScript
+
+最简单的启用 TypeScript 的方式是，在你的项目中添加`TypeScript`依赖，然后使用`tsc`初始化 typescript 配置：
+
+先创建`ts-hello-world`目录，进入这个目录，执行以下命令行：
+
+```bash
+cd ts-hello-world
+yarn init
+yarn add typescript --dev
+yarn tsc --init
+```
+
+你如果想在 React 项目中启用 TypeScript，使用[create-react-app](https://github.com/facebook/create-react-app)即可，如下所示：
+
+```bash
+npx create-react-app react-ts-hello-world --typescript
+```
+
+你也可以通过[ts-lib-scripts](https://github.com/sinoui/ts-lib-scripts)创建一个用来练习的 TypeScript 项目：
+
+```bash
+npx ts-lib-scripts create ts-hello-world
+```
+
+注：[ts-lib-scripts](https://github.com/sinoui/ts-lib-scripts)是用来创建 TypeScript 库项目的工具。
 
 ## 基础类型
+
+我们可以为 JavaScript 变量添加上类型声明，如下所示：
+
+JavaScript 版本：
+
+```javascript
+let isDone = false;
+
+isDone = 1; // 不小心赋值错了，但是在JavaScript中是没有错误提示的
+```
+
+TypeScript 版本：
+
+```typescript
+let isDone: boolean = false;
+
+isDone = 1; // error, 不能将类型“1”分配给类型“boolean”。ts(2322)
+```
+
+我们可以给变量添加上不同的类型声明，接下来一一说明 TypeScript 支持的基础类型。
 
 ### 布尔值
 
@@ -235,9 +294,15 @@ const strLength: number = (someValue as string).length;
 
 `!`和`?`是相对的，表示强制解析（也就是告诉 typescript 编译器，这里一定有值）。
 
-```ts
-const a!: number = 6;
-```
+如下所示：
+
+![null check](assets/images/ts-tutorial-null-check.png)
+
+错误提示：
+
+![null check info](assets/images/ts-tutorial-null-check-info.png)
+
+如果某个变量的类型为`Xxx | null | undefined`，但是你确定在用这个变量时它肯定有值，那么你可以使用`!`来告诉 TypeScript 这个变量不可能为`null`或`undefined`。
 
 ## 接口
 
