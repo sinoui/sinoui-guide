@@ -892,7 +892,123 @@ function useState(defaultValue: string): [string, (newValue: string) => void] {
 
 ## 泛型
 
-TODO: 敬请期待
+创建一个方法，这个方法可以创建一个指定长度的每个数据项都是指定值的数组，如下所示：
+
+```typescript
+function createArray(length: number, value: any): any[] {
+  return new Array(length).fill(value);
+}
+```
+
+但是上面的函数创建的数组类型为`any[]`：
+
+```typescript
+const array: any[] = createArray(5, '10'); // array = ['10', '10', '10', '10', '10']
+const array2: any[] = createArray(5, false); // array = [false, false, false, false, false]
+```
+
+如果变量的类型是`any`，就相当于回到了 JavaScript 的编程体验，不会有任何提示。
+
+上面的例子我们在调用`createArray`函数时，`value`参数是`'10'`，它的返回结果是`['10', '10', '10', '10', '10']`；`value`参数是`false`，返回的数组是`[false, false, false, false]`。从运行结果上我们期望：在执行`createArray`函数时，如果`value`参数是`string`类型的，则返回结果是`string[]`的；如果`value`参数是`boolean`类型的，则返回结果是`boolean[]`的。也就是说`createArray`函数是不知道`value`的具体类型的，但是返回结果的数据类型却是需要与`value`类型相关。我们设定`value`的类型为一个类型变量`T`，那么这个函数的返回结果就是`T[]`，而这个`T`需要在调用`createArray()`时指定具体的类型：
+
+```typescript
+function createArray<T>(length: number, value: T): T[] {
+  return new Array(length).fill(value);
+}
+
+const array1 = createArray<string>(5, '10'); // array1的类型是`string[]`。
+const array2 = createArray<boolean>(5, false); // array2的类型是`boolean[]`。
+```
+
+上面的代码中，我们在定义`createArray`函数时，创建了类型变量`T`——在函数名与`(`之间使用`<T>`来声明类型变量`T`。`value`参数的类型是`T`，而函数返回值的类型是`T[]`。
+
+我们在调用`createArray`，需要通过`函数名<类型>(函数参数)`这样的形式来为类型变量`T`指定具体的类型。
+
+上面的例子，`createArray`函数的变量类型`T`明显等于`value`参数的类型，应用类型推论原则，只要知道了`value`的类型，则就知道`T`是什么，所以这种情况下我们没必要显示指定类型变量的类型：
+
+```typescript
+const array1 = createArray(5, '10'); // array1的类型是`string[]`。
+const array2 = createArray(5, false); // array2的类型是`boolean[]`。
+```
+
+我们称类型变量为**泛型**。
+
+泛型不仅仅可以应用到函数上，也可以应用到接口和类上。
+
+### 接口上应用泛型
+
+```typescript
+interface GenericIdentityFn<T> {
+  (arg: T): T;
+}
+
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+let myIdentity: GenericIdentityFn<number> = identity;
+```
+
+### 在类上应用泛型
+
+```typescript
+class GenericNumber<T> {
+  zeroValue: T;
+  add: (x: T, y: T) => T;
+}
+
+let myGenericNumber = new GenericNumber<number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function(x, y) {
+  return x + y;
+};
+
+let stringNumeric = new GenericNumber<string>();
+stringNumeric.zeroValue = '';
+stringNumeric.add = function(x, y) {
+  return x + y;
+};
+
+console.log(stringNumeric.add(stringNumeric.zeroValue, 'test'));
+```
+
+### 泛型约束
+
+我们可以用`extends 类型`这样的语法来约束泛型，如下所示：
+
+```typescript
+interface Lengthwise {
+  length: number;
+}
+
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length); // Now we know it has a .length property, so no more error
+  return arg;
+}
+```
+
+这要求`arg`必须符合`Lengthwise`类型才行：
+
+```typescript
+loggingIdentity(3); // error
+
+loggingIdentity({ length: 10, value: 3 }); // OK
+```
+
+### 泛型参数默认值
+
+我们可以通过`<T = 默认类型>`为泛型指定默认的类型，如下所示：
+
+```typescript
+interface Lengthwise {
+  length: number;
+}
+
+function loggingIdentity<T extends Lengthwise = Lengthwise>(arg: T): T {
+  console.log(arg.length); // Now we know it has a .length property, so no more error
+  return arg;
+}
+```
 
 ## 高级类型
 
