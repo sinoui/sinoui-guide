@@ -160,7 +160,7 @@ indexOf() 和 lastIndexOf()函数存在共性，功能都是查找指定字符�
 <p>localeCompare() 用本地特定顺序比较两个字符串</p>
 <p>转换方法</p>
 <ul>
-<li>toUpperCase() 和 toLocaleCase() 函数
+<li>toUpperCase() 和 toLocaleUpperCase() 函数
 把小写字符转化为大写</li>
 <li>toLowerCase() 和 toLocaleLowerCase()函数
 把大写字符转换为小写字符</li>
@@ -218,10 +218,10 @@ myPets[<span class="hljs-number">1</span>] = <span class="hljs-string">'monkey'<
 <span class="hljs-keyword">const</span> [, second] = numbers; <span class="hljs-comment">// second = 2;</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="数组展开操作符"></a><a href="#数组展开操作符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组展开操作符</h3>
-<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> items = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>];
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> items = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];
 <span class="hljs-keyword">const</span> item1 = <span class="hljs-number">2</span>;
 <span class="hljs-keyword">const</span> item2 = <span class="hljs-number">4</span>;
-<span class="hljs-keyword">const</span> newItems = [...items,item1,items2]; <span class="hljs-comment">// [1,3,5,2,4]数组操作方法</span>
+<span class="hljs-keyword">const</span> newItems = [...items, item1, items2]; <span class="hljs-comment">// [1,3,5,2,4]数组操作方法</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="数组操作方法"></a><a href="#数组操作方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组操作方法</h3>
 <h4><a class="anchor" aria-hidden="true" id="数组合并-向数组中添加元素"></a><a href="#数组合并-向数组中添加元素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组合并/向数组中添加元素</h4>
@@ -474,17 +474,16 @@ line.length(); <span class="hljs-comment">// 1;</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="对象的可计算属性名"></a><a href="#对象的可计算属性名" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象的可计算属性名</h3>
 <ul>
-<li>{[name]:value}  对象字面量里的属性名和方法名可以用属性名表达式的方式指定</li>
+<li>{[name]:value} 对象字面量里的属性名和方法名可以用属性名表达式的方式指定</li>
 </ul>
 <pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> suffix = <span class="hljs-string">' name'</span>;
-<span class="hljs-keyword">const</span> person = { 
-    [<span class="hljs-string">'first'</span> + suffix]: <span class="hljs-string">'Nicholas'</span>,
-    [<span class="hljs-string">'last'</span> + suffix]: <span class="hljs-string">'Zakas'</span>
-}
- 
+<span class="hljs-keyword">const</span> person = {
+  [<span class="hljs-string">'first'</span> + suffix]: <span class="hljs-string">'Nicholas'</span>,
+  [<span class="hljs-string">'last'</span> + suffix]: <span class="hljs-string">'Zakas'</span>,
+};
+
 person[<span class="hljs-string">'first name'</span>]; <span class="hljs-comment">// "Nicholas"</span>
 person[<span class="hljs-string">'last name'</span>]; <span class="hljs-comment">// "Zakas"</span>
-
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="对象操作"></a><a href="#对象操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象操作</h3>
 <h4><a class="anchor" aria-hidden="true" id="遍历-1"></a><a href="#遍历-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>遍历</h4>
@@ -601,7 +600,7 @@ getItemById(<span class="hljs-string">'1'</span>, [{ id: <span class="hljs-strin
 }
 </code></pre>
 <p>上面代码定义了一个“类”，可以看到里面有一个<code>constructor</code>方法，这就是构造方法，而<code>this</code>关键字则代表实例对象。</p>
-<p><code>Point</code>类除了构造方法，还定义了一个<code>toString</code>方法。注意，定义“类”的方法的时候，前面不需要加上<code>function</code>这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。</p>
+<p><code>Point</code>类除了构造方法，还定义了一个<code>toString</code>方法。注意，定义“类”的方法的时候，前面不需要加上<code>function</code>这个关键字，直接把函数定义放进去就可以了。另外，方法之间不需要逗号分隔，加了会报错。</p>
 <h3><a class="anchor" aria-hidden="true" id="构造方法-constructor"></a><a href="#构造方法-constructor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>构造方法（constructor）</h3>
 <p><code>constructor</code>方法是类的默认方法，通过<code>new</code>命令生成对象实例时，自动调用该方法。一个类必须有<code>constructor</code>方法，如果没有显式定义，一个空的<code>constructor</code>方法会被默认添加。</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">class</span> Point {}
@@ -626,20 +625,17 @@ getItemById(<span class="hljs-string">'1'</span>, [{ id: <span class="hljs-strin
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> Point {
   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {}
 
-  <span class="hljs-comment">// 公有方法，可在class之外调用</span>
-  <span class="hljs-keyword">public</span> methodA() {}
-  <span class="hljs-comment">// 私有方法，只能在类的内部访问，外部不能访问</span>
-  <span class="hljs-keyword">private</span> methodB() {}
+  methodA() {}
+  methodB() {}
 }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="属性"></a><a href="#属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>属性</h3>
-<pre><code class="hljs css language-typescript"><span class="hljs-keyword">public</span> userName:<span class="hljs-built_in">string</span> = <span class="hljs-string">"张三"</span>;
-<span class="hljs-keyword">private</span> isLogged:<span class="hljs-built_in">boolean</span>; <span class="hljs-comment">// 需要在构造函数中初始化</span>
-<span class="hljs-keyword">private</span> isLogged?:<span class="hljs-built_in">boolean</span>; <span class="hljs-comment">// 不是必须在构造函数中初始化</span>
-<span class="hljs-keyword">private</span> methodC = <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span> {}  <span class="hljs-comment">// 属性方法</span>
+<pre><code class="hljs css language-typescript">userName: <span class="hljs-built_in">string</span> = <span class="hljs-string">'张三'</span>;
+methodC = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {}; <span class="hljs-comment">// 属性方法</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="创建-1"></a><a href="#创建-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建</h3>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> classA = <span class="hljs-keyword">new</span> Point();
+<span class="hljs-comment">// 通过new关键字，创建一个类实例对象，会调用类的构造方法</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="继承"></a><a href="#继承" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>继承</h3>
 <p>Class 可以通过<code>extends</code>关键字实现继承。</p>
@@ -810,4 +806,4 @@ loadUrls(urls);
 
 loadUrls(urls);
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-26 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-ref"><span class="arrow-prev">← </span><span>ref</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-tutorial"><span class="function-name-prevnext">TypeScript简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#let-vs-const">let vs const</a></li><li><a href="#字符串">字符串</a><ul class="toc-headings"><li><a href="#创建">创建</a></li><li><a href="#模板字符串">模板字符串</a></li><li><a href="#字符串操作">字符串操作</a></li></ul></li><li><a href="#数组">数组</a><ul class="toc-headings"><li><a href="#数组创建">数组创建</a></li><li><a href="#数组访问">数组访问</a></li><li><a href="#数组解构">数组解构</a></li><li><a href="#数组展开操作符">数组展开操作符</a></li><li><a href="#数组操作方法">数组操作方法</a></li></ul></li><li><a href="#对象">对象</a><ul class="toc-headings"><li><a href="#对象创建">对象创建</a></li><li><a href="#对象合并">对象合并</a></li><li><a href="#对象解构">对象解构</a></li><li><a href="#对象的可计算属性名">对象的可计算属性名</a></li><li><a href="#对象操作">对象操作</a></li></ul></li><li><a href="#函数">函数</a><ul class="toc-headings"><li><a href="#箭头函数">箭头函数</a></li><li><a href="#语义发生冲突"><code>{}</code>语义发生冲突</a></li><li><a href="#参数">参数</a></li></ul></li><li><a href="#类">类</a><ul class="toc-headings"><li><a href="#定义">定义</a></li><li><a href="#构造方法-constructor">构造方法（constructor）</a></li><li><a href="#方法">方法</a></li><li><a href="#属性">属性</a></li><li><a href="#创建-1">创建</a></li><li><a href="#继承">继承</a></li></ul></li><li><a href="#模块">模块</a></li><li><a href="#promise">Promise</a></li><li><a href="#async-await">async/await</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-2 by chenaihua</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-ref"><span class="arrow-prev">← </span><span>ref</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-tutorial"><span class="function-name-prevnext">TypeScript简明教程</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#let-vs-const">let vs const</a></li><li><a href="#字符串">字符串</a><ul class="toc-headings"><li><a href="#创建">创建</a></li><li><a href="#模板字符串">模板字符串</a></li><li><a href="#字符串操作">字符串操作</a></li></ul></li><li><a href="#数组">数组</a><ul class="toc-headings"><li><a href="#数组创建">数组创建</a></li><li><a href="#数组访问">数组访问</a></li><li><a href="#数组解构">数组解构</a></li><li><a href="#数组展开操作符">数组展开操作符</a></li><li><a href="#数组操作方法">数组操作方法</a></li></ul></li><li><a href="#对象">对象</a><ul class="toc-headings"><li><a href="#对象创建">对象创建</a></li><li><a href="#对象合并">对象合并</a></li><li><a href="#对象解构">对象解构</a></li><li><a href="#对象的可计算属性名">对象的可计算属性名</a></li><li><a href="#对象操作">对象操作</a></li></ul></li><li><a href="#函数">函数</a><ul class="toc-headings"><li><a href="#箭头函数">箭头函数</a></li><li><a href="#语义发生冲突"><code>{}</code>语义发生冲突</a></li><li><a href="#参数">参数</a></li></ul></li><li><a href="#类">类</a><ul class="toc-headings"><li><a href="#定义">定义</a></li><li><a href="#构造方法-constructor">构造方法（constructor）</a></li><li><a href="#方法">方法</a></li><li><a href="#属性">属性</a></li><li><a href="#创建-1">创建</a></li><li><a href="#继承">继承</a></li></ul></li><li><a href="#模块">模块</a></li><li><a href="#promise">Promise</a></li><li><a href="#async-await">async/await</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

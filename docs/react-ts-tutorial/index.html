@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>在React中使用TypeScript · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;基础部分&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#基础部分&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;基础部分&lt;/h2&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="在React中使用TypeScript · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;基础部分&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#基础部分&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;基础部分&lt;/h2&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>在React中使用TypeScript · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;TypeScript 给 JavaScript 代码带来静态类型，这极大提升了编程体验。在 React 项目中引入 TypeScript 正是看中的&lt;strong&gt;静态类型&lt;/strong&gt;，而且 TypeScript 原生支持 JSX 语法。本文会介绍如何在 React 应用中用好 TypeScript，提升编程体验。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="在React中使用TypeScript · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;TypeScript 给 JavaScript 代码带来静态类型，这极大提升了编程体验。在 React 项目中引入 TypeScript 正是看中的&lt;strong&gt;静态类型&lt;/strong&gt;，而且 TypeScript 原生支持 JSX 语法。本文会介绍如何在 React 应用中用好 TypeScript，提升编程体验。&lt;/p&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -56,18 +56,34 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">在React中使用TypeScript</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="基础部分"></a><a href="#基础部分" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基础部分</h2>
-<p>在 React 中使用<code>TypeScript</code>很大一部分原因是为了与<code>JSX</code>在语法提示上的呼应。</p>
-<h3><a class="anchor" aria-hidden="true" id="属性类型"></a><a href="#属性类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>属性类型</h3>
-<p><code>javaScript</code>方式：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">function</span> <span class="token function">Greeting</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Hello<span class="token punctuation">,</span><span class="token punctuation">{</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">在React中使用TypeScript</h1></header><article><div><span><p>TypeScript 给 JavaScript 代码带来静态类型，这极大提升了编程体验。在 React 项目中引入 TypeScript 正是看中的<strong>静态类型</strong>，而且 TypeScript 原生支持 JSX 语法。本文会介绍如何在 React 应用中用好 TypeScript，提升编程体验。</p>
+<p>预备知识：</p>
+<ul>
+<li>熟知<a href="/sinoui-guide/docs/es6-tutorial">ES6 语法</a></li>
+<li>熟知<a href="/sinoui-guide/docs/ts-tutorial">TypeScript 语法</a></li>
+<li>熟知<a href="/sinoui-guide/docs/react-index">React 基本概念</a></li>
+</ul>
+<p>如何练习本文提供的示例：</p>
+<p>使用<code>create-react-app</code>创建一个 React TS 项目：</p>
+<pre><code class="hljs css language-bash">npx create-react-app react-ts-tutorial --typescript
 </code></pre>
-<p>此时如果我们使用<code>&lt;Greeting/&gt;</code>，JSX 并不会给出语法提示。</p>
-<p><code>TypeScript</code>方式：</p>
+<p>然后使用<a href="https://code.visualstudio.com/">vscode</a>打开创建的项目。</p>
+<h2><a class="anchor" aria-hidden="true" id="函数组件"></a><a href="#函数组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数组件</h2>
+<p>我们来看一个简单的组件：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Greeting</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, {props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<p>这个组件的用法如下所示：</p>
+<pre><code class="hljs css language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Greeting</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Jacking<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+</code></pre>
+<p>我们在第一次使用<code>Greeting</code>组件时，并不知道它有<code>name</code>属性，我们必须看它的源码实现才能知道，或者其他同事告诉你，或者有一个专门的组件文档可以查阅。能不能让 TypeScript 帮我干点事情，在用<code>Greeting</code>组件时，给点提示信息，让我们可以轻松知道组件怎么用，有哪些属性，属性的含义是什么呢？答案是肯定的。</p>
+<p>我们稍微改造一下<code>Greeting</code>组件：</p>
+<p><code>Greeting.tsx</code>:</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 
 interface Props {
@@ -77,10 +93,293 @@ interface Props {
   name: string;
 }
 
+<span class="hljs-comment">/**
+ * 显示欢迎词的组件
+ *
+ * 基本用法： `&lt;Greeting name="Jacking" /&gt;`
+ */</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Greeting</span>(<span class="hljs-params">props: Props</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello,{props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, {props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<p>看看在使用<code>Greeting</code>组件时的智能提示：</p>
+<p><img src="./assets/images/react-ts-jsx-intellisense.png" alt="react-ts-jsx-intellisense"></p>
+<p><img src="./assets/images/react-ts-jsx-intellisense-props.png" alt="react-ts-jsx-intellisense-props"></p>
+<p>属性名写错了会有错误提示：</p>
+<p><img src="./assets/images/react-ts-jsx-error-info.png" alt="react-ts-jsx-error-info"></p>
+<p>问题面板中也会有相应的错误提示：</p>
+<p><img src="./assets/images/react-ts-jsx-error-info-2.png" alt="react-ts-jsx-error-info-2"></p>
+<p>函数组件使用 TypeScript 做属性的类型声明和组件返回值类型校验，从而提升编程体验。下面我们分别看看如何使用 TypeScript 来处理不同类别的属性声明和组件返回值校验。</p>
+<h3><a class="anchor" aria-hidden="true" id="回调函数属性"></a><a href="#回调函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>回调函数属性</h3>
+<p>这与在接口中定义函数属性没有区别，如下所示：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+interface Props {
+  onClick?: <span class="hljs-function">(<span class="hljs-params">event: React.MouseEvent&lt;HTMLButtonElement&gt;</span>) =&gt;</span> <span class="hljs-keyword">void</span>;
+  children?: React.ReactNode;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Button</span>(<span class="hljs-params">props: Props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{props.onClick}</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="子元素-children"></a><a href="#子元素-children" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>子元素（children）</h3>
+<p>组件有可能需要子元素，也有可能不需要子元素。不需要子元素，在<code>Props</code>接口中不声明<code>children</code>属性即可。</p>
+<p>组件的子元素常规情况下有以下几种：</p>
+<ul>
+<li>原始数据：字符串、数字</li>
+<li>null、undefined</li>
+<li>boolean</li>
+<li>单个 jsx 元素</li>
+<li>多个 jsx 元素</li>
+<li><a href="https://reactjs.org/docs/portals.html">portal</a></li>
+</ul>
+<p>我们可以根据子组件情况选择合适的类型：</p>
+<table>
+<thead>
+<tr><th>情况</th><th>类别</th></tr>
+</thead>
+<tbody>
+<tr><td>所有类别</td><td><code>React.ReactNode</code></td></tr>
+<tr><td>原始数据：字符串、数字</td><td><code>React.ReactText</code></td></tr>
+<tr><td>null、undefined</td><td><code>children?: React.ReactNode</code>(加一个<code>?</code>)</td></tr>
+<tr><td>boolean</td><td><code>React.ReactNode</code></td></tr>
+<tr><td>单个 jsx 元素</td><td><code>React.ReactElement</code></td></tr>
+<tr><td>多个 jsx 元素</td><td><code>React.ReactNode</code></td></tr>
+<tr><td><a href="https://reactjs.org/docs/portals.html">portal</a></td><td><code>React.ReactPortal</code></td></tr>
+</tbody>
+</table>
+<p>推荐：</p>
+<ul>
+<li>明确只能接收单个元素，但是不能包含原始数据（字符串、数字）：使用<code>React.ReactElement</code></li>
+<li>明确职能接收单个元素，但是可包含原始数据（字符串、数字）：使用<code>React.ReactChild</code></li>
+<li>其他的情况一律采用<code>React.ReactNode</code>，即<code>children?: React.ReactNode</code></li>
+</ul>
+<p>在这里不讨论子元素作为渲染函数使用的情况。见下面的章节。</p>
+<h3><a class="anchor" aria-hidden="true" id="reactsfc"></a><a href="#reactsfc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React.SFC</h3>
+<p>我们也可以将函数组件声明为<code>React.SFC</code>类型的，如下所示：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+interface Props {
+  onClick?: <span class="hljs-function">(<span class="hljs-params">event: React.MouseEvent&lt;HTMLButtonElement&gt;</span>) =&gt;</span> <span class="hljs-keyword">void</span>;
+}
+
+<span class="hljs-keyword">const</span> Button: React.SFC&lt;Props&gt; = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{props.onClick}</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<p>采用<code>React.SFC</code>有几点好处：</p>
+<ul>
+<li><code>React.SFC</code>默认会添加<code>children?: React.ReactNode</code>的属性声明</li>
+<li><code>React.SFC</code>会检查组件的返回值是否符合要求</li>
+<li><code>React.SFC</code>有<code>displayName</code>、<code>defaultProps</code>这些预定义属性</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="属性默认值"></a><a href="#属性默认值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>属性默认值</h3>
+<p><code>Greeting</code>组件的<code>name</code>现在给它指定一个默认值<code>Jacking</code>，有两种形式实现：</p>
+<p>第一种形式，利用 ES6 的对象展开的默认值语法：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+interface Props {
+  <span class="hljs-comment">/**
+   * 用户名
+   */</span>
+  name?: string;
+}
+
+<span class="hljs-comment">/**
+ * 显示欢迎词的组件
+ *
+ * 基本用法： `&lt;Greeting name="Jacking" /&gt;`
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Greeting</span>(<span class="hljs-params">{ name = <span class="hljs-string">'Jacking'</span> }: Props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, {name}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<p>第二种方式，使用<code>defaultProps</code>属性：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+interface Props {
+  <span class="hljs-comment">/**
+   * 用户名
+   */</span>
+  name?: string;
+}
+
+<span class="hljs-comment">/**
+ * 显示欢迎词的组件
+ *
+ * 基本用法： `&lt;Greeting name="Jacking" /&gt;`
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Greeting</span>(<span class="hljs-params">props: Props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, {props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+Greeting.defaultProps = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Jacking'</span>,
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="状态"></a><a href="#状态" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>状态</h3>
+<p>在函数组件中，我们用<code>useState</code>来管理组件状态，如下所示：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Counter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState&lt;number&gt;(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setCount((prev) =&gt; prev + 1)}&gt;+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setCount((prev) =&gt; prev - 1)}&gt;-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
 }
 </code></pre>
-<p>此时，当我们使用<code>Greeting</code>组件时，会有语法提示，如下图：</p>
-<p><img src="./assets/images/ts-in-react-props.png" alt="ts-in-react-props"></p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-2 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-tutorial"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript简明教程</span></a><a class="docs-next button" href="/sinoui-guide/docs/styled-components-guide"><span>styled-components</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#基础部分">基础部分</a><ul class="toc-headings"><li><a href="#属性类型">属性类型</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+<p>看到可以通过泛型的方式指定<code>count</code>状态的类型。</p>
+<h3><a class="anchor" aria-hidden="true" id="usereducer"></a><a href="#usereducer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useReducer</h3>
+<p><a href="https://reactjs.org/docs/hooks-reference.html#usereducer">useReducer</a>也可以管理组件的状态，如下所示：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-comment">/**
+ * 增加动作接口
+ */</span>
+interface IncrementAction {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'INCREMENT'</span>;
+}
+
+<span class="hljs-comment">/**
+ * 减少动作接口
+ */</span>
+interface DecrementAction {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'DECREMENT'</span>;
+}
+
+<span class="hljs-comment">// 动作类型</span>
+type CountAction = IncrementAction | DecrementAction;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countReducer</span>(<span class="hljs-params">state: number, action: CountAction</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'INCREMENT'</span>:
+      <span class="hljs-keyword">return</span> state + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'DECREMENT'</span>:
+      <span class="hljs-keyword">return</span> state - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Counter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, dispatch] = useReducer(countReducer, <span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> dispatch({ type: 'INCREMENT' })}&gt;+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> dispatch({ type: 'DECREMENT' })}&gt;-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p><code>useReducer</code>的类型声明与普通函数的类型声明没有区别，只是有几个要点：</p>
+<ul>
+<li>需要声明动作类型</li>
+<li>需要声明状态类型，示例中的状态是<code>number</code>类型的，所以没必要单独声明</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="类组件"></a><a href="#类组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类组件</h2>
+<p>类组件需要继承自<code>React.Component</code>，需要定义属性和状态类型，如下所示：</p>
+<pre><code class="hljs css language-tsx">import React from <span class="hljs-string">'react'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Props</span> </span>{
+  <span class="hljs-comment">/**
+   * 初始的计数
+   */</span>
+  initialCount: number;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">State</span> </span>{
+  <span class="hljs-comment">/**
+   * 计数
+   */</span>
+  readonly <span class="hljs-keyword">count</span>: number;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">Props</span>, <span class="hljs-title">State</span>&gt; </span>{
+  <span class="hljs-keyword">public</span> readonly state: Readonly&lt;State&gt;;
+
+  constructor(props: Props) {
+    <span class="hljs-keyword">super</span>(props);
+
+    <span class="hljs-keyword">this</span>.state = {
+      <span class="hljs-keyword">count</span>: props.initialCount,
+    };
+  }
+
+  <span class="hljs-keyword">public</span> render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;<span class="hljs-keyword">div</span>&gt;
+        &lt;button onClick={<span class="hljs-keyword">this</span>.handleIncrement}&gt;+&lt;/button&gt;
+        &lt;<span class="hljs-keyword">div</span>&gt;{<span class="hljs-keyword">this</span>.state.<span class="hljs-keyword">count</span>}&lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;button onClick={<span class="hljs-keyword">this</span>.handleDecrement}&gt;-&lt;/button&gt;
+      &lt;/<span class="hljs-keyword">div</span>&gt;
+    );
+  }
+
+  <span class="hljs-keyword">private</span> handleIncrement = () =&gt;
+    <span class="hljs-keyword">this</span>.setState((prevState) =&gt; ({
+      ...prevState,
+      <span class="hljs-keyword">count</span>: prevState.<span class="hljs-keyword">count</span> + <span class="hljs-number">1</span>,
+    }));
+
+  <span class="hljs-keyword">private</span> handleDecrement = () =&gt;
+    <span class="hljs-keyword">this</span>.setState((prevState) =&gt; ({
+      ...prevState,
+      <span class="hljs-keyword">count</span>: prevState.<span class="hljs-keyword">count</span> - <span class="hljs-number">1</span>,
+    }));
+}
+</code></pre>
+<p>重点一：我们通过<code>&lt;Props, State&gt;</code>这样的泛型方式，给组件指定了属性和状态的类型。</p>
+<p>重点二：我们通过<code>public readonly state: Readonly&lt;State&gt;;</code>这样的方式声明了组件的状态是只读的，这样可以避免我们写出错误代码，如<code>this.state = { count: 1 }</code>、<code>this.state.count = 1</code>：</p>
+<p><img src="./assets/images/react-ts-class-component-state-readonly.png" alt="react-ts-class-component-state-readonly"></p>
+<h2><a class="anchor" aria-hidden="true" id="组件泛型"></a><a href="#组件泛型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>组件泛型</h2>
+<p>从语法上看，React 组件是普通的函数或者类，所以它们也可以有泛型。如下所示，按钮组件可以通过<code>as</code>属性指定其他类型的根元素：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+interface Props&lt;ElementType&gt; {
+  <span class="hljs-keyword">as</span>?: React.ReactType;
+  onClick?: <span class="hljs-function">(<span class="hljs-params">event: React.MouseEvent&lt;ElementType&gt;</span>) =&gt;</span> <span class="hljs-keyword">void</span>;
+  children?: React.ReactNode;
+  href?: string;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Button</span>&lt;<span class="hljs-title">ElementType</span> = <span class="hljs-title">HTMLButtonElement</span>&gt;(<span class="hljs-params">{
+  as = <span class="hljs-string">'button'</span>,
+  onClick,
+  children,
+  href,
+}: Props&lt;ElementType&gt;</span>) </span>{
+  <span class="hljs-keyword">const</span> Comp = <span class="hljs-keyword">as</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Comp</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span> <span class="hljs-attr">href</span>=<span class="hljs-string">{href}</span>&gt;</span>
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Comp</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<p>在使用<code>Button</code>组件时，可以直接在 JSX 中指定泛型：</p>
+<pre><code class="hljs css language-tsx">&lt;<span class="hljs-keyword">Button</span>&lt;HTMLAnchorElement&gt;
+  as=<span class="hljs-string">"a"</span>
+  <span class="hljs-keyword">onClick</span>={(e) =&gt; console.log(e.currentTarget.href)}
+  href=<span class="hljs-string">"/test"</span>
+&gt;
+  链接
+&lt;/<span class="hljs-keyword">Button</span>&gt;
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-3 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-tutorial"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript简明教程</span></a><a class="docs-next button" href="/sinoui-guide/docs/styled-components-guide"><span>styled-components</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#函数组件">函数组件</a><ul class="toc-headings"><li><a href="#回调函数属性">回调函数属性</a></li><li><a href="#子元素-children">子元素（children）</a></li><li><a href="#reactsfc">React.SFC</a></li><li><a href="#属性默认值">属性默认值</a></li><li><a href="#状态">状态</a></li><li><a href="#usereducer">useReducer</a></li></ul></li><li><a href="#类组件">类组件</a></li><li><a href="#组件泛型">组件泛型</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
