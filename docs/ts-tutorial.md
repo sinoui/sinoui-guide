@@ -909,7 +909,7 @@ const array2: any[] = createArray(5, false); // array = [false, false, false, fa
 
 如果变量的类型是`any`，就相当于回到了 JavaScript 的编程体验，不会有任何提示。
 
-上面的例子我们在调用`createArray`函数时，`value`参数是`'10'`，它的返回结果是`['10', '10', '10', '10', '10']`；`value`参数是`false`，返回的数组是`[false, false, false, false]`。从运行结果上我们期望：在执行`createArray`函数时，如果`value`参数是`string`类型的，则返回结果是`string[]`的；如果`value`参数是`boolean`类型的，则返回结果是`boolean[]`的。也就是说`createArray`函数是不知道`value`的具体类型的，但是返回结果的数据类型却是需要与`value`类型相关。我们设定`value`的类型为一个类型变量`T`，那么这个函数的返回结果就是`T[]`，而这个`T`需要在调用`createArray()`时指定具体的类型：
+上面的例子我们在调用`createArray`函数时，`value`参数是`'10'`，它的返回结果是`['10', '10', '10', '10', '10']`；`value`参数是`false`，返回的数组是`[false, false, false, false, false]`。从运行结果上我们期望：在执行`createArray`函数时，如果`value`参数是`string`类型的，则返回结果是`string[]`的；如果`value`参数是`boolean`类型的，则返回结果是`boolean[]`的。也就是说`createArray`函数是不知道`value`的具体类型的，但是返回结果的数据类型却是需要与`value`类型相关。我们设定`value`的类型为一个类型变量`T`，那么这个函数的返回结果就是`T[]`，而这个`T`需要在调用`createArray()`时指定具体的类型：
 
 ```typescript
 function createArray<T>(length: number, value: T): T[] {
@@ -1145,7 +1145,7 @@ pets.forEach((pet) => {
 
 ### 类型保护中的类型推论
 
-在类型保护中也有类型推论的应用。我们调整一下`pets`的类型声明为：
+在类型保护中可以应用类型推论。我们调整一下`pets`的类型声明为：
 
 ```typescript
 const pets: (Fish | Bird)[] = [fish, bird];
@@ -1171,7 +1171,7 @@ pets.forEach((pet) => {
 
 ### `in`操作符
 
-`in`操作符现在同时扮演着**缩小类型的表达式**：
+`in`操作符在TypeScript中同时扮演着**缩小类型的职责**：
 
 ```typescript
 pets.forEach((pet) => {
