@@ -470,22 +470,63 @@ end（可选）：到该位置前停止读取数据，默认等于数组长度�
 
 ### 对象创建
 
-```ts
-const from = new Point(0, 1);
-const to = new Point(1, 1);
+ES5 创建对象的方式是：
 
-// 定义对象line
-const line = {
-  from,
-  to,
-  length() {
-    return this.from.distinct(this.to);
+```javascript
+const x = 1;
+const y = 2;
+
+// 定义对象point
+const point = {
+  x: x,
+  y: y,
+  print: function() {
+    console.log('(' + this.x + ', ' + this.y + ')');
   },
 };
 
-// 调用line对象中的length方法
-line.length(); // 1;
+// 显示坐标点
+point.print();
 ```
+
+ES6 提供了新的对象字面量语法：
+
+```ts
+const x = 1;
+const y = 2;
+
+// 定义对象point
+const point = {
+  x,
+  y,
+  print() {
+    console.log(`(${x}, ${y})`);
+  },
+};
+
+// 显示坐标点
+point.print();
+```
+
+diff:
+
+```diff
+const point = {
+-  x: x,
++  x,
+-  y: y,
++  y,
+-  print: function() {
++  print() {
+    console.log('(' + this.x + ', ' + this.y + ')');
+  },
+};
+```
+
+在 ES6 使用对象字面量创建对象更简单了：
+
+- 如果对象属性名与值的变量名同名，则可以采用合并写法：`x: x` -> `x`、`y: y` -> `y`
+- 对象中的函数变量可以省略掉`function`关键字
 
 ### 对象合并
 
