@@ -822,7 +822,7 @@ x = 1; // OK
 x = '1'; // error
 ```
 
-对于能够显而易见的推断出变量类型的，TypeScript 允许我们不显示指定类型，这就是**类型推论**。
+对于能够显而易见的推断出变量类型的，TypeScript 允许我们不显式指定类型，这就是**类型推论**。
 
 下面多举几个例子：
 
@@ -876,7 +876,7 @@ function useState(defaultValue: string) {
 }
 ```
 
-这种情况下，我们需要显示地声明函数返回值类型：
+这种情况下，我们需要显式地声明函数返回值类型：
 
 ```typescript
 function useState(defaultValue: string): [string, (newValue: string) => void] {
@@ -924,7 +924,7 @@ const array2 = createArray<boolean>(5, false); // array2的类型是`boolean[]`�
 
 我们在调用`createArray`，需要通过`函数名<类型>(函数参数)`这样的形式来为类型变量`T`指定具体的类型。
 
-上面的例子，`createArray`函数的变量类型`T`明显等于`value`参数的类型，应用类型推论原则，只要知道了`value`的类型，则就知道`T`是什么，所以这种情况下我们没必要显示指定类型变量的类型：
+上面的例子，`createArray`函数的变量类型`T`明显等于`value`参数的类型，应用类型推论原则，只要知道了`value`的类型，则就知道`T`是什么，所以这种情况下我们没必要显式指定类型变量的类型：
 
 ```typescript
 const array1 = createArray(5, '10'); // array1的类型是`string[]`。
@@ -1063,7 +1063,7 @@ item = null; // error
 
 ### 类型保护
 
-我们要开发一个程序，管理家里的宠物，目前有一下宠物：
+我们要开发一个程序，管理家里的宠物，目前有以下宠物：
 
 ```typescript
 interface Pet {
