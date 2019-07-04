@@ -96,6 +96,10 @@ ReactDOM.render(<Parent />, document.getElementById('root'));
 
 ### `props`浅层比较
 
+上文提到，`React.memo(ChildComponent)`的缓存依赖于`props`浅层比较，在两次重绘中，如果给`ChildComponent`的属性对象通过**浅层比较**是一致的，那么 React 会从缓存中取上次的渲染结果，缓存有效。我们看看什么是浅层比较。
+
+示例：
+
 ```js
 const objA = {
   a: '1',
@@ -110,9 +114,64 @@ const objB = {
 Object.keys(objA).every((key) => objA[key] === objB[key]); // true
 ```
 
-#### 函数属性
+对象`objA`和`objB`都具有同样值的属性，所以这两个对象是相同的。但如果对象中再有对象属性，那么很有可能就不再相等，因为**浅层比较**只会比较对象的属性值是否相等，而如果对象属性也是对象，**浅层比较**不会进入这个属性对象再比较。如下所示：
 
-##### 动态函数属性
+```js
+const objA = {
+  a: '1',
+  b: '2',
+  c: {
+    t: '3',
+  },
+};
+
+const objB = {
+  a: '1',
+  b: '2',
+  c: {
+    t: '3',
+  },
+};
+
+Object.keys(objA).every((key) => objA[key] === objB[key]); // false
+```
+
+上面两个对象的**浅层比较**结果为`false`，因为`objA.c`和`objB.c`都是对象，但是`objA.c !== objB.c`。
+
+接下来，我们来看看各种类型的属性如何配合**React.memo()**，达到缓存的目的。
+
+### 函数属性
+
+函数属性是常见的一种类型的属性，处理不好函数类型属性，极容易破坏掉属性浅层比较，让组件缓存失效。
+
+比如：
+
+```tsx
+const MemoButton = React.memo(Button);
+
+function ButtonDemo() {
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    setCount(prev => prev + 1);
+  };
+
+  return <div>
+    <MemoButton onClick={handleClick}>点击我</MenuButton>
+    <span>被点击次数：{count}</span>
+  </div>;
+}
+```
+
+每次点击按钮时，本期望`MemoButton`组件不会发生重绘，实际上却每次都发生了重绘。重点在于每次重绘`ButtonMenu`时，都会产生新的`handleClick`。
+
+我们根据函数属性本身与组件是否有关系分成两类：
+
+- 动态函数属性 - 函数实现与组件相关，需要在组件内部定义。如按钮点击事件处理器。
+- 静态函数属性 - 函数实现与组件无关，可以在组件外部定义。如表单值校验函数。
+
+我们逐个看看这两种情况如何处理。
+
+#### 动态函数属性
 
 这里我们首先来看一个示例：
 
@@ -120,7 +179,10 @@ Object.keys(objA).every((key) => objA[key] === objB[key]); // true
 import React, { useState, ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
 
-function Input(props: any) {
+function Input(props: {
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   return <input type="text" value={props.value} onChange={props.onChange} />;
 }
 
@@ -161,13 +223,16 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 解决上述问题有两种方式：
 
-方式一：使用[React.useCallback](https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback)缓存处理值变化的方法
+方式一：使用[React.useCallback](https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback)缓存回调函数
 
 ```tsx
 import React, { useState, ChangeEvent, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 
-function Input(props: any) {
+function Input(props: {
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   return <input type="text" value={props.value} onChange={props.onChange} />;
 }
 
@@ -200,7 +265,7 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![use_callback_after](./assets/images/use_callback_after.png)
 
-方式二：使用[React.useReducer](https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer)处理值变化
+方式二：使用[React.useReducer](https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer)代替`React.useState`管理状态
 
 ```tsx
 import React, { ChangeEvent, useReducer } from 'react';
@@ -256,7 +321,7 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![usereducer_after](./assets/images/usereducer_after.png)
 
-##### 静态函数属性
+#### 静态函数属性
 
 当组件属性为一个静态函数时，为了减少不必要的渲染，我们可以将函数提升到组件外部，下面我们将通过两个实例对比提升前和提升后的影响。
 
@@ -289,7 +354,7 @@ function Demo() {
   const onChangeValue2 = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setValue2(event.target.value);
   }, []);
-    
+
   const validate = (value: any) => {
     if (!value) {
       return '必填';
@@ -307,7 +372,7 @@ function Demo() {
 ReactDOM.render(<Demo />, document.getElementById('root'));
 ```
 
-此时只要任意一个输入框的值发生改变，父组件就会重新渲染，创建新的validate函数传给子组件，这样就破坏了属性浅层比较，子组件会重新渲染。
+此时只要任意一个输入框的值发生改变，父组件就会重新渲染，创建新的 validate 函数传给子组件，这样就破坏了属性浅层比较，子组件会重新渲染。
 
 ![static_fn_props_before](./assets/images/static_fn_props_before.png)
 
@@ -364,9 +429,44 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 从火焰图中我们可以看出，当我们改变第一个`TextInput`值时，第二个`TextInput`并没有重新渲染。这是因为当我们把校验函数提升到组件外部，即`全局作用域`中，所以无论`Demo`内部如何变化，`validate`都不会发生改变，这样第二个`TextInput`组件的属性满足浅层比较，因此不会重新渲染。
 
-#### 数组、对象属性
+### 数组、对象属性
 
-##### 动态计算出的对象属性
+不正确指定数组、对象属性，也会破坏掉`React.memo`，看几个缓存失效的示例。
+
+示例 1：
+
+```tsx
+function ButtonDemo() {
+  return (
+    <MemoButton
+      style={{
+        color: 'red',
+      }}
+    >
+      点击我
+    </MemoButton>
+  );
+}
+```
+
+示例 2：
+
+```tsx
+function TodoDemo() {
+  const completedItems = items.filter((item) => item.completed);
+
+  return <List items={completedItems} />;
+}
+```
+
+我们根据对象、数组的来源分成两个类别：
+
+- 动态计算的对象属性 - 如示例 2 中的`completedItems`
+- 静态对象属性 - 如示例 1 中的`style`
+
+接下来我们分别看看怎么处理，以达到缓存的目的。
+
+#### 动态计算出的对象属性
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -424,7 +524,7 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![object_props_before](./assets/images/object_props_before.png)
 
-这种情况很容易处理，我们只需要使用[React.useMemo](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usememo>)缓存一下`userInfo`这个对象属性即可：
+这种情况很容易处理，我们只需要使用[React.useMemo](https://zh-hans.reactjs.org/docs/hooks-reference.html#usememo)缓存一下`userInfo`这个对象属性即可：
 
 ```tsx
 import React, { useState, useEffect, useMemo } from 'react';
@@ -483,9 +583,9 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![object_props_after](./assets/images/object_props_after.png)
 
-##### 静态对象属性
+#### 静态对象属性
 
-当组件属性为静态对象时,我们可以将其提升到组件外部的全局作用域，以此来满足子组件属性的浅层比较。这里我们给输入框添加label，并指定其样式，通过对比下面两个示例，看下静态对象属性对组件渲染的影响：
+当组件属性为静态对象时,我们可以将其提升到组件外部的全局作用域，以此来满足子组件属性的浅层比较。这里我们给输入框添加 label，并指定其样式，通过对比下面两个示例，看下静态对象属性对组件渲染的影响：
 
 直接传递静态对象属性
 
@@ -599,9 +699,9 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 
 ![static_object_after](./assets/images/static_object_after.png)
 
-#### children属性
+### children 属性
 
-##### 静态`JSX`的优化 
+#### 静态`JSX`的优化
 
 静态`JSX`优化，可以将静态的`Jsx`部分提升到组件外部定义：
 
@@ -628,13 +728,13 @@ function Parent() {
 ReactDOM.render(<Parent />, document.getElementById('root'));
 ```
 
-在React应用中我们无需手动处理，可以借助[react-constant-elements工具完成](<https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements>)，需要注意的是场此插件只作用于生产环境。
+在 React 应用中我们无需手动处理，可以借助[react-constant-elements 工具完成](https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements)，需要注意的是此插件只作用于生产环境。
 
-## 使用工具度量React组件性能
+## 使用工具度量 React 组件性能
 
 ### react-devtools
 
-这里我们主要是用react-devtools的火焰图来做性能分析。
+这里我们主要是用 react-devtools 的火焰图来做性能分析。
 
 我们以一个具体示例来说明：
 
@@ -683,12 +783,12 @@ function Demo() {
 ReactDOM.render(<Demo />, document.getElementById('root'));
 ```
 
-react-devtools使用方式：
+react-devtools 使用方式：
 
-* 运行上述示例
-* 打开F12控制台，将页签切换至`React`
-* 将工具条从`Elements`切换至`Profilter`
-* 点击小圆点开始分析，改变值使组件重绘点击`stop`按钮，收集分析结果
+- 运行上述示例
+- 打开 F12 控制台，将页签切换至`React`
+- 将工具条从`Elements`切换至`Profilter`
+- 点击小圆点开始分析，改变值使组件重绘点击`stop`按钮，收集分析结果
 
 ![fire_action](./assets/images/fire_action.png)
 
