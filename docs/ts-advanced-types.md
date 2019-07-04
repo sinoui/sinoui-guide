@@ -24,7 +24,7 @@ function getName(n: NameOrResolver): Name {
 }
 ```
 
-注意：不建议使用`type`定义接口类型，应使用`interface`来定义接口类型。`type`通用用来需要做类型运算的场景中。
+注意：不建议使用`type`定义接口类型，应使用`interface`来定义接口类型。`type`通常用在需要做类型运算的场景中。
 
 ## 索引类型
 
