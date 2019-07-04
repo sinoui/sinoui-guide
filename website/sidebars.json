@@ -10,7 +10,12 @@
       "react-fetch-data",
       "react-ref"
     ],
-    "TypeScript/ES6": ["es6-tutorial", "ts-tutorial", "react-ts-tutorial"],
+    "TypeScript/ES6": [
+      "es6-tutorial",
+      "ts-tutorial",
+      "react-ts-tutorial",
+      "ts-advanced-types"
+    ],
     "样式": ["styled-components-guide", "react-animation"],
     "状态管理": [
       "react-context",
