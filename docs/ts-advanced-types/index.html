@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>TypeScript高级类型 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;TypeScript 最有用的特性是静态类型。TypeScript 每个新版本发布都会带来一些新的类型特性。本章节介绍一些不常见但是在开发组件、库等公共模块是非常有用的 TypeScript 高级类型。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="TypeScript高级类型 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;TypeScript 最有用的特性是静态类型。TypeScript 每个新版本发布都会带来一些新的类型特性。本章节介绍一些不常见但是在开发组件、库等公共模块是非常有用的 TypeScript 高级类型。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>TypeScript/ES6</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/ts-advanced-types">TypeScript高级类型</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/context-and-hook">使用Context和hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-performance-optimization">React性能优化</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">TypeScript高级类型</h1></header><article><div><span><p>TypeScript 最有用的特性是静态类型。TypeScript 每个新版本发布都会带来一些新的类型特性。本章节介绍一些不常见但是在开发组件、库等公共模块是非常有用的 TypeScript 高级类型。</p>
+<h2><a class="anchor" aria-hidden="true" id="类型别名"></a><a href="#类型别名" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类型别名</h2>
+<p>我们可以用<code>type</code>关键字来给类型取别名。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Name = <span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">type</span> NameResolver = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">type</span> NameOrResolver = Name | NameResolver;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params">n: NameOrResolver</span>): <span class="hljs-title">Name</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> n === <span class="hljs-string">'string'</span>) {
+    <span class="hljs-keyword">return</span> n;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> n();
+  }
+}
+</code></pre>
+<p>注意：不建议使用<code>type</code>定义接口类型，应使用<code>interface</code>来定义接口类型。<code>type</code>通用用来需要做类型运算的场景中。</p>
+<h2><a class="anchor" aria-hidden="true" id="索引类型"></a><a href="#索引类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>索引类型</h2>
+<p>首先介绍<code>keyof</code>（<strong>索引类型查询操作符</strong>)。</p>
+<p>User 接口：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+}
+</code></pre>
+<p>User 接口的属性名类型：</p>
+<pre><code class="hljs"><span class="hljs-keyword">type</span> <span class="hljs-type">UserPropertyNameType </span>= <span class="hljs-symbol">'userName</span>' | <span class="hljs-symbol">'userId</span>';
+</code></pre>
+<p>这样下面的代码就是有效的：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUserPropertyValue</span>(<span class="hljs-params">user: User, propertyName: UserPropertyNameType</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(user[propertyName]);
+}
+</code></pre>
+<p><code>keyof</code>关键字可以简化接口的属性名类型：</p>
+<pre><code class="hljs css language-typescrpt">type UserPropertyNameType = keyof<span class="hljs-built_in"> User;
+</span></code></pre>
+<p>如下所示：</p>
+<p><img src="/sinoui-guide/docs/assets/images/ts-advanced-types-keyof.png" alt="ts-advanced-types-keyof"></p>
+<p><code>logUserPropertyValue</code>方法改造后如下：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUserPropertyValue</span>(<span class="hljs-params">user: User, propertyName: keyof User</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(user[propertyName]);
+}
+</code></pre>
+<p>现在我们要获取<code>user</code>对象的属性值，方法如下：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserPropertyValue</span>(<span class="hljs-params">user: User, propertyName: keyof User</span>): <span class="hljs-title">string</span> </span>{
+  <span class="hljs-keyword">return</span> user[propertyName];
+}
+</code></pre>
+<p>上面的方法没有问题，函数返回值是<code>string</code>也没有问题，因为目前来看，User 接口的所有属性的值类型都是<code>string</code>。如果我们在<code>User</code>中加一个<code>age</code>呢？</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p><code>getUserPropertyValue</code>的返回值类型应该是什么？是<code>string| number</code>呢？是，也不是。因为 User 所有属性的值类型就是<code>string</code>和<code>number</code>的两者结合，所以它的返回值是<code>string | number</code>是没有问题的。但是，我们可以做得更好：<code>getUserPropertyValue()</code>函数的返回值类型是根据<code>propertyName</code>这个参数的类型决定的，如果<code>propertyName</code>的参数类型是<code>userName</code>或者是<code>userId</code>，那么它的返回值类型是<code>string</code>，如果是<code>age</code>，则返回值类型是<code>number</code>。这种变化的类型以及固定的类型关系，我们可以使用泛型来解决，如下：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserPropertyValue</span>&lt;<span class="hljs-title">P</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">User</span>&gt;(<span class="hljs-params">
+  user: User,
+  propertyName: P,
+</span>): [这个地方需要通过<span class="hljs-title">P</span>推导出返回值类型] </span>{
+  <span class="hljs-keyword">return</span> user[propertyName];
+}
+</code></pre>
+<p>上面的代码有一块是没有实现的：<code>[这个地方需要通过P推导出返回值类型]</code>。这一块是需要在<code>User</code>接口中找到<code>P</code>这个代表 User 接口属性名的类型对应的值类型。在 TypeScript 中，我们可以写成<code>User[P]</code>。所以我们的方法是：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserPropertyValue</span>&lt;<span class="hljs-title">P</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">User</span>&gt;(<span class="hljs-params">
+  user: User,
+  propertyName: P,
+</span>): <span class="hljs-title">User</span>[<span class="hljs-title">P</span>] </span>{
+  <span class="hljs-keyword">return</span> user[propertyName];
+}
+</code></pre>
+<p>在 TypeScript 的类型中，<code>User[P]</code>这样的表示式表示从<code>User</code>接口中取<code>P</code>这个属性对应的值类型，我们称之为<strong>索引访问操作符</strong>。如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">type</span> userNameValueType = User[<span class="hljs-string">'userName'</span>]; <span class="hljs-comment">// string;</span>
+<span class="hljs-keyword">type</span> ageValueType = User[<span class="hljs-string">'age'</span>]; <span class="hljs-comment">// age</span>
+</code></pre>
+<p>现在，发现获取对象属性这个方法还是挺有用的，不仅仅用于<code>User</code>接口的对象，其他任何接口的对象实现逻辑都是一样的，但是对象的类型不一样，所以我们可以对对象类型使用泛型，来解决类型声明问题：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPropertyValue</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">P</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">T</span>&gt;(<span class="hljs-params">obj: T, propertyName: P</span>): <span class="hljs-title">T</span>[<span class="hljs-title">P</span>] </span>{
+  <span class="hljs-keyword">return</span> obj[propertyName];
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="映射类型"></a><a href="#映射类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>映射类型</h2>
+<p>首先说两个关键字：<code>Readonly</code>和<code>Partial</code>，它们的作用通过下面两段代码来理解一下：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">type</span> ReadonlyUser = Readonly&lt;User&gt;;
+<span class="hljs-comment">/** ReadonlyUser相当于：
+{
+  readonly userName: string;
+  readonly userId: string;
+  readonly age: number;
+}
+*/</span>
+</code></pre>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">type</span> PartialUser = Partial&lt;User&gt;;
+<span class="hljs-comment">/** PartialUser相当于：
+{
+  userName?: string;
+  userId?: string;
+  age?: number;
+}
+*/</span>
+</code></pre>
+<p>TypeScript 提供了从旧类型中创建新类型的一种方式 — <strong>映射类型</strong>。这有一些类似如 js 中的数组<code>map</code>方法——从旧数组中创建新数组。在映射类型里，新类型以相同的形式去转换旧类型里每个属性。比如，<code>Readonly&lt;User&gt;</code>会将<code>User</code>接口中每个属性设置成<code>readonly</code>来生成一个与 User 接口有一样的属性，但是所有属性都是<code>readonly</code>的新类型。</p>
+<p>下面我们拿一个简单的示例，来剖析一下<strong>映射类型</strong>：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Keys = <span class="hljs-string">'option1'</span> | <span class="hljs-string">'option2'</span>;
+<span class="hljs-keyword">type</span> Flags = { [K <span class="hljs-keyword">in</span> Keys]: <span class="hljs-built_in">boolean</span> };
+</code></pre>
+<ul>
+<li><code>Keys</code>表示的是属性名，这里有两种属性名，即<code>option1</code>和<code>option2</code>。</li>
+<li><code>[K in Keys]</code>，表示遍历<code>Keys</code>中每个属性名，相当于<code>for .. in</code>语法。</li>
+<li><code>K</code>相当于遍历过程中的属性名。</li>
+<li><code>[K in Keys]: boolean</code>，表示<code>Keys</code>中的每个属性名都是<code>boolean</code>类型的。</li>
+<li><code>{[K in Keys]: boolean}</code>得到有两个属性<code>option1</code>和<code>option2</code>，属性值类型都是<code>boolean</code>的类型。</li>
+</ul>
+<p><code>Flags</code>相当于：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Flags {
+  option1: <span class="hljs-built_in">boolean</span>;
+  option2: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<p>现在我们拿<code>User</code>接口来练手，需要创建一个新的类型，包含所有的<code>User</code>属性，但是每个属性都是可选的：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">type</span> Keys = keyof User; <span class="hljs-comment">// 'userName' | 'userId' | 'age';</span>
+<span class="hljs-keyword">type</span> Flags = { [K <span class="hljs-keyword">in</span> Keys]?: User[K] };
+</code></pre>
+<p>这样得出的<code>Flags</code>类型如下所示：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Flags {
+  userName?: <span class="hljs-built_in">string</span>;
+  userId?: <span class="hljs-built_in">string</span>;
+  age?: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p>我们给<code>Flags</code>换一个更合适的名称，并且省略掉 Keys：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> PartialUser = { [K <span class="hljs-keyword">in</span> keyof User]?: User[K] };
+</code></pre>
+<p>再拿一个<code>Animal</code>接口来做类似的练习：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Animal {
+  name: <span class="hljs-built_in">string</span>;
+  birthday: <span class="hljs-built_in">Date</span>;
+}
+
+<span class="hljs-keyword">type</span> PartialAnimal = { [K <span class="hljs-keyword">in</span> keyof Animal]?: Animal[K] };
+</code></pre>
+<p>我们会发现相似之处：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> PartialUser = { [K <span class="hljs-keyword">in</span> keyof User]?: User[K] };
+<span class="hljs-keyword">type</span> PartialAnimal = { [K <span class="hljs-keyword">in</span> keyof Animal]?: Animal[K] };
+</code></pre>
+<p>我们可以通过泛型来提供一个通用的版本：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Partial&lt;T&gt; = { [K <span class="hljs-keyword">in</span> keyof T]?: T[K] };
+</code></pre>
+<p>这个<code>Partial</code>就是本章节开头介绍的。<code>Partial</code>是 TypeScript 内置的类型，可以直接用。</p>
+<p><code>Readonly</code>类型的实现：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Readonly&lt;T&gt; = { readonly [K <span class="hljs-keyword">in</span> keyof T]: T[K] };
+</code></pre>
+<p>实现一个即可选又只读的类型：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> PartialReadonly&lt;T&gt; = { readonly [K <span class="hljs-keyword">in</span> keyof]?: T[K] };
+</code></pre>
+<p>还需要特别注意一下：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  readonly UserId: <span class="hljs-built_in">string</span>;
+  userName: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">type</span> PartialUser = Partial&lt;User&gt;;
+<span class="hljs-comment">/* PartialUser相当于：
+{
+  readonly userId?: string;
+  userName?: string;
+  age: number;
+}
+*/</span>
+</code></pre>
+<p>在映射类型中，<code>T[K]</code>它不仅仅会带过来属性值类型，还会带过来这个属性相关的修饰符，如<code>User['userId']</code>会带过来<code>readonly</code>修饰符。这种现象称之为<strong>同态</strong>。</p>
+<h2><a class="anchor" aria-hidden="true" id="预定义类型"></a><a href="#预定义类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>预定义类型</h2>
+<p>TypeScript 提供很多类似如<code>Readonly</code>、<code>Partial</code>这样的预定义类型，选择几个重点来说一说：</p>
+<h3><a class="anchor" aria-hidden="true" id="readonly"></a><a href="#readonly" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Readonly</code></h3>
+<p>在映射类型中介绍过，会生成接口对应的只读属性版本。</p>
+<h3><a class="anchor" aria-hidden="true" id="partial"></a><a href="#partial" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Partial</code></h3>
+<p>生成接口对应的可选属性版本。</p>
+<h3><a class="anchor" aria-hidden="true" id="pick"></a><a href="#pick" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Pick</code></h3>
+<p>从接口中选择某些属性组成一个新的类型。</p>
+<p>示例：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userId: <span class="hljs-built_in">string</span>;
+  userName: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">type</span> AnotherUserType = Pick&lt;User, <span class="hljs-string">'userId'</span> | <span class="hljs-string">'age'</span>&gt;;
+<span class="hljs-comment">/*
+AnotherUserType相当于：
+
+{
+  userId: string;
+  age: number;
+}
+*/</span>
+</code></pre>
+<p>Pick 的实现：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Pick&lt;T, K <span class="hljs-keyword">extends</span> keyof T&gt; = { [P <span class="hljs-keyword">in</span> K]: T[P] };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="record"></a><a href="#record" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Record</code></h3>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Record&lt;K <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, T&gt; = { [P <span class="hljs-keyword">in</span> K]: T };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="exclude-t-u"></a><a href="#exclude-t-u" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Exclude&lt;T, U&gt;</code></h3>
+<p>从<code>T</code>中剔除可以赋值给<code>U</code>的类型。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> T00 = Exclude&lt;<span class="hljs-string">'a'</span> | <span class="hljs-string">'b'</span> | <span class="hljs-string">'c'</span> | <span class="hljs-string">'d'</span>, <span class="hljs-string">'a'</span> | <span class="hljs-string">'c'</span> | <span class="hljs-string">'f'</span>&gt;; <span class="hljs-comment">// "b" | "d"</span>
+<span class="hljs-keyword">type</span> T01 = Exclude&lt;<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span> | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; <span class="hljs-built_in">void</span></span>), <span class="hljs-params">Function</span>&gt;; // <span class="hljs-params">string</span> | <span class="hljs-params">number</span>
+</span></code></pre>
+<p>实现：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Exclude&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>, U <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span>&gt; = ({ [P <span class="hljs-keyword">in</span> T]: P } &amp;
+  { [P <span class="hljs-keyword">in</span> U]: never } &amp; { [x: <span class="hljs-built_in">string</span>]: never })[T];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="extract-t-u"></a><a href="#extract-t-u" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Extract&lt;T, U&gt;</code></h3>
+<p>提取<code>T</code>中可以赋值给<code>U</code>的类型。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> T00 = Extract&lt;<span class="hljs-string">'a'</span> | <span class="hljs-string">'b'</span> | <span class="hljs-string">'c'</span> | <span class="hljs-string">'d'</span>, <span class="hljs-string">'a'</span> | <span class="hljs-string">'c'</span> | <span class="hljs-string">'f'</span>&gt;; <span class="hljs-comment">// "a" | "c"</span>
+<span class="hljs-keyword">type</span> T03 = Extract&lt;<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span> | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; <span class="hljs-built_in">void</span></span>), <span class="hljs-params">Function</span>&gt;; // <span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="returntype-t"></a><a href="#returntype-t" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>ReturnType&lt;T&gt;</code></h3>
+<p>获取函数返回值类型。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">type</span> T00 = ReturnType&lt;<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">string</span>&gt;; <span class="hljs-comment">// string</span>
+<span class="hljs-keyword">type</span> T01 = ReturnType&lt;<span class="hljs-function">(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>&gt;; <span class="hljs-comment">// void</span>
+<span class="hljs-keyword">type</span> T02 = ReturnType&lt;<span class="hljs-keyword">typeof</span> test&gt;; <span class="hljs-comment">// number</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="nonnullable-t"></a><a href="#nonnullable-t" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>NonNullable&lt;T&gt;</code></h3>
+<p>从<code>T</code>中剔除<code>null</code>和<code>undefined</code>。</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> T00 = NonNullable&lt;<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>&gt;; <span class="hljs-comment">// string | number</span>
+<span class="hljs-keyword">type</span> T01 = NonNullable&lt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; <span class="hljs-built_in">string</span></span>) | <span class="hljs-params">string</span>[] | <span class="hljs-params">null</span> | <span class="hljs-params">undefined</span>&gt;; // (<span class="hljs-params">(<span class="hljs-params"></span>) =&gt; <span class="hljs-built_in">string</span></span>) | <span class="hljs-params">string</span>[]
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="omit-t-k"></a><a href="#omit-t-k" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Omit&lt;T, K&gt;</code></h3>
+<p>从类型<code>T</code>剔除赋值给<code>K</code>的类型所代表的属性。</p>
+<p>示例：</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> User {
+  userId: <span class="hljs-built_in">string</span>;
+  userName: <span class="hljs-built_in">string</span>;
+  age: numer;
+}
+
+<span class="hljs-keyword">type</span> T0 = Omit&lt;User, <span class="hljs-string">'userName'</span>&gt;; <span class="hljs-comment">// { userId: string; age: number; }</span>
+<span class="hljs-keyword">type</span> T1 = Omit&lt;User, <span class="hljs-string">'userName'</span> | <span class="hljs-string">'age'</span>&gt;; <span class="hljs-comment">// { userId: string }</span>
+<span class="hljs-keyword">type</span> T2 = Omit&lt;User, <span class="hljs-string">'age'</span>&gt;; <span class="hljs-comment">// { userId: string; userName: string; }</span>
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-4 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-ts-tutorial"><span class="arrow-prev">← </span><span class="function-name-prevnext">在React中使用TypeScript</span></a><a class="docs-next button" href="/sinoui-guide/docs/styled-components-guide"><span>styled-components</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#类型别名">类型别名</a></li><li><a href="#索引类型">索引类型</a></li><li><a href="#映射类型">映射类型</a></li><li><a href="#预定义类型">预定义类型</a><ul class="toc-headings"><li><a href="#readonly"><code>Readonly</code></a></li><li><a href="#partial"><code>Partial</code></a></li><li><a href="#pick"><code>Pick</code></a></li><li><a href="#record"><code>Record</code></a></li><li><a href="#exclude-t-u"><code>Exclude</code></a></li><li><a href="#extract-t-u"><code>Extract</code></a></li><li><a href="#returntype-t"><code>ReturnType</code></a></li><li><a href="#nonnullable-t"><code>NonNullable</code></a></li><li><a href="#omit-t-k"><code>Omit</code></a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
