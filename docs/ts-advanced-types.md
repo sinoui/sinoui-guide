@@ -4,7 +4,7 @@ title: TypeScript高级类型
 sidebar_label: TypeScript高级类型
 ---
 
-TypeScript 最有用的特性是静态类型。TypeScript 每个新版本发布都会带来一些新的类型特性。本章节介绍一些不常见但是在开发组件、库等公共模块是非常有用的 TypeScript 高级类型。
+TypeScript 最有用的特性是静态类型。TypeScript 每个新版本发布都会带来一些新的类型特性。本章节介绍一些不常见但是在开发组件、库等公共模块时非常有用的 TypeScript 高级类型。
 
 ## 类型别名
 
