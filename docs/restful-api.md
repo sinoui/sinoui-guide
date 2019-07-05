@@ -94,7 +94,7 @@ DELETE   /products/id  删除指定产品信息
 
 #### 请求
 
-```js
+```text
 GET  /products?page=0&size=15&title=pad
 ```
 
@@ -104,24 +104,24 @@ GET  /products?page=0&size=15&title=pad
 
 响应内容：`application/json`
 
-```js
+```json
 {
-  "content":[
+  "content": [
     {
       "id": "1",
       "title": "电脑pad",
-      "price":"5000",
+      "price": "5000"
     },
-     {
+    {
       "id": "2",
       "title": "平板pad",
-      "price":"3000",
-    },
+      "price": "3000"
+    }
   ],
-  number:0,   // 当前页
-  size:15,   // 每页显示数
-  totalPages:1,  // 总页数
-  totalElements:5,  // 数据总数
+  "number": 0, // 当前页
+  "size": 15, // 每页显示数
+  "totalPages": 1, // 总页数
+  "totalElements": 5 // 数据总数
 }
 ```
 
@@ -136,16 +136,16 @@ GET  /products?page=0&size=15&title=pad
 
 #### 请求
 
-```js
-POST / products;
+```text
+POST /products
 ```
 
 传参：
 
-```js
+```json
 {
-  "title":"手机",
-  "price":"5000",
+  "title": "手机",
+  "price": "5000"
 }
 ```
 
@@ -155,11 +155,11 @@ POST / products;
 
 响应内容：`application/json`
 
-```js
+```json
 {
-  "id":"100",
-  "title":"手机",
-  "price":"5000",
+  "id": "100",
+  "title": "手机",
+  "price": "5000"
 }
 ```
 
@@ -167,15 +167,14 @@ POST / products;
 
 使用状态码表示失败响应
 
-- 404 - 找不到资源
 - 500 - 应用服务发生错误
 
 ### 通过 id 获取一条数据
 
 #### 请求
 
-```js
-GET / products / 1;
+```text
+GET /products/1
 ```
 
 #### 成功的响应
@@ -184,12 +183,12 @@ GET / products / 1;
 
 响应内容：`application/json`
 
-```js
+```json
 {
   "id": "1",
   "title": "电脑",
-  "price":"5000",
-},
+  "price": "5000"
+}
 ```
 
 #### 失败响应
@@ -203,18 +202,18 @@ GET / products / 1;
 
 #### 请求
 
-```js
-PUT / products / 1;
+```text
+PUT /products/1
 ```
 
 传参：
 
-```js
+```json
 {
   "id": "1",
   "title": "电脑",
-  "price":"10000",
-  }
+  "price": "10000"
+}
 ```
 
 #### 成功的响应
@@ -223,12 +222,12 @@ PUT / products / 1;
 
 响应内容：`application/json`
 
-```js
+```json
 {
   "id": "1",
   "title": "电脑",
-  "price":"10000",
-},
+  "price": "10000"
+}
 ```
 
 #### 失败响应
@@ -242,21 +241,15 @@ PUT / products / 1;
 
 #### 请求
 
-```js
-DELETE / products / 1;
+```text
+DELETE /products/1
 ```
 
 #### 成功的响应
 
 状态码：200、204
 
-响应内容：`application/json`
-
-```js
-{
-  "flag":"true"
-}
-```
+响应内容：无
 
 #### 失败响应
 
