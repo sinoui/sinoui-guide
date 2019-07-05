@@ -253,15 +253,15 @@ interface User {
   fav: string;
 }
 
-function UserInfo(){
-   const [userInfo, setUserInfo] = useState<User | undefined>();
+function UserInfo() {
+  const [userInfo, setUserInfo] = useState<User | undefined>();
 }
 ```
 
 如果你想给一个与`User`类型不一致的空对象，可以这样声明：
 
 ```tsx
-  const [userInfo, setUserInfo] = useState<Partial<User>>({});
+const [userInfo, setUserInfo] = useState<Partial<User>>({});
 ```
 
 `Partial<User>`相当于`User`的属性都是可选的：
@@ -290,7 +290,7 @@ setUserInfo(undefined);
 setUserInfo({});
 ```
 
-##### userInfo取值处理
+##### userInfo 取值处理
 
 如果在创建状态类型时采用第一种方式，使用`userInfo`这个对象的属性值时，很可能会遇到“对象可能未定义”的检验错误，此时我们有两种解决方式：
 
@@ -305,6 +305,8 @@ const userId = userInfo!.userId;
 ```ts
 const userId = userInfo ? userInfo.userId : '';
 ```
+
+推荐使用第二种方式。
 
 ### useReducer
 
