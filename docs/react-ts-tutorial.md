@@ -133,7 +133,7 @@ export default Button;
 推荐：
 
 - 明确只能接收单个元素，但是不能包含原始数据（字符串、数字）：使用`React.ReactElement`
-- 明确职能接收单个元素，但是可包含原始数据（字符串、数字）：使用`React.ReactChild`
+- 明确只能接收单个元素，但是可包含原始数据（字符串、数字）：使用`React.ReactChild`
 - 其他的情况一律采用`React.ReactNode`，即`children?: React.ReactNode`
 
 在这里不讨论子元素作为渲染函数使用的情况。见下面的章节。
