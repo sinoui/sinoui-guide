@@ -306,6 +306,8 @@ const userId = userInfo!.userId;
 const userId = userInfo ? userInfo.userId : '';
 ```
 
+推荐使用第二种方式。
+
 ### useReducer
 
 [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)也可以管理组件的状态，如下所示：
