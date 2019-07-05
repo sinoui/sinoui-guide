@@ -236,7 +236,75 @@ function Counter() {
 }
 ```
 
-看到可以通过泛型的方式指定`count`状态的类型。
+通过上述示例看出，可以通过泛型的方式指定`count`状态的类型。
+
+#### `setState`的类型声明需要注意的点
+
+##### 创建状态时的类型声明
+
+如果我们在创建状态时，不指定初始状态，推荐使用下面的方式：
+
+```tsx
+interface User {
+  userName: string;
+  userId: string;
+  duty: string;
+  age: number;
+  fav: string;
+}
+
+function UserInfo(){
+   const [userInfo, setUserInfo] = useState<User | undefined>();
+}
+```
+
+如果你想给一个与`User`类型不一致的空对象，可以这样声明：
+
+```tsx
+  const [userInfo, setUserInfo] = useState<Partial<User>>({});
+```
+
+`Partial<User>`相当于`User`的属性都是可选的：
+
+```ts
+Partial<User>==={
+  userName?: string;
+  userId?: string;
+  duty?: string;
+  age?: number;
+  fav?: string;
+}
+```
+
+##### setUserInfo()怎么置空？
+
+如果我们使用`<User | undefined>`的方式定义，那么可以直接置为`undefined`。
+
+```ts
+setUserInfo(undefined);
+```
+
+如果使用第二种方式定义，则可以直接设置为空对象：
+
+```ts
+setUserInfo({});
+```
+
+##### userInfo取值处理
+
+如果在创建状态类型时采用第一种方式，使用`userInfo`这个对象的属性值时，很可能会遇到“对象可能未定义”的检验错误，此时我们有两种解决方式：
+
+方式一：如果确定在使用`userInfo`对象时,`userInfo`不是`undefined`，可以直接使用[非空断言关键字](https://sinoui.github.io/sinoui-guide/docs/ts-tutorial#ts-%E9%9D%9E%E7%A9%BA%E6%96%AD%E8%A8%80%E5%85%B3%E9%94%AE%E5%AD%97)。
+
+```ts
+const userId = userInfo!.userId;
+```
+
+方式二：如果不能确定使用时，`userInfo`一定存在，那就需要条件判断
+
+```ts
+const userId = userInfo ? userInfo.userId : '';
+```
 
 ### useReducer
 
