@@ -140,6 +140,8 @@ ReactDOM.render(&lt;Parent /&gt;, document.getElementById('root'));
 <p>这里我们使用<a href="https://zh-hans.reactjs.org/docs/react-api.html#reactmemo">React.memo</a>做了组件缓存，因此在<code>Parent</code>组件状态发生变化时，两个<code>Child</code>组件因为属性没有发生变化，React 会从缓存中取其上次的渲染结果，而不是重新传染。渲染效果如下（火焰图中的两个<code>Memo(Child)</code>小方格都是灰色的，代表未发生重绘）：</p>
 <p><img src="./assets/images/memo_after.png" alt="memo_after"></p>
 <h3><a class="anchor" aria-hidden="true" id="props-浅层比较"></a><a href="#props-浅层比较" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>props</code>浅层比较</h3>
+<p>上文提到，<code>React.memo(ChildComponent)</code>的缓存依赖于<code>props</code>浅层比较，在两次重绘中，如果给<code>ChildComponent</code>的属性对象通过<strong>浅层比较</strong>是一致的，那么 React 会从缓存中取上次的渲染结果，缓存有效。我们看看什么是浅层比较。</p>
+<p>示例：</p>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> objA = {
   <span class="hljs-attr">a</span>: <span class="hljs-string">'1'</span>,
   <span class="hljs-attr">b</span>: <span class="hljs-string">'2'</span>,
@@ -152,39 +154,86 @@ ReactDOM.render(&lt;Parent /&gt;, document.getElementById('root'));
 
 <span class="hljs-built_in">Object</span>.keys(objA).every(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> objA[key] === objB[key]); <span class="hljs-comment">// true</span>
 </code></pre>
-<h4><a class="anchor" aria-hidden="true" id="函数属性"></a><a href="#函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数属性</h4>
-<h5><a class="anchor" aria-hidden="true" id="动态函数属性"></a><a href="#动态函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态函数属性</h5>
-<p>这里我们首先来看一个示例：</p>
-<pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent } from 'react';
-import ReactDOM from 'react-dom';
+<p>对象<code>objA</code>和<code>objB</code>都具有同样值的属性，所以这两个对象是相同的。但如果对象中再有对象属性，那么很有可能就不再相等，因为<strong>浅层比较</strong>只会比较对象的属性值是否相等，而如果对象属性也是对象，<strong>浅层比较</strong>不会进入这个属性对象再比较。如下所示：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> objA = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'1'</span>,
+  <span class="hljs-attr">b</span>: <span class="hljs-string">'2'</span>,
+  <span class="hljs-attr">c</span>: {
+    <span class="hljs-attr">t</span>: <span class="hljs-string">'3'</span>,
+  },
+};
 
-<span class="hljs-keyword">function</span> <span class="hljs-constructor">Input(<span class="hljs-params">props</span>: <span class="hljs-params">any</span>)</span> {
-  return &lt;input <span class="hljs-keyword">type</span>=<span class="hljs-string">"text"</span> value={props.value} onChange={props.onChange} /&gt;;
+<span class="hljs-keyword">const</span> objB = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'1'</span>,
+  <span class="hljs-attr">b</span>: <span class="hljs-string">'2'</span>,
+  <span class="hljs-attr">c</span>: {
+    <span class="hljs-attr">t</span>: <span class="hljs-string">'3'</span>,
+  },
+};
+
+<span class="hljs-built_in">Object</span>.keys(objA).every(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> objA[key] === objB[key]); <span class="hljs-comment">// false</span>
+</code></pre>
+<p>上面两个对象的<strong>浅层比较</strong>结果为<code>false</code>，因为<code>objA.c</code>和<code>objB.c</code>都是对象，但是<code>objA.c !== objB.c</code>。</p>
+<p>接下来，我们来看看各种类型的属性如何配合<strong>React.memo()</strong>，达到缓存的目的。</p>
+<h3><a class="anchor" aria-hidden="true" id="函数属性"></a><a href="#函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数属性</h3>
+<p>函数属性是常见的一种类型的属性，处理不好函数类型属性，极容易破坏掉属性浅层比较，让组件缓存失效。</p>
+<p>比如：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">const</span> MemoButton = React.memo(Button);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ButtonDemo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    setCount(<span class="hljs-function"><span class="hljs-params">prev</span> =&gt;</span> prev + <span class="hljs-number">1</span>);
+  };
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MemoButton</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>点击我<span class="hljs-tag">&lt;/<span class="hljs-name">MenuButton</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>被点击次数：{count}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+</code></pre>
+<p>每次点击按钮时，本期望<code>MemoButton</code>组件不会发生重绘，实际上却每次都发生了重绘。重点在于每次重绘<code>ButtonMenu</code>时，都会产生新的<code>handleClick</code>。</p>
+<p>我们根据函数属性本身与组件是否有关系分成两类：</p>
+<ul>
+<li>动态函数属性 - 函数实现与组件相关，需要在组件内部定义。如按钮点击事件处理器。</li>
+<li>静态函数属性 - 函数实现与组件无关，可以在组件外部定义。如表单值校验函数。</li>
+</ul>
+<p>我们逐个看看这两种情况如何处理。</p>
+<h4><a class="anchor" aria-hidden="true" id="动态函数属性"></a><a href="#动态函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态函数属性</h4>
+<p>这里我们首先来看一个示例：</p>
+<pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+
+<span class="hljs-function">function <span class="hljs-title">Input</span>(<span class="hljs-params">props: {
+  <span class="hljs-keyword">value</span>?: <span class="hljs-keyword">string</span>;
+  onChange?: (<span class="hljs-keyword">event</span>: React.ChangeEvent&lt;HTMLInputElement&gt;</span>)</span> =&gt; <span class="hljs-keyword">void</span>;
+}) {
+  <span class="hljs-keyword">return</span> &lt;input type=<span class="hljs-string">"text"</span> <span class="hljs-keyword">value</span>={props.<span class="hljs-keyword">value</span>} onChange={props.onChange} /&gt;;
 }
 
-const TextInput = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">React</span>.</span></span>memo(Input);
+<span class="hljs-keyword">const</span> TextInput = React.memo(Input);
 
-<span class="hljs-keyword">function</span> <span class="hljs-constructor">Demo()</span> {
-  const <span class="hljs-literal">[<span class="hljs-identifier">value1</span>, <span class="hljs-identifier">setValue1</span>]</span> = use<span class="hljs-constructor">State('')</span>;
-  const <span class="hljs-literal">[<span class="hljs-identifier">value2</span>, <span class="hljs-identifier">setValue2</span>]</span> = use<span class="hljs-constructor">State('')</span>;
+<span class="hljs-function">function <span class="hljs-title">Demo</span>(<span class="hljs-params"></span>)</span> {
+  <span class="hljs-keyword">const</span> [value1, setValue1] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [value2, setValue2] = useState(<span class="hljs-string">''</span>);
 
-  const onChangeValue1 =<span class="hljs-function"> (<span class="hljs-params">event</span>: C<span class="hljs-params">hangeEvent</span>&lt;HTMLI<span class="hljs-params">nputElement</span>&gt;) =&gt;</span> {
-    set<span class="hljs-constructor">Value1(<span class="hljs-params">event</span>.<span class="hljs-params">target</span>.<span class="hljs-params">value</span>)</span>;
+  <span class="hljs-keyword">const</span> onChangeValue1 = (<span class="hljs-keyword">event</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue1(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
   };
 
-  const onChangeValue2 =<span class="hljs-function"> (<span class="hljs-params">event</span>: C<span class="hljs-params">hangeEvent</span>&lt;HTMLI<span class="hljs-params">nputElement</span>&gt;) =&gt;</span> {
-    set<span class="hljs-constructor">Value2(<span class="hljs-params">event</span>.<span class="hljs-params">target</span>.<span class="hljs-params">value</span>)</span>;
+  <span class="hljs-keyword">const</span> onChangeValue2 = (<span class="hljs-keyword">event</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue2(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
   };
 
-  return (
+  <span class="hljs-keyword">return</span> (
     &lt;div&gt;
-      &lt;TextInput value={value1} onChange={onChangeValue1} /&gt;
-      &lt;TextInput value={value2} onChange={onChangeValue2} /&gt;
+      &lt;TextInput <span class="hljs-keyword">value</span>={value1} onChange={onChangeValue1} /&gt;
+      &lt;TextInput <span class="hljs-keyword">value</span>={value2} onChange={onChangeValue2} /&gt;
     &lt;/div&gt;
   );
 }
 
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ReactDOM</span>.</span></span>render(&lt;Demo /&gt;, document.get<span class="hljs-constructor">ElementById('<span class="hljs-params">root</span>')</span>);
+ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string">'root'</span>));
 </code></pre>
 <p>思考一个问题：此时如果改变第二个<code>TextInput</code>值，第一个<code>TextInput</code>会重新渲染吗？</p>
 <p>一定会的，看下渲染结果：</p>
@@ -192,41 +241,44 @@ const TextInput = <span class="hljs-module-access"><span class="hljs-module"><sp
 <p>可能你会有疑问：不是已经用了<code>React.memo</code>缓存了吗？为什么还会重新渲染呢？</p>
 <p>其实这是因为<code>TextInput</code>的<code>onChange</code>属性，这是一个用来监听值变化的回调函数，输入框的值发生改变时，<code>Demo</code>组件会重绘，而此时<code>onChange</code>属性会指向一个新的方法，此时<code>TextInput</code>的属性浅层比较会返回<code>false</code>,组件就会重新渲染。</p>
 <p>解决上述问题有两种方式：</p>
-<p>方式一：使用<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback">React.useCallback</a>缓存处理值变化的方法</p>
-<pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent, useCallback } from 'react';
-import ReactDOM from 'react-dom';
+<p>方式一：使用<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback">React.useCallback</a>缓存回调函数</p>
+<pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 
-<span class="hljs-keyword">function</span> <span class="hljs-constructor">Input(<span class="hljs-params">props</span>: <span class="hljs-params">any</span>)</span> {
-  return &lt;input <span class="hljs-keyword">type</span>=<span class="hljs-string">"text"</span> value={props.value} onChange={props.onChange} /&gt;;
+<span class="hljs-function">function <span class="hljs-title">Input</span>(<span class="hljs-params">props: {
+  <span class="hljs-keyword">value</span>?: <span class="hljs-keyword">string</span>;
+  onChange?: (<span class="hljs-keyword">event</span>: React.ChangeEvent&lt;HTMLInputElement&gt;</span>)</span> =&gt; <span class="hljs-keyword">void</span>;
+}) {
+  <span class="hljs-keyword">return</span> &lt;input type=<span class="hljs-string">"text"</span> <span class="hljs-keyword">value</span>={props.<span class="hljs-keyword">value</span>} onChange={props.onChange} /&gt;;
 }
 
-const TextInput = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">React</span>.</span></span>memo(Input);
+<span class="hljs-keyword">const</span> TextInput = React.memo(Input);
 
-<span class="hljs-keyword">function</span> <span class="hljs-constructor">Demo()</span> {
-  const <span class="hljs-literal">[<span class="hljs-identifier">value1</span>, <span class="hljs-identifier">setValue1</span>]</span> = use<span class="hljs-constructor">State('')</span>;
-  const <span class="hljs-literal">[<span class="hljs-identifier">value2</span>, <span class="hljs-identifier">setValue2</span>]</span> = use<span class="hljs-constructor">State('')</span>;
+<span class="hljs-function">function <span class="hljs-title">Demo</span>(<span class="hljs-params"></span>)</span> {
+  <span class="hljs-keyword">const</span> [value1, setValue1] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [value2, setValue2] = useState(<span class="hljs-string">''</span>);
 
-  const onChangeValue1 = use<span class="hljs-constructor">Callback((<span class="hljs-params">event</span>: ChangeEvent&lt;HTMLInputElement&gt;)</span> =&gt; {
-    set<span class="hljs-constructor">Value1(<span class="hljs-params">event</span>.<span class="hljs-params">target</span>.<span class="hljs-params">value</span>)</span>;
-  }, <span class="hljs-literal">[]</span>);
+  <span class="hljs-keyword">const</span> onChangeValue1 = useCallback((<span class="hljs-keyword">event</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue1(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
+  }, []);
 
-  const onChangeValue2 = use<span class="hljs-constructor">Callback((<span class="hljs-params">event</span>: ChangeEvent&lt;HTMLInputElement&gt;)</span> =&gt; {
-    set<span class="hljs-constructor">Value2(<span class="hljs-params">event</span>.<span class="hljs-params">target</span>.<span class="hljs-params">value</span>)</span>;
-  }, <span class="hljs-literal">[]</span>);
+  <span class="hljs-keyword">const</span> onChangeValue2 = useCallback((<span class="hljs-keyword">event</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue2(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
+  }, []);
 
-  return (
+  <span class="hljs-keyword">return</span> (
     &lt;div&gt;
-      &lt;TextInput value={value1} onChange={onChangeValue1} /&gt;
-      &lt;TextInput value={value2} onChange={onChangeValue2} /&gt;
+      &lt;TextInput <span class="hljs-keyword">value</span>={value1} onChange={onChangeValue1} /&gt;
+      &lt;TextInput <span class="hljs-keyword">value</span>={value2} onChange={onChangeValue2} /&gt;
     &lt;/div&gt;
   );
 }
 
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ReactDOM</span>.</span></span>render(&lt;Demo /&gt;, document.get<span class="hljs-constructor">ElementById('<span class="hljs-params">root</span>')</span>);
+ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string">'root'</span>));
 </code></pre>
 <p>上述示例中,<code>useCallback</code>的依赖项数组为<code>[]</code>，所以，<code>onChangeValue1</code>与<code>onChangeValue2</code>这两个方法只会在组件初始化时创建一次，后续组件值发生改变时，会直接使用它的<code>memoized</code>版本。因此当其中一个<code>TextInput</code>的值发生改变时，另一个<code>TextInput</code>组件的属性满足浅层比较，React 会从缓存读取其上次渲染结果，而非重新渲染。</p>
 <p><img src="./assets/images/use_callback_after.png" alt="use_callback_after"></p>
-<p>方式二：使用<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer">React.useReducer</a>处理值变化</p>
+<p>方式二：使用<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer">React.useReducer</a>代替<code>React.useState</code>管理状态</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { ChangeEvent, useReducer } from <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM from <span class="hljs-string">'react-dom'</span>;
 <span class="hljs-keyword">import</span> produce from <span class="hljs-string">'immer'</span>;
@@ -277,7 +329,7 @@ ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string
 </code></pre>
 <p>上述示例中，我们向子组件传递<code>dispatch</code>而不是回调函数。这样当第一个<code>TextInput</code>值发生改变时，第二个<code>TextInput</code>组件的属性并没有发生改变，因此其不会重新渲染。</p>
 <p><img src="./assets/images/usereducer_after.png" alt="usereducer_after"></p>
-<h5><a class="anchor" aria-hidden="true" id="静态函数属性"></a><a href="#静态函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>静态函数属性</h5>
+<h4><a class="anchor" aria-hidden="true" id="静态函数属性"></a><a href="#静态函数属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>静态函数属性</h4>
 <p>当组件属性为一个静态函数时，为了减少不必要的渲染，我们可以将函数提升到组件外部，下面我们将通过两个实例对比提升前和提升后的影响。</p>
 <p>组件内部处理：</p>
 <pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
@@ -306,7 +358,7 @@ import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string"
   <span class="hljs-keyword">const</span> onChangeValue2 = useCallback((<span class="hljs-keyword">event</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
     setValue2(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
   }, []);
-    
+
   <span class="hljs-keyword">const</span> validate = (<span class="hljs-keyword">value</span>: any) =&gt; {
     <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">value</span>) {
       <span class="hljs-keyword">return</span> <span class="hljs-string">'必填'</span>;
@@ -323,7 +375,7 @@ import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string"
 
 ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string">'root'</span>));
 </code></pre>
-<p>此时只要任意一个输入框的值发生改变，父组件就会重新渲染，创建新的validate函数传给子组件，这样就破坏了属性浅层比较，子组件会重新渲染。</p>
+<p>此时只要任意一个输入框的值发生改变，父组件就会重新渲染，创建新的 validate 函数传给子组件，这样就破坏了属性浅层比较，子组件会重新渲染。</p>
 <p><img src="./assets/images/static_fn_props_before.png" alt="static_fn_props_before"></p>
 <p>我们对上述示例稍加调整，将<code>validate</code>提升至组件外部：</p>
 <pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
@@ -372,8 +424,35 @@ ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string
 <p>我们来看下渲染结果的分析图：</p>
 <p><img src="./assets/images/static_fn_props_after.png" alt="static_fn_props_after"></p>
 <p>从火焰图中我们可以看出，当我们改变第一个<code>TextInput</code>值时，第二个<code>TextInput</code>并没有重新渲染。这是因为当我们把校验函数提升到组件外部，即<code>全局作用域</code>中，所以无论<code>Demo</code>内部如何变化，<code>validate</code>都不会发生改变，这样第二个<code>TextInput</code>组件的属性满足浅层比较，因此不会重新渲染。</p>
-<h4><a class="anchor" aria-hidden="true" id="数组-对象属性"></a><a href="#数组-对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组、对象属性</h4>
-<h5><a class="anchor" aria-hidden="true" id="动态计算出的对象属性"></a><a href="#动态计算出的对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态计算出的对象属性</h5>
+<h3><a class="anchor" aria-hidden="true" id="数组-对象属性"></a><a href="#数组-对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组、对象属性</h3>
+<p>不正确指定数组、对象属性，也会破坏掉<code>React.memo</code>，看几个缓存失效的示例。</p>
+<p>示例 1：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ButtonDemo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">MemoButton</span>
+      <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+        <span class="hljs-attr">color:</span> '<span class="hljs-attr">red</span>',
+      }}
+    &gt;</span>
+      点击我
+    <span class="hljs-tag">&lt;/<span class="hljs-name">MemoButton</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>示例 2：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TodoDemo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> completedItems = items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.completed);
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">List</span> <span class="hljs-attr">items</span>=<span class="hljs-string">{completedItems}</span> /&gt;</span>;
+}
+</span></code></pre>
+<p>我们根据对象、数组的来源分成两个类别：</p>
+<ul>
+<li>动态计算的对象属性 - 如示例 2 中的<code>completedItems</code></li>
+<li>静态对象属性 - 如示例 1 中的<code>style</code></li>
+</ul>
+<p>接下来我们分别看看怎么处理，以达到缓存的目的。</p>
+<h4><a class="anchor" aria-hidden="true" id="动态计算出的对象属性"></a><a href="#动态计算出的对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态计算出的对象属性</h4>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 
@@ -479,8 +558,8 @@ ReactDOM.render(<span class="hljs-tag">&lt;<span class="hljs-name">Demo</span> /
 </span></code></pre>
 <p>此时，在父组件发生重绘时，子组件是不会重新渲染的，原因是因为每次重绘，<code>currentYear</code>和<code>data</code>都没发生改变，<code>userInfo</code>一直都是第一次渲染时定义的那个，不会发生改变，这样就满足了<code>UserInfo</code>组件的浅层比较，因此不会重新渲染。</p>
 <p><img src="./assets/images/object_props_after.png" alt="object_props_after"></p>
-<h5><a class="anchor" aria-hidden="true" id="静态对象属性"></a><a href="#静态对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>静态对象属性</h5>
-<p>当组件属性为静态对象时,我们可以将其提升到组件外部的全局作用域，以此来满足子组件属性的浅层比较。这里我们给输入框添加label，并指定其样式，通过对比下面两个示例，看下静态对象属性对组件渲染的影响：</p>
+<h4><a class="anchor" aria-hidden="true" id="静态对象属性"></a><a href="#静态对象属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>静态对象属性</h4>
+<p>当组件属性为静态对象时,我们可以将其提升到组件外部的全局作用域，以此来满足子组件属性的浅层比较。这里我们给输入框添加 label，并指定其样式，通过对比下面两个示例，看下静态对象属性对组件渲染的影响：</p>
 <p>直接传递静态对象属性</p>
 <pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
@@ -582,8 +661,8 @@ ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string
 <p>将<code>labelStyle</code>提升至全局作用域，这样每次组件内部发生变化时，<code>labelStyle</code>并没有变，满足<code>TextInput</code>属性的浅层比较，因此在第一个<code>TextInput</code>值发生改变时，父组件会从缓存中取第二个<code>TextInput</code>的渲染结果，而不是重新渲染。</p>
 <p>火焰图：</p>
 <p><img src="./assets/images/static_object_after.png" alt="static_object_after"></p>
-<h4><a class="anchor" aria-hidden="true" id="children属性"></a><a href="#children属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>children属性</h4>
-<h5><a class="anchor" aria-hidden="true" id="静态-jsx-的优化"></a><a href="#静态-jsx-的优化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>静态<code>JSX</code>的优化</h5>
+<h3><a class="anchor" aria-hidden="true" id="children-属性"></a><a href="#children-属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>children 属性</h3>
+<h4><a class="anchor" aria-hidden="true" id="静态-jsx-的优化"></a><a href="#静态-jsx-的优化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>静态<code>JSX</code>的优化</h4>
 <p>静态<code>JSX</code>优化，可以将静态的<code>Jsx</code>部分提升到组件外部定义：</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
@@ -594,22 +673,23 @@ ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string
 
 <span class="hljs-keyword">const</span> Child = React.memo(ChildInner);
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> childs = (
-    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Child</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">Child</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Child</span>&gt;</span>这是文本<span class="hljs-tag">&lt;/<span class="hljs-name">Child</span>&gt;</span>
-    <span class="hljs-tag">&lt;/&gt;</span>
-  );
+<span class="hljs-keyword">const</span> childs = (
+  <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Child</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">Child</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Child</span>&gt;</span>这是文本<span class="hljs-tag">&lt;/<span class="hljs-name">Child</span>&gt;</span>
+  <span class="hljs-tag">&lt;/&gt;</span>
+);
+
+function Parent() {
   return <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{childs}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
 }
 
 ReactDOM.render(<span class="hljs-tag">&lt;<span class="hljs-name">Parent</span> /&gt;</span>, document.getElementById('root'));
 </span></code></pre>
-<p>在React应用中我们无需手动处理，可以借助<a href="https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements">react-constant-elements工具完成</a>，需要注意的是场此插件只作用于生产环境。</p>
-<h2><a class="anchor" aria-hidden="true" id="使用工具度量react组件性能"></a><a href="#使用工具度量react组件性能" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用工具度量React组件性能</h2>
+<p>在 React 应用中我们无需手动处理，可以借助<a href="https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements">react-constant-elements 工具完成</a>，需要注意的是此插件只作用于生产环境。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用工具度量-react-组件性能"></a><a href="#使用工具度量-react-组件性能" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用工具度量 React 组件性能</h2>
 <h3><a class="anchor" aria-hidden="true" id="react-devtools"></a><a href="#react-devtools" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>react-devtools</h3>
-<p>这里我们主要是用react-devtools的火焰图来做性能分析。</p>
+<p>这里我们主要是用 react-devtools 的火焰图来做性能分析。</p>
 <p>我们以一个具体示例来说明：</p>
 <pre><code class="hljs css language-tsx">import React, { useState, ChangeEvent, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
@@ -654,10 +734,10 @@ import ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string"
 
 ReactDOM.render(&lt;Demo /&gt;, document.getElementById(<span class="hljs-string">'root'</span>));
 </code></pre>
-<p>react-devtools使用方式：</p>
+<p>react-devtools 使用方式：</p>
 <ul>
 <li>运行上述示例</li>
-<li>打开F12控制台，将页签切换至<code>React</code></li>
+<li>打开 F12 控制台，将页签切换至<code>React</code></li>
 <li>将工具条从<code>Elements</code>切换至<code>Profilter</code></li>
 <li>点击小圆点开始分析，改变值使组件重绘点击<code>stop</code>按钮，收集分析结果</li>
 </ul>
@@ -943,4 +1023,4 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <li><a href="https://github.com/facebook/react/issues/10231">[Question] Keep to single setState call?</a></li>
 <li><a href="https://www.youtube.com/watch?v=aS41Y_eyNrU&amp;feature=youtu.be">SMOOSHCAST: React Fiber Deep Dive with Dan Abramov</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-30 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/immutable-getting-started"><span class="arrow-prev">← </span><span>不可变数据</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#组件缓存">组件缓存</a><ul class="toc-headings"><li><a href="#props-浅层比较"><code>props</code>浅层比较</a></li></ul></li><li><a href="#使用工具度量react组件性能">使用工具度量React组件性能</a><ul class="toc-headings"><li><a href="#react-devtools">react-devtools</a></li><li><a href="#performance-分析">performance 分析</a></li><li><a href="#react-perf-devtools">react perf devtools</a></li></ul></li><li><a href="#class-组件的-shouldcomponentupdate">class 组件的 shouldComponentUpdate</a></li><li><a href="#减小视图大小">减小视图大小</a></li><li><a href="#状态更新合并">状态更新合并</a></li><li><a href="#参考资料">参考资料</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-5 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/immutable-getting-started"><span class="arrow-prev">← </span><span>不可变数据</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#组件缓存">组件缓存</a><ul class="toc-headings"><li><a href="#props-浅层比较"><code>props</code>浅层比较</a></li><li><a href="#函数属性">函数属性</a></li><li><a href="#数组-对象属性">数组、对象属性</a></li><li><a href="#children-属性">children 属性</a></li></ul></li><li><a href="#使用工具度量-react-组件性能">使用工具度量 React 组件性能</a><ul class="toc-headings"><li><a href="#react-devtools">react-devtools</a></li><li><a href="#performance-分析">performance 分析</a></li><li><a href="#react-perf-devtools">react perf devtools</a></li></ul></li><li><a href="#class-组件的-shouldcomponentupdate">class 组件的 shouldComponentUpdate</a></li><li><a href="#减小视图大小">减小视图大小</a></li><li><a href="#状态更新合并">状态更新合并</a></li><li><a href="#参考资料">参考资料</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
