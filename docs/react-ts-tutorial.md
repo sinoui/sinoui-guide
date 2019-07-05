@@ -394,3 +394,33 @@ export default Button;
   链接
 </Button>
 ```
+
+## 常用的 React 事件类型
+
+常用事件类型：
+
+- `React.MouseEvent` - 点击事件
+
+- `React.KeyboardEvent` - 键盘事件
+
+- `React.DragEvent` - 拖拽事件
+
+- `React.FocusEvent` - 焦点事件
+
+- `React.ChangeEvent` - 表单类改变、提交事件
+
+- `React.WheelEvent` - 鼠标滚动事件
+
+- `React.TouchEvent` - 触摸事件
+
+用法：
+
+```tsx
+function ButtonDemo() {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log('click');
+  };
+
+  return <button onClick={handleClick}>点击我</button>;
+}
+```
