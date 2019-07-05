@@ -715,13 +715,14 @@ function ChildInner(props: any) {
 
 const Child = React.memo(ChildInner);
 
+const childs = (
+  <>
+    <Child>123</Child>
+    <Child>这是文本</Child>
+  </>
+);
+
 function Parent() {
-  const childs = (
-    <>
-      <Child>123</Child>
-      <Child>这是文本</Child>
-    </>
-  );
   return <div>{childs}</div>;
 }
 
