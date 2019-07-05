@@ -1084,7 +1084,7 @@ item = null; // error
 
 ### 小结
 
-TypeScript 还有很多高阶类型，只是其他类型在日常应用开发中使用的频次不高，这里就不一一介绍，大家可以参考[TypeScript 高级类型](TypeScript高级类型.md)。
+TypeScript 还有很多高阶类型，只是其他类型在日常应用开发中使用的频次不高，这里就不一一介绍，大家可以参考[TypeScript 高级类型](ts-advanced-types.md)。
 
 ## 参考文档
 
