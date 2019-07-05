@@ -709,11 +709,9 @@ ReactDOM.render(<Demo />, document.getElementById('root'));
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function ChildInner(props: any) {
+function Child(props: any) {
   return <p>{props.children}</p>;
 }
-
-const Child = React.memo(ChildInner);
 
 const childs = (
   <>
