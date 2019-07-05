@@ -156,7 +156,7 @@ interface Props {
 <p>推荐：</p>
 <ul>
 <li>明确只能接收单个元素，但是不能包含原始数据（字符串、数字）：使用<code>React.ReactElement</code></li>
-<li>明确职能接收单个元素，但是可包含原始数据（字符串、数字）：使用<code>React.ReactChild</code></li>
+<li>明确只能接收单个元素，但是可包含原始数据（字符串、数字）：使用<code>React.ReactChild</code></li>
 <li>其他的情况一律采用<code>React.ReactNode</code>，即<code>children?: React.ReactNode</code></li>
 </ul>
 <p>在这里不讨论子元素作为渲染函数使用的情况。见下面的章节。</p>
@@ -242,7 +242,50 @@ Greeting.defaultProps = {
   );
 }
 </code></pre>
-<p>看到可以通过泛型的方式指定<code>count</code>状态的类型。</p>
+<p>通过上述示例看出，可以通过泛型的方式指定<code>count</code>状态的类型。</p>
+<h4><a class="anchor" aria-hidden="true" id="setstate-的类型声明需要注意的点"></a><a href="#setstate-的类型声明需要注意的点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>setState</code>的类型声明需要注意的点</h4>
+<h5><a class="anchor" aria-hidden="true" id="创建状态时的类型声明"></a><a href="#创建状态时的类型声明" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建状态时的类型声明</h5>
+<p>如果我们在创建状态时，不指定初始状态，推荐使用下面的方式：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">interface</span> User {
+  userName: <span class="hljs-built_in">string</span>;
+  userId: <span class="hljs-built_in">string</span>;
+  duty: <span class="hljs-built_in">string</span>;
+  age: <span class="hljs-built_in">number</span>;
+  fav: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UserInfo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [userInfo, setUserInfo] = useState&lt;User | <span class="hljs-literal">undefined</span>&gt;();
+}
+</code></pre>
+<p>如果你想给一个与<code>User</code>类型不一致的空对象，可以这样声明：</p>
+<pre><code class="hljs css language-tsx">const [<span class="hljs-keyword">user</span>Info, <span class="hljs-built_in">set</span>UserInfo] = useState<span class="hljs-variable">&lt;Partial&lt;User&gt;</span>&gt;({});
+</code></pre>
+<p><code>Partial&lt;User&gt;</code>相当于<code>User</code>的属性都是可选的：</p>
+<pre><code class="hljs css language-ts">Partial&lt;User&gt;==={
+  userName?: <span class="hljs-built_in">string</span>;
+  userId?: <span class="hljs-built_in">string</span>;
+  duty?: <span class="hljs-built_in">string</span>;
+  age?: <span class="hljs-built_in">number</span>;
+  fav?: <span class="hljs-built_in">string</span>;
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="setuserinfo-怎么置空"></a><a href="#setuserinfo-怎么置空" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setUserInfo()怎么置空？</h5>
+<p>如果我们使用<code>&lt;User | undefined&gt;</code>的方式定义，那么可以直接置为<code>undefined</code>。</p>
+<pre><code class="hljs css language-ts">setUserInfo(<span class="hljs-literal">undefined</span>);
+</code></pre>
+<p>如果使用第二种方式定义，则可以直接设置为空对象：</p>
+<pre><code class="hljs css language-ts">setUserInfo({});
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="userinfo-取值处理"></a><a href="#userinfo-取值处理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>userInfo 取值处理</h5>
+<p>如果在创建状态类型时采用第一种方式，使用<code>userInfo</code>这个对象的属性值时，很可能会遇到“对象可能未定义”的检验错误，此时我们有两种解决方式：</p>
+<p>方式一：如果确定在使用<code>userInfo</code>对象时,<code>userInfo</code>不是<code>undefined</code>，可以直接使用<a href="https://sinoui.github.io/sinoui-guide/docs/ts-tutorial#ts-%E9%9D%9E%E7%A9%BA%E6%96%AD%E8%A8%80%E5%85%B3%E9%94%AE%E5%AD%97">非空断言关键字</a>。</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> userId = userInfo!.userId;
+</code></pre>
+<p>方式二：如果不能确定使用时，<code>userInfo</code>一定存在，那就需要条件判断</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> userId = userInfo ? userInfo.userId : <span class="hljs-string">''</span>;
+</code></pre>
+<p>推荐使用第二种方式。</p>
 <h3><a class="anchor" aria-hidden="true" id="usereducer"></a><a href="#usereducer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useReducer</h3>
 <p><a href="https://reactjs.org/docs/hooks-reference.html#usereducer">useReducer</a>也可以管理组件的状态，如下所示：</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-comment">/**
@@ -382,4 +425,30 @@ interface Props&lt;ElementType&gt; {
   链接
 &lt;/<span class="hljs-keyword">Button</span>&gt;
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-3 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-tutorial"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript简明教程</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-advanced-types"><span class="function-name-prevnext">TypeScript高级类型</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#函数组件">函数组件</a><ul class="toc-headings"><li><a href="#回调函数属性">回调函数属性</a></li><li><a href="#子元素-children">子元素（children）</a></li><li><a href="#reactsfc">React.SFC</a></li><li><a href="#属性默认值">属性默认值</a></li><li><a href="#状态">状态</a></li><li><a href="#usereducer">useReducer</a></li></ul></li><li><a href="#类组件">类组件</a></li><li><a href="#组件泛型">组件泛型</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+<h2><a class="anchor" aria-hidden="true" id="常用的-react-事件类型"></a><a href="#常用的-react-事件类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>常用的 React 事件类型</h2>
+<p>常用事件类型：</p>
+<ul>
+<li><p><code>React.MouseEvent</code> - 点击事件</p></li>
+<li><p><code>React.KeyboardEvent</code> - 键盘事件</p></li>
+<li><p><code>React.DragEvent</code> - 拖拽事件</p></li>
+<li><p><code>React.FocusEvent</code> - 焦点事件</p></li>
+<li><p><code>React.ChangeEvent</code> - 表单域值变更事件</p></li>
+<li><p><code>React.FormEvent</code> - 表单提交事件</p></li>
+<li><p><code>React.WheelEvent</code> - 鼠标滚动事件</p></li>
+<li><p><code>React.TouchEvent</code> - 触摸事件</p></li>
+</ul>
+<p>用法：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ButtonDemo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function">(<span class="hljs-params">event: React.MouseEvent&lt;HTMLButtonElement&gt;</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'click'</span>);
+  };
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>点击我<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+}
+</code></pre>
+<p>如何查找:</p>
+<pre><code class="hljs css language-text">输入 React.
+</code></pre>
+<p>如图</p>
+<p><img src="/sinoui-guide/docs/assets/images/react-ts-tutorial-event.png" alt=""></p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-5 by chenaihua</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-tutorial"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript简明教程</span></a><a class="docs-next button" href="/sinoui-guide/docs/ts-advanced-types"><span class="function-name-prevnext">TypeScript高级类型</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#函数组件">函数组件</a><ul class="toc-headings"><li><a href="#回调函数属性">回调函数属性</a></li><li><a href="#子元素-children">子元素（children）</a></li><li><a href="#reactsfc">React.SFC</a></li><li><a href="#属性默认值">属性默认值</a></li><li><a href="#状态">状态</a></li><li><a href="#usereducer">useReducer</a></li></ul></li><li><a href="#类组件">类组件</a></li><li><a href="#组件泛型">组件泛型</a></li><li><a href="#常用的-react-事件类型">常用的 React 事件类型</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
