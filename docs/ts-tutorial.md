@@ -1012,6 +1012,27 @@ function loggingIdentity<T extends Lengthwise = Lengthwise>(arg: T): T {
 
 ## 高级类型
 
+### 类型别名
+
+我们可以用`type`关键字来给类型取别名。
+
+```typescript
+type Name = string;
+type NameResolver = () => string;
+type NameOrResolver = Name | NameResolver;
+
+function getName(n: NameOrResolver): Name {
+  if (typeof n === 'string') {
+    return n;
+  } else {
+    return n();
+  }
+}
+```
+
+注意：不建议使用`type`定义接口类型，应使用`interface`来定义接口类型。`type`通常用在需要做类型运算的场景中。
+
+
 ### 相交类型
 
 ```typescript
@@ -1061,183 +1082,9 @@ item = null; // error
 
 使用`|`表示联合类型，`string | number | undefined`表示只能是`string`、`number`、`undefined`三者之一。
 
-### 类型保护
-
-我们要开发一个程序，管理家里的宠物，目前有以下宠物：
-
-```typescript
-interface Pet {
-  name: string;
-}
-
-interface Fish extends Pet {
-  swim(): void;
-}
-
-interface Bird extends Pet {
-  fly(): void;
-}
-
-let fish: Fish = {
-  name: 'fish',
-  swim() {
-    console.log('fish is swiming');
-  },
-};
-
-let bird: Bird = {
-  name: 'bird',
-  fly() {
-    console.log('bird is flying');
-  },
-};
-
-const pets: Pet[] = [fish, bird];
-```
-
-我现在要让鱼游泳、鸟飞翔，代码如下：
-
-```typescript
-pets.forEach((pet) => {
-  if (pet.swim) {
-    pet.swim();
-  } else if (pet.fly) {
-    pet.fly();
-  }
-});
-```
-
-这段代码的`pet.swim`和`pet.fly`都会报引用错误。这是因为`pet`是`Pet`类型的，而`Pet`类型上是没有`swim`和`fly`方法。
-
-我们可以使用[类型断言](#类型断言)来解决这个问题：
-
-```typescript
-pets.forEach((pet) => {
-  if ((pet as Fish).swim) {
-    (pet as Fish).swim();
-  } else if ((pet as Bird).fly) {
-    (pet as Bird).fly();
-  }
-});
-```
-
-我们还可以用**类型保护**的方式来解决这个问题：
-
-```typescript
-function isFish(pet: Pet): pet is Fish {
-  return (pet as Fish).swim !== undefined;
-}
-
-function isBird(pet: Pet): pet is Bird {
-  return (pet as Bird).fly !== undefined;
-}
-
-pets.forEach((pet) => {
-  if (isFish(pet)) {
-    pet.swim();
-  } else if (isBird(pet)) {
-    pet.fly();
-  }
-});
-```
-
-`pet is Fish`称之为类型谓词。如果`isFish(pet)`返回`true`，则表示`pet`参数为`Fish`类型。类型谓词是用来断言函数参数的类型的，形式是`parameterName is Type`。
-
-### 类型保护中的类型推论
-
-在类型保护中可以应用类型推论。我们调整一下`pets`的类型声明为：
-
-```typescript
-const pets: (Fish | Bird)[] = [fish, bird];
-```
-
-那么我们的程序可以简化为：
-
-```typescript
-function isFish(pet: Pet): pet is Fish {
-  return (pet as Fish).swim !== undefined;
-}
-
-pets.forEach((pet) => {
-  if (isFish(pet)) {
-    pet.swim();
-  } else {
-    pet.fly();
-  }
-});
-```
-
-因为`pet`不是`Fish`类型的就是`Bird`类型的，所以当`isFish(pet)`为`false`，则表示`pet`是`Bird`类型。TypeScript 就是通过这个显而易见的规则来做类型推论的。这个技巧有一个专有名词：**类型收窄**（**narrow type**）。
-
-### `in`操作符
-
-`in`操作符在TypeScript中同时扮演着**缩小类型的职责**：
-
-```typescript
-pets.forEach((pet) => {
-  if ('swim' in pet) {
-    pet.swim();
-  } else {
-    pet.fly();
-  }
-});
-```
-
-### `typeof`操作符
-
-`typeof variable === '类型名称'`表达式明确告知 TypeScript 变量`variable`的类型，起到类型保护的作用：
-
-```typescript
-function log(value: string | number) {
-  if (typeof value === 'string') {
-    console.log(`'${value}' is a string`);
-  } else {
-    console.log(`${value} is a number`);
-  }
-}
-```
-
-### `instanceof` 操作符
-
-`variable instanceof Type`告知 TypeScript 变量`variable`的类型为`Type`，起到类型保护的作用：
-
-```typescript
-class Fish {
-  swim() {
-    console.log('fish is swiming');
-  }
-}
-
-class Bird {
-  fly() {
-    console.log('bird is flying');
-  }
-}
-
-function move(pet: Fish | Bird) {
-  if (pet instanceof Fish) {
-    pet.swim();
-  } else {
-    pet.fly();
-  }
-}
-```
-
-### 空类型的类型保护
-
-```typescript
-function log(value: string | null) {
-  if (value == null) {
-    console.log('value is null');
-  } else {
-    console.log('value is string');
-  }
-}
-```
-
 ### 小结
 
-TypeScript 还有很多高阶类型，只是其他类型在日常应用开发中使用的频次不高，这里就不一一介绍，大家可以参考[官方文档](http://www.typescriptlang.org/docs/handbook/advanced-types.html)。
+TypeScript 还有很多高阶类型，只是其他类型在日常应用开发中使用的频次不高，这里就不一一介绍，大家可以参考[TypeScript 高级类型](TypeScript高级类型.md)。
 
 ## 参考文档
 
