@@ -460,6 +460,93 @@ function HelloWorldPage(props) {
 export default withRouter(HelloWorldPage);
 ```
 
+### 4. `嵌套路由中子路由组件如何共享到父路由状态`
+
+App.tsx:
+
+```tsx
+<Router>
+  <Link to="/parent/path/:id">路由</Link>
+  <Route path="/parent/path/:id" component={ParentComponent} />
+</Router>
+```
+
+ParentComponent.tsx:
+
+```tsx
+<Router>
+  <Route path="detail" component={ChildComponent} />
+</Router>
+```
+
+ChildComponent.tsx:
+
+```tsx
+function ChildComponent(props: Props) {
+  // 如果获取到父路由中的定义的:id呢？
+}
+```
+
+方案：通过 React Context 上下文传递路径参数 id。
+
+代码示例：
+
+1. 创建上下文
+
+   ```ts
+   import React from 'react';
+
+   const ParentComponentContext = React.createContext({ id: '' });
+
+   export default ParentComponentContext;
+   ```
+
+2. 将路径参数放入到上下文中
+
+   ```tsx
+   import React, { useMemo } from 'react';
+   import { Router } from 'react-router';
+   import { Route, Link, withRouter } from 'react-router-dom';
+   import ChildComponent from './ChildComponent';
+   import ParentComponentContext from './ParentComponentContext';
+   import createHistory from 'history/createBrowserHistory';
+
+   const history = createHistory();
+
+   function ParentComponent(props: any) {
+     const { id } = props.match.params;
+     const context = useMemo(() => ({ id }), [id]);
+
+     return (
+       <ParentComponentContext.Provider value={context}>
+         <Router history={history}>
+           <Link to="/detail">子路由</Link>
+           <Route path="/detail" component={ChildComponent} />
+         </Router>
+       </ParentComponentContext.Provider>
+     );
+   }
+
+   export default withRouter(ParentComponent);
+   ```
+
+3. 在子组件中通过上下文获取路径参数
+
+   ```tsx
+   import React, { useContext } from 'react';
+   import ParentComponentContext from './ParentComponentContext';
+
+   function ChildComponent() {
+     const { id } = useContext(ParentComponentContext);
+
+     return <div>{id}</div>;
+   }
+
+   export default ChildComponent;
+   ```
+
+模板：<https://codesandbox.io/s/eloquent-austin-mc4ks>
+
 ### 小结
 
 路径参数和请求参数的方式适合传递少量的数据，history state 适合传递完整的数据对象。
