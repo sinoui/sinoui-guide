@@ -47,6 +47,7 @@
       "polyfill"
     ],
     "Node.js": ["nodejs", "express-guide"],
-    "HTML5": ["calculate-video-duration", "calculate-md5"]
+    "HTML5": ["calculate-video-duration", "calculate-md5"],
+    "规范": ["doc-of-api-standard"]
   }
 }
