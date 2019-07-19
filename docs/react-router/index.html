@@ -10,7 +10,7 @@
             {"zIndex":100}
           )
         });
-        </script><script src="/sinoui-guide/js/scrollSpy.js"></script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>应用开发指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">应用开发指南<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/app-dev-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/restful-api">RESTful API规则说明</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-router">React Router 使用教程</a></li></ul></div></div></section></div><script>
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>应用开发指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">应用开发指南<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/app-dev-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/restful-api">RESTful API规则说明</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/react-router">React Router 使用教程</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -38,16 +38,10 @@
               createToggler('#navToggler', '#docsNav', 'docsSliderActive');
               createToggler('#tocToggler', 'body', 'tocActive');
 
-              var headings = document.querySelector('.toc-headings');
+              const headings = document.querySelector('.toc-headings');
               headings && headings.addEventListener('click', function(event) {
-                var el = event.target;
-                while(el !== headings){
-                  if (el.tagName === 'A') {
-                    document.body.classList.remove('tocActive');
-                    break;
-                  } else{
-                    el = el.parentNode;
-                  }
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
                 }
               }, false);
 
@@ -479,22 +473,22 @@ export default withRouter(HelloWorldPage);
 
 <span class="hljs-keyword">const</span> history = createHistory();
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ParentComponent</span>(<span class="hljs-params">props: any</span>) </span>{
+<span class="hljs-keyword">function</span> ParentComponent(props: any) {
   <span class="hljs-keyword">const</span> { id } = props.match.params;
-  <span class="hljs-keyword">const</span> context = useMemo(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ id }), [id]);
+  <span class="hljs-keyword">const</span> context = useMemo(() =&gt; ({ id }), [id]);
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ParentComponentContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{context}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Router</span> <span class="hljs-attr">history</span>=<span class="hljs-string">{history}</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/detail"</span>&gt;</span>子路由<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/detail"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{ChildComponent}</span> /&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ParentComponentContext.Provider</span>&gt;</span>
+    &lt;ParentComponentContext.Provider value={context}&gt;
+      &lt;Router history={history}&gt;
+        &lt;Link <span class="hljs-keyword">to</span>=<span class="hljs-string">"/detail"</span>&gt;子路由&lt;/Link&gt;
+        &lt;Route path=<span class="hljs-string">"/detail"</span> component={ChildComponent} /&gt;
+      &lt;/Router&gt;
+    &lt;/ParentComponentContext.Provider&gt;
   );
 }
 
-export default withRouter(ParentComponent);
-</span></code></pre></li>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withRouter(ParentComponent);
+</code></pre></li>
 <li><p>在子组件中通过上下文获取路径参数</p>
 <pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useContext } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ParentComponentContext <span class="hljs-keyword">from</span> <span class="hljs-string">'./ParentComponentContext'</span>;

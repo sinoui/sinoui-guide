@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>节流和防抖 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;节流和防抖都是为了解决短时间内大量触发某函数而导致的性能问题，比如触发频率过高导致的响应速度跟不上触发频率，出现延迟、假死或卡顿的现象。但二者应对的业务需求不一样。下面会以 lodash 的 debounce 和 throttle 方法来进行说明。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="节流和防抖 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;节流和防抖都是为了解决短时间内大量触发某函数而导致的性能问题，比如触发频率过高导致的响应速度跟不上触发频率，出现延迟、假死或卡顿的现象。但二者应对的业务需求不一样。下面会以 lodash 的 debounce 和 throttle 方法来进行说明。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>语言篇</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook-test">自定义react hook 测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/polyfill">polyfill</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/debounce-and-throttle-guide">节流和防抖</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node.js<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/nodejs">Node.js文件操作</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/express-guide">Express入门</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML5<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-video-duration">计算视频时长</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-md5">计算md5</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">规范<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/doc-of-api-standard">接口相关API文档编写规范</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">节流和防抖</h1></header><article><div><span><p>节流和防抖都是为了解决短时间内大量触发某函数而导致的性能问题，比如触发频率过高导致的响应速度跟不上触发频率，出现延迟、假死或卡顿的现象。但二者应对的业务需求不一样。下面会以 lodash 的 debounce 和 throttle 方法来进行说明。</p>
+<h2><a class="anchor" aria-hidden="true" id="防抖-debounce"></a><a href="#防抖-debounce" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>防抖（debounce）</h2>
+<p>在事件被触发 n 秒后在执行回调函数，如果在这 n 秒内又被触发，则重新计时。</p>
+<h3><a class="anchor" aria-hidden="true" id="debounce-应用场景"></a><a href="#debounce-应用场景" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>debounce 应用场景</h3>
+<ol>
+<li>用户在输入框中连续输入一串字符后，只会在输入完后执行最后一次的查询 ajax 请求，这样可以有效减少请求次数，节约请求资源</li>
+<li>window 的 resize，scroll 事件，不断地调整浏览器的窗口大小，或者滚动式会触发对应事件，防抖让其只触发一次</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="节流-throttle"></a><a href="#节流-throttle" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>节流（throttle）</h2>
+<p>规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某时间被触发多次，只有一次能生效</p>
+<h3><a class="anchor" aria-hidden="true" id="throttle-应用场景"></a><a href="#throttle-应用场景" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>throttle 应用场景</h3>
+<ol>
+<li>鼠标连续不断的触发某事件（如点击），只在单位时间内触发一次</li>
+<li>在页面的无限加载场景下，需要用户在滚动页面时，每隔一段时间触发一次 ajax 请求，而不是在用户停下滚动页面操作时才去请求数据</li>
+<li>监听滚动事件，比如是否滑到底部自动加载更多，用 throttle 来判断</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="示例代码"></a><a href="#示例代码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例代码</h2>
+<p>下面示例简单描述一个根据输入框内容去获取后端查询结果的场景。对于 throttle 和 debounce 方法均适用</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React, { useState, useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> debounce <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/debounce'</span>;
+
+<span class="hljs-keyword">const</span> sourceArr = <span class="hljs-built_in">Array</span>.from({ <span class="hljs-attr">length</span>: <span class="hljs-number">20</span> }).map(
+  <span class="hljs-function">(<span class="hljs-params">item, idx</span>) =&gt;</span> <span class="hljs-string">`测试数据<span class="hljs-subst">${idx}</span>`</span>,
+);
+
+<span class="hljs-comment">// 模拟后端查询的接口与返回数据</span>
+<span class="hljs-keyword">const</span> doSomeQuery = <span class="hljs-keyword">async</span> (text) =&gt; {
+  <span class="hljs-keyword">return</span> sourceArr.filter(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Math</span>.random() &gt; <span class="hljs-number">0.7</span>);
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [text, setText] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> [queryResult, setQueryResult] = useState([]);
+
+  <span class="hljs-keyword">const</span> handleChange = useCallback(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> value = e.target.value;
+    setText(value);
+    query(value);
+  }, []);
+
+  <span class="hljs-keyword">const</span> query = useCallback(
+    debounce(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+      doSomeQuery(value).then(<span class="hljs-function">(<span class="hljs-params">newValue</span>) =&gt;</span> setQueryResult(newValue));
+    }, <span class="hljs-number">1000</span>),
+    [],
+  );
+
+  <span class="hljs-keyword">return</span> (
+    &lt;&gt;
+      &lt;input type="text" value={text} onChange={handleChange} /&gt;
+      {queryResult.map((item) =&gt; (
+        &lt;div key={item}&gt;{item}&lt;/div&gt;
+      ))}
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="与-hooks-的配合使用过程中遇到的问题"></a><a href="#与-hooks-的配合使用过程中遇到的问题" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>与 hooks 的配合使用过程中遇到的问题</h2>
+<h3><a class="anchor" aria-hidden="true" id="直接使用-throttle-不起作用"></a><a href="#直接使用-throttle-不起作用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>直接使用 throttle 不起作用</h3>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> handleChange = throttle(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-comment">// 每次change事件都会触发此方法，设置的delay没有效果</span>
+  setText(e.target.value);
+}, <span class="hljs-number">1000</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="debounce-方法使用-event-事件对象做为参数"></a><a href="#debounce-方法使用-event-事件对象做为参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>debounce 方法使用 event 事件对象做为参数</h3>
+<p>触发 handleChange 事件， event 对象会发生变化，导致程序报错</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> handleChange = debounce(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-comment">// 下面的代码执行会报错: TypeError: Cannot read property 'value' of null</span>
+  setText(e.target.value);
+}, <span class="hljs-number">1000</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="与-usecallback-方法结合使用-throttle-方法使用-event-事件对象做为参数"></a><a href="#与-usecallback-方法结合使用-throttle-方法使用-event-事件对象做为参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>与 useCallback 方法结合使用。throttle 方法使用 event 事件对象做为参数</h3>
+<p>时间间隔之内多次触发 handleChange 事件， event 对象会发生变化，导致程序报错</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> handleChange = useCallback(
+  throttle(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    <span class="hljs-comment">// 下面的代码执行会报错: TypeError: Cannot read property 'value' of null</span>
+    setText(e.target.value);
+  }, <span class="hljs-number">1000</span>),
+  [],
+);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="相应的解决方案"></a><a href="#相应的解决方案" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>相应的解决方案</h3>
+<ol>
+<li>使用明确的值替换 event 事件对象。</li>
+<li>可以将整个大方法进行切割，只对性能影响最大的部分进行防抖或节流的处理</li>
+<li>使用 useCallback 来缓存方法。在 hook 函数中单独使用 throttle 方法不起作用是因为每次 hooks 引起 function 组件重新渲染的时候，throttle 方法会被重新生成，导致方法失效,所以可以使用 useCallback 来缓存方法</li>
+</ol>
+<p>具体方式可参考<a href="#示例代码">示例代码</a></p>
+<h2><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h2>
+<ul>
+<li><p>效果</p>
+<p>函数防抖就是触发事件后在 n 秒内只能执行一次，如果在 n 秒内又触发了该事件，则会重新计算函数执行时间；而函数节流是间隔时间执行，不管事件触发有多频繁，都会保证在规定时间内只执行一次</p></li>
+<li><p>原理</p>
+<p>防抖是维护一个计时器，规定在 delay 时间后触发函数，但是在 delay 时间内再次触发的话，都会清除当前的 timer 然后重新设置超时调用，即重新计时。这样只有最后一次操作能被触发。
+节流是通过判断是否达到一定时间来触发函数，若没到规定时间则使用计时器延后，而下一次事件则会重新设定计时器</p></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-19 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/polyfill"><span class="arrow-prev">← </span><span>polyfill</span></a><a class="docs-next button" href="/sinoui-guide/docs/nodejs"><span>Node.js文件操作</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#防抖-debounce">防抖（debounce）</a><ul class="toc-headings"><li><a href="#debounce-应用场景">debounce 应用场景</a></li></ul></li><li><a href="#节流-throttle">节流（throttle）</a><ul class="toc-headings"><li><a href="#throttle-应用场景">throttle 应用场景</a></li></ul></li><li><a href="#示例代码">示例代码</a></li><li><a href="#与-hooks-的配合使用过程中遇到的问题">与 hooks 的配合使用过程中遇到的问题</a><ul class="toc-headings"><li><a href="#直接使用-throttle-不起作用">直接使用 throttle 不起作用</a></li><li><a href="#debounce-方法使用-event-事件对象做为参数">debounce 方法使用 event 事件对象做为参数</a></li><li><a href="#与-usecallback-方法结合使用-throttle-方法使用-event-事件对象做为参数">与 useCallback 方法结合使用。throttle 方法使用 event 事件对象做为参数</a></li><li><a href="#相应的解决方案">相应的解决方案</a></li></ul></li><li><a href="#小结">小结</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
