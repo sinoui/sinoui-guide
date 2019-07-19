@@ -44,6 +44,7 @@
       "ts-function-overloading",
       "jest-introduction",
       "react-component-test-guide",
+      "react-hook-test",
       "polyfill",
       "debounce-and-throttle-guide"
     ],
