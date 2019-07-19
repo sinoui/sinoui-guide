@@ -82,6 +82,33 @@ async function ensureFileFn() {
 }
 ```
 
+### 合并文件
+
+将文件 A 的内容合并到文件 B 的末尾。可以使用[Stream](https://nodejs.org/api/stream.html)方式处理文件合并。代码如下所示：
+
+```js
+import { createReadStream, createWriteStream } from 'fs';
+
+function mergeFile(from, to) {
+  return new Promise((resolve, reject) => {
+    const fromStream = createReadStream(from);
+    const toStream = createWriteStream(to, {
+      flags: 'a',
+    });
+
+    const stream = fromStream.pipe(toStream);
+
+    stream.on('end', () => {
+      resolve();
+    });
+
+    stream.on('error', (error) => {
+      reject(error);
+    });
+  });
+}
+```
+
 ## 总结
 
 此篇文章主要列出了项目中用到的几个 Api,更多操作文件的 Api,我们后续会继续补充。
