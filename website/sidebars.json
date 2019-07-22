@@ -27,7 +27,12 @@
     "React进阶": ["react-performance-optimization"]
   },
   "app-dev": {
-    "应用开发指南": ["app-dev-index", "restful-api", "react-router"]
+    "应用开发指南": [
+      "app-dev-index",
+      "restful-api",
+      "react-router",
+      "interacting-with-the-black-end-guide"
+    ]
   },
   "articles": {
     "工具篇": [
