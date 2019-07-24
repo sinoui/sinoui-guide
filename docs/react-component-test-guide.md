@@ -24,7 +24,7 @@ sidebar_label: 测试React组件
 
 ```shell
 yarn add @types/react @types/react-dom react react-dom @sinoui/http @sinoui/use-data-api
-yarn add @testing-library/react jest-dom --dev
+yarn add @testing-library/react @testing-library/jest-dom --dev
 ```
 
 ## 例子一枚
@@ -54,7 +54,7 @@ function Example() {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 import Counter from './Counter';
 
 let container: HTMLDivElement;
@@ -94,7 +94,7 @@ it('渲染并更新计数', () => {
 ```tsx
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 import Counter from './Counter';
 
 afterEach(cleanup);
@@ -228,7 +228,7 @@ fireEvent.click(button);
 
 #### 验证生成的 DOM
 
-使用[jest-dom](https://github.com/testing-library/jest-dom)来验证生成的 DOM。
+使用[@testing-library/jest-dom](https://github.com/testing-library/jest-dom)来验证生成的 DOM。
 
 例子 1：`.toHaveTextContent`验证 DOM 节点是否包含指定的文本内容：
 
@@ -250,7 +250,7 @@ expect(getByTestId('button')).toHaveClass('btn', 'btn--disabled');
 expect(getByTestId('button')).toContainHTML('<icon>button</icon>点击');
 ```
 
-还有很多这样的方法，请参考[jest-dom](https://github.com/testing-library/jest-dom)的说明。
+还有很多这样的方法，请参考[@testing-library/jest-dom](https://github.com/testing-library/jest-dom)的说明。
 
 ### 小结
 
@@ -263,7 +263,7 @@ expect(getByTestId('button')).toContainHTML('<icon>button</icon>点击');
 
 [react-testing-library](https://github.com/testing-library/react-testing-library)能帮助我们简化 React 组件测试，推荐使用。
 
-[jest-dom](https://github.com/testing-library/jest-dom)能帮助你快速写出 DOM 状态断言（即：快速验证 DOM 是否符合预期），推荐使用。
+[@testing-library/jest-dom](https://github.com/testing-library/jest-dom)能帮助你快速写出 DOM 状态断言（即：快速验证 DOM 是否符合预期），推荐使用。
 
 ## 更复杂一点的例子
 
