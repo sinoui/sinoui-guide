@@ -51,7 +51,8 @@
       "react-component-test-guide",
       "react-hook-test",
       "polyfill",
-      "debounce-and-throttle-guide"
+      "debounce-and-throttle-guide",
+      "js-is-number"
     ],
     "Node.js": ["nodejs", "express-guide"],
     "HTML5": ["calculate-video-duration", "calculate-md5"],
