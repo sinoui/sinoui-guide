@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>自定义react hook 测试 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;我们可以使用&lt;a href=&quot;https://github.com/mpeyper/react-hooks-testing-library&quot;&gt;react-hooks-testing-library&lt;/a&gt;测试&lt;a href=&quot;https://zh-hans.reactjs.org/docs/hooks-custom.html&quot;&gt;自定义的 React Hook&lt;/a&gt;。&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="自定义react hook 测试 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;我们可以使用&lt;a href=&quot;https://github.com/mpeyper/react-hooks-testing-library&quot;&gt;react-hooks-testing-library&lt;/a&gt;测试&lt;a href=&quot;https://zh-hans.reactjs.org/docs/hooks-custom.html&quot;&gt;自定义的 React Hook&lt;/a&gt;。&lt;/p&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>自定义react hook 测试 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;我们可以使用&lt;a href=&quot;https://github.com/mpeyper/react-hooks-testing-library&quot;&gt;@testing-library/react-hooks&lt;/a&gt;测试&lt;a href=&quot;https://zh-hans.reactjs.org/docs/hooks-custom.html&quot;&gt;自定义的 React Hook&lt;/a&gt;。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="自定义react hook 测试 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;我们可以使用&lt;a href=&quot;https://github.com/mpeyper/react-hooks-testing-library&quot;&gt;@testing-library/react-hooks&lt;/a&gt;测试&lt;a href=&quot;https://zh-hans.reactjs.org/docs/hooks-custom.html&quot;&gt;自定义的 React Hook&lt;/a&gt;。&lt;/p&gt;
 "/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -62,9 +62,9 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">自定义react hook 测试</h1></header><article><div><span><p>我们可以使用<a href="https://github.com/mpeyper/react-hooks-testing-library">react-hooks-testing-library</a>测试<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html">自定义的 React Hook</a>。</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">自定义react hook 测试</h1></header><article><div><span><p>我们可以使用<a href="https://github.com/mpeyper/react-hooks-testing-library">@testing-library/react-hooks</a>测试<a href="https://zh-hans.reactjs.org/docs/hooks-custom.html">自定义的 React Hook</a>。</p>
 <p>先安装依赖：</p>
-<pre><code class="hljs css language-shell">yarn add react-test-renderer react-hooks-testing-library --dev
+<pre><code class="hljs css language-shell">yarn add react-test-renderer @testing-library/react-hooks --dev
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="例子-计数-hook"></a><a href="#例子-计数-hook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子：计数 hook</h3>
 <p>看一个计数 hook 的例子：</p>
@@ -84,7 +84,7 @@
 </code></pre>
 <p>单元测试如下：</p>
 <p><code>useCounter.spec.ts</code>:</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-hooks-testing-library'</span>;
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react-hooks'</span>;
 <span class="hljs-keyword">import</span> useCounter <span class="hljs-keyword">from</span> <span class="hljs-string">'./useCounter'</span>;
 
 it(<span class="hljs-string">'增加计数'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
@@ -163,7 +163,7 @@ it(<span class="hljs-string">'减少计数'</span>, <span class="hljs-function">
 </code></pre>
 <p><code>useFetchUsers.spec.ts</code>:</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
-<span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-hooks-testing-library'</span>;
+<span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react-hooks'</span>;
 <span class="hljs-keyword">import</span> useFetchUsers <span class="hljs-keyword">from</span> <span class="hljs-string">'./useFetchUsers'</span>;
 
 jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
@@ -208,7 +208,7 @@ it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyw
 <pre><code class="hljs css language-json">{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"@sinoui/use-rest-page-api"</span>,
   <span class="hljs-attr">"devDependencies"</span>: {
-    <span class="hljs-attr">"react-hooks-testing-library"</span>: <span class="hljs-string">"^0.5.0"</span>,
+    <span class="hljs-attr">"@testing-library/react-hooks"</span>: <span class="hljs-string">"^1.1.0"</span>,
     <span class="hljs-attr">"react-test-renderer"</span>: <span class="hljs-string">"^16.9.0-alpha.0"</span>,
     <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.9.0-alpha.0"</span>
   },
@@ -221,7 +221,7 @@ it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyw
 <p>然后执行<code>yarn intall</code>，安装依赖。</p>
 <p>最后，将单元测试中的<code>await waitForNextUpdate()</code>更换成<code>await act(waitFormNextUpdate)</code>，如下所示：</p>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinoui/http'</span>;
-<span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-hooks-testing-library'</span>;
+<span class="hljs-keyword">import</span> { renderHook, act } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react-hooks'</span>;
 <span class="hljs-keyword">import</span> useFetchUsers <span class="hljs-keyword">from</span> <span class="hljs-string">'./useFetchUsers'</span>;
 
 jest.mock(<span class="hljs-string">'@sinoui/http'</span>);
@@ -240,4 +240,4 @@ it(<span class="hljs-string">'获取用户数据'</span>, <span class="hljs-keyw
   expect(result.current[<span class="hljs-number">0</span>]).toEqual({ userId: <span class="hljs-string">'1'</span>, userName: <span class="hljs-string">'张三'</span> });
 });
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-19 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-component-test-guide"><span class="arrow-prev">← </span><span>测试React组件</span></a><a class="docs-next button" href="/sinoui-guide/docs/polyfill"><span>polyfill</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-26 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-component-test-guide"><span class="arrow-prev">← </span><span>测试React组件</span></a><a class="docs-next button" href="/sinoui-guide/docs/polyfill"><span>polyfill</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
