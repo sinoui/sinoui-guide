@@ -4,12 +4,12 @@ title: 自定义react hook 测试
 sidebar_label: 自定义react hook 测试
 ---
 
-我们可以使用[react-hooks-testing-library](https://github.com/mpeyper/react-hooks-testing-library)测试[自定义的 React Hook](https://zh-hans.reactjs.org/docs/hooks-custom.html)。
+我们可以使用[@testing-library/react-hooks](https://github.com/mpeyper/react-hooks-testing-library)测试[自定义的 React Hook](https://zh-hans.reactjs.org/docs/hooks-custom.html)。
 
 先安装依赖：
 
 ```shell
-yarn add react-test-renderer react-hooks-testing-library --dev
+yarn add react-test-renderer @testing-library/react-hooks --dev
 ```
 
 ### 例子：计数 hook
@@ -38,7 +38,7 @@ export default useCounter;
 `useCounter.spec.ts`:
 
 ```ts
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useCounter from './useCounter';
 
 it('增加计数', () => {
@@ -125,7 +125,7 @@ export default useFetchUsers;
 
 ```ts
 import http from '@sinoui/http';
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useFetchUsers from './useFetchUsers';
 
 jest.mock('@sinoui/http');
@@ -177,7 +177,7 @@ it('获取用户数据', async () => {
 {
   "name": "@sinoui/use-rest-page-api",
   "devDependencies": {
-    "react-hooks-testing-library": "^0.5.0",
+    "@testing-library/react-hooks": "^1.1.0",
     "react-test-renderer": "^16.9.0-alpha.0",
     "react": "^16.9.0-alpha.0"
   },
@@ -195,7 +195,7 @@ it('获取用户数据', async () => {
 
 ```ts
 import http from '@sinoui/http';
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useFetchUsers from './useFetchUsers';
 
 jest.mock('@sinoui/http');
