@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>与后端交互引用 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;经过大家共同努力，目前我们已经拥有若干支持前后端交互的、稳定的公共资源库，下面我们简单介绍几个主要库的使用场景：&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="与后端交互引用 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;经过大家共同努力，目前我们已经拥有若干支持前后端交互的、稳定的公共资源库，下面我们简单介绍几个主要库的使用场景：&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/sinoui-guide/js/scrollSpy.js"></script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>应用开发指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">应用开发指南<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/app-dev-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/restful-api">RESTful API规则说明</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-router">React Router 使用教程</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/interacting-with-the-black-end-guide">与后端交互引用</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">与后端交互引用</h1></header><article><div><span><p>经过大家共同努力，目前我们已经拥有若干支持前后端交互的、稳定的公共资源库，下面我们简单介绍几个主要库的使用场景：</p>
+<ul>
+<li><code>@sinoui/http</code>, 是对<a href="https://github.com/axios/axios">Axios</a>库中方法的轻量级无损封装。可以满足<strong>所有场景前后端交互</strong>的需求。具体使用方式，请参考<a href="https://sinoui.github.io/http/">@sinoui/http 文档</a>。</li>
+<li><code>@sinoui/use-data-api</code>是加载数据的 hook。主要用于<strong>数据加载</strong>。具体使用方式参考<a href="https://github.com/sinoui/use-data-api#sinouiuse-data-api">use-data-api 官网</a>。</li>
+<li><code>@sinoui/use-rest-item-api</code>是与单条数据的<code>RESTful</code>风格的增删改查<code>API</code>交互的 React Hook。主要用于<strong>遵循<code>RESTful</code>风格的单条数据的增删改查</strong>的前后端交互场景。具体使用方式请参考<a href="https://github.com/sinoui/use-rest-item-api#sinouiuse-rest-item-api">use-rest-item-api 使用文档</a>。</li>
+<li><code>@sinoui/use-rest-page-api</code>是简化分页列表与 RESTful CRUD API 交互的状态管理的 hook。主要适用于<strong>分页列表的增删改查，排序、条件查询</strong>等场景。更多<code>use-rest-page-api</code>的使用，请参考：<a href="https://github.com/sinoui/use-rest-page-api#sinouiuse-rest-page-api">use-rest-page-api 使用说明</a>。</li>
+<li><code>@sinoui/use-rest-list-api</code>是简化不分页列表与 RESTful CRUD API 交互的状态管理的 hook。主要适用于<strong>不分页列表的数据增删改查，排序</strong>等场景。更多详细使用方式请参考<a href="https://github.com/sinoui/use-rest-list-api#use-rest-list-api">use-rest-list-api 官方文档</a>。</li>
+<li><code>@sinouiincubator/editable-data-table</code>,可编辑数据表格。主要功能包括展现列表数据(不支持分页，但可以和分页功能组合使用)、编辑数据行、校对数据行、选择数据行等。具体使用方式请参考<a href="https://sinouiincubator.github.io/editable-data-table/">@sinouiincubator/editable-data-table 官方文档</a></li>
+</ul>
+<p>除上述公共库外，我们还有一个特殊的 hook: <code>@sinoui/use-rest-table</code>,它的主要功能是简化<code>use-rest-page-api</code>与<code>@sinoui/data-table</code>结合的相关处理。主要适用于使用<code>@sinoui/data-table</code>来渲染列表并且使用<code>@sinoui/use-rest-page-api</code>来管理列表数据的增删改查及分页获取等场景。使用方式请参考<a href="https://github.com/sinoui/use-rest-table#use-rest-table">use-rest-table 官方文档</a>。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-22 by tianyanqiu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/react-router"><span class="arrow-prev">← </span><span>React Router 使用教程</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
