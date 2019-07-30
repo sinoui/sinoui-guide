@@ -182,6 +182,8 @@ import globby from 'globby';
 
 ## 参考文章
 
-- [fx-extra](https://github.com/jprichardson/node-fs-extra#nodejs-fs-extra)
+- [fs-extra](https://github.com/jprichardson/node-fs-extra#nodejs-fs-extra)
 - [fs|Node.js API 文档](http://nodejs.cn/api/fs.html)
 - [将`fs-extra`代替`fs`使用](https://www.colabug.com/3668248.html)
+- [globby](https://github.com/sindresorhus/globby)
+- [micromatch](https://github.com/micromatch/micromatch)
