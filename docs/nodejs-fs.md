@@ -109,6 +109,73 @@ function mergeFile(from, to) {
 }
 ```
 
+## 查找文件
+
+可以使用[globby](https://github.com/sindresorhus/globby)在指定目录中查找文件。
+
+安装:
+
+```shell
+yarn add globby
+```
+
+示例：
+
+文件结构：
+
+```
+├── unicorn
+├── cake
+└── rainbow
+```
+
+查找除`cake`的文件：
+
+```typescript
+import globby from 'globby';
+
+(async () => {
+  const paths = await globby(['*', '!cake']);
+
+  console.log(paths);
+  //=> ['unicorn', 'rainbow']
+})();
+```
+
+`globby(patterns, options?)`函数的第一个参数接收的是查找文件或者文件夹的模式表达式。它支持的模式包括：
+
+- `*` - 它会匹配除了`/`之外的任意字符。所以可以用`*`匹配一级目录。
+- `**` - 匹配所有任意字符，包括`/`。所以可以用`**`匹配任意级别的目录。
+- `?` - 匹配任意一个字符。
+- `(ab|cd)` - 正则分组模式，匹配`ab`或者`cd`。
+- `[abc]` - 正则字符类模式，匹配`a`、`b`或者`c`字符。
+- `{ab,cd}` - brace 模式，匹配`ab`或者`cd`。
+- `!` - 否定模式。表示不能包含符合此模式的文件、文件夹。如上面的示例。
+
+更多更详细的模式请参阅[micromatch](https://github.com/micromatch/micromatch)。
+
+`globby()`会用`patterns`参数来判定文件路径是否匹配模式。如果匹配，则作为结果的一个数据项返回。
+
+`globby()`也可以匹配文件夹，如下所示：
+
+```
+├── unicorn
+  |__ README.md
+├── cake
+└── rainbow.md
+```
+
+```ts
+import globby from 'globby';
+
+(async () => {
+  const paths = await globby(['*', '!cake'], { onlyFiles: false });
+
+  console.log(paths);
+  //=> ['unicorn', 'rainbow.md']
+})();
+```
+
 ## 总结
 
 此篇文章主要列出了项目中用到的几个 Api,更多操作文件的 Api,我们后续会继续补充。
