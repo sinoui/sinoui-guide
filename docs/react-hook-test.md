@@ -12,7 +12,7 @@ sidebar_label: 自定义react hook 测试
 yarn add react-test-renderer @testing-library/react-hooks --dev
 ```
 
-### 例子：计数 hook
+## 例子：计数 hook
 
 看一个计数 hook 的例子：
 
@@ -64,7 +64,7 @@ it('减少计数', () => {
 });
 ```
 
-### API: `renderHook(callback[, options])`
+## API: `renderHook(callback[, options])`
 
 渲染一个用于测试的组件，这个组件会调用包含 hook 的`callback`。
 
@@ -84,13 +84,13 @@ it('减少计数', () => {
 - `rerender` (`function([newProps])`) - 重新渲染测试组件的方法。重新渲染测试组件时，会再次调用`callback`函数。如果指定了`newProps`，则会将`newProps`传递给`callback`。
 - `unmount` (`function()`) - 卸载测试组件。一般用于触发`useEffect` hook 的清除动作。
 
-### API: `act(callback)`
+## API: `act(callback)`
 
 与[react-test-renderer 的 act()](https://zh-hans.reactjs.org/docs/test-utils.html#act)方法是一样的作用。
 
 为断言准备一个组件，包裹要渲染的代码并在调用`act()`时执行更新。这会使得测试更接近 React 在浏览器中的工作方式。
 
-### 测试含有 http 请求的 hook
+## 测试含有 http 请求的 hook
 
 `useFetchUsers.ts`:
 
@@ -212,5 +212,35 @@ it('获取用户数据', async () => {
   await act(waitForNextUpdate);
 
   expect(result.current[0]).toEqual({ userId: '1', userName: '张三' });
+});
+```
+
+## 测试更新组件对 hook 的影响
+
+例如，我们有一个自定义 hook：
+
+```ts
+function useTestValue(value: string) {
+  return `test ${value}`;
+}
+```
+
+我们的测试如下：
+
+```ts
+import { renderHook } from '@testing-library/react-hooks';
+import useTestValue from './useTestValue';
+
+it('测试test value', () => {
+  const { result, rerender } = renderHook((props) => useTestValue(props), {
+    initialProps: 'value1',
+  });
+
+  expect(result.current).toBe('test value1');
+
+  // 更新组件，给useTestValue新的值`value2`
+  rerender('value2');
+
+  expect(result.current).toBe('test value2');
 });
 ```
