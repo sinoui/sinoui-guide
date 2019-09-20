@@ -47,11 +47,14 @@
     "语言篇": [
       "default-import-export-compatibility",
       "ts-function-overloading",
+      "polyfill",
+      "debounce-and-throttle-guide"
+    ],
+    "单元测试": [
       "jest-introduction",
       "react-component-test-guide",
       "react-hook-test",
-      "polyfill",
-      "debounce-and-throttle-guide"
+      "jest-debounce"
     ],
     "Node.js": ["nodejs", "express-guide"],
     "HTML5": ["calculate-video-duration", "calculate-md5"],
