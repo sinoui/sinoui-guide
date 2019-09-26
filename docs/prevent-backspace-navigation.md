@@ -39,7 +39,7 @@ document.addEventListener(
 
 ## 在 React 项目中使用
 
-[@sinouiincubator/use-disable-backspace-navigation]() 模块提供了阻止回格键页面回退的 hook，在 React 项目的根组件中使用即可。例如，在 `App` 组件使用。
+[@sinouiincubator/use-disable-backspace-navigation](https://sinouiincubator.github.io/use-disable-backspace-navigation/) 模块提供了阻止回格键页面回退的 hook，在 React 项目的根组件中使用即可。例如，在 `App` 组件使用。
 
 ```tsx
 import React from 'react';
