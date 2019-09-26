@@ -1,10 +1,16 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>使用styled-components定义组件样式 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&gt; `styled-components` 是一个常用的 `css in js` 类库。和所有同类型的类库一样，通过 `js`赋能解决了原生 `css`所不具备的能力，比如变量、循环、函数等。"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="使用styled-components定义组件样式 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&gt; `styled-components` 是一个常用的 `css in js` 类库。和所有同类型的类库一样，通过 `js`赋能解决了原生 `css`所不具备的能力，比如变量、循环、函数等。"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>使用styled-components定义组件样式 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;styled-components&lt;/code&gt; 是一个常用的 &lt;code&gt;css in js&lt;/code&gt; 类库。和所有同类型的类库一样，通过 &lt;code&gt;js&lt;/code&gt;赋能解决了原生 &lt;code&gt;css&lt;/code&gt;所不具备的能力，比如变量、循环、函数等。&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="使用styled-components定义组件样式 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;styled-components&lt;/code&gt; 是一个常用的 &lt;code&gt;css in js&lt;/code&gt; 类库。和所有同类型的类库一样，通过 &lt;code&gt;js&lt;/code&gt;赋能解决了原生 &lt;code&gt;css&lt;/code&gt;所不具备的能力，比如变量、循环、函数等。&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
           )
         });
-        </script><script src="/sinoui-guide/js/scrollSpy.js"></script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>样式</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-advanced-types">TypeScript高级类型</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/context-and-hook">使用Context和hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-performance-optimization">React性能优化</a></li></ul></div></div></section></div><script>
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class=""><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>样式</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-index">教程开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-getting-started">React入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-jsx">JSX概述</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-props-state">组件属性和状态</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook">React Hook</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-lifting-state-up">状态提升</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-fetch-data">加载数据</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ref">ref</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">TypeScript/ES6<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/es6-tutorial">ES6简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-tutorial">TypeScript简明教程</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-ts-tutorial">在React中使用TypeScript</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-advanced-types">TypeScript高级类型</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">样式<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/styled-components-guide">styled-components</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-animation">动画</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">状态管理<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-context">React Context</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/redux-getting-started">Redux入门</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/context-and-hook">使用Context和hook做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-redux">在React中使用redux做状态管理</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/immutable-getting-started">不可变数据</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-performance-optimization">React性能优化</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -32,16 +38,10 @@
               createToggler('#navToggler', '#docsNav', 'docsSliderActive');
               createToggler('#tocToggler', 'body', 'tocActive');
 
-              var headings = document.querySelector('.toc-headings');
+              const headings = document.querySelector('.toc-headings');
               headings && headings.addEventListener('click', function(event) {
-                var el = event.target;
-                while(el !== headings){
-                  if (el.tagName === 'A') {
-                    document.body.classList.remove('tocActive');
-                    break;
-                  } else{
-                    el = el.parentNode;
-                  }
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
                 }
               }, false);
 
@@ -86,25 +86,25 @@
 <p><code>Wrapper.js</code></p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> styled <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> Wrapper <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> Wrapper <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token string">`
   height: 200px;
   width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: aqua;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Wrapper<span class="token punctuation">;</span>
 </code></pre>
 <p><code>H1.js</code></p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> styled <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> <span class="token constant">H1</span> <span class="token operator">=</span> styled<span class="token punctuation">.</span>h1<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> <span class="token constant">H1</span> <span class="token operator">=</span> styled<span class="token punctuation">.</span>h1<span class="token template-string"><span class="token string">`
   font-size: 32px;
   font-weight: bolder;
   color: chocolate;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token constant">H1</span><span class="token punctuation">;</span>
 </code></pre>
@@ -133,16 +133,16 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p><code>Button.js</code></p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> styled <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token template-string"><span class="token string">`
   min-width: 64px;
   background: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'blue'</span> <span class="token punctuation">:</span> <span class="token string">'transparent'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   color: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'white'</span> <span class="token punctuation">:</span> <span class="token string">'palevioletred'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   font-size: 14px;
   margin: 8px;
   padding: 8px;
-  border: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">2px solid palevioletred</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+  border: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`2px solid palevioletred`</span></span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   border-radius: 3px;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Button<span class="token punctuation">;</span>
 </code></pre>
@@ -158,23 +158,23 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p><code>Button.js</code></p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> styled<span class="token punctuation">,</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> disabledStyle <span class="token operator">=</span> css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> disabledStyle <span class="token operator">=</span> css<span class="token template-string"><span class="token string">`
   background: transparent;
   color: rgba(0, 0, 0, 0.38);
   border: 2px solid rgba(0, 0, 0, 0.38);
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token template-string"><span class="token string">`
   min-width: 64px;
   background: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'blue'</span> <span class="token punctuation">:</span> <span class="token string">'transparent'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   color: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'white'</span> <span class="token punctuation">:</span> <span class="token string">'palevioletred'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   font-size: 14px;
   margin: 8px;
   padding: 8px;
-  border: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">2px solid palevioletred</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+  border: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`2px solid palevioletred`</span></span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   border-radius: 3px;
   </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>disabled <span class="token operator">&amp;&amp;</span> disabledStyle<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Button<span class="token punctuation">;</span>
 </code></pre>
@@ -186,16 +186,16 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>最后，我们还可以直接传入一个样式属性来控制组件样式的规则，比如，我们希望能自定义按钮的最小宽度，此时我们可以调整<code>Button.js</code>为：</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> styled <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token template-string"><span class="token string">`
   min-width: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>minWidth <span class="token operator">||</span> <span class="token number">64</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">px;
   background: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'blue'</span> <span class="token punctuation">:</span> <span class="token string">'transparent'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   color: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'white'</span> <span class="token punctuation">:</span> <span class="token string">'palevioletred'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   font-size: 14px;
   margin: 8px;
   padding: 8px;
-  border: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">2px solid palevioletred</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+  border: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>primary <span class="token operator">?</span> <span class="token string">'none'</span> <span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`2px solid palevioletred`</span></span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   border-radius: 3px;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Button<span class="token punctuation">;</span>
 </code></pre>
@@ -205,10 +205,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p><img src="/sinoui-guide/docs/assets/images/mini-button.png" alt=""></p>
 <h2><a class="anchor" aria-hidden="true" id="扩展样式"></a><a href="#扩展样式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>扩展样式</h2>
 <p>样式扩展主要针对当前组件有部分样式不满足需求的情况，此时我们可以通过样式扩展来进行样式调整，比如：我们希望上面例子中的 Button 组件的边框颜色和字体颜色变成蓝色，此时我们仅仅需要下面一小段代码调整即能满足需求：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> BlueButton <span class="token operator">=</span> <span class="token function">styled</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> BlueButton <span class="token operator">=</span> <span class="token function">styled</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span><span class="token template-string"><span class="token string">`
   color: blue;
   border: 2px solid blue;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 </code></pre>
 <pre><code class="hljs css language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">BlueButton</span></span><span class="token punctuation">></span></span>Blue Button<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">BlueButton</span></span><span class="token punctuation">></span></span>
 </code></pre>
@@ -229,10 +229,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 
 <span class="token keyword">const</span> <span class="token function-variable function">P</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> className<span class="token punctuation">,</span> children <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">className</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>className<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> CustomP <span class="token operator">=</span> <span class="token function">styled</span><span class="token punctuation">(</span><span class="token constant">P</span><span class="token punctuation">)</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> CustomP <span class="token operator">=</span> <span class="token function">styled</span><span class="token punctuation">(</span><span class="token constant">P</span><span class="token punctuation">)</span><span class="token template-string"><span class="token string">`
   color: blue;
   font-size: 32px;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token punctuation">{</span> <span class="token constant">P</span><span class="token punctuation">,</span> CustomP <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
@@ -252,14 +252,14 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   type<span class="token punctuation">:</span> <span class="token string">'password'</span><span class="token punctuation">,</span>
   <span class="token function-variable function">margin</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>size <span class="token operator">||</span> <span class="token string">'1em'</span><span class="token punctuation">,</span>
   <span class="token function-variable function">padding</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>size <span class="token operator">||</span> <span class="token string">'1em'</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token template-string"><span class="token string">`
   color: palevioletred;
   font-size: 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
   margin: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>margin<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
   padding: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>padding<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> PasswordInput<span class="token punctuation">;</span>
 </code></pre>
@@ -272,7 +272,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>带有<code>@keyframes</code>的<code>CSS animations</code>，一般来说会产生复用。<code>styled-components</code>暴露了一个<code>keyframes</code>的<code>API</code>，我们使用它产生一个可以复用的变量。这样，我们在书写<code>css</code>样式的时候使用 JavaScript 的功能，为<code>CSS</code>附能，并且避免了名称冲突。</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> styled<span class="token punctuation">,</span> <span class="token punctuation">{</span> keyframes <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> rotateStyle <span class="token operator">=</span> keyframes<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> rotateStyle <span class="token operator">=</span> keyframes<span class="token template-string"><span class="token string">`
     from {
     transform: rotate(0deg);
   }
@@ -280,14 +280,14 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
     to {
     transform: rotate(360deg);
   }
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> Rotate <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> Rotate <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token string">`
   display: inline-block;
   animation: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>rotateStyle<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> 2s linear infinite;
   padding: 2rem 1rem;
   font-size: 1.2rem;
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Rotate<span class="token punctuation">;</span>
 </code></pre>
@@ -301,7 +301,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <p>开篇的示例，如果我们想要在 Wrapper 中改变<code>H1</code>的颜色为白色,可以有下面两种方式：</p>
 <p>第一种，通过<code>h1</code>查找，并修改样式：</p>
 <p><code>Wrapper.js</code></p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> Wrapper <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> Wrapper <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token string">`
   height: 200px;
   width: 400px;
   display: flex;
@@ -312,10 +312,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   > h1 {
     color: white;
   }
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 </code></pre>
 <p>第二种，通过<code>H1</code>的组件名查找元素并修改样式：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> Wrapper <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> Wrapper <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token string">`
   height: 200px;
   width: 400px;
   display: flex;
@@ -326,7 +326,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">H1</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> {
     color: white;
   }
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 </code></pre>
 <p><code>App.js</code></p>
 <pre><code class="hljs css language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Wrapper</span></span><span class="token punctuation">></span></span>
@@ -342,19 +342,19 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">const</span> <span class="token constant">B</span> <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<span class="token keyword">const</span> <span class="token constant">B</span> <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token string">`
   </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">A</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> {
   }
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 </code></pre>
 <p>因为 A 继承<code>ReactComponent</code>，不是被 styled 构造过的。我们的组件选择器只支持在<code>Styled Components</code>创建的样式组件。</p>
 <h2><a class="anchor" aria-hidden="true" id="附注"></a><a href="#附注" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>附注</h2>
 <p>有时候可能由于优先级的问题，我们自定义的样式无法使用，此时我们只需要使用<code>&amp;&amp;</code>就能提升其优先级：</p>
-<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> CustomButton <span class="token operator">=</span> <span class="token function">styled</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> CustomButton <span class="token operator">=</span> <span class="token function">styled</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span><span class="token template-string"><span class="token string">`
   &amp;&amp; {
     width: 88px;
   }
-</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+`</span></span><span class="token punctuation">;</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
 <p>这篇文章主要介绍了<code>styled-components</code>的基本用法，包括通过属性控制样式规则、样式扩展、自定义组件样式、使用<code>.attrs</code>添加属性、动画等，希望可以通过阅读此文章数量掌握如何使用<code>styled-components</code>定义组件样式。</p>
@@ -362,4 +362,4 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
 <p><a href="https://www.styled-components.com">styled-components 官网</a></p>
 <p><a href="https://segmentfault.com/a/1190000014682665">Styled-Components</a></p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-17 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-advanced-types"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript高级类型</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-animation"><span>动画</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#动机">动机</a></li><li><a href="#安装">安装</a></li><li><a href="#基本用法">基本用法</a></li><li><a href="#基于props做样式判断">基于<code>Props</code>做样式判断</a></li><li><a href="#扩展样式">扩展样式</a></li><li><a href="#自定义任意组件的样式">自定义任意组件的样式</a></li><li><a href="#使用attrs添加属性">使用<code>.attrs</code>添加属性</a></li><li><a href="#动画">动画</a></li><li><a href="#父组件中定义子组件样式">父组件中定义子组件样式</a></li><li><a href="#附注">附注</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-17 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/ts-advanced-types"><span class="arrow-prev">← </span><span class="function-name-prevnext">TypeScript高级类型</span></a><a class="docs-next button" href="/sinoui-guide/docs/react-animation"><span>动画</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#动机">动机</a></li><li><a href="#安装">安装</a></li><li><a href="#基本用法">基本用法</a></li><li><a href="#基于-props-做样式判断">基于<code>Props</code>做样式判断</a></li><li><a href="#扩展样式">扩展样式</a></li><li><a href="#自定义任意组件的样式">自定义任意组件的样式</a></li><li><a href="#使用-attrs-添加属性">使用<code>.attrs</code>添加属性</a></li><li><a href="#动画">动画</a></li><li><a href="#父组件中定义子组件样式">父组件中定义子组件样式</a></li><li><a href="#附注">附注</a></li><li><a href="#总结">总结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>

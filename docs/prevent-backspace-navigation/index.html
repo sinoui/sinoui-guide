@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>防止按退格键页面返回 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在 IE、Firefox 中，有一个不太人性化的用户体验，即：在页面上按退格键（ &lt;code&gt;DELETE&lt;/code&gt; 键），页面会返回。一般我们的项目中需要阻止这种默认行为。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="防止按退格键页面返回 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;在 IE、Firefox 中，有一个不太人性化的用户体验，即：在页面上按退格键（ &lt;code&gt;DELETE&lt;/code&gt; 键），页面会返回。一般我们的项目中需要阻止这种默认行为。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>HTML5</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/debounce-and-throttle-guide">节流和防抖</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">单元测试<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook-test">自定义react hook 测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-debounce">jest 测试 debounce</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node.js<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/nodejs">Node.js文件操作</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/express-guide">Express入门</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML5<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-video-duration">计算视频时长</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-md5">计算md5</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/prevent-backspace-navigation">防止按退格键页面返回</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">规范<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/doc-of-api-standard">接口相关API文档编写规范</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">防止按退格键页面返回</h1></header><article><div><span><p>在 IE、Firefox 中，有一个不太人性化的用户体验，即：在页面上按退格键（ <code>DELETE</code> 键），页面会返回。一般我们的项目中需要阻止这种默认行为。</p>
+<h2><a class="anchor" aria-hidden="true" id="方案"></a><a href="#方案" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>方案</h2>
+<p>我们可以监听输入退格键来阻止这个行为。可以在页面上添加下面的 JS 脚本阻止默认行为：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">const</span> BACKSPACE_KEYCODE = <span class="hljs-number">8</span>; <span class="hljs-comment">// 退格键编号</span>
+<span class="hljs-keyword">const</span> INPUT_TAGNAMES = [<span class="hljs-string">'INPUT'</span>, <span class="hljs-string">'TEXTAREA'</span>];
+
+document.addEventListener(
+  <span class="hljs-string">'keydown'</span>,
+  (<span class="hljs-keyword">event</span>) =&gt; {
+    <span class="hljs-keyword">const</span> { keyCode, target } = <span class="hljs-keyword">event</span>;
+
+    <span class="hljs-keyword">const</span> isBackspace = keyCode === BACKSPACE_KEY_CODE;
+    <span class="hljs-keyword">if</span> (isBackspace) {
+      <span class="hljs-keyword">const</span> inputTarget = target;
+      <span class="hljs-keyword">const</span> isInput =
+        INPUT_TAGS.indexOf(inputTarget.tagName.toUpperCase()) !== <span class="hljs-number">-1</span>;
+      <span class="hljs-keyword">const</span> isEnable = !(inputTarget.disabled || inputTarget.readOnly);
+      <span class="hljs-keyword">const</span> isContentEditable =
+        inputTarget.getAttribute(<span class="hljs-string">'contenteditable'</span>) === <span class="hljs-string">'true'</span>;
+
+      <span class="hljs-keyword">if</span> ((isInput &amp;&amp; !isEnable) || (!isInput &amp;&amp; !isContentEditable)) {
+        <span class="hljs-keyword">event</span>.preventDefault();
+      }
+    }
+  },
+  <span class="hljs-literal">false</span>,
+);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="在-react-项目中使用"></a><a href="#在-react-项目中使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在 React 项目中使用</h2>
+<p><a href="">@sinouiincubator/use-disable-backspace-navigation</a> 模块提供了阻止回格键页面回退的 hook，在 React 项目的根组件中使用即可。例如，在 <code>App</code> 组件使用。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> useDisableBackspaceNavigation <span class="hljs-keyword">from</span> <span class="hljs-string">'@sinouiincubator/use-disable-backspace-navigation'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>{
+  useDisableBackspaceNavigation();
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>app<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="参考"></a><a href="#参考" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/1495219/how-can-i-prevent-the-backspace-key-from-navigating-back">Stackoverflow 中关于退格键页面回退的讨论</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-9-26 by Jacking Liu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/calculate-md5"><span class="arrow-prev">← </span><span>计算md5</span></a><a class="docs-next button" href="/sinoui-guide/docs/doc-of-api-standard"><span>接口相关API文档编写规范</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#方案">方案</a></li><li><a href="#在-react-项目中使用">在 React 项目中使用</a></li><li><a href="#参考">参考</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
