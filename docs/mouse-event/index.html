@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>鼠标事件 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;code&gt;MouseEvent&lt;/code&gt; 接口指用户与指针设备（ 如鼠标 ）交互时发生的事件。使用此接口的常见事件包括：&lt;code&gt;click&lt;/code&gt;, &lt;code&gt;dblclick&lt;/code&gt;, &lt;code&gt;mouseup&lt;/code&gt;, &lt;code&gt;mousedown&lt;/code&gt;, &lt;code&gt;mousemove&lt;/code&gt;, &lt;code&gt;mouseleave&lt;/code&gt;。&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="鼠标事件 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;&lt;code&gt;MouseEvent&lt;/code&gt; 接口指用户与指针设备（ 如鼠标 ）交互时发生的事件。使用此接口的常见事件包括：&lt;code&gt;click&lt;/code&gt;, &lt;code&gt;dblclick&lt;/code&gt;, &lt;code&gt;mouseup&lt;/code&gt;, &lt;code&gt;mousedown&lt;/code&gt;, &lt;code&gt;mousemove&lt;/code&gt;, &lt;code&gt;mouseleave&lt;/code&gt;。&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>HTML5</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/debounce-and-throttle-guide">节流和防抖</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">单元测试<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook-test">自定义react hook 测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-debounce">jest 测试 debounce</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node.js<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/nodejs">Node.js文件操作</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/express-guide">Express入门</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML5<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-video-duration">计算视频时长</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-md5">计算md5</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/prevent-backspace-navigation">防止按退格键页面返回</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/mouse-event">鼠标事件</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">规范<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/doc-of-api-standard">接口相关API文档编写规范</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">鼠标事件</h1></header><article><div><span><p><code>MouseEvent</code> 接口指用户与指针设备（ 如鼠标 ）交互时发生的事件。使用此接口的常见事件包括：<code>click</code>, <code>dblclick</code>, <code>mouseup</code>, <code>mousedown</code>, <code>mousemove</code>, <code>mouseleave</code>。</p>
+<p>这篇文章将介绍在日常开发中关于鼠标事件容易混淆的知识点，包括：</p>
+<ul>
+<li>事件目标</li>
+<li>鼠标事件位置</li>
+<li>取消与阻止事件</li>
+</ul>
+<p>最后会介绍鼠标事件在 <code>React</code> 和 <code>TypeScript</code> 中使用的一些知识点。</p>
+<h2><a class="anchor" aria-hidden="true" id="target-vs-currenttarget"></a><a href="#target-vs-currenttarget" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>target</code> vs <code>currentTarget</code></h2>
+<p>在日常开发中，很容易混淆事件对象的 <code>target</code> 和 <code>currentTarget</code> 这两个指向事件目标的属性，它们的区别还是非常明显的：</p>
+<ul>
+<li><code>target</code> - 指向触发事件的 DOM 元素</li>
+<li><code>currentTarget</code> - 指向事件绑定的 DOM 元素。当事件沿着 DOM 触发时事件的当前目标。</li>
+</ul>
+<p>大部分情况下，<code>target</code> 和 <code>currentTarget</code> 是相同的，如下面的例子：</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"handleClick(event)"</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleClick</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">const</span> { target, currentTarget } = event;
+    assert(target === currentTarget); <span class="hljs-comment">// target, currentTarget 同时指向 button 元素</span>
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>但是事件是可以捕捉和冒泡的。所以，<code>target</code> 和 <code>currentTarget</code> 也有不相同的情况，如下所示：</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"handleClick(event)"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleClick</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">const</span> { target, currentTarget } = event;
+
+    assert(target !== currentTarget); <span class="hljs-comment">// ⚠️ target 指向 div 元素， currentTarget 指向 button 元素</span>
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="relatedtarget"></a><a href="#relatedtarget" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>relatedTarget</code></h2>
+<p>有一些事件，如 <code>mouseleave</code>, <code>mouseenter</code>, <code>mouseout</code>，我们还关心它们的次要目标，如 关注 <code>mouseleave</code> 事件离开主目标（ <code>target</code> ）后进入了哪个 DOM 元素。 <code>event</code> 事件的 <code>relatedTarget</code> 指向次要目标。</p>
+<h2><a class="anchor" aria-hidden="true" id="鼠标位置"></a><a href="#鼠标位置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>鼠标位置</h2>
+<p>鼠标事件中表示鼠标位置的属性有：</p>
+<ul>
+<li><code>pageX</code> / <code>pageY</code></li>
+<li><code>offsetX</code> / <code>offsetY</code> ⚠️ 有兼容性问题，慎用。<a href="https://caniuse.com/#search=offsetX">can i use</a></li>
+<li><code>clientX</code> / <code>clientY</code></li>
+<li><code>screenX</code> / <code>screenY</code></li>
+</ul>
+<p>上面的鼠标位置相对的起点目标是不一样的：</p>
+<ul>
+<li><code>clientX</code> / <code>clientY</code> 鼠标指针点击位置相对于页面可视区域（ viewport ）左上角的偏移</li>
+<li><code>offsetX</code> / <code>offsetY</code> 鼠标指针点击位置相对于目标元素（ target ）左上角的偏移</li>
+<li><code>pageX</code> / <code>pageY</code> 鼠标指针点击位置相对于 <code>document.body</code> 左上角的偏移</li>
+<li><code>screenX</code> / <code>screenY</code> 鼠标指针点击位置相对于屏幕左上角的偏移</li>
+</ul>
+<p>在日常开发中，最常用的 <code>clientX</code> / <code>/clientY</code> 和 <code>pageX</code> / <code>pageY</code>，注意它们之间的细微区别。它们之间也是可以换算的：</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> pageScrollTop = <span class="hljs-built_in">document</span>.documentElement.scrollTop; <span class="hljs-comment">// 页面滚动高度</span>
+assert(pageY === clientY + pageScrollTop);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="取消与阻止事件"></a><a href="#取消与阻止事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>取消与阻止事件</h2>
+<p>有三个方法与事件取消与阻止冒泡相关的：</p>
+<ul>
+<li><code>preventDefault()</code> - 阻止事件的默认行为，如阻止 <code>a</code> 的点击事件，则点击 <code>a</code> 页面不会跳转链接。</li>
+<li><code>stopPropagation()</code> - 阻止事件冒泡。</li>
+<li><code>stopImmediatePropagation()</code> - 阻止事件冒泡以及当前 DOM 元素同一事件的其他事件监听器。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="在-react-和-typescript-中使用"></a><a href="#在-react-和-typescript-中使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在 React 和 TypeScript 中使用</h2>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Demo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function">(<span class="hljs-params">event: React.MouseEvent</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> {
+      pageX,
+      clientX,
+      screenX,
+      <span class="hljs-attr">nativeEvent</span>: { offsetX },
+    } = event;
+
+    <span class="hljs-built_in">console</span>.log(pageX, clientX, screenX, offsetX);
+  };
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="参考"></a><a href="#参考" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event">MDN: Event API</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/UIEvent">MDN: UIEvent API</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MouseEvent">MDN: 鼠标事件</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-9-28 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/prevent-backspace-navigation"><span class="arrow-prev">← </span><span>防止按退格键页面返回</span></a><a class="docs-next button" href="/sinoui-guide/docs/doc-of-api-standard"><span>接口相关API文档编写规范</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#target-vs-currenttarget"><code>target</code> vs <code>currentTarget</code></a></li><li><a href="#relatedtarget"><code>relatedTarget</code></a></li><li><a href="#鼠标位置">鼠标位置</a></li><li><a href="#取消与阻止事件">取消与阻止事件</a></li><li><a href="#在-react-和-typescript-中使用">在 React 和 TypeScript 中使用</a></li><li><a href="#参考">参考</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
