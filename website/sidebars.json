@@ -60,7 +60,8 @@
     "HTML5": [
       "calculate-video-duration",
       "calculate-md5",
-      "prevent-backspace-navigation"
+      "prevent-backspace-navigation",
+      "mouse-event"
     ],
     "规范": ["doc-of-api-standard"]
   }
