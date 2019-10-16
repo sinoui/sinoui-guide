@@ -63,6 +63,6 @@
       "prevent-backspace-navigation",
       "mouse-event"
     ],
-    "规范": ["doc-of-api-standard"]
+    "规范": ["doc-of-api-standard", "git-standard"]
   }
 }
