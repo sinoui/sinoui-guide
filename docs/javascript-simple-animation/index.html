@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>基于 JavaScript 实现简单的动画 · sinoui开发指南</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在日常 Web 开发中，我们可以使用 css transition 或者 css animation 实现动画，但是有一些动画场景不太容易使用 css 技术实现，比如：&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="基于 JavaScript 实现简单的动画 · sinoui开发指南"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sinoui.github.io/sinoui-guide/"/><meta property="og:description" content="&lt;p&gt;在日常 Web 开发中，我们可以使用 css transition 或者 css animation 实现动画，但是有一些动画场景不太容易使用 css 技术实现，比如：&lt;/p&gt;
+"/><meta property="og:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sinoui.github.io/sinoui-guide/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/sinoui-guide/undefined"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="stylesheet" href="/sinoui-guide/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/sinoui-guide/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/sinoui-guide/css/prism.css"/><link rel="stylesheet" href="/sinoui-guide/css/main.css"/><script src="/sinoui-guide/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/sinoui-guide/"><h2 class="headerTitle">sinoui开发指南</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/sinoui-guide/docs/react-index" target="_self">基础知识</a></li><li class=""><a href="/sinoui-guide/docs/app-dev-index" target="_self">应用开发指南</a></li><li class="siteNavGroupActive"><a href="/sinoui-guide/docs/tools-index" target="_self">前端资源</a></li><li class=""><a href="https://github.com/sinoui/sinoui-guide" target="_self">GitHub</a></li><li class=""><a href="/sinoui-guide/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>动画</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">方法论<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/optimized-for-change">应变而优</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tdd-introduction">测试驱动开发介绍</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/semver">语义化版本 2.0</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">规范<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/doc-of-api-standard">接口相关API文档编写规范</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/git-standard">git提交注释规范</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">单元测试<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-introduction">基于 Jest 的单元测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-component-test-guide">测试React组件</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/react-hook-test">自定义react hook 测试</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/jest-debounce">jest 测试 debounce</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">工具篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/tools-index">开篇</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/github-pages-introduction">Github Pages</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/circleci-introduction">CircleCI</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/package-manage">包管理工具：npm、npx和yarn</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/npm-dependencies-and-version">npm依赖与版本号</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">语言篇<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/default-import-export-compatibility">默认导出、导入兼容性</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/ts-function-overloading">TypeScript中的重载函数</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/debounce-and-throttle-guide">节流和防抖</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node.js<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/nodejs">Node.js文件操作</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/express-guide">Express入门</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML5<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-video-duration">计算视频时长</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/calculate-md5">计算md5</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/prevent-backspace-navigation">防止按退格键页面返回</a></li><li class="navListItem"><a class="navItem" href="/sinoui-guide/docs/mouse-event">鼠标事件</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">动画<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/sinoui-guide/docs/javascript-simple-animation">基于 JavaScript 实现简单的动画</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">基于 JavaScript 实现简单的动画</h1></header><article><div><span><p>在日常 Web 开发中，我们可以使用 css transition 或者 css animation 实现动画，但是有一些动画场景不太容易使用 css 技术实现，比如：</p>
+<ul>
+<li>滚动效果</li>
+<li>数字变换</li>
+<li>svg 路径动画</li>
+<li>canvas 动画</li>
+</ul>
+<p>本篇文章关注的是如何使用 JavaScript 实现简单的动画。包括以下内容：</p>
+<ul>
+<li>使用 <code>requestAnimationFrame</code> 实现滚动动画效果</li>
+<li>使用缓动函数实现平滑的滚动动画效果</li>
+<li>使用 <a href="https://github.com/facebook/rebound-js">rebound.js</a> 实现更平滑的滚动动画效果</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="使用-requestanimationframe-实现滚动动画"></a><a href="#使用-requestanimationframe-实现滚动动画" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 <code>requestAnimationFrame</code> 实现滚动动画</h2>
+<p>有一个包含 20 个元素的隐藏了滚动条的容器，点击“向左滚动”和“向右滚动”按钮，则容器的内容则会滚动 500 px。如下图所示：</p>
+<p><img src="/sinoui-guide/docs/assets/images/js-scroll-nav-base.png" alt="滚动基础效果"></p>
+<p>点击 <a href="https://codesandbox.io/s/loving-tdd-ze5gp">codesandbox</a> 查看效果。</p>
+<p>HTML 代码如下：</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"scroller"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"item"</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"scrollToLeftButton"</span>&gt;</span>向左滚动<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"scrollToRightButton"</span>&gt;</span>向右滚动<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+<p>JavaScript 代码如下：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">const</span> scrollToLeftButton = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'scrollToLeftButton'</span>);
+<span class="hljs-keyword">const</span> scrollToRightButton = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'scrollToRightButton'</span>);
+<span class="hljs-keyword">const</span> scroller = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.scroller'</span>);
+
+scrollToLeftButton.addEventListener(
+  <span class="hljs-string">'click'</span>,
+  <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    scroller.scrollLeft -= <span class="hljs-number">500</span>;
+  },
+  <span class="hljs-literal">false</span>,
+);
+
+scrollToRightButton.addEventListener(
+  <span class="hljs-string">'click'</span>,
+  <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    scroller.scrollLeft += <span class="hljs-number">500</span>;
+  },
+  <span class="hljs-literal">false</span>,
+);
+</code></pre>
+<p>这个基础实现会在点击“向左滚动”和“向右滚动”按钮时，会滚动 250 px，但是没有动画效果，是立即完成滚动过程。接下来，我们使用 <code>requestAnimationRequest</code> 来实现一个简单的滚动动画。我们设定在 300ms 完成 250 px 的滚动距离。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-comment">/**
+ * 运行动画：在指定时间内将数字从 start 匀速变化到 end。
+ *
+ * @param start 开始数字
+ * @param end 结束数字
+ * @param duration 动画运行时长
+ * @param callback 动画过程中每一帧执行的回调函数
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animate</span>(<span class="hljs-params">start, end, duration, callback</span>) </span>{
+  <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
+  <span class="hljs-keyword">const</span> delta = end - start;
+
+  <span class="hljs-keyword">let</span> rafId;
+  <span class="hljs-keyword">const</span> tick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> elapsed = <span class="hljs-built_in">Date</span>.now() - startTime;
+    <span class="hljs-keyword">const</span> value = start + delta * <span class="hljs-built_in">Math</span>.min(<span class="hljs-number">1</span>, elapsed / duration);
+
+    callback(value);
+
+    <span class="hljs-keyword">if</span> (elapsed &lt; duration) {
+      rafId = requestAnimationFrame(tick);
+    } <span class="hljs-keyword">else</span> {
+      rafId = <span class="hljs-literal">undefined</span>;
+    }
+  };
+
+  tick();
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> rafId &amp;&amp; cancelAnimationFrame(rafId);
+}
+</code></pre>
+<p>上面定义的 <code>animate</code> 函数会在指定时间内将数字从 <code>start</code> 递增或者递减到 <code>end</code>。</p>
+<p>替换滚动按钮的点击事件监听器：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">let</span> cancel;
+scrollToLeftButton.addEventListener(
+  <span class="hljs-string">'click'</span>,
+  <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> start = scroller.scrollLeft;
+    <span class="hljs-keyword">const</span> end = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0</span>, start - <span class="hljs-number">500</span>);
+    <span class="hljs-keyword">if</span> (cancel) {
+      <span class="hljs-comment">// 取消之前的动画</span>
+      cancel();
+    }
+    cancel = animate(start, end, <span class="hljs-number">300</span>, <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> (scroller.scrollLeft = value)); <span class="hljs-comment">// 开始动画</span>
+  },
+  <span class="hljs-literal">false</span>,
+);
+
+scrollToRightButton.addEventListener(
+  <span class="hljs-string">'click'</span>,
+  <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> { scrollLeft, scrollWidth } = scroller;
+    <span class="hljs-keyword">const</span> end = <span class="hljs-built_in">Math</span>.min(scrollWidth, scrollLeft + <span class="hljs-number">500</span>);
+    <span class="hljs-keyword">if</span> (cancel) {
+      <span class="hljs-comment">// 取消之前的动画</span>
+      cancel();
+    }
+    cancel = animate(
+      scrollLeft,
+      end,
+      <span class="hljs-number">300</span>,
+      <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> (scroller.scrollLeft = value),
+    ); <span class="hljs-comment">// 开始动画</span>
+  },
+  <span class="hljs-literal">false</span>,
+);
+</code></pre>
+<p>点击 <a href="https://codesandbox.io/s/distracted-cannon-scppz">codesandbox</a> 查看效果。</p>
+<p>🎉 我们实现了滚动动画！但是别高兴得太早，还是留有遗憾的，仔细观察滚动动画，我们可能会发现这个动画太“呆板”了。问题出在滚动是匀速的。实际上我们希望一开始是加速滚动，之后是减速滚动，直到停止滚动，到达目的地。学过 css transition 或者 css animation，都知道有一个概念，即缓动函数。下一章节我们就来仿照 css 的 <code>ease-in-out</code> 实现更平滑的滚动动画。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用缓动函数实现滚动动画"></a><a href="#使用缓动函数实现滚动动画" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用缓动函数实现滚动动画</h2>
+<p>css 支持以贝塞尔曲线为基础的缓动函数。可以从 <a href="https://easings.net/">Easing Functions Cheat Sheet</a> 查看更多缓动效果。可以从 <a href="http://gizma.com/easing/">gizma: JavaScript Easing Functions</a> 找到缓动函数的 JavaScript 实现。</p>
+<p>滚动动画需要的缓动函数是 <code>ease-in-out</code>，下面我们看如何改造<code>animate()</code>函数，添加 <code>ease-in-out</code> 缓动效果，以实现平滑的滚动动画。</p>
+<p>我们先实现 <code>easeInOut</code> （摘自<a href="https://github.com/bameyrick/js-easing-functions">js-easing-functions</a> ）：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-function"><span class="hljs-keyword">function</span></span> easeInOut(
+  elapsed: <span class="hljs-keyword">number</span>,
+  initialValue: <span class="hljs-keyword">number</span>,
+  amountOfChange: <span class="hljs-keyword">number</span>,
+  duration: <span class="hljs-keyword">number</span>,
+): <span class="hljs-keyword">number</span> {
+  <span class="hljs-keyword">if</span> ((elapsed /= duration / <span class="hljs-number">2</span>) &lt; <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">return</span> (amountOfChange / <span class="hljs-number">2</span>) * elapsed * elapsed * elapsed + initialValue;
+  }
+  <span class="hljs-keyword">return</span> (
+    (amountOfChange / <span class="hljs-number">2</span>) * ((elapsed -= <span class="hljs-number">2</span>) * elapsed * elapsed + <span class="hljs-number">2</span>) +
+    initialValue
+  );
+}
+</code></pre>
+<p>也可以使用 <a href="https://github.com/bameyrick/js-easing-functions">js-easing-functions</a> 库中的 <code>easeInOutCubic</code>。</p>
+<p>然后，改造 <code>animate()</code> 函数：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-comment">/**
+ * 运行动画。
+ *
+ * @param start 开始数字
+ * @param end 结束数字
+ * @param duration 动画运行时长
+ * @param callback 动画过程中每一帧执行的回调函数
+ */</span>
+<span class="hljs-keyword">function</span> animate(start, <span class="hljs-keyword">end</span>, duration, callback) {
+  const startTime = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Date</span>.</span></span>now<span class="hljs-literal">()</span>;
+  const delta = <span class="hljs-keyword">end</span> - start;
+
+  <span class="hljs-keyword">let</span> rafId;
+  const tick =<span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> {
+    const elapsed = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Date</span>.</span></span>now<span class="hljs-literal">()</span> - startTime;
+    const value = ease<span class="hljs-constructor">InOut(<span class="hljs-params">elapsed</span>, <span class="hljs-params">start</span>, <span class="hljs-params">delta</span>, <span class="hljs-params">duration</span>)</span>; <span class="hljs-comment">// 使用缓动函数求值</span>
+
+    callback(value);
+
+    <span class="hljs-keyword">if</span> (elapsed &lt; duration) {
+      rafId = request<span class="hljs-constructor">AnimationFrame(<span class="hljs-params">tick</span>)</span>;
+    } <span class="hljs-keyword">else</span> {
+      rafId = undefined;
+    }
+  };
+
+  tick<span class="hljs-literal">()</span>;
+
+  return<span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> rafId<span class="hljs-operator"> &amp;&amp; </span>cancel<span class="hljs-constructor">AnimationFrame(<span class="hljs-params">rafId</span>)</span>;
+}
+</code></pre>
+<p>点击 <a href="https://codesandbox.io/s/distracted-cannon-scppz">codesandbox</a> 查看效果。</p>
+<p>🎉🎉 滚动动画有起伏了，看起来更自然了。如果关注过动画效果，应该听说过“弹簧动力学”。没听过也没关系，只要记住，“弹簧动力学”更适合做动画效果。下一章节，我们就给滚动动画应用上“弹簧动力学”，替换掉 <code>ease-in-out</code> 。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用-reboundjs-实现滚动动画"></a><a href="#使用-reboundjs-实现滚动动画" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 rebound.js 实现滚动动画</h2>
+<p><a href="https://github.com/facebook/rebound-js">rebound.js</a> 是弹簧动力学的 JavaScript 实现。本章节将使用其改造 <code>animate()</code> 函数，以实现更自然的滚动动画。</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">import</span> { SpringSystem } <span class="hljs-keyword">from</span> <span class="hljs-string">'rebound'</span>;
+
+<span class="hljs-comment">/**
+ * 运行动画。
+ *
+ * @param start 开始数字
+ * @param end 结束数字
+ * @param callback 动画过程中每一帧执行的回调函数
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animate</span>(<span class="hljs-params">start, end, callback</span>) </span>{
+  <span class="hljs-keyword">const</span> springSystem = <span class="hljs-keyword">new</span> SpringSystem();
+  <span class="hljs-keyword">const</span> spring = springSystem.createSpring();
+
+  spring.addListener({
+    <span class="hljs-attr">onSpringUpdate</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">const</span> value = spring.getCurrentValue();
+      callback(value);
+    },
+  });
+
+  spring.setCurrentValue(start).setAtRest();
+  spring.setEndValue(end);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    springSystem.deregisterSpring(spring);
+    springSystem.removeAllListeners();
+    spring.destroy();
+  };
+}
+</code></pre>
+<p>注意，“弹簧动力学”动画是不需要指定时长的，所以我们去掉 <code>duration</code> 参数：</p>
+<pre><code class="hljs css language-tsx"><span class="hljs-keyword">let</span> cancel;
+scrollToLeftButton.addEventListener(
+  <span class="hljs-string">'click'</span>,
+  <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> start = scroller.scrollLeft;
+    <span class="hljs-keyword">const</span> end = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0</span>, start - <span class="hljs-number">500</span>);
+    <span class="hljs-keyword">if</span> (cancel) {
+      <span class="hljs-comment">// 取消之前的动画</span>
+      cancel();
+    }
+    cancel = animate(start, end, <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> (scroller.scrollLeft = value)); <span class="hljs-comment">// 开始动画</span>
+  },
+  <span class="hljs-literal">false</span>,
+);
+
+scrollToRightButton.addEventListener(
+  <span class="hljs-string">'click'</span>,
+  <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> { scrollLeft, scrollWidth } = scroller;
+    <span class="hljs-keyword">const</span> end = <span class="hljs-built_in">Math</span>.min(scrollWidth, scrollLeft + <span class="hljs-number">500</span>);
+    <span class="hljs-keyword">if</span> (cancel) {
+      <span class="hljs-comment">// 取消之前的动画</span>
+      cancel();
+    }
+    cancel = animate(scrollLeft, end, <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> (scroller.scrollLeft = value)); <span class="hljs-comment">// 开始动画</span>
+  },
+  <span class="hljs-literal">false</span>,
+);
+</code></pre>
+<p>点击 <a href="https://codesandbox.io/s/mutable-brook-lurot">codesandbox</a> 查看效果。</p>
+<p>🎉🎉🎉 我们使用“弹簧动力学”实现了非常平滑的滚动效果。</p>
+<h2><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h2>
+<p>我们通过本篇文章学习到使用 <code>requestAnimationFrame</code> 和缓动函数实现简单动画，并学习到使用 <a href="https://github.com/facebook/rebound-js">rebound-js</a> 实现“弹簧”动画效果。当然，我们也可以使用具有更高抽象层次的动画库来实现类似动画效果，如：</p>
+<ul>
+<li><a href="https://github.com/react-spring/react-spring">react-spring</a></li>
+<li><a href="https://popmotion.io/">popmotion</a></li>
+<li><a href="https://www.framer.com/api/motion/">framer motion</a></li>
+<li><a href="https://github.com/tweenjs/tween.js">tween.js</a></li>
+</ul>
+<p>如果我们正在实现的是基础 UI 库，那么比较推荐类似本篇文章推荐的低抽象层次方式，除非你决定你的 UI 库动效基于第三方动画库实现。毕竟，我们需要考量 UI 库的大小。</p>
+<h2><a class="anchor" aria-hidden="true" id="参考文章"></a><a href="#参考文章" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文章</h2>
+<ul>
+<li><a href="https://github.com/malte-wessel/react-custom-scrollbars">react-custom-scrollbars</a></li>
+<li><a href="https://github.com/facebook/rebound-js">rebound-js</a></li>
+<li><a href="https://easings.net/">Easing Functions Cheat Sheet</a></li>
+<li><a href="https://github.com/bameyrick/js-easing-functions">js-easing-functions</a></li>
+<li><a href="https://css-tricks.com/ease-out-in-ease-in-out/">ease-in, out; eas-out, in</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition">MDN: transition</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/timing-function">MDN: timing-function</a></li>
+<li><a href="https://drafts.csswg.org/css-transitions/#transition-timing-function">规范：css transitions: timing-function</a></li>
+<li><a href="https://drafts.csswg.org/css-animations/#animation-timing-function">规范：css animations: timing-function</a></li>
+<li><a href="https://github.com/react-spring/react-spring#why-springs-and-not-durations">Why spring and not durations</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-10-19 by 刘进行</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/sinoui-guide/docs/mouse-event"><span class="arrow-prev">← </span><span>鼠标事件</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#使用-requestanimationframe-实现滚动动画">使用 <code>requestAnimationFrame</code> 实现滚动动画</a></li><li><a href="#使用缓动函数实现滚动动画">使用缓动函数实现滚动动画</a></li><li><a href="#使用-reboundjs-实现滚动动画">使用 rebound.js 实现滚动动画</a></li><li><a href="#小结">小结</a></li><li><a href="#参考文章">参考文章</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 sinosoft.com.cn</section></footer></div></body></html>
