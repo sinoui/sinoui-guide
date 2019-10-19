@@ -35,6 +35,14 @@
     ]
   },
   "articles": {
+    "方法论": ["optimized-for-change", "tdd-introduction", "semver"],
+    "规范": ["doc-of-api-standard", "git-standard"],
+    "单元测试": [
+      "jest-introduction",
+      "react-component-test-guide",
+      "react-hook-test",
+      "jest-debounce"
+    ],
     "工具篇": [
       "tools-index",
       "github-pages-introduction",
@@ -43,18 +51,11 @@
       "package-manage",
       "npm-dependencies-and-version"
     ],
-    "方法论": ["optimized-for-change", "tdd-introduction", "semver"],
     "语言篇": [
       "default-import-export-compatibility",
       "ts-function-overloading",
       "polyfill",
       "debounce-and-throttle-guide"
-    ],
-    "单元测试": [
-      "jest-introduction",
-      "react-component-test-guide",
-      "react-hook-test",
-      "jest-debounce"
     ],
     "Node.js": ["nodejs", "express-guide"],
     "HTML5": [
@@ -63,6 +64,6 @@
       "prevent-backspace-navigation",
       "mouse-event"
     ],
-    "规范": ["doc-of-api-standard", "git-standard"]
+    "动画": ["javascript-simple-animation"]
   }
 }
