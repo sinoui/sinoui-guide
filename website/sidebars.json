@@ -55,7 +55,8 @@
       "default-import-export-compatibility",
       "ts-function-overloading",
       "polyfill",
-      "debounce-and-throttle-guide"
+      "debounce-and-throttle-guide",
+      "about-id"
     ],
     "Node.js": ["nodejs", "express-guide"],
     "HTML5": [
