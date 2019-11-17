@@ -56,7 +56,8 @@
       "ts-function-overloading",
       "polyfill",
       "debounce-and-throttle-guide",
-      "about-id"
+      "about-id",
+      "compare-equal-start"
     ],
     "Node.js": ["nodejs", "express-guide"],
     "HTML5": [
