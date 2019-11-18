@@ -202,9 +202,9 @@ function(x, y) {
 };
 ```
 
-### ===、Object.is()和 shallowEqual
+### ===、Object.is() 和 shallowEqual
 
-`===`和`Object.is()`在比较对象类型的数据时，只要不是同一个对象，均会判定为 false,而`shallowEqual`会比较两个对象的`key`及其对应的值，如果都相等，则会判定为 true。
+`===` 和`Object.is()`在比较对象类型的数据时，只要不是同一个对象，均会判定为 false,而`shallowEqual`会比较两个对象的`key`及其对应的值，如果都相等，则会判定为 true。
 
 ```typescript
 const arrA = [1, 2];
@@ -372,29 +372,27 @@ const selectedData = useSelector(selectorReturningDeepObject, deepEqual);
 ```tsx
 import React, { useState } from 'react';
 
-function TodoList({items,onItemTitleChange}){
-  return items.map(item=><Item key={item.id}>{item.title}</Item>)
+function TodoList({ items, onItemTitleChange }) {
+  return items.map((item) => <Item key={item.id}>{item.title}</Item>);
 }
 
 const MemoTodoList = React.memo(TodoList);
 
-const defaultState = [{id:1,title:'篮球'}];
-function TodoPage(){
-  const [items,setItems]= useState(defaultState);
+const defaultState = [{ id: 1, title: '篮球' }];
+function TodoPage() {
+  const [items, setItems] = useState(defaultState);
 
-  const changeItemTitle=(title,index)=>{
-    const newItems=[
-      ...items.slice(0,index),
-      {...items[index],title},
-      ...items.slice(index+1);
-    ]
+  const changeItemTitle = (title, index) => {
+    const newItems = [
+      ...items.slice(0, index),
+      { ...items[index], title },
+      ...items.slice(index + 1),
+    ];
 
     setItems(newItems);
-  }
+  };
 
-  return (
-    <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />
-  )
+  return <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />;
 }
 ```
 
