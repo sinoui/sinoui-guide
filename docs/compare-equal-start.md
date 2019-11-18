@@ -369,63 +369,88 @@ const selectedData = useSelector(selectorReturningDeepObject, deepEqual);
 
 由于浅比较和深度比较非常耗费性能，尤其是深度比较，所以在日常开发中我们应尽量避免使用这两种比较方式。为了更好地避免浅比较和深度比较，我们可以在日常开发中使用[`不可变数据`](https://sinoui.github.io/sinoui-guide/docs/immutable-getting-started)的小技巧处理数据，这里我们主要依赖[`immer`](https://immerjs.github.io/immer/docs/introduction)来做数据不可变。
 
-```tsx
-import React, { useState } from 'react';
+在程序中组合使用不可变数据和`React.memo`，是解决性能问题的重要手段。使用 immer 可以简化不可变数据的编程。以待办列表为例看下二者是如何使用的:
 
-function TodoList({ items, onItemTitleChange }) {
-  return items.map((item) => <Item key={item.id}>{item.title}</Item>);
+`TodoItem.tsx`
+
+```tsx
+import React, { useCallback } from 'react';
+
+function TodoItem({ item, onTitleChange }) {
+  const handleChange = useCallback(
+    (event) => {
+      onTitleChange(item.id, event.target.value);
+    },
+    [item.id, onTitleChange],
+  );
+
+  return <input value={item.title} onChange={handleChange} />;
 }
 
-const MemoTodoList = React.memo(TodoList);
+export default React.memo(TodoItem);
+```
 
-const defaultState = [{ id: 1, title: '篮球' }];
-function TodoPage() {
-  const [items, setItems] = useState(defaultState);
+`TodoList.tsx`
 
-  const changeItemTitle = (title, index) => {
-    const newItems = [
-      ...items.slice(0, index),
-      { ...items[index], title },
-      ...items.slice(index + 1),
-    ];
+```tsx
+import React, { useCallback, useState } from 'react';
+import produce from 'immer';
+import TododItem from './TodoItem';
 
-    setItems(newItems);
-  };
+const defaultTodos = [
+  { id: '1', title: '学些相等性比较' },
+  { id: '2', title: '学习 React' },
+  { id: '3', title: '学些 immer' },
+];
+function TodoList() {
+  const [todos, setTodos] = useState(defaultTodos);
 
-  return <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />;
+  // 别忘了给回调函数添加上 useCallback
+  const handleTitleChange = useCallback((itemId: string, title: string) => {
+    setTodos(
+      produce((draft) => {
+        const todoItem = draft.find((item) => item.id === itemId);
+        todoItem.title = title;
+      }),
+    );
+  }, []);
+
+  return (
+    <div>
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} item={todo} onTitleChange={handleTitleChange} />
+      ))}
+    </div>
+  );
 }
 ```
 
-运行时我们会发现，对于 TodoList 的缓存实际上是没有用的，因为我们在改变 title 的时候相当于新建了一个复制了之前的数组并改写，破坏了 memo 的缓存规则。
+当改变一条待办事项的标题时，由于只是变更了此条待办事项的状态对象，其他待办事项的状态对象并没有发生改变，所以在 React.memo 作用下，只会引起此条待办事项的重绘。
 
-为了保证缓存有效，我们可以使用`immer`改写上述代码：
+示例代码中变更待办事项标题的部分：
 
 ```tsx
-import React, { useState } from 'react';
-import produce from 'immer';
+setTodos(
+  produce((draft) => {
+    const todoItem = draft.find((item) => item.id === itemId);
+    todoItem.title = title;
+  }),
+);
+```
 
-function TodoList({ items, onItemTitleChange }) {
-  return items.map((item) => <Item key={item.id}>{item.title}</Item>);
-}
+等价于：
 
-const MemoTodoList = React.memo(TodoList);
-
-const defaultState = [{ id: 1, title: '篮球' }];
-function TodoPage() {
-  const [items, setItems] = useState(defaultState);
-
-  const changeItemTitle = (title, index) => {
-    setItems(
-      produce((draft) => {
-        draft[index].title = title;
-      }),
-    );
-  };
-
-  return <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />;
-}
+```tsx
+setTodos((state) => {
+  return state.map((item) => {
+    if (item.id === itemId) {
+      return { ...item, title };
+    }
+    return item;
+  });
+});
 ```
 
 ## 总结
 
-通过对上述相等比较的了解，希望我们在以后的日常开发中能够准确使用不同的比较方式。需要注意的是，为了性能考量，应尽量避免使用浅比较和深层比较的方式进行数据相等比较。尽可能的使用`immer`进行数据处理，以满足 `Object.is()` 和 `===` 比较的条件。
+通过对上述相等比较的了解，希望我们在以后的日常开发中能够准确使用不同的比较方式。需要注意的是，为了性能考量，应尽量避免使用浅比较和深层比较的方式进行数据相等比较。尽可能的保证组件的属性是不变的，如回调函数、style 等。更多的使用不可变数据和 React.memo 的组合进行性能优化。
