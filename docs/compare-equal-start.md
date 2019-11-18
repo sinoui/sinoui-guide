@@ -417,9 +417,12 @@ function TodoPage() {
   const [items, setItems] = useState(defaultState);
 
   const changeItemTitle = (title, index) => {
-    setState(items, (draft) => {
-      draft[index].title = title;
-    });
+    setState(
+      items,
+      produce((draft) => {
+        draft[index].title = title;
+      }),
+    );
   };
 
   return <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />;
