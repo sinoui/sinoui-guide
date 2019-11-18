@@ -383,13 +383,13 @@ function TodoPage(){
   const [items,setItems]= useState(defaultState);
 
   const changeItemTitle=(title,index)=>{
-    const newState=[
+    const newItems=[
       ...items.slice(0,index),
       {...items[index],title},
       ...items.slice(index+1);
     ]
 
-    setState(newItems);
+    setItems(newItems);
   }
 
   return (
@@ -417,8 +417,7 @@ function TodoPage() {
   const [items, setItems] = useState(defaultState);
 
   const changeItemTitle = (title, index) => {
-    setState(
-      items,
+    setItems(
       produce((draft) => {
         draft[index].title = title;
       }),
