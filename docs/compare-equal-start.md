@@ -26,13 +26,13 @@ sidebar_label: 相等性比较
 - +0 和 -0
 
 ```js
-console(undefined, undefined); // true
-console(undefined, null); // false
-console(null, null); // true
+console.log(undefined === undefined); // true
+console.log(undefined === null); // false
+console.log(null === null); // true
 
 // 特例
-console(+0, -0); // true
-console.log(NaN, NaN); // false
+console.log(+0 === -0); // true
+console.log(NaN === NaN); // false
 ```
 
 ### Object.is()
@@ -147,7 +147,7 @@ shallowEqual(objA, objB); //true
 const objA = { a: 1, b: { c: 1 } };
 const objB = { a: 1, b: { c: 1 } };
 
-deepEqual(objA === objB); // true
+deepEqual(objA, objB); // true
 deepEqual([1, 2], [1, 2]); // true
 deepEqual([[1, 2], [2]], [[1, 2], [2]]); // true
 ```
@@ -157,7 +157,7 @@ deepEqual([[1, 2], [2]], [[1, 2], [2]]); // true
 - [react-fast-compare](https://www.npmjs.com/package/react-fast-compare)
 
   ```typescript
-  const isEqual = require('react-fast-compare');
+  import isEqual from 'react-fast-compare';
 
   console.log(isEqual({ foo: 'bar' }, { foo: 'bar' })); //true
   ```
@@ -166,9 +166,9 @@ deepEqual([[1, 2], [2]], [[1, 2], [2]]); // true
 
 以上四种方式都是判断相等，但是`===`和`Object.is`只能判断基本数据类型之间的相等，不能判断引用类型之间的相等。`shallowEqual`可以判断引用类型之间的相等，但是并不能准确判断嵌套类型的数据。而`deepEqual`不仅能进行基本数据类型之间的比较，还能进行更深层次的比较。
 
-### ===和 Object.is()
+### === 和 Object.is()
 
-===和 Object.is()都是用来判断两个值是否相等，并且判断逻辑基本保持一致。主要区别在于以下两点：
+=== 和 Object.is() 都是用来判断两个值是否相等，并且判断逻辑基本保持一致。主要区别在于以下两点：
 
 - +0 、-0
 
@@ -241,59 +241,136 @@ deepEqual(objC, objD); // true
 通过上述对比可以发现：
 
 - `===`和`Object.is`主要用于基本数据类型的比较，对于性能的影响不大。
-- `shallowEqual`和`deepEqual`主要用于复杂数据结构的相等比较，性能损耗较大。
+- `shallowEqual`和`deepEqual`主要用于复杂数据结构的相等比较，性能损耗较大，尤其是 `deepEqual`。
 
 ## 主要用途
 
 目前我们在项目中用到相等性比较，一般都与缓存计算以性能优化相关。比如`React.memo`、`React.useMemo`等的实现其实都是依赖相等性比较。下面我们来分析一下项目中常用的几个方法所用的比较方式。
 
-- React.memo
+### React.memo
 
-  默认情况下只会对复杂的对象进行`Object.is`形式的相等比较，如果我们想要控制比较过程，可以自定义比较方法通过第二个参数传入。
+默认情况下 `React.memo` 对属性对象进行浅比较。举例说明如何发挥出 `React.memo` 的缓存特性，减少重复渲染。
 
-  ```tsx
-  function MyComponent(props) {
-    /* 使用 props 渲染 */
-  }
-  function areEqual(prevProps, nextProps) {
-    /*
-    如果把 nextProps 传入 render 方法的返回结果与
-    将 prevProps 传入 render 方法的返回结果一致则返回 true，
-    否则返回 false
-    */
-  }
-  export default React.memo(MyComponent, areEqual);
-  ```
+被缓存的组件：
 
-- React.useMemo
+```ts
+const MyComponent = React.memo(function MyComponent(props) {
+  /* 使用 props 渲染 */
+});
+```
 
-  默认使用`Object.is`的方式将新传入的值与缓存的`memoized`的值进行相等比较。
-
-- React.useCallback
-
-  同 React.useMemo 一样都是默认`Object.is`形式的相等比较。
-
-- react-redux 中的 useSelector
-
-  默认使用`Object.is()`比较方式，但是支持传入第二个参数进行`shallowEqual`浅比较。
-
-  ```tsx
-  import { shallowEqual, useSelector } from 'react-redux';
-
-  // later
-  const selectedData = useSelector(selectorReturningObject, shallowEqual);
-  ```
-
-- lodash/memorize
-
-  使用`Object.is()`进行相等比较，且缓存一直存在。
-
-通过上述描述，我们可以看出目前常用方法中用到的比较方式基本都是`Object.is`,其中`React.memo`支持自定义比较逻辑，而`useSelector`可以传入第二个参数进行浅比较。
-
-由于浅比较和深度比较非常耗费性能，所以在日常开发中我们应尽量避免使用这两种比较方式。为了更好地避免浅比较和深度比较，我们可以在日常开发中使用[`不可变数据`](https://sinoui.github.io/sinoui-guide/docs/immutable-getting-started)的小技巧处理数据，这里我们主要依赖[`immer`](https://immerjs.github.io/immer/docs/introduction)来做数据不可变。
+破坏缓存的使用方式：
 
 ```tsx
-import React,{useState} from 'react';
+import MyComponent from './MyComponent';
+
+function Demo() {
+  // 🔴 缓存失效
+  return <MyComponent onClick={() => console.log('click')} items={[1, 2, 3]} />;
+}
+```
+
+每当 Demo 组件重绘时，都会产生新的 `onClick` 和 `items` 属性传递给 `MyComponent` 组件，让其相等性比较为 false，导致缓存失效。
+
+补救措施如下：
+
+```tsx
+import MyComponent from './MyComponent';
+
+const items = [1, 2, 3];
+
+function Demo() {
+  const handleClick = useCallback(() => {
+    console.log('click');
+  }, []);
+  // ✅ 缓存有效
+  return <MyComponent onClick={handleClick} items={items} />;
+}
+```
+
+这样，每当 Demo 组件重绘时，传递给 `MyComponent` 都是相同的 `onClick` 和 `items` 属性值，组件缓存就会起到作用。
+
+我们也可以通过 `React.memo()` 的第二个参数指定比较函数，以自定义属性对象的相等性比较，如下所示：
+
+```tsx
+function MyComponent(props) {
+  /* 使用 props 渲染 */
+}
+function areEqual(prevProps, nextProps) {
+  const { items: prevItems, ...prevRest } = prevProps;
+  const { items: nextItems, ...nextRest } = nextProps;
+
+  // 😔 不到万不得已，别用深度比较。这段代码只是示例。
+  return shallowEqual(prevRest, nextRest) && deepEqual(prevItems, nextItems);
+}
+
+export default React.memo(MyComponent, areEqual);
+```
+
+下面的使用方式缓存是有效的：
+
+```tsx
+import MyComponent from './MyComponent';
+
+function Demo() {
+  const handleClick = useCallback(() => {
+    console.log('click');
+  }, []);
+
+  return <MyComponent onClick={handleClick} items={[1, 2, 3]} />;
+}
+```
+
+### React.useMemo
+
+默认使用 `Object.is` 对依赖项进行相等性比较。
+
+我们来看看怎么用 `React.useMemo` ：
+
+```ts
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+把“创建”函数和依赖项数组作为参数传入`useMemo`，它仅会在某个依赖项改变时才重新计算 `memoized` 值。这种优化有助于避免在每次渲染时都进行高开销的计算。
+
+React 会在组件重绘时，用 `Object.is` 依此比较 `a` 和 `b` 这两个依赖项是否与之前渲染时的值相等，如果不相等，则会重新调用“创建”函数，生成新的值。
+
+### React.useCallback
+
+同 React.useMemo 一样都是默认 `Object.is` 形式的相等比较。
+
+### react-redux 中的 useSelector
+
+默认使用 `Object.is()` 比较方式，但是支持传入第二个参数进行 `shallowEqual` 浅比较。
+
+```tsx
+import { shallowEqual, useSelector } from 'react-redux';
+
+// later
+const selectedData = useSelector(selectorReturningObject, shallowEqual);
+```
+
+当然，特殊情况下你也可以传入深度比较函数，让 useSelector 使用深度比较，只是这样可能会成为性能瓶颈：
+
+```ts
+import deepEqual from 'react-fast-compare';
+
+// 😔 不到万不得已，别用深度比较。
+const selectedData = useSelector(selectorReturningDeepObject, deepEqual);
+```
+
+### lodash/memoize
+
+使用`Object.is()`进行相等比较，且缓存一直存在。
+
+### 小结
+
+通过上述描述，我们可以看出目前常用方法中用到的比较方式基本都是 `Object.is` ，其中 `React.memo`、`useSelector` 支持自定义比较逻辑。
+
+由于浅比较和深度比较非常耗费性能，尤其是深度比较，所以在日常开发中我们应尽量避免使用这两种比较方式。为了更好地避免浅比较和深度比较，我们可以在日常开发中使用[`不可变数据`](https://sinoui.github.io/sinoui-guide/docs/immutable-getting-started)的小技巧处理数据，这里我们主要依赖[`immer`](https://immerjs.github.io/immer/docs/introduction)来做数据不可变。
+
+```tsx
+import React, { useState } from 'react';
 
 function TodoList({items,onItemTitleChange}){
   return items.map(item=><Item key={item.id}>{item.title}</Item>)
@@ -353,4 +430,4 @@ function TodoPage(){
 
 ## 总结
 
-通过对上述相等比较的了解，希望我们在以后的日常开发中能够准确使用不同的比较方式。需要注意的是，为了性能考量，应尽量避免使用浅比较和深层比较的方式进行数据相等比较。尽可能的使用`immer`进行数据处理，以满足 Object.is()和`===`比较的条件。
+通过对上述相等比较的了解，希望我们在以后的日常开发中能够准确使用不同的比较方式。需要注意的是，为了性能考量，应尽量避免使用浅比较和深层比较的方式进行数据相等比较。尽可能的使用`immer`进行数据处理，以满足 `Object.is()` 和`===` 比较的条件。
