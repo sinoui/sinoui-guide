@@ -363,7 +363,7 @@ const selectedData = useSelector(selectorReturningDeepObject, deepEqual);
 
 使用`Object.is()`进行相等比较，且缓存一直存在。
 
-### 小结
+### 不可变数据
 
 通过上述描述，我们可以看出目前常用方法中用到的比较方式基本都是 `Object.is` ，其中 `React.memo`、`useSelector` 支持自定义比较逻辑。
 
