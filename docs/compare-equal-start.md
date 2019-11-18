@@ -418,7 +418,6 @@ function TodoPage() {
 
   const changeItemTitle = (title, index) => {
     setState(
-      items,
       produce((draft) => {
         draft[index].title = title;
       }),
