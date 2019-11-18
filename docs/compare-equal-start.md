@@ -378,7 +378,7 @@ function TodoList({items,onItemTitleChange}){
 
 const MemoTodoList = React.memo(TodoList);
 
-const defaultState = [{id:1,title:'篮球'}]；
+const defaultState = [{id:1,title:'篮球'}];
 function TodoPage(){
   const [items,setItems]= useState(defaultState);
 
@@ -403,28 +403,26 @@ function TodoPage(){
 为了保证缓存有效，我们可以使用`immer`改写上述代码：
 
 ```tsx
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import produce from 'immer';
 
-function TodoList({items,onItemTitleChange}){
-  return items.map(item=><Item key={item.id}>{item.title}</Item>)
+function TodoList({ items, onItemTitleChange }) {
+  return items.map((item) => <Item key={item.id}>{item.title}</Item>);
 }
 
 const MemoTodoList = React.memo(TodoList);
 
-const defaultState = [{id:1,title:'篮球'}]；
-function TodoPage(){
-  const [items,setItems]= useState(defaultState);
+const defaultState = [{ id: 1, title: '篮球' }];
+function TodoPage() {
+  const [items, setItems] = useState(defaultState);
 
-  const changeItemTitle=(title,index)=>{
-    setState(items,(draft)=>{
+  const changeItemTitle = (title, index) => {
+    setState(items, (draft) => {
       draft[index].title = title;
-    })
-  }
+    });
+  };
 
-  return (
-    <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />
-  )
+  return <MemoTodoList items={items} onItemTitleChange={changeItemTitle} />;
 }
 ```
 
