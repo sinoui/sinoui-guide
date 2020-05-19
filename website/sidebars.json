@@ -67,6 +67,9 @@
       "mouse-event",
       "element-width"
     ],
-    "动画": ["javascript-simple-animation"]
+    "动画": [
+      "javascript-simple-animation",
+      "building-performant-collapse-animations"
+    ]
   }
 }
