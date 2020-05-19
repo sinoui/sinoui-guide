@@ -64,7 +64,8 @@
       "calculate-video-duration",
       "calculate-md5",
       "prevent-backspace-navigation",
-      "mouse-event"
+      "mouse-event",
+      "element-width"
     ],
     "动画": ["javascript-simple-animation"]
   }
