@@ -132,7 +132,7 @@ function createKeyframeAnimation() {
       transform: scale(1, ${yScale});
     }`;
 
-    const invYScale = yScale === 0 ? inverseY : Math.min(1 / yScale, invertY);
+    const invYScale = yScale === 0 ? inverseY : Math.min(1 / yScale, inverseY);
     inverseAnimation += `${step}% {
       transform: scale(1, ${invYScale});
     }`;
