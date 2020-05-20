@@ -124,7 +124,7 @@ function createKeyframeAnimation() {
   let inverseAnimation = '';
 
   for (let step = 0; step <= steps; step++) {
-    let easedStep = easInOut(step / 100);
+    let easedStep = easInOut(step / steps);
 
     const yScale = y + (1 - y) * easedStep;
 
