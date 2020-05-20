@@ -119,7 +119,7 @@ const duration = 200; // 动画时长。
 function createKeyframeAnimation() {
   const steps = Math.ceil(duration / 16); // 帧数 = 步数
   const y = 0; // 元素最终缩小的比例
-  const invertY = 100; // 元素最终放大的比例
+  const inverseY = 100; // 元素最终放大的比例
   let animation = '';
   let inverseAnimation = '';
 
