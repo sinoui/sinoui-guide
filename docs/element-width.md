@@ -21,7 +21,7 @@ sidebar_label: 元素宽度
 - `offsetWidth` - 元素自身的宽度（包括边线和滚动条宽度）
 - `scrollWidth` - 元素包含内容的宽度，不包括 padding 区域。
 
-这三者是元素的“固定”宽度，即无论针对元素做什么变换操作，如`scale(0.7)`，这三个属性返回的值都是不变的。若想获取元素变换后的实际宽度，则需要使用 `getBoundingClientRect()`。
+这三者是元素的布局宽度，即无论针对元素做什么变换操作，如`scale(0.7)`，这三个属性返回的值都是不变的。若想获取元素变换后的实际宽度，则需要使用 `getBoundingClientRect()`。
 
 ## `getBoundingClientRect()`
 
