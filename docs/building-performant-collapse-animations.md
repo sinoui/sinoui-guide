@@ -119,12 +119,12 @@ const duration = 200; // 动画时长。
 function createKeyframeAnimation() {
   const steps = Math.ceil(duration / 16); // 帧数 = 步数
   const y = 0; // 元素最终缩小的比例
-  const invertY = 100; // 元素最终放大的比例
+  const inverseY = 100; // 元素最终放大的比例
   let animation = '';
   let inverseAnimation = '';
 
-  for (let step = 0; step <= 100; step++) {
-    let easedStep = easInOut(step / 100);
+  for (let step = 0; step <= steps; step++) {
+    let easedStep = easInOut(step / steps);
 
     const yScale = y + (1 - y) * easedStep;
 
@@ -132,7 +132,7 @@ function createKeyframeAnimation() {
       transform: scale(1, ${yScale});
     }`;
 
-    const invYScale = yScale === 0 ? invertY : Math.min(1 / yScale, invertY);
+    const invYScale = yScale === 0 ? inverseY : Math.min(1 / yScale, inverseY);
     inverseAnimation += `${step}% {
       transform: scale(1, ${invYScale});
     }`;
