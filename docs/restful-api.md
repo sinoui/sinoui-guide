@@ -245,6 +245,12 @@ PUT /products/1
 DELETE /products/1
 ```
 
+同时删除多个数据：
+
+```text
+DELETE /products/1,2,3,4
+```
+
 #### 成功的响应
 
 状态码：200、204
